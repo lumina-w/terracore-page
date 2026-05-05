@@ -1,18 +1,49 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro'
+import Button from '@components/Button.astro'
+import Card from '@components/Card.astro'
 
 const ctaUrl = import.meta.env.MAIN_CTA_URL ?? '#'
 ---
 
 <BaseLayout title="TerraCore — Gestión inteligente para tu negocio">
-  <main class="min-h-screen flex flex-col items-center justify-center bg-background">
-    <h1 class="text-4xl font-bold text-primary">TerraCore</h1>
-    <p class="mt-4 text-lg text-foreground">Landing page en construcción.</p>
-    <a
-      href={ctaUrl}
-      class="mt-8 px-6 py-3 bg-accent text-white font-semibold rounded-lg hover:opacity-90 transition-opacity"
-    >
-      Comenzar
-    </a>
+  <main>
+    <!-- Hero -->
+    <section class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-24 text-center flex flex-col items-center gap-6">
+      <h1 class="text-5xl sm:text-display font-bold text-primary leading-tight">
+        Gestión inteligente<br />para tu negocio
+      </h1>
+      <p class="max-w-xl text-lg text-muted-foreground">
+        TerraCore centraliza operaciones, reduce costos y acelera el crecimiento de tu empresa.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-3">
+        <Button href={ctaUrl} variant="primary" size="lg">Agendar demo</Button>
+        <Button href="#features" variant="secondary" size="lg">Ver funciones</Button>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section id="features" class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <Card
+          title="Operaciones centralizadas"
+          description="Gestiona inventario, pedidos y logística desde un solo panel en tiempo real."
+          icon="layers"
+          cta={{ text: 'Ver más', href: '#' }}
+        />
+        <Card
+          title="Reportes automáticos"
+          description="Genera reportes financieros y de desempeño con un clic, sin hojas de cálculo."
+          icon="bar-chart-2"
+          cta={{ text: 'Ver más', href: '#' }}
+        />
+        <Card
+          title="Equipos conectados"
+          description="Comunica cambios al instante con notificaciones y permisos por rol."
+          icon="users"
+          cta={{ text: 'Ver más', href: '#' }}
+        />
+      </div>
+    </section>
   </main>
 </BaseLayout>

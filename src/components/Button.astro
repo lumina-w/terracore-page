@@ -1,0 +1,55 @@
+---
+import { cn } from '@utils/cn'
+
+interface Props {
+  variant?: 'primary' | 'secondary' | 'outline'
+  size?: 'sm' | 'md' | 'lg'
+  href?: string
+  onclick?: string
+  disabled?: boolean
+  type?: 'button' | 'submit' | 'reset'
+  class?: string
+}
+
+const {
+  variant = 'primary',
+  size = 'md',
+  href,
+  onclick,
+  disabled = false,
+  type = 'button',
+  class: className,
+} = Astro.props
+
+const base =
+  'inline-flex items-center justify-center font-semibold rounded-md transition-colors duration-base ease-standard focus-visible:outline-none focus-visible:shadow-focus disabled:pointer-events-none disabled:opacity-50'
+
+const variants = {
+  primary: 'bg-primary text-white hover:bg-primary-hover',
+  secondary: 'bg-transparent border border-border text-foreground hover:bg-muted',
+  outline: 'border border-primary text-primary hover:border-primary-hover hover:text-primary-hover bg-transparent',
+}
+
+const sizes = {
+  sm: 'text-sm px-4 py-2 gap-1.5',
+  md: 'text-base px-6 py-3 gap-2',
+  lg: 'text-lg px-8 py-4 gap-2',
+}
+
+const classes = cn(base, variants[variant], sizes[size], className)
+---
+
+{href ? (
+  <a href={href} class={classes} aria-disabled={disabled || undefined}>
+    <slot />
+  </a>
+) : (
+  <button
+    type={type}
+    class={classes}
+    disabled={disabled}
+    onclick={onclick}
+  >
+    <slot />
+  </button>
+)}
