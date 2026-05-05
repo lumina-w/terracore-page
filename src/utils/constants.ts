@@ -60,6 +60,62 @@ export const PLANS: Plan[] = [
   },
 ]
 
+export interface Problem {
+  icon: string
+  title: string
+  desc: string
+}
+
+export const PROBLEMS: Problem[] = [
+  {
+    icon: 'file-spreadsheet',
+    title: 'Datos dispersos',
+    desc: 'Información en Excel, WhatsApp y cuadernos. Sin una sola fuente de verdad.',
+  },
+  {
+    icon: 'eye-off',
+    title: 'Sin visibilidad en tiempo real',
+    desc: 'No sabes el estado de salud animal ni de inventario hasta que ya es tarde.',
+  },
+  {
+    icon: 'trending-down',
+    title: 'Decisiones a ciegas',
+    desc: 'Sin datos de rentabilidad por lote, cultivo o mes, no puedes optimizar.',
+  },
+  {
+    icon: 'alert-triangle',
+    title: 'Personal apagando incendios',
+    desc: 'Tu equipo gestiona crisis en lugar de enfocarse en producir y crecer.',
+  },
+]
+
+export interface Feature {
+  icon: string
+  title: string
+  description: string
+}
+
+export const FEATURES: Feature[] = [
+  {
+    icon: 'layout-dashboard',
+    title: 'Dashboard centralizado',
+    description:
+      'Toda tu operación en una pantalla: inventario, personal, lotes y finanzas. Sin abrir diez hojas de cálculo.',
+  },
+  {
+    icon: 'bell-ring',
+    title: 'Alertas en tiempo real',
+    description:
+      'Recibe notificaciones antes de que los problemas escalen. Actúa sobre datos, no sobre rumores.',
+  },
+  {
+    icon: 'shield-check',
+    title: 'Control total de operación',
+    description:
+      'Toma decisiones basadas en rentabilidad real. Por lote, por mes, por cultivo. Sin adivinar.',
+  },
+]
+
 export const FAQ: FaqItem[] = [
   {
     q: '¿Es complicado de implementar?',

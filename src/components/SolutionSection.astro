@@ -1,29 +1,8 @@
 ---
 import Card from './Card.astro'
+import { FEATURES } from '@utils/constants'
 
-const features = [
-  {
-    icon: 'layout-dashboard',
-    title: 'Dashboard centralizado',
-    description:
-      'Toda tu operación en una pantalla: inventario, personal, lotes y finanzas. Sin abrir diez hojas de cálculo.',
-    cta: { text: 'Ver demo', href: import.meta.env.MAIN_CTA_URL ?? '#' },
-  },
-  {
-    icon: 'bell-ring',
-    title: 'Alertas en tiempo real',
-    description:
-      'Recibe notificaciones antes de que los problemas escalen. Actúa sobre datos, no sobre rumores.',
-    cta: { text: 'Ver demo', href: import.meta.env.MAIN_CTA_URL ?? '#' },
-  },
-  {
-    icon: 'shield-check',
-    title: 'Control total de operación',
-    description:
-      'Toma decisiones basadas en rentabilidad real. Por lote, por mes, por cultivo. Sin adivinar.',
-    cta: { text: 'Ver demo', href: import.meta.env.MAIN_CTA_URL ?? '#' },
-  },
-] as const
+const ctaUrl = import.meta.env.MAIN_CTA_URL ?? '#'
 ---
 
 <section class="bg-background py-16 sm:py-24">
@@ -38,12 +17,12 @@ const features = [
     </div>
 
     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      {features.map((f) => (
+      {FEATURES.map((f) => (
         <Card
           title={f.title}
           description={f.description}
           icon={f.icon}
-          cta={f.cta}
+          cta={{ text: 'Ver demo', href: ctaUrl }}
         />
       ))}
     </div>

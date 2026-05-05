@@ -1,28 +1,6 @@
 ---
 import { Icon } from 'astro-icon/components'
-
-const problems = [
-  {
-    icon: 'file-spreadsheet',
-    title: 'Datos dispersos',
-    desc: 'Información en Excel, WhatsApp y cuadernos. Sin una sola fuente de verdad.',
-  },
-  {
-    icon: 'eye-off',
-    title: 'Sin visibilidad en tiempo real',
-    desc: 'No sabes el estado de salud animal ni de inventario hasta que ya es tarde.',
-  },
-  {
-    icon: 'trending-down',
-    title: 'Decisiones a ciegas',
-    desc: 'Sin datos de rentabilidad por lote, cultivo o mes, no puedes optimizar.',
-  },
-  {
-    icon: 'alert-triangle',
-    title: 'Personal apagando incendios',
-    desc: 'Tu equipo gestiona crisis en lugar de enfocarse en producir y crecer.',
-  },
-] as const
+import { PROBLEMS } from '@utils/constants'
 ---
 
 <section id="problema" class="bg-primary py-16 sm:py-24">
@@ -32,7 +10,7 @@ const problems = [
     </h2>
 
     <div class="grid sm:grid-cols-2 gap-5">
-      {problems.map((item) => (
+      {PROBLEMS.map((item) => (
         <div
           class="flex items-start gap-4 p-6 rounded-lg"
           style="background: rgba(255,255,255,0.06)"
