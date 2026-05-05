@@ -1,0 +1,49 @@
+---
+import Button from './Button.astro'
+
+const ctaUrl = import.meta.env.MAIN_CTA_URL ?? '#'
+const phone = import.meta.env.CONTACT_WHATSAPP
+const waUrl = phone
+  ? `https://wa.me/${phone}?text=${encodeURIComponent('Hola, quiero saber más sobre TerraCore')}`
+  : null
+---
+
+<section class="bg-primary py-16 sm:py-24">
+  <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center gap-8">
+    <div class="flex flex-col gap-4">
+      <h2 class="text-3xl sm:text-4xl font-bold text-white">
+        ¿Listo para tomar control de tu operación?
+      </h2>
+      <p class="text-lg text-white/75 max-w-xl mx-auto leading-relaxed">
+        Agenda una llamada con Valentina y descubre cómo TerraCore se adapta exactamente a tu negocio.
+        Sin demos genéricas.
+      </p>
+    </div>
+
+    <div class="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
+      <Button
+        href={ctaUrl}
+        variant="ghost"
+        size="lg"
+        onclick="window.trackEvent('click_cta_footer')"
+        class="w-full sm:w-auto"
+      >
+        Agendar llamada con Valentina
+      </Button>
+
+      {waUrl && (
+        <Button
+          href={waUrl}
+          variant="ghost"
+          size="lg"
+          onclick="window.trackEvent('click_contact_whatsapp')"
+          class="w-full sm:w-auto"
+        >
+          WhatsApp →
+        </Button>
+      )}
+    </div>
+
+    <p class="text-sm text-white/50">Sin compromiso · Respuesta en menos de 24 h</p>
+  </div>
+</section>
