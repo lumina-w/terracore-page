@@ -1,0 +1,78 @@
+---
+import { Icon } from 'astro-icon/components'
+import Button from './Button.astro'
+import { PLANS } from '@utils/constants'
+import { cn } from '@utils/cn'
+
+const ctaUrl = import.meta.env.MAIN_CTA_URL ?? '#'
+---
+
+<section class="bg-muted py-16 sm:py-24">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl sm:text-4xl font-bold text-primary mb-4">Planes</h2>
+      <p class="text-lg text-muted-foreground">
+        Sin precios en pantalla — porque cada operación es diferente. Agenda y cotizamos juntos.
+      </p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 items-start">
+      {PLANS.map((plan) => (
+        <div
+          class={cn(
+            'relative flex flex-col gap-6 rounded-xl border p-6 sm:p-8',
+            plan.highlight
+              ? 'bg-primary border-primary text-white shadow-xl'
+              : 'bg-card border-border shadow-sm',
+          )}
+        >
+          {plan.highlight && (
+            <div class="absolute -top-3.5 left-1/2 -translate-x-1/2">
+              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-pill bg-accent text-white text-xs font-semibold">
+                <Icon name="lucide:star" class="w-3 h-3" /> Más popular
+              </span>
+            </div>
+          )}
+
+          <div>
+            <h3
+              class={cn(
+                'text-xl font-bold mb-1',
+                plan.highlight ? 'text-white' : 'text-foreground',
+              )}
+            >
+              {plan.name}
+            </h3>
+            <p class={cn('text-sm', plan.highlight ? 'text-white/70' : 'text-muted-foreground')}>
+              {plan.target}
+            </p>
+          </div>
+
+          <ul class="flex flex-col gap-2.5">
+            {plan.features.map((feat) => (
+              <li class="flex items-center gap-2.5 text-sm">
+                <Icon
+                  name="lucide:check"
+                  class={cn('w-4 h-4 shrink-0', plan.highlight ? 'text-accent-light' : 'text-success')}
+                />
+                <span class={plan.highlight ? 'text-white/90' : 'text-foreground'}>{feat}</span>
+              </li>
+            ))}
+          </ul>
+
+          <div class="mt-auto pt-2">
+            <Button
+              href={ctaUrl}
+              variant={plan.highlight ? 'ghost' : 'outline'}
+              size="md"
+              class="w-full justify-center"
+              onclick={`window.trackEvent('${plan.ctaEvent}')`}
+            >
+              {plan.ctaText}
+            </Button>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

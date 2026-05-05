@@ -22,7 +22,7 @@ const { title, description, icon, cta, class: className } = Astro.props
   )}
 >
   {icon && (
-    <div class="w-10 h-10 flex items-center justify-center rounded-md bg-primary/10 text-primary shrink-0">
+    <div class="w-10 h-10 flex items-center justify-center rounded-md text-primary shrink-0" style="background: rgba(27,67,50,0.08)">
       <Icon name={`lucide:${icon}`} class="w-5 h-5" />
     </div>
   )}
