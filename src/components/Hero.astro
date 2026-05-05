@@ -21,9 +21,8 @@ import { Icon } from 'astro-icon/components';
         </h1>
 
         <p class="hero__lead">
-          TerraCore es la plataforma colombiana para gestionar inventario, producción y salud animal
-          en una sola pantalla. Diseñada para fincas medianas que ya pasaron del cuaderno, pero
-          merecen más que una hoja de cálculo.
+          Sin Excel. Sin cuadernos. Sin WhatsApp. Para fincas que merecen más que una hoja de
+          cálculo.
         </p>
 
         <div class="hero__ctas">
@@ -31,23 +30,31 @@ import { Icon } from 'astro-icon/components';
             Solicita una demo
             <Icon name="lucide:arrow-right" width={16} height={16} />
           </a>
-          <a href="#video" class="btn btn-ghost-dark">
+          <!---<button class="btn btn-ghost-dark" id="video-open-btn" aria-label="Abrir demo en video">
             <Icon name="lucide:play" width={14} height={14} />
             Ver demo en video
-          </a>
+          </button> -->
         </div>
 
         <div class="hero__meta">
           <div class="hero__stat">
-            <span class="hero__stat-v">6</span>
+            <span class="hero__stat-v">
+              <span class="hero__stat-num" data-count-to="6">0</span>
+            </span>
             <span class="hero__stat-l">módulos integrados</span>
           </div>
           <div class="hero__stat">
-            <span class="hero__stat-v">100<span class="hero__stat-sup">%</span></span>
+            <span class="hero__stat-v">
+              <span class="hero__stat-num" data-count-to="100">0</span><span
+                class="hero__stat-sup">%</span>
+            </span>
             <span class="hero__stat-l">tu información, privada</span>
           </div>
           <div class="hero__stat">
-            <span class="hero__stat-v">24<span class="hero__stat-dim">/</span>7</span>
+            <span class="hero__stat-v">
+              <span class="hero__stat-num" data-count-to="24">0</span><span class="hero__stat-dim"
+                >/</span>7
+            </span>
             <span class="hero__stat-l">siempre accesible</span>
           </div>
         </div>
@@ -57,7 +64,7 @@ import { Icon } from 'astro-icon/components';
       <div class="hero__visual" aria-hidden="true">
         <div class="hero__frame">
           <img
-            src="/screens/dashboard-1.png"
+            src="/screens/dashboard-2.png"
             alt="Dashboard de TerraCore"
             width="900"
             height="600"
@@ -91,6 +98,81 @@ import { Icon } from 'astro-icon/components';
     </div>
   </div>
 </section>
+
+<!-- Video lightbox -->
+<div class="video-overlay" id="video-overlay" aria-modal="true" role="dialog" hidden>
+  <button class="video-overlay__close" id="video-close-btn" aria-label="Cerrar video">
+    <Icon name="lucide:x" width={24} height={24} />
+  </button>
+  <div class="video-overlay__backdrop" id="video-backdrop"></div>
+  <div class="video-overlay__wrap">
+    <video
+      id="demo-video"
+      src="/video/demo.mp4"
+      controls
+      preload="none"
+      class="video-overlay__player"
+    ></video>
+  </div>
+</div>
+
+<script>
+  // ── Counter animation ─────────────────────────────────────────
+  const nums = document.querySelectorAll<HTMLElement>('[data-count-to]');
+
+  function animateCount(el: HTMLElement, target: number, duration = 1200) {
+    const start = performance.now();
+    const easeOut = (t: number) => 1 - Math.pow(1 - t, 3);
+    const tick = (now: number) => {
+      const elapsed = Math.min((now - start) / duration, 1);
+      el.textContent = String(Math.round(easeOut(elapsed) * target));
+      if (elapsed < 1) requestAnimationFrame(tick);
+      else el.textContent = String(target);
+    };
+    requestAnimationFrame(tick);
+  }
+
+  const io = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          const el = e.target as HTMLElement;
+          animateCount(el, Number(el.dataset.countTo));
+          io.unobserve(el);
+        }
+      });
+    },
+    { threshold: 0.5 },
+  );
+  nums.forEach((n) => io.observe(n));
+
+  // ── Video lightbox ────────────────────────────────────────────
+  const overlay = document.getElementById('video-overlay') as HTMLElement;
+  const video = document.getElementById('demo-video') as HTMLVideoElement;
+  const openBtn = document.getElementById('video-open-btn')!;
+  const closeBtn = document.getElementById('video-close-btn')!;
+  const backdrop = document.getElementById('video-backdrop')!;
+
+  function openVideo() {
+    overlay.hidden = false;
+    document.body.style.overflow = 'hidden';
+    video.focus();
+  }
+
+  function closeVideo() {
+    overlay.hidden = true;
+    document.body.style.overflow = '';
+    video.pause();
+    video.currentTime = 0;
+  }
+
+  openBtn.addEventListener('click', openVideo);
+  closeBtn.addEventListener('click', closeVideo);
+  backdrop.addEventListener('click', closeVideo);
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !overlay.hidden) closeVideo();
+  });
+</script>
 
 <style>
   /* ── Hero shell ────────────────────────────────────────────── */
@@ -140,7 +222,7 @@ import { Icon } from 'astro-icon/components';
     }
   }
 
-  /* ── Copy side ─────────────────────────────────────────────── */
+  /* ── Badge ─────────────────────────────────────────────────── */
   .hero-badge {
     display: inline-flex;
     align-items: center;
@@ -165,6 +247,7 @@ import { Icon } from 'astro-icon/components';
     text-transform: uppercase;
   }
 
+  /* ── Heading ───────────────────────────────────────────────── */
   .hero__heading {
     color: #fff;
     font-family: var(--font-display);
@@ -175,7 +258,6 @@ import { Icon } from 'astro-icon/components';
     margin: 0 0 28px;
     text-wrap: balance;
   }
-
   .hero__em {
     color: var(--color-accent);
     font-style: normal;
@@ -193,6 +275,7 @@ import { Icon } from 'astro-icon/components';
     border-radius: 4px;
   }
 
+  /* ── Lead ──────────────────────────────────────────────────── */
   .hero__lead {
     font-size: 19px;
     line-height: 30px;
@@ -208,7 +291,7 @@ import { Icon } from 'astro-icon/components';
     align-items: center;
   }
 
-  /* Stats row */
+  /* ── Stats row ─────────────────────────────────────────────── */
   .hero__meta {
     display: grid;
     grid-template-columns: repeat(3, auto);
@@ -223,10 +306,13 @@ import { Icon } from 'astro-icon/components';
     font-family: var(--font-display);
     font-size: 28px;
     font-weight: 700;
-    color: #fff;
+    color: var(--color-accent);
     font-variant-numeric: tabular-nums;
     line-height: 1;
     letter-spacing: -0.015em;
+  }
+  .hero__stat-num {
+    color: var(--color-accent);
   }
   .hero__stat-l {
     display: block;
@@ -237,6 +323,7 @@ import { Icon } from 'astro-icon/components';
   }
   .hero__stat-sup {
     font-size: 18px;
+    color: var(--color-accent);
   }
   .hero__stat-dim {
     font-size: 18px;
@@ -273,10 +360,10 @@ import { Icon } from 'astro-icon/components';
     pointer-events: none;
   }
 
-  /* Float chip positions */
+  /* ── Float chip positions ──────────────────────────────────── */
   :global(.float-chip--pos-a) {
-    top: 14%;
-    left: -28px;
+    top: -5%;
+    left: 90px;
     animation: floatA 5s var(--ease-standard) infinite;
   }
   :global(.float-chip--pos-b) {
@@ -285,16 +372,91 @@ import { Icon } from 'astro-icon/components';
     animation: floatB 6s var(--ease-standard) infinite;
   }
   :global(.float-chip--pos-c) {
-    top: 52%;
-    left: -56px;
+    top: 62%;
+    left: -26px;
     animation: floatA 7s var(--ease-standard) infinite;
   }
 
-  @media (max-width: 1024px) {
+  /* Tablet (640–1024px): reposition inside frame, no overflow */
+  @media (min-width: 640px) and (max-width: 1024px) {
+    :global(.float-chip--pos-a) {
+      top: 10%;
+      left: 8px;
+    }
+    :global(.float-chip--pos-b) {
+      bottom: 10%;
+      right: 8px;
+    }
+    :global(.float-chip--pos-c) {
+      top: 50%;
+      left: 8px;
+    }
+  }
+
+  /* Mobile (<640px): hide */
+  @media (max-width: 639px) {
     :global(.float-chip--pos-a),
     :global(.float-chip--pos-b),
     :global(.float-chip--pos-c) {
       display: none;
     }
+  }
+
+  /* ── Video lightbox ────────────────────────────────────────── */
+  .video-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .video-overlay[hidden] {
+    display: none;
+  }
+
+  .video-overlay__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.88);
+    cursor: pointer;
+  }
+
+  .video-overlay__close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 1;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 180ms var(--ease-standard);
+  }
+  .video-overlay__close:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  .video-overlay__wrap {
+    position: relative;
+    z-index: 1;
+    width: min(90vw, 960px);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 32px 80px rgba(0, 0, 0, 0.6);
+  }
+
+  .video-overlay__player {
+    display: block;
+    width: 100%;
+    height: auto;
+    background: #000;
+    aspect-ratio: 16 / 9;
   }
 </style>
