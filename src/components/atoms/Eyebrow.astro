@@ -1,0 +1,13 @@
+---
+interface Props {
+  num?: string;
+  onDark?: boolean;
+  class?: string;
+}
+const { num, onDark = false, class: className } = Astro.props;
+---
+<span class:list={['eyebrow', onDark && 'eyebrow--dark', className]}>
+  {num && <span class="num">{num}</span>}
+  {num && <span class="dot" aria-hidden="true"></span>}
+  <slot />
+</span>

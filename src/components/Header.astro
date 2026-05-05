@@ -1,22 +1,69 @@
 ---
-import Button from './Button.astro'
-
-const ctaUrl = import.meta.env.MAIN_CTA_URL ?? '#'
+import Brand from '@molecules/Brand.astro';
+import { Icon } from 'astro-icon/components';
 ---
-
-<header class="sticky top-0 z-50 w-full border-b border-border bg-background/80 backdrop-blur-sm">
-  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-
-    <a href="/" class="flex items-center gap-2 font-bold text-xl text-primary" aria-label="Ir al inicio de TerraCore">
-      <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true" focusable="false">
-        <rect width="28" height="28" rx="6" fill="currentColor" />
-        <polygon points="14,5 23,14 14,23 5,14" fill="white" opacity="0.9" />
-      </svg>
-      TerraCore
+<header class="nav">
+  <div class="container nav-inner">
+    <a href="#top" aria-label="TerraCore inicio">
+      <Brand size={26} />
     </a>
 
-    <Button href={ctaUrl} variant="primary" size="sm" onclick="window.trackEvent('click_cta_header')">
-      Agendar demo
-    </Button>
+    <nav class="nav-links" aria-label="Navegación principal">
+      <a href="#modulos">Módulos</a>
+      <a href="#producto">Producto</a>
+      <a href="#beneficios">Beneficios</a>
+      <a href="#precios">Precios</a>
+      <a href="#faq">Preguntas</a>
+    </nav>
+
+    <div class="nav-cta">
+      <a href="#login" class="nav-login">
+        <Icon name="lucide:log-in" width={16} height={16} />
+        Iniciar sesión
+      </a>
+      <a href="#demo" class="btn btn-primary nav-demo">
+        Solicita demo
+      </a>
+    </div>
   </div>
 </header>
+
+<style>
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(249, 247, 244, 0.84);
+    backdrop-filter: saturate(180%) blur(10px);
+    -webkit-backdrop-filter: saturate(180%) blur(10px);
+    border-bottom: 1px solid var(--color-border);
+  }
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+  }
+  .nav-links {
+    display: flex;
+    gap: 28px;
+    font-size: 14px;
+    color: var(--color-text-secondary);
+    font-weight: 500;
+  }
+  .nav-links a:hover { color: var(--color-text); }
+  @media (max-width: 880px) { .nav-links { display: none; } }
+  .nav-cta { display: flex; align-items: center; gap: 12px; }
+  .nav-login {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--color-text-secondary);
+    font-size: 14px;
+    font-weight: 600;
+    margin-right: 4px;
+    transition: color var(--dur-base) var(--ease-standard);
+  }
+  .nav-login:hover { color: var(--color-text); }
+  .nav-demo { padding: 10px 16px !important; font-size: 14px !important; }
+</style>

@@ -1,0 +1,193 @@
+---
+import Eyebrow from '@atoms/Eyebrow.astro';
+import { Icon } from 'astro-icon/components';
+
+const items = [
+  { icon: 'lucide:wifi',      h: 'Funciona offline en la finca',
+    p: 'Mala señal en el corral o en el pastoreo no es un problema. Registra todo y TerraCore sincroniza apenas vuelva la red.' },
+  { icon: 'lucide:clock',     h: 'Setup en una tarde',
+    p: 'Importa tu inventario desde Excel, define usuarios, listo. Sin consultores, sin proyectos de 6 meses.' },
+  { icon: 'lucide:users',     h: 'Pensado para varios roles',
+    p: 'Administrador, capataz, veterinario, contador. Cada uno ve lo suyo, todos trabajan sobre la misma información.' },
+  { icon: 'lucide:bar-chart-2', h: 'Decisiones con datos reales',
+    p: 'Producción por mes, consumo de concentrado por lote, costo por kilo. Lo que antes era "creo que…" ahora es un número.' },
+  { icon: 'lucide:alert-circle', h: 'Nada se te pasa',
+    p: 'Vacunas que vencen, stock bajo, animales en tratamiento. Las alertas viven donde trabajas, no en otra app más.' },
+  { icon: 'lucide:leaf',      h: 'En español, para el campo',
+    p: 'Cero jerga gringa, cero "leads" o "stakeholders". Hablamos de lotes, dosis, kilos y unidades — como en tu finca.' },
+];
+---
+<section class="section-pad benefits" id="beneficios">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <Eyebrow num="03">Por qué TerraCore</Eyebrow>
+        <h2 class="display lg" style="margin-top:16px">
+          Software agropecuario<br/>que sí entiende la finca.
+        </h2>
+      </div>
+      <p class="lead">
+        Lo que probaste antes era un ERP disfrazado, o un Excel con login. TerraCore se construyó
+        mirando fincas reales, con productores reales — no en un coworking de Bogotá.
+      </p>
+    </div>
+
+    <div class="benefits-grid">
+      {items.map((it) => (
+        <div class="benefit">
+          <div class="benefit__icon">
+            <Icon name={it.icon} width={22} height={22} />
+          </div>
+          <div>
+            <h4 class="benefit__title">{it.h}</h4>
+            <p class="benefit__desc">{it.p}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Photo + stat split -->
+    <div class="split">
+      <div class="photo-card">
+        <!-- Image slot placeholder -->
+        <div class="photo-placeholder" aria-hidden="true"></div>
+        <div class="corner-stat">
+          <div class="corner-stat__val">−42%</div>
+          <div class="corner-stat__label">tiempo en tareas administrativas, según fincas piloto.</div>
+        </div>
+      </div>
+
+      <div>
+        <Eyebrow num="·">Resultado</Eyebrow>
+        <h3 class="display md" style="margin:16px 0">Menos planilla. Más finca.</h3>
+        <p class="lead" style="margin-bottom:24px">
+          El tiempo que antes se iba en cuadernos, recibos y llamadas, ahora vuelve al campo.
+          Las fincas que prueban TerraCore reportan menos errores en inventario y vacunaciones
+          que llegan a tiempo.
+        </p>
+        <ul class="check-list">
+          <li>
+            <Icon name="lucide:check" width={18} height={18} class="check-list__icon" />
+            Importación masiva de animales e insumos desde Excel.
+          </li>
+          <li>
+            <Icon name="lucide:check" width={18} height={18} class="check-list__icon" />
+            Exporta a CSV cuando lo pida tu contador o el ICA.
+          </li>
+          <li>
+            <Icon name="lucide:check" width={18} height={18} class="check-list__icon" />
+            Soporte humano en español, no chatbots.
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .benefits { background: var(--color-bg); }
+
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px 64px;
+  }
+  @media (max-width: 880px) {
+    .benefits-grid { grid-template-columns: 1fr; gap: 32px; }
+  }
+
+  .benefit {
+    display: flex;
+    gap: 20px;
+    padding: 8px 0;
+  }
+  .benefit__icon {
+    flex: 0 0 auto;
+    width: 48px; height: 48px;
+    border-radius: 10px;
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--color-primary);
+  }
+  .benefit__title {
+    font-family: var(--font-display);
+    font-size: 19px;
+    font-weight: 700;
+    margin: 0 0 6px;
+    letter-spacing: -0.01em;
+    color: var(--color-text);
+  }
+  .benefit__desc {
+    font-size: 14px;
+    line-height: 22px;
+    color: var(--color-text-secondary);
+    margin: 0;
+  }
+
+  /* Split */
+  .split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+    margin-top: 96px;
+  }
+  @media (max-width: 880px) { .split { grid-template-columns: 1fr; gap: 32px; } }
+
+  /* Photo card */
+  .photo-card {
+    border-radius: 14px;
+    overflow: hidden;
+    background: var(--color-primary);
+    position: relative;
+    aspect-ratio: 4 / 5;
+    border: 1px solid var(--color-border);
+  }
+  .photo-placeholder {
+    width: 100%; height: 100%;
+    background: linear-gradient(145deg, var(--color-primary) 0%, var(--color-primary-active) 100%);
+  }
+  .corner-stat {
+    position: absolute;
+    bottom: 18px; left: 18px;
+    background: rgba(13, 42, 31, 0.86);
+    color: #fff;
+    border-radius: 10px;
+    padding: 14px 18px;
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.12);
+    max-width: 240px;
+  }
+  .corner-stat__val {
+    font-family: var(--font-display);
+    font-size: 28px; font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.015em;
+    line-height: 1;
+  }
+  .corner-stat__label {
+    font-size: 12px;
+    color: rgba(255,255,255,0.7);
+    margin-top: 6px;
+  }
+
+  /* Check list */
+  .check-list {
+    list-style: none;
+    padding: 0; margin: 0;
+    display: grid;
+    gap: 12px;
+  }
+  .check-list li {
+    display: flex;
+    gap: 10px;
+    font-size: 15px;
+    align-items: flex-start;
+  }
+  :global(.check-list__icon) {
+    color: var(--color-accent);
+    margin-top: 3px;
+    flex: 0 0 auto;
+  }
+</style>

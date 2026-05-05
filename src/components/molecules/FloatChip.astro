@@ -1,0 +1,56 @@
+---
+import { Icon } from 'astro-icon/components';
+
+interface Props {
+  icon: string;
+  title: string;
+  sub: string;
+  variant?: 'success' | 'warning' | 'info';
+  class?: string;
+}
+const { icon, title, sub, variant = 'success', class: className } = Astro.props;
+---
+<div class:list={['float-chip', `float-chip--${variant}`, className]}>
+  <div class="float-chip__icon">
+    <Icon name={icon} width={18} height={18} />
+  </div>
+  <div>
+    <div class="float-chip__title">{title}</div>
+    <div class="float-chip__sub">{sub}</div>
+  </div>
+</div>
+
+<style>
+  .float-chip {
+    position: absolute;
+    background: #fff;
+    border-radius: 12px;
+    padding: 12px 14px;
+    box-shadow: 0 16px 40px rgba(0,0,0,0.35), 0 4px 12px rgba(0,0,0,0.2);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    color: var(--color-text);
+    white-space: nowrap;
+  }
+  .float-chip__icon {
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .float-chip--success .float-chip__icon {
+    background: var(--color-success-bg);
+    color: var(--color-success-fg);
+  }
+  .float-chip--warning .float-chip__icon {
+    background: var(--color-warning-bg);
+    color: var(--color-warning-fg);
+  }
+  .float-chip--info .float-chip__icon {
+    background: var(--color-info-bg);
+    color: var(--color-info-fg);
+  }
+  .float-chip__title { font-weight: 600; }
+  .float-chip__sub   { font-size: 11px; color: var(--color-text-muted); }
+</style>

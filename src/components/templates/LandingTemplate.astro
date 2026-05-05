@@ -1,0 +1,38 @@
+---
+import Hero        from '@components/Hero.astro';
+import ProofStrip  from '@organisms/ProofStrip.astro';
+import Modules     from '@organisms/Modules.astro';
+import Showcase    from '@organisms/Showcase.astro';
+import Benefits    from '@organisms/Benefits.astro';
+import Pricing     from '@organisms/Pricing.astro';
+import SecuritySection from '@organisms/SecuritySection.astro';
+import FAQSection  from '@components/FAQSection.astro';
+import CTAFooter   from '@components/CTAFooter.astro';
+---
+<main>
+  <Hero />
+  <ProofStrip />
+  <Modules />
+  <Showcase />
+  <Benefits />
+  <Pricing />
+  <SecuritySection />
+  <FAQSection />
+  <CTAFooter />
+</main>
+
+<script>
+  /* Reveal-on-scroll: add .in when element enters viewport */
+  const io = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          (e.target as HTMLElement).classList.add('in');
+          io.unobserve(e.target);
+        }
+      });
+    },
+    { threshold: 0.1 }
+  );
+  document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+</script>

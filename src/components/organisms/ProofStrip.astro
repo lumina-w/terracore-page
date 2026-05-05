@@ -1,0 +1,57 @@
+---
+import { Icon } from 'astro-icon/components';
+---
+<div class="proof-strip">
+  <div class="container proof-strip__inner">
+    <span>
+      <strong>Construido en Colombia</strong> para fincas medianas — bovino, porcino, equino, ovino, aves.
+    </span>
+    <ul class="proof-strip__badges" role="list">
+      <li>
+        <Icon name="lucide:shield" width={14} height={14} />
+        Datos en servidores Colombia
+      </li>
+      <li>
+        <Icon name="lucide:wifi" width={14} height={14} />
+        Funciona offline
+      </li>
+      <li>
+        <Icon name="lucide:refresh-cw" width={14} height={14} />
+        Sincroniza al volver la señal
+      </li>
+    </ul>
+  </div>
+</div>
+
+<style>
+  .proof-strip {
+    background: var(--color-primary-active);
+    color: rgba(255,255,255,0.6);
+    padding: 24px 0;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+  .proof-strip__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+    font-size: 12px;
+  }
+  .proof-strip strong { color: #fff; font-weight: 600; }
+  .proof-strip__badges {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 12px;
+    font-weight: 500;
+  }
+  .proof-strip__badges li {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+</style>

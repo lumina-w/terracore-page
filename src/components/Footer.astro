@@ -1,29 +1,177 @@
 ---
-const year = new Date().getFullYear()
+import Brand from '@molecules/Brand.astro';
+import { Icon } from 'astro-icon/components';
 ---
+<footer class="site-footer">
+  <div class="container">
+    <div class="foot-grid">
+      <!-- Brand col -->
+      <div>
+        <Brand mono size={32} />
+        <p class="foot-tagline">
+          Plataforma de gestión agroindustrial diseñada para el campo colombiano. Hecha por Lúmina W.
+        </p>
+        <form class="email-form" onsubmit="return false">
+          <input type="email" placeholder="tu@finca.com" aria-label="Correo electrónico" />
+          <button type="submit">Suscribirme</button>
+        </form>
+      </div>
 
-<footer class="border-t border-border bg-background">
-  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <!-- Producto -->
+      <div>
+        <h5 class="foot-col-title">Producto</h5>
+        <ul class="foot-links">
+          <li><a href="#modulos">Módulos</a></li>
+          <li><a href="#producto">Capturas</a></li>
+          <li><a href="#precios">Precios</a></li>
+          <li><a href="#faq">Preguntas</a></li>
+        </ul>
+      </div>
 
-    <a href="/" class="font-bold text-lg text-primary" aria-label="TerraCore">TerraCore</a>
+      <!-- Compañía -->
+      <div>
+        <h5 class="foot-col-title">Compañía</h5>
+        <ul class="foot-links">
+          <li><a href="#">Sobre Lúmina W</a></li>
+          <li><a href="#">Casos de éxito</a></li>
+          <li><a href="#">Trabaja con nosotros</a></li>
+          <li><a href="#">Contacto</a></li>
+        </ul>
+      </div>
 
-    <p class="text-sm text-muted-foreground order-last sm:order-none">
-      © {year} Lúmina W. Todos los derechos reservados.
-    </p>
+      <!-- Contacto -->
+      <div>
+        <h5 class="foot-col-title">Contacto</h5>
+        <ul class="foot-links foot-links--contact">
+          <li>
+            <Icon name="lucide:mail" width={14} height={14} />
+            hola@terracore.app
+          </li>
+          <li>
+            <Icon name="lucide:phone" width={14} height={14} />
+            +57 300 000 0000
+          </li>
+          <li>
+            <Icon name="lucide:map-pin" width={14} height={14} />
+            Medellín, Colombia
+          </li>
+          <li>
+            <svg width={14} height={14} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M3 21l1.6-5A8 8 0 1 1 8 19.4z"/>
+              <path d="M9 10c.3 1.5 1.2 2.8 2.5 3.7M14 14c-1 0-1-1-2-1"/>
+            </svg>
+            WhatsApp
+          </li>
+        </ul>
+      </div>
+    </div>
 
-    <nav aria-label="Navegación de pie de página">
-      <ul class="flex gap-6 text-sm">
-        <li>
-          <a href="/privacy" class="text-muted-foreground hover:text-foreground transition-colors duration-fast">
-            Privacidad
-          </a>
-        </li>
-        <li>
-          <a href="/terms" class="text-muted-foreground hover:text-foreground transition-colors duration-fast">
-            Términos
-          </a>
-        </li>
-      </ul>
-    </nav>
+    <div class="foot-bottom">
+      <span>© 2026 TerraCore · Lúmina W. Todos los derechos reservados.</span>
+      <span class="foot-legal">
+        <a href="#">Términos</a>
+        <a href="#">Privacidad</a>
+        <a href="#">Habeas Data</a>
+      </span>
+    </div>
   </div>
 </footer>
+
+<style>
+  .site-footer {
+    background: var(--color-primary-active);
+    color: rgba(255,255,255,0.65);
+    padding: 64px 0 32px;
+  }
+
+  .foot-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr 1fr;
+    gap: 48px;
+    margin-bottom: 48px;
+  }
+  @media (max-width: 880px) { .foot-grid { grid-template-columns: 1fr 1fr; gap: 32px; } }
+  @media (max-width: 540px) { .foot-grid { grid-template-columns: 1fr; } }
+
+  .foot-tagline {
+    font-size: 14px;
+    line-height: 22px;
+    max-width: 32ch;
+    margin: 16px 0 24px;
+    color: rgba(255,255,255,0.65);
+  }
+
+  /* Email form */
+  .email-form {
+    display: flex;
+    gap: 8px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.14);
+    border-radius: 10px;
+    padding: 6px;
+    max-width: 320px;
+  }
+  .email-form input {
+    flex: 1; min-width: 0;
+    background: transparent;
+    border: 0;
+    color: #fff;
+    font-size: 14px;
+    padding: 8px 12px;
+    outline: none;
+    font-family: inherit;
+  }
+  .email-form input::placeholder { color: rgba(255,255,255,0.4); }
+  .email-form button {
+    background: var(--color-accent);
+    color: #fff;
+    border-radius: 6px;
+    padding: 8px 14px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background var(--dur-base) var(--ease-standard);
+    border: 0;
+    font-family: inherit;
+  }
+  .email-form button:hover { background: var(--color-accent-hover); }
+
+  /* Column titles */
+  .foot-col-title {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    margin: 0 0 16px;
+    font-weight: 600;
+  }
+
+  /* Links */
+  .foot-links {
+    list-style: none; padding: 0; margin: 0;
+    display: flex; flex-direction: column; gap: 10px;
+    font-size: 14px;
+    color: rgba(255,255,255,0.65);
+  }
+  .foot-links a:hover { color: #fff; }
+  .foot-links--contact li {
+    display: flex; align-items: center; gap: 8px;
+  }
+
+  /* Bottom bar */
+  .foot-bottom {
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding-top: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .foot-legal {
+    display: flex;
+    gap: 16px;
+  }
+  .foot-legal a:hover { color: #fff; }
+</style>

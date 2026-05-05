@@ -4,8 +4,12 @@
     "baseUrl": ".",
     "paths": {
       "@components/*": ["src/components/*"],
-      "@utils/*": ["src/utils/*"],
-      "@layouts/*": ["src/layouts/*"]
+      "@atoms/*":      ["src/components/atoms/*"],
+      "@molecules/*":  ["src/components/molecules/*"],
+      "@organisms/*":  ["src/components/organisms/*"],
+      "@templates/*":  ["src/components/templates/*"],
+      "@utils/*":      ["src/utils/*"],
+      "@layouts/*":    ["src/layouts/*"]
     }
   }
 }

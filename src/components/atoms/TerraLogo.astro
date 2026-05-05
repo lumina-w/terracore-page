@@ -1,0 +1,28 @@
+---
+interface Props {
+  size?: number;
+  mono?: boolean;
+}
+const { size = 28, mono = false } = Astro.props;
+const stroke = mono ? '#ffffff' : '#0F3D2A';
+const dot    = mono ? '#ED8B1F' : '#D97706';
+const h = Math.round(size * (60 / 56));
+---
+<svg width={size} height={h} viewBox="0 0 56 60" fill="none" aria-hidden="true">
+  <path
+    d="M28 2 51 16v28L28 58 5 44V16L28 2z"
+    stroke={stroke} stroke-width="2.4" fill="none" stroke-linejoin="round"
+  />
+  <circle cx="28" cy="14" r="2.5" fill={dot} />
+  <path
+    d="M28 18c-3 2-5 5-5 9 3 0 5-2 5-4 0 2 2 4 5 4 0-4-2-7-5-9z"
+    fill={stroke}
+  />
+  <path d="M28 26v8" stroke={stroke} stroke-width="2.4" stroke-linecap="round" />
+  <path
+    d="M28 34l-6 4M28 34l6 4M22 38v4M34 38v4M22 42h-4M34 42h4"
+    stroke={stroke} stroke-width="1.8" fill="none" stroke-linecap="round"
+  />
+  <circle cx="18" cy="42" r="1.8" fill={dot} />
+  <circle cx="38" cy="42" r="1.8" fill={dot} />
+</svg>

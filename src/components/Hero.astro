@@ -1,70 +1,284 @@
 ---
-import Button from './Button.astro'
-
-const ctaUrl = import.meta.env.MAIN_CTA_URL ?? '#'
+import FloatChip from '@molecules/FloatChip.astro';
+import { Icon } from 'astro-icon/components';
 ---
+<section class="hero" id="top">
+  <div class="hero__grid" aria-hidden="true"></div>
+  <div class="hero__bg" aria-hidden="true"></div>
 
-<section
-  class="relative isolate min-h-[100dvh] flex flex-col items-center justify-center text-center px-4 sm:px-6 lg:px-8 py-24 overflow-hidden"
->
-  <!-- Background decoration -->
-  <div
-    class="absolute inset-0 -z-10 pointer-events-none"
-    aria-hidden="true"
-    style="background: radial-gradient(ellipse 90% 60% at 50% -5%, rgba(27,67,50,0.09) 0%, transparent 70%)"
-  ></div>
+  <div class="container">
+    <div class="hero__inner">
+      <!-- Left: copy -->
+      <div class="hero__content">
+        <span class="hero-badge">
+          <span class="hero-badge__pill">Nuevo</span>
+          Salud Animal con alertas en tiempo real
+        </span>
 
-  <div class="max-w-4xl mx-auto flex flex-col items-center gap-8">
-    <!-- Badge -->
-    <div
-      class="inline-flex items-center gap-2 px-4 py-1.5 rounded-pill text-primary text-sm font-medium"
-      style="background: rgba(27,67,50,0.07); border: 1px solid rgba(27,67,50,0.18)"
-    >
-      <span aria-hidden="true">🌿</span>
-      Plataforma SaaS agroindustrial · Colombia
+        <h1 class="hero__heading">
+          Tu finca en <em class="hero__em">un vistazo</em>.
+        </h1>
+
+        <p class="hero__lead">
+          TerraCore es la plataforma colombiana para gestionar inventario, producción
+          y salud animal en una sola pantalla. Diseñada para fincas medianas que ya
+          pasaron del cuaderno, pero merecen más que una hoja de cálculo.
+        </p>
+
+        <div class="hero__ctas">
+          <a href="#demo" class="btn btn-accent">
+            Solicita una demo
+            <Icon name="lucide:arrow-right" width={16} height={16} />
+          </a>
+          <a href="#video" class="btn btn-ghost-dark">
+            <Icon name="lucide:play" width={14} height={14} />
+            Ver demo en video
+          </a>
+        </div>
+
+        <div class="hero__meta">
+          <div class="hero__stat">
+            <span class="hero__stat-v">6</span>
+            <span class="hero__stat-l">módulos integrados</span>
+          </div>
+          <div class="hero__stat">
+            <span class="hero__stat-v">100<span class="hero__stat-sup">%</span></span>
+            <span class="hero__stat-l">tu información, privada</span>
+          </div>
+          <div class="hero__stat">
+            <span class="hero__stat-v">24<span class="hero__stat-dim">/</span>7</span>
+            <span class="hero__stat-l">siempre accesible</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: visual -->
+      <div class="hero__visual" aria-hidden="true">
+        <div class="hero__frame">
+          <img
+            src="/screens/dashboard-1.png"
+            alt="Dashboard de TerraCore"
+            width="900"
+            height="600"
+            loading="eager"
+            decoding="async"
+          />
+        </div>
+
+        <FloatChip
+          icon="lucide:check"
+          title="88 saludables"
+          sub="Toño, Rosa, Chucho…"
+          variant="success"
+          class="float-chip--pos-a"
+        />
+        <FloatChip
+          icon="lucide:alert-circle"
+          title="3 vacunas vencidas"
+          sub="Próximos 30 días"
+          variant="warning"
+          class="float-chip--pos-b"
+        />
+        <FloatChip
+          icon="lucide:trending-up"
+          title="+18% producción"
+          sub="vs. mes anterior"
+          variant="info"
+          class="float-chip--pos-c"
+        />
+      </div>
     </div>
-
-    <!-- Headline -->
-    <h1 class="text-3xl sm:text-5xl lg:text-6xl font-bold text-primary leading-tight">
-      Ten el control total de tu operación,
-      <span class="text-accent"> antes de que algo salga mal</span>
-    </h1>
-
-    <!-- Subheadline -->
-    <p class="max-w-2xl text-lg sm:text-xl text-muted-foreground leading-relaxed">
-      Todos tus datos en un solo lugar. Alertas en tiempo real. Cero sorpresas
-      en inventario, personal o salud animal.
-    </p>
-
-    <!-- CTAs -->
-    <div class="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
-      <Button
-        href={ctaUrl}
-        variant="primary"
-        size="lg"
-        onclick="window.trackEvent('click_cta_hero')"
-        class="w-full sm:w-auto"
-      >
-        Agendar demo
-      </Button>
-      <Button href="#problema" variant="secondary" size="lg" class="w-full sm:w-auto">
-        Ver cómo funciona
-      </Button>
-    </div>
-  </div>
-
-  <!-- Scroll hint -->
-  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 text-muted-foreground text-xs select-none">
-    <span>Scroll</span>
-    <svg
-      class="w-4 h-4 animate-bounce"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-      stroke-width="2"
-      aria-hidden="true"
-    >
-      <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-    </svg>
   </div>
 </section>
+
+<style>
+  /* ── Hero shell ────────────────────────────────────────────── */
+  .hero {
+    position: relative;
+    background: var(--color-primary-active);
+    color: #fff;
+    overflow: hidden;
+    isolation: isolate;
+  }
+
+  .hero__bg {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background:
+      linear-gradient(180deg, rgba(13, 42, 31, 0.6) 0%, rgba(13, 42, 31, 0.92) 100%),
+      radial-gradient(900px 600px at 80% 20%, rgba(217, 119, 6, 0.32), transparent 60%),
+      var(--color-primary-active);
+  }
+
+  .hero__grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+    background-size: 56px 56px;
+    mask-image: radial-gradient(1200px 800px at 30% 40%, #000 30%, transparent 80%);
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  /* ── Inner layout ──────────────────────────────────────────── */
+  .hero__inner {
+    display: grid;
+    grid-template-columns: 1.05fr 1fr;
+    gap: 64px;
+    padding: 96px 0 120px;
+    align-items: center;
+  }
+  @media (max-width: 1024px) {
+    .hero__inner {
+      grid-template-columns: 1fr;
+      padding: 64px 0 80px;
+      gap: 48px;
+    }
+  }
+
+  /* ── Copy side ─────────────────────────────────────────────── */
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 12px 6px 6px;
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 999px;
+    font-size: 12px;
+    color: rgba(255,255,255,0.85);
+    margin-bottom: 24px;
+    background: rgba(255,255,255,0.04);
+  }
+  .hero-badge__pill {
+    display: inline-flex;
+    padding: 3px 8px;
+    border-radius: 999px;
+    background: var(--color-accent);
+    color: #fff;
+    font-weight: 600;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .hero__heading {
+    color: #fff;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(48px, 7vw, 96px);
+    line-height: 0.96;
+    letter-spacing: -0.03em;
+    margin: 0 0 28px;
+    text-wrap: balance;
+  }
+
+  .hero__em {
+    color: var(--color-accent);
+    font-style: normal;
+    position: relative;
+  }
+  .hero__em::after {
+    content: '';
+    position: absolute;
+    left: 0; right: 0; bottom: -6px;
+    height: 6px;
+    background: var(--color-accent);
+    opacity: 0.18;
+    border-radius: 4px;
+  }
+
+  .hero__lead {
+    font-size: 19px;
+    line-height: 30px;
+    color: rgba(255, 255, 255, 0.78);
+    max-width: 52ch;
+    margin: 0 0 36px;
+  }
+
+  .hero__ctas {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  /* Stats row */
+  .hero__meta {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    gap: 32px;
+    margin-top: 48px;
+    padding-top: 28px;
+    border-top: 1px solid rgba(255,255,255,0.12);
+    max-width: 560px;
+  }
+  .hero__stat-v {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 28px;
+    font-weight: 700;
+    color: #fff;
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+    letter-spacing: -0.015em;
+  }
+  .hero__stat-l {
+    display: block;
+    font-size: 12px;
+    color: rgba(255,255,255,0.6);
+    margin-top: 6px;
+    line-height: 14px;
+  }
+  .hero__stat-sup { font-size: 18px; }
+  .hero__stat-dim { font-size: 18px; color: rgba(255,255,255,0.5); }
+
+  /* ── Visual side ───────────────────────────────────────────── */
+  .hero__visual {
+    position: relative;
+    perspective: 1600px;
+  }
+
+  .hero__frame {
+    position: relative;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.10);
+    box-shadow:
+      0 40px 80px rgba(0,0,0,0.45),
+      0 16px 32px rgba(0,0,0,0.35);
+    transform: rotateY(-6deg) rotateX(2deg);
+    background: #fff;
+  }
+  .hero__frame img { display: block; width: 100%; height: auto; }
+  .hero__frame::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0) 50%, rgba(217, 119, 6, 0.06));
+    pointer-events: none;
+  }
+
+  /* Float chip positions */
+  :global(.float-chip--pos-a) {
+    top: 14%; left: -28px;
+    animation: floatA 5s var(--ease-standard) infinite;
+  }
+  :global(.float-chip--pos-b) {
+    bottom: 8%; right: -28px;
+    animation: floatB 6s var(--ease-standard) infinite;
+  }
+  :global(.float-chip--pos-c) {
+    top: 52%; left: -56px;
+    animation: floatA 7s var(--ease-standard) infinite;
+  }
+
+  @media (max-width: 1024px) {
+    :global(.float-chip--pos-a),
+    :global(.float-chip--pos-b),
+    :global(.float-chip--pos-c) {
+      display: none;
+    }
+  }
+</style>

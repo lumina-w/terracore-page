@@ -1,20 +1,149 @@
 ---
-import { FAQ } from '@utils/constants'
+import Eyebrow from '@atoms/Eyebrow.astro';
+import { Icon } from 'astro-icon/components';
+
+const qs = [
+  {
+    q: '¿Cuánto demora poner mi finca en TerraCore?',
+    a: 'Una tarde para el setup básico. Importas el inventario de animales e insumos desde Excel, defines usuarios, y arrancas. Si tu operación es grande, te acompañamos con una sesión de onboarding de 2 horas.',
+  },
+  {
+    q: '¿Funciona si en mi finca no hay buena señal?',
+    a: 'Sí. La app móvil guarda todo lo que registres sin internet y sincroniza cuando vuelva la señal. El dashboard web requiere conexión, pero los registros del campo nunca se pierden.',
+  },
+  {
+    q: '¿Puedo migrar desde Excel o desde otro software?',
+    a: 'Claro. Tenemos plantillas para importar animales, insumos, herramientas e historiales sanitarios. Si vienes de otro software, escríbenos y armamos la migración sin costo en todos los planes.',
+  },
+  {
+    q: '¿Qué tipos de finca soporta?',
+    a: 'Bovino (carne y leche), porcino, equino, ovino, caprino y avícola. También cultivos asociados, ya que el módulo de Producción registra lotes de cultivo, leche y huevos.',
+  },
+  {
+    q: '¿Qué pasa con mis datos si dejo de usar TerraCore?',
+    a: 'Te entregamos un export completo en CSV en máximo 48 horas y borramos tu información de nuestros servidores. Sin trampas, sin "datos rehén".',
+  },
+  {
+    q: '¿Tiene aplicación móvil?',
+    a: 'Sí, Android e iOS, optimizada para uso en campo: botones grandes, modo offline, captura rápida de pesos, vacunas y observaciones. El dashboard completo está en la web.',
+  },
+];
 ---
+<section class="section-pad" id="faq">
+  <div class="container">
+    <div class="faq-wrap">
+      <div>
+        <Eyebrow num="06">Preguntas</Eyebrow>
+        <h2 class="display lg" style="margin-top:16px; margin-bottom:16px">
+          Las dudas<br/>que siempre nos hacen.
+        </h2>
+        <p class="lead">
+          ¿No ves la tuya? Escríbenos a{' '}
+          <a href="mailto:hola@terracore.app" class="faq-link">hola@terracore.app</a>{' '}
+          y te respondemos en menos de un día hábil.
+        </p>
+      </div>
 
-<section class="bg-background py-16 sm:py-24">
-  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
-    <h2 class="text-3xl sm:text-4xl font-bold text-primary text-center mb-12">
-      Preguntas frecuentes
-    </h2>
-
-    <div class="flex flex-col divide-y divide-border">
-      {FAQ.map((item) => (
-        <div class="py-6">
-          <h3 class="text-base font-semibold text-foreground mb-2">{item.q}</h3>
-          <p class="text-muted-foreground leading-relaxed">{item.a}</p>
-        </div>
-      ))}
+      <div class="faq-list">
+        {qs.map((it) => (
+          <div class="faq-item" data-faq>
+            <button class="faq-q" aria-expanded="false">
+              <span>{it.q}</span>
+              <span class="faq-plus" aria-hidden="true">
+                <Icon name="lucide:plus" width={14} height={14} />
+              </span>
+            </button>
+            <div class="faq-a" hidden>
+              {it.a}
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   </div>
 </section>
+
+<script>
+  const items = document.querySelectorAll<HTMLElement>('[data-faq]');
+  items.forEach((item) => {
+    const btn = item.querySelector<HTMLButtonElement>('.faq-q')!;
+    const answer = item.querySelector<HTMLElement>('.faq-a')!;
+    btn.addEventListener('click', () => {
+      const isOpen = btn.getAttribute('aria-expanded') === 'true';
+      // close all
+      items.forEach((el) => {
+        el.classList.remove('faq-item--open');
+        const b = el.querySelector<HTMLButtonElement>('.faq-q')!;
+        const a = el.querySelector<HTMLElement>('.faq-a')!;
+        b.setAttribute('aria-expanded', 'false');
+        a.hidden = true;
+      });
+      if (!isOpen) {
+        item.classList.add('faq-item--open');
+        btn.setAttribute('aria-expanded', 'true');
+        answer.hidden = false;
+      }
+    });
+  });
+</script>
+
+<style>
+  .faq-wrap {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 64px;
+  }
+  @media (max-width: 880px) { .faq-wrap { grid-template-columns: 1fr; gap: 32px; } }
+
+  .faq-link {
+    color: var(--color-accent);
+    font-weight: 600;
+  }
+  .faq-link:hover { color: var(--color-accent-hover); }
+
+  .faq-list { display: flex; flex-direction: column; gap: 4px; }
+
+  .faq-item { border-bottom: 1px solid var(--color-border); }
+
+  .faq-q {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 0;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--color-text);
+    font-family: var(--font-display);
+    letter-spacing: -0.01em;
+    text-align: left;
+    gap: 16px;
+    cursor: pointer;
+    transition: color var(--dur-base) var(--ease-standard);
+  }
+  .faq-q:hover { color: var(--color-primary); }
+
+  .faq-plus {
+    width: 28px; height: 28px;
+    border-radius: 999px;
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    display: flex; align-items: center; justify-content: center;
+    flex: 0 0 auto;
+    transition: all var(--dur-base) var(--ease-standard);
+  }
+  .faq-item--open .faq-plus {
+    background: var(--color-primary);
+    color: #fff;
+    border-color: var(--color-primary);
+    transform: rotate(45deg);
+  }
+
+  .faq-a {
+    padding: 0 0 24px;
+    font-size: 15px;
+    line-height: 24px;
+    color: var(--color-text-secondary);
+    max-width: 64ch;
+  }
+</style>

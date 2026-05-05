@@ -1,20 +1,11 @@
 ---
-import BaseLayout from '@layouts/BaseLayout.astro'
-import Hero from '@components/Hero.astro'
-import ProblemSection from '@components/ProblemSection.astro'
-import SolutionSection from '@components/SolutionSection.astro'
-import PlansSection from '@components/PlansSection.astro'
-import FAQSection from '@components/FAQSection.astro'
-import CTAFooter from '@components/CTAFooter.astro'
+import BaseLayout from '@layouts/BaseLayout.astro';
+import LandingTemplate from '@templates/LandingTemplate.astro';
 ---
 
-<BaseLayout title="TerraCore — Control total de tu operación agrícola">
-  <main>
-    <Hero />
-    <ProblemSection />
-    <SolutionSection />
-    <PlansSection />
-    <FAQSection />
-    <CTAFooter />
-  </main>
+<BaseLayout
+  title="TerraCore — Campo inteligente"
+  description="TerraCore es la plataforma colombiana para gestionar inventario, producción y salud animal en una sola pantalla. Diseñada para fincas medianas."
+>
+  <LandingTemplate />
 </BaseLayout>
