@@ -1,14 +1,15 @@
 ---
-import Hero        from '@components/Hero.astro';
-import ProofStrip  from '@organisms/ProofStrip.astro';
-import Modules     from '@organisms/Modules.astro';
-import Showcase    from '@organisms/Showcase.astro';
-import Benefits    from '@organisms/Benefits.astro';
-import Pricing     from '@organisms/Pricing.astro';
+import Hero from '@components/Hero.astro';
+import ProofStrip from '@organisms/ProofStrip.astro';
+import Modules from '@organisms/Modules.astro';
+import Showcase from '@organisms/Showcase.astro';
+import Benefits from '@organisms/Benefits.astro';
+import Pricing from '@organisms/Pricing.astro';
 import SecuritySection from '@organisms/SecuritySection.astro';
-import FAQSection  from '@components/FAQSection.astro';
-import CTAFooter   from '@components/CTAFooter.astro';
+import FAQSection from '@components/FAQSection.astro';
+import CTAFooter from '@components/CTAFooter.astro';
 ---
+
 <main>
   <Hero />
   <ProofStrip />
@@ -32,7 +33,7 @@ import CTAFooter   from '@components/CTAFooter.astro';
         }
       });
     },
-    { threshold: 0.1 }
+    { threshold: 0.1 },
   );
   document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
 </script>

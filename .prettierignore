@@ -1,0 +1,5 @@
+dist/
+node_modules/
+.astro/
+# Layout has is:inline scripts that prettier misformats
+src/layouts/BaseLayout.astro

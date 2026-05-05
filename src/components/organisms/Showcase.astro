@@ -2,14 +2,15 @@
 import Eyebrow from '@atoms/Eyebrow.astro';
 
 const tabs = [
-  { id: 'dashboard',    label: 'Dashboard',    img: '/screens/dashboard-2.png' },
-  { id: 'animales',     label: 'Animales',     img: '/screens/animales.png' },
-  { id: 'insumos',      label: 'Insumos',      img: '/screens/insumos.png' },
+  { id: 'dashboard', label: 'Dashboard', img: '/screens/dashboard-2.png' },
+  { id: 'animales', label: 'Animales', img: '/screens/animales.png' },
+  { id: 'insumos', label: 'Insumos', img: '/screens/insumos.png' },
   { id: 'herramientas', label: 'Herramientas', img: '/screens/herramientas.png' },
-  { id: 'produccion',   label: 'Producción',   img: '/screens/produccion.png' },
-  { id: 'salud',        label: 'Salud Animal', img: '/screens/salud-1.png' },
+  { id: 'produccion', label: 'Producción', img: '/screens/produccion.png' },
+  { id: 'salud', label: 'Salud Animal', img: '/screens/salud-1.png' },
 ];
 ---
+
 <section class="showcase" id="producto">
   <div class="showcase__bg" aria-hidden="true"></div>
   <div class="container" style="position:relative">
@@ -17,29 +18,31 @@ const tabs = [
       <div>
         <Eyebrow num="02" onDark>El producto</Eyebrow>
         <h2 class="display lg showcase__heading">
-          Diseñado para el campo,<br/>no para una oficina.
+          Diseñado para el campo,<br />no para una oficina.
         </h2>
       </div>
       <p class="lead showcase__lead">
-        Tipografía grande, contraste alto, lecturas de un golpe de vista. La interfaz
-        funciona desde el celular en la manga del corral hasta el escritorio del administrador.
+        Tipografía grande, contraste alto, lecturas de un golpe de vista. La interfaz funciona desde
+        el celular en la manga del corral hasta el escritorio del administrador.
       </p>
     </div>
 
     <!-- Tabs -->
     <div class="showcase-tabs" role="tablist" aria-label="Capturas del producto">
-      {tabs.map((t, i) => (
-        <button
-          class:list={['showcase-tab', i === 0 && 'active']}
-          role="tab"
-          aria-selected={i === 0 ? 'true' : 'false'}
-          aria-controls={`panel-${t.id}`}
-          data-img={t.img}
-          data-tab={t.id}
-        >
-          {t.label}
-        </button>
-      ))}
+      {
+        tabs.map((t, i) => (
+          <button
+            class:list={['showcase-tab', i === 0 && 'active']}
+            role="tab"
+            aria-selected={i === 0 ? 'true' : 'false'}
+            aria-controls={`panel-${t.id}`}
+            data-img={t.img}
+            data-tab={t.id}
+          >
+            {t.label}
+          </button>
+        ))
+      }
     </div>
 
     <!-- Image frame -->
@@ -61,24 +64,24 @@ const tabs = [
         <div class="showcase-callout__num">01</div>
         <h4 class="showcase-callout__title">Sidebar fijo, contexto siempre claro</h4>
         <p class="showcase-callout__desc">
-          Inventario, operaciones y general agrupados como los piensas: por flujo de trabajo,
-          no por menú alfabético.
+          Inventario, operaciones y general agrupados como los piensas: por flujo de trabajo, no por
+          menú alfabético.
         </p>
       </div>
       <div class="showcase-callout">
         <div class="showcase-callout__num">02</div>
         <h4 class="showcase-callout__title">Tablas que se leen en la finca</h4>
         <p class="showcase-callout__desc">
-          Filas altas, números tabulares, estados con color. Encuentras el animal POR-006
-          antes de que el toro se voltee.
+          Filas altas, números tabulares, estados con color. Encuentras el animal POR-006 antes de
+          que el toro se voltee.
         </p>
       </div>
       <div class="showcase-callout">
         <div class="showcase-callout__num">03</div>
         <h4 class="showcase-callout__title">Alertas que importan, no notificaciones</h4>
         <p class="showcase-callout__desc">
-          Vacunas vencidas, stock bajo, animales en tratamiento. Cuando TerraCore te avisa,
-          es porque hay que actuar.
+          Vacunas vencidas, stock bajo, animales en tratamiento. Cuando TerraCore te avisa, es
+          porque hay que actuar.
         </p>
       </div>
     </div>
@@ -86,8 +89,8 @@ const tabs = [
 </section>
 
 <script>
-  const tabs    = document.querySelectorAll<HTMLButtonElement>('.showcase-tab');
-  const img     = document.getElementById('showcase-img') as HTMLImageElement;
+  const tabs = document.querySelectorAll<HTMLButtonElement>('.showcase-tab');
+  const img = document.getElementById('showcase-img') as HTMLImageElement;
 
   tabs.forEach((tab) => {
     tab.addEventListener('click', () => {
@@ -121,8 +124,13 @@ const tabs = [
       radial-gradient(600px 400px at 0% 100%, rgba(60, 117, 86, 0.4), transparent 70%);
     pointer-events: none;
   }
-  .showcase__heading { color: #fff; margin-top: 16px; }
-  .showcase__lead    { color: rgba(255,255,255,0.72); }
+  .showcase__heading {
+    color: #fff;
+    margin-top: 16px;
+  }
+  .showcase__lead {
+    color: rgba(255, 255, 255, 0.72);
+  }
 
   /* Tabs */
   .showcase-tabs {
@@ -130,8 +138,8 @@ const tabs = [
     gap: 6px;
     margin: 36px 0 28px;
     padding: 6px;
-    background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(255,255,255,0.1);
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 12px;
     width: fit-content;
     flex-wrap: wrap;
@@ -141,23 +149,32 @@ const tabs = [
     border-radius: 8px;
     font-size: 13px;
     font-weight: 500;
-    color: rgba(255,255,255,0.7);
+    color: rgba(255, 255, 255, 0.7);
     transition: all var(--dur-base) var(--ease-standard);
     cursor: pointer;
   }
-  .showcase-tab:hover { color: #fff; background: rgba(255,255,255,0.04); }
-  .showcase-tab.active { background: var(--color-accent); color: #fff; }
+  .showcase-tab:hover {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.04);
+  }
+  .showcase-tab.active {
+    background: var(--color-accent);
+    color: #fff;
+  }
 
   /* Frame */
   .showcase-frame {
     position: relative;
     border-radius: 14px;
     overflow: hidden;
-    border: 1px solid rgba(255,255,255,0.12);
-    box-shadow: 0 40px 100px rgba(0,0,0,0.5);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.5);
     background: var(--color-bg);
   }
-  .showcase-frame img { width: 100%; display: block; }
+  .showcase-frame img {
+    width: 100%;
+    display: block;
+  }
 
   /* Callouts */
   .showcase-callouts {
@@ -167,7 +184,7 @@ const tabs = [
     margin-top: 40px;
   }
   .showcase-callout {
-    border-top: 1px solid rgba(255,255,255,0.16);
+    border-top: 1px solid rgba(255, 255, 255, 0.16);
     padding-top: 16px;
   }
   .showcase-callout__num {
@@ -190,12 +207,16 @@ const tabs = [
   .showcase-callout__desc {
     font-size: 13px;
     line-height: 20px;
-    color: rgba(255,255,255,0.7);
+    color: rgba(255, 255, 255, 0.7);
     margin: 0;
   }
 
   @media (max-width: 720px) {
-    .showcase-callouts { grid-template-columns: 1fr; }
-    .showcase { padding: 72px 0; }
+    .showcase-callouts {
+      grid-template-columns: 1fr;
+    }
+    .showcase {
+      padding: 72px 0;
+    }
   }
 </style>

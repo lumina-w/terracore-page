@@ -25,31 +25,34 @@ const items = [
   },
 ];
 ---
+
 <section class="security">
   <div class="container">
     <div class="security-head">
       <div>
         <Eyebrow num="05" onDark>Privacidad y seguridad</Eyebrow>
         <h2 class="display lg security-heading">
-          Tu finca es tuya.<br/>Tus datos también.
+          Tu finca es tuya.<br />Tus datos también.
         </h2>
       </div>
       <p class="security-lead">
-        Trabajamos bajo Ley 1581 de 2012 (Habeas Data) y mejores prácticas de seguridad.
-        Nada de minería de datos para terceros, nada de modelos de IA entrenados con tu información.
+        Trabajamos bajo Ley 1581 de 2012 (Habeas Data) y mejores prácticas de seguridad. Nada de
+        minería de datos para terceros, nada de modelos de IA entrenados con tu información.
       </p>
     </div>
 
     <div class="security-grid">
-      {items.map((it) => (
-        <div class="security-item">
-          <div class="security-item__icon">
-            <Icon name={it.icon} width={20} height={20} />
+      {
+        items.map((it) => (
+          <div class="security-item">
+            <div class="security-item__icon">
+              <Icon name={it.icon} width={20} height={20} />
+            </div>
+            <h4 class="security-item__title">{it.h}</h4>
+            <p class="security-item__desc">{it.p}</p>
           </div>
-          <h4 class="security-item__title">{it.h}</h4>
-          <p class="security-item__desc">{it.p}</p>
-        </div>
-      ))}
+        ))
+      }
     </div>
   </div>
 </section>
@@ -64,11 +67,14 @@ const items = [
   }
   .security::before {
     content: '';
-    position: absolute; inset: 0;
+    position: absolute;
+    inset: 0;
     background: radial-gradient(700px 500px at 50% 120%, rgba(217, 119, 6, 0.18), transparent 60%);
     pointer-events: none;
   }
-  .container { position: relative; }
+  .container {
+    position: relative;
+  }
 
   .security-head {
     display: grid;
@@ -77,11 +83,22 @@ const items = [
     align-items: end;
     margin-bottom: 56px;
   }
-  .security-heading { color: #fff; margin-top: 16px; }
-  .security-lead { color: rgba(255,255,255,0.7); margin: 0; font-size: 15px; line-height: 24px; }
+  .security-heading {
+    color: #fff;
+    margin-top: 16px;
+  }
+  .security-lead {
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0;
+    font-size: 15px;
+    line-height: 24px;
+  }
 
   @media (max-width: 880px) {
-    .security-head { grid-template-columns: 1fr; gap: 16px; }
+    .security-head {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
   }
 
   .security-grid {
@@ -89,15 +106,26 @@ const items = [
     grid-template-columns: repeat(4, 1fr);
     gap: 32px;
   }
-  @media (max-width: 880px) { .security-grid { grid-template-columns: repeat(2, 1fr); } }
-  @media (max-width: 540px)  { .security-grid { grid-template-columns: 1fr; } }
+  @media (max-width: 880px) {
+    .security-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (max-width: 540px) {
+    .security-grid {
+      grid-template-columns: 1fr;
+    }
+  }
 
   .security-item__icon {
-    width: 40px; height: 40px;
-    display: flex; align-items: center; justify-content: center;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border-radius: 10px;
-    background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(255,255,255,0.12);
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
     color: var(--color-accent);
     margin-bottom: 16px;
   }
@@ -110,8 +138,9 @@ const items = [
     letter-spacing: -0.01em;
   }
   .security-item__desc {
-    font-size: 13px; line-height: 20px;
-    color: rgba(255,255,255,0.7);
+    font-size: 13px;
+    line-height: 20px;
+    color: rgba(255, 255, 255, 0.7);
     margin: 0;
   }
 </style>

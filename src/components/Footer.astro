@@ -2,6 +2,7 @@
 import Brand from '@molecules/Brand.astro';
 import { Icon } from 'astro-icon/components';
 ---
+
 <footer class="site-footer">
   <div class="container">
     <div class="foot-grid">
@@ -9,7 +10,8 @@ import { Icon } from 'astro-icon/components';
       <div>
         <Brand mono size={32} />
         <p class="foot-tagline">
-          Plataforma de gestión agroindustrial diseñada para el campo colombiano. Hecha por Lúmina W.
+          Plataforma de gestión agroindustrial diseñada para el campo colombiano. Hecha por Lúmina
+          W.
         </p>
         <form class="email-form" onsubmit="return false">
           <input type="email" placeholder="tu@finca.com" aria-label="Correo electrónico" />
@@ -56,9 +58,19 @@ import { Icon } from 'astro-icon/components';
             Medellín, Colombia
           </li>
           <li>
-            <svg width={14} height={14} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M3 21l1.6-5A8 8 0 1 1 8 19.4z"/>
-              <path d="M9 10c.3 1.5 1.2 2.8 2.5 3.7M14 14c-1 0-1-1-2-1"/>
+            <svg
+              width={14}
+              height={14}
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.6"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M3 21l1.6-5A8 8 0 1 1 8 19.4z"></path>
+              <path d="M9 10c.3 1.5 1.2 2.8 2.5 3.7M14 14c-1 0-1-1-2-1"></path>
             </svg>
             WhatsApp
           </li>
@@ -80,7 +92,7 @@ import { Icon } from 'astro-icon/components';
 <style>
   .site-footer {
     background: var(--color-primary-active);
-    color: rgba(255,255,255,0.65);
+    color: rgba(255, 255, 255, 0.65);
     padding: 64px 0 32px;
   }
 
@@ -90,29 +102,39 @@ import { Icon } from 'astro-icon/components';
     gap: 48px;
     margin-bottom: 48px;
   }
-  @media (max-width: 880px) { .foot-grid { grid-template-columns: 1fr 1fr; gap: 32px; } }
-  @media (max-width: 540px) { .foot-grid { grid-template-columns: 1fr; } }
+  @media (max-width: 880px) {
+    .foot-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+  }
+  @media (max-width: 540px) {
+    .foot-grid {
+      grid-template-columns: 1fr;
+    }
+  }
 
   .foot-tagline {
     font-size: 14px;
     line-height: 22px;
     max-width: 32ch;
     margin: 16px 0 24px;
-    color: rgba(255,255,255,0.65);
+    color: rgba(255, 255, 255, 0.65);
   }
 
   /* Email form */
   .email-form {
     display: flex;
     gap: 8px;
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.14);
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.14);
     border-radius: 10px;
     padding: 6px;
     max-width: 320px;
   }
   .email-form input {
-    flex: 1; min-width: 0;
+    flex: 1;
+    min-width: 0;
     background: transparent;
     border: 0;
     color: #fff;
@@ -121,7 +143,9 @@ import { Icon } from 'astro-icon/components';
     outline: none;
     font-family: inherit;
   }
-  .email-form input::placeholder { color: rgba(255,255,255,0.4); }
+  .email-form input::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+  }
   .email-form button {
     background: var(--color-accent);
     color: #fff;
@@ -134,33 +158,43 @@ import { Icon } from 'astro-icon/components';
     border: 0;
     font-family: inherit;
   }
-  .email-form button:hover { background: var(--color-accent-hover); }
+  .email-form button:hover {
+    background: var(--color-accent-hover);
+  }
 
   /* Column titles */
   .foot-col-title {
     font-size: 11px;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: rgba(255,255,255,0.5);
+    color: rgba(255, 255, 255, 0.5);
     margin: 0 0 16px;
     font-weight: 600;
   }
 
   /* Links */
   .foot-links {
-    list-style: none; padding: 0; margin: 0;
-    display: flex; flex-direction: column; gap: 10px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
     font-size: 14px;
-    color: rgba(255,255,255,0.65);
+    color: rgba(255, 255, 255, 0.65);
   }
-  .foot-links a:hover { color: #fff; }
+  .foot-links a:hover {
+    color: #fff;
+  }
   .foot-links--contact li {
-    display: flex; align-items: center; gap: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
   }
 
   /* Bottom bar */
   .foot-bottom {
-    border-top: 1px solid rgba(255,255,255,0.08);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
     padding-top: 24px;
     display: flex;
     justify-content: space-between;
@@ -173,5 +207,7 @@ import { Icon } from 'astro-icon/components';
     display: flex;
     gap: 16px;
   }
-  .foot-legal a:hover { color: #fff; }
+  .foot-legal a:hover {
+    color: #fff;
+  }
 </style>

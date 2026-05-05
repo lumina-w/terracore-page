@@ -3,13 +3,39 @@ import Eyebrow from '@atoms/Eyebrow.astro';
 import { Icon } from 'astro-icon/components';
 
 const modules = [
-  { num: '02', name: 'Animales',     icon: 'lucide:leaf',             desc: 'Registro y seguimiento del ganado: ID, raza, peso, salud, ubicación.' },
-  { num: '03', name: 'Insumos',      icon: 'lucide:box',              desc: 'Alimentos, medicamentos y suministros con stock mínimo y proveedor.' },
-  { num: '04', name: 'Herramientas', icon: 'lucide:wrench',           desc: 'Equipos, maquinaria e implementos con estado y mantenimiento.' },
-  { num: '05', name: 'Producción',   icon: 'lucide:bar-chart-2',      desc: 'Bitácora de lotes (cultivo, leche, huevos), insumos y horas.' },
-  { num: '06', name: 'Salud Animal', icon: 'lucide:stethoscope',      desc: 'Vacunas, alertas, historial sanitario y vista por animal.' },
+  {
+    num: '02',
+    name: 'Animales',
+    icon: 'lucide:leaf',
+    desc: 'Registro y seguimiento del ganado: ID, raza, peso, salud, ubicación.',
+  },
+  {
+    num: '03',
+    name: 'Insumos',
+    icon: 'lucide:box',
+    desc: 'Alimentos, medicamentos y suministros con stock mínimo y proveedor.',
+  },
+  {
+    num: '04',
+    name: 'Herramientas',
+    icon: 'lucide:wrench',
+    desc: 'Equipos, maquinaria e implementos con estado y mantenimiento.',
+  },
+  {
+    num: '05',
+    name: 'Producción',
+    icon: 'lucide:bar-chart-2',
+    desc: 'Bitácora de lotes (cultivo, leche, huevos), insumos y horas.',
+  },
+  {
+    num: '06',
+    name: 'Salud Animal',
+    icon: 'lucide:stethoscope',
+    desc: 'Vacunas, alertas, historial sanitario y vista por animal.',
+  },
 ];
 ---
+
 <section class="section-pad" id="modulos">
   <div class="container">
     <div class="section-head">
@@ -20,8 +46,8 @@ const modules = [
         </h2>
       </div>
       <p class="lead">
-        Una sola plataforma para tu finca: del registro del último ternero al kilo de
-        concentrado que se acaba mañana. Todo conectado, todo en tu mano.
+        Una sola plataforma para tu finca: del registro del último ternero al kilo de concentrado
+        que se acaba mañana. Todo conectado, todo en tu mano.
       </p>
     </div>
 
@@ -35,8 +61,8 @@ const modules = [
           </div>
           <h3 class="bento-tile__name">Dashboard</h3>
           <p class="bento-tile__desc">
-            KPIs en tiempo real: animales activos, producción mensual, insumos,
-            alertas y ingresos estimados. La foto completa de tu finca, en un vistazo.
+            KPIs en tiempo real: animales activos, producción mensual, insumos, alertas y ingresos
+            estimados. La foto completa de tu finca, en un vistazo.
           </p>
         </div>
         <div class="demo-mini">
@@ -56,18 +82,20 @@ const modules = [
       </div>
 
       <!-- Standard module tiles -->
-      {modules.map((m) => (
-        <div class="bento-tile">
-          <span class="bento-tile__num">{m.num} / 06</span>
-          <div>
-            <div class="bento-tile__icon-sq">
-              <Icon name={m.icon} width={22} height={22} />
+      {
+        modules.map((m) => (
+          <div class="bento-tile">
+            <span class="bento-tile__num">{m.num} / 06</span>
+            <div>
+              <div class="bento-tile__icon-sq">
+                <Icon name={m.icon} width={22} height={22} />
+              </div>
+              <h3 class="bento-tile__name">{m.name}</h3>
+              <p class="bento-tile__desc">{m.desc}</p>
             </div>
-            <h3 class="bento-tile__name">{m.name}</h3>
-            <p class="bento-tile__desc">{m.desc}</p>
           </div>
-        </div>
-      ))}
+        ))
+      }
 
       <!-- Wide integration tile -->
       <div class="bento-tile bento-tile--wide bento-integration">
@@ -77,9 +105,9 @@ const modules = [
             Si registras una vacuna, también baja el stock del frasco.
           </h3>
           <p class="bento-integration__desc">
-            Los módulos no son silos: cuando aplicas un tratamiento, TerraCore
-            descuenta el insumo, agenda el refuerzo y actualiza el estado de salud
-            del animal. Una acción, todo el sistema al día.
+            Los módulos no son silos: cuando aplicas un tratamiento, TerraCore descuenta el insumo,
+            agenda el refuerzo y actualiza el estado de salud del animal. Una acción, todo el
+            sistema al día.
           </p>
         </div>
         <div class="bento-integration__flow">
@@ -103,7 +131,9 @@ const modules = [
 </section>
 
 <style>
-  .accent-text { color: var(--color-accent); }
+  .accent-text {
+    color: var(--color-accent);
+  }
 
   /* ── Bento grid ────────────────────────────────────────────── */
   .bento {
@@ -134,7 +164,8 @@ const modules = [
 
   .bento-tile__num {
     position: absolute;
-    top: 20px; right: 24px;
+    top: 20px;
+    right: 24px;
     font-family: var(--font-display);
     font-size: 14px;
     font-variant-numeric: tabular-nums;
@@ -144,11 +175,14 @@ const modules = [
   }
 
   .bento-tile__icon-sq {
-    width: 44px; height: 44px;
+    width: 44px;
+    height: 44px;
     border-radius: 10px;
     background: var(--color-primary);
     color: #fff;
-    display: flex; align-items: center; justify-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin-bottom: 24px;
   }
 
@@ -161,7 +195,8 @@ const modules = [
     color: var(--color-text);
   }
   .bento-tile__desc {
-    font-size: 14px; line-height: 22px;
+    font-size: 14px;
+    line-height: 22px;
     color: var(--color-text-secondary);
     margin: 0;
   }
@@ -177,23 +212,37 @@ const modules = [
   }
   .bento-tile--featured::before {
     content: '';
-    position: absolute; inset: 0;
+    position: absolute;
+    inset: 0;
     background: radial-gradient(420px 320px at 100% 0%, rgba(217, 119, 6, 0.32), transparent 60%);
     pointer-events: none;
   }
-  .bento-tile--featured .bento-tile__icon-sq { background: var(--color-accent); }
-  .bento-tile--featured .bento-tile__name  { color: #fff; font-size: 36px; }
-  .bento-tile--featured .bento-tile__desc  { color: rgba(255,255,255,0.78); font-size: 16px; line-height: 26px; }
-  .bento-tile--featured .bento-tile__num   { color: rgba(255,255,255,0.4); }
+  .bento-tile--featured .bento-tile__icon-sq {
+    background: var(--color-accent);
+  }
+  .bento-tile--featured .bento-tile__name {
+    color: #fff;
+    font-size: 36px;
+  }
+  .bento-tile--featured .bento-tile__desc {
+    color: rgba(255, 255, 255, 0.78);
+    font-size: 16px;
+    line-height: 26px;
+  }
+  .bento-tile--featured .bento-tile__num {
+    color: rgba(255, 255, 255, 0.4);
+  }
 
   /* Wide tile */
-  .bento-tile--wide { grid-column: span 6; }
+  .bento-tile--wide {
+    grid-column: span 6;
+  }
 
   /* Demo mini widget */
   .demo-mini {
     margin-top: 20px;
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.12);
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: 10px;
     padding: 16px;
     display: grid;
@@ -208,16 +257,19 @@ const modules = [
     font-size: 10px;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: rgba(255,255,255,0.6);
+    color: rgba(255, 255, 255, 0.6);
     margin-bottom: 6px;
   }
   .demo-mini__val {
     font-family: var(--font-display);
-    font-size: 22px; font-weight: 700;
+    font-size: 22px;
+    font-weight: 700;
     font-variant-numeric: tabular-nums;
     color: #fff;
   }
-  .demo-mini__val--accent { color: var(--color-accent); }
+  .demo-mini__val--accent {
+    color: var(--color-accent);
+  }
 
   /* Integration wide tile */
   .bento-integration {
@@ -228,7 +280,9 @@ const modules = [
     background: var(--color-bg) !important;
     padding: 32px 36px !important;
   }
-  .bento-integration:hover { transform: none !important; }
+  .bento-integration:hover {
+    transform: none !important;
+  }
 
   .bento-integration__title {
     font-family: var(--font-display);
@@ -284,18 +338,28 @@ const modules = [
 
   /* Responsive */
   @media (max-width: 1024px) {
-    .bento { grid-template-columns: repeat(2, 1fr); }
+    .bento {
+      grid-template-columns: repeat(2, 1fr);
+    }
     .bento-tile,
     .bento-tile--featured,
     .bento-tile--wide {
       grid-column: span 2;
       grid-row: auto;
     }
-    .bento-tile--featured .bento-tile__name { font-size: 28px; }
-    .bento-integration { grid-template-columns: 1fr; }
+    .bento-tile--featured .bento-tile__name {
+      font-size: 28px;
+    }
+    .bento-integration {
+      grid-template-columns: 1fr;
+    }
   }
   @media (max-width: 600px) {
-    .bento { grid-template-columns: 1fr; }
-    .bento-tile { grid-column: span 1 !important; }
+    .bento {
+      grid-template-columns: 1fr;
+    }
+    .bento-tile {
+      grid-column: span 1 !important;
+    }
   }
 </style>

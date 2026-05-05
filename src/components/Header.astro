@@ -2,8 +2,9 @@
 import Brand from '@molecules/Brand.astro';
 import { Icon } from 'astro-icon/components';
 ---
+
 <header class="nav">
-  <div class="container nav-inner">
+  <div class="nav-inner container">
     <!-- Logo -->
     <a href="#top" aria-label="TerraCore inicio">
       <Brand size={40} />
@@ -20,9 +21,9 @@ import { Icon } from 'astro-icon/components';
 
     <!-- Desktop CTA + mobile hamburger -->
     <div class="nav-cta">
-      <a href="https://terracoreapp.co/login" target="_blank" class="nav-login">
+      <a href="https://terracoreapp.co/login" target="_blank" class="btn nav-login">
         Iniciar sesión
-    <Icon name="lucide:log-in" width={16} height={16} />
+        <Icon name="lucide:log-in" width={16} height={16} />
       </a>
       <a
         href="#demo"
@@ -46,12 +47,7 @@ import { Icon } from 'astro-icon/components';
 </header>
 
 <!-- Mobile drawer (renders outside nav-inner but still inside header context) -->
-<div
-  class="mobile-drawer"
-  id="mobile-drawer"
-  data-open="false"
-  aria-hidden="true"
->
+<div class="mobile-drawer" id="mobile-drawer" data-open="false" aria-hidden="true">
   <ul class="mobile-links">
     <li><a href="#modulos">Módulos</a></li>
     <li><a href="#producto">Producto</a></li>
@@ -69,15 +65,15 @@ import { Icon } from 'astro-icon/components';
 <script>
   const toggle = document.querySelector<HTMLButtonElement>('.nav-toggle')!;
   const drawer = document.querySelector<HTMLElement>('.mobile-drawer')!;
-  const iconMenu  = toggle.querySelector<SVGElement>('.icon-menu')!;
+  const iconMenu = toggle.querySelector<SVGElement>('.icon-menu')!;
   const iconClose = toggle.querySelector<SVGElement>('.icon-close')!;
 
   function setOpen(open: boolean) {
     drawer.dataset.open = String(open);
     drawer.setAttribute('aria-hidden', String(!open));
     toggle.setAttribute('aria-expanded', String(open));
-    iconMenu.style.display  = open ? 'none'  : '';
-    iconClose.style.display = open ? ''      : 'none';
+    iconMenu.style.display = open ? 'none' : '';
+    iconClose.style.display = open ? '' : 'none';
   }
 
   // init: hide close icon
@@ -125,14 +121,20 @@ import { Icon } from 'astro-icon/components';
     font-weight: 500;
   }
   .nav-links a {
-    transition: transform 180ms var(--ease-standard), color 180ms var(--ease-standard);
+    transition:
+      transform 180ms var(--ease-standard),
+      color 180ms var(--ease-standard);
   }
   .nav-links a:hover {
     transform: scale(1.05);
     color: var(--color-text);
   }
 
-  .nav-cta { display: flex; align-items: center; gap: 12px; }
+  .nav-cta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
 
   .nav-login {
     display: inline-flex;
@@ -143,9 +145,14 @@ import { Icon } from 'astro-icon/components';
     font-weight: 600;
     transition: color var(--dur-base) var(--ease-standard);
   }
-  .nav-login:hover { color: var(--color-text); }
+  .nav-login:hover {
+    color: var(--color-text);
+  }
 
-  .nav-demo { padding: 10px 16px !important; font-size: 14px !important; }
+  .nav-demo {
+    padding: 10px 16px !important;
+    font-size: 14px !important;
+  }
 
   /* Hamburger — desktop hidden */
   .nav-toggle {
@@ -160,13 +167,21 @@ import { Icon } from 'astro-icon/components';
     justify-content: center;
     transition: background var(--dur-base) var(--ease-standard);
   }
-  .nav-toggle:hover { background: var(--color-surface-sunken); }
+  .nav-toggle:hover {
+    background: var(--color-surface-sunken);
+  }
 
   /* ── Mobile breakpoint ─────────────────────────────────────── */
   @media (max-width: 1000px) {
-    .nav-links  { display: none; }
-    .nav-login  { display: none; }   /* hidden in bar; appears in drawer */
-    .nav-toggle { display: flex; }
+    .nav-links {
+      display: none;
+    }
+    .nav-login {
+      display: none;
+    } /* hidden in bar; appears in drawer */
+    .nav-toggle {
+      display: flex;
+    }
     .nav-demo {
       padding: 8px 14px !important;
       font-size: 13px !important;
@@ -176,7 +191,7 @@ import { Icon } from 'astro-icon/components';
   /* ── Mobile drawer ─────────────────────────────────────────── */
   .mobile-drawer {
     position: fixed;
-    top: 68px;       /* matches nav height */
+    top: 68px; /* matches nav height */
     left: 0;
     right: 0;
     background: #ffffff;
@@ -191,7 +206,7 @@ import { Icon } from 'astro-icon/components';
     z-index: 49;
     box-shadow: 0 8px 24px rgba(13, 42, 31, 0.08);
   }
-  .mobile-drawer[data-open="true"] {
+  .mobile-drawer[data-open='true'] {
     transform: translateY(0);
     opacity: 1;
     pointer-events: auto;
@@ -199,7 +214,9 @@ import { Icon } from 'astro-icon/components';
 
   /* Hide on desktop */
   @media (min-width: 1001px) {
-    .mobile-drawer { display: none !important; }
+    .mobile-drawer {
+      display: none !important;
+    }
   }
 
   .mobile-links {
@@ -220,7 +237,9 @@ import { Icon } from 'astro-icon/components';
     transition: background var(--dur-base) var(--ease-standard);
   }
   .mobile-links a:hover,
-  .mobile-links a:active { background: var(--color-surface-sunken); }
+  .mobile-links a:active {
+    background: var(--color-surface-sunken);
+  }
 
   .mobile-divider {
     height: 1px;
@@ -237,7 +256,9 @@ import { Icon } from 'astro-icon/components';
     font-weight: 600;
     color: var(--color-text-secondary);
     border-radius: 8px;
-    transition: color var(--dur-base) var(--ease-standard), background var(--dur-base) var(--ease-standard);
+    transition:
+      color var(--dur-base) var(--ease-standard),
+      background var(--dur-base) var(--ease-standard);
   }
   .mobile-login:hover {
     color: var(--color-text);

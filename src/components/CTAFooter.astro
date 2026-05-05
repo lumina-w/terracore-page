@@ -1,30 +1,37 @@
 ---
 import { Icon } from 'astro-icon/components';
 ---
+
 <section class="cta-band" id="demo">
   <div class="container">
     <div class="cta-card marker-corners" style="color:rgba(255,255,255,0.4)">
       <div class="cta-card__main">
         <h2 class="cta-card__heading">
-          Tu finca, ordenada.<br/>En menos de una semana.
+          Tu finca, ordenada.<br />En menos de una semana.
         </h2>
         <p class="cta-card__desc">
-          Agenda una demo de 30 minutos. Te mostramos TerraCore con datos de fincas reales
-          y resolvemos tus dudas sin compromiso.
+          Agenda una demo de 30 minutos. Te mostramos TerraCore con datos de fincas reales y
+          resolvemos tus dudas sin compromiso.
         </p>
         <div class="cta-actions">
-          <a
-            href="#agenda"
-            class="btn btn-accent"
-            onclick="window.trackEvent?.('click_cta_main')"
-          >
+          <a href="#agenda" class="btn btn-accent" onclick="window.trackEvent?.('click_cta_main')">
             Agenda demo gratis
             <Icon name="lucide:arrow-right" width={16} height={16} />
           </a>
           <a href="#whatsapp" class="btn btn-ghost-dark">
-            <svg width={16} height={16} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M3 21l1.6-5A8 8 0 1 1 8 19.4z"/>
-              <path d="M9 10c.3 1.5 1.2 2.8 2.5 3.7M14 14c-1 0-1-1-2-1"/>
+            <svg
+              width={16}
+              height={16}
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.6"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M3 21l1.6-5A8 8 0 1 1 8 19.4z"></path>
+              <path d="M9 10c.3 1.5 1.2 2.8 2.5 3.7M14 14c-1 0-1-1-2-1"></path>
             </svg>
             Hablar por WhatsApp
           </a>
@@ -76,13 +83,16 @@ import { Icon } from 'astro-icon/components';
   }
   .cta-card::before {
     content: '';
-    position: absolute; inset: 0;
+    position: absolute;
+    inset: 0;
     background:
       radial-gradient(500px 400px at 100% 0%, rgba(217, 119, 6, 0.32), transparent 60%),
       radial-gradient(500px 400px at 0% 100%, rgba(60, 117, 86, 0.5), transparent 60%);
     pointer-events: none;
   }
-  .cta-card > * { position: relative; }
+  .cta-card > * {
+    position: relative;
+  }
 
   .cta-card__heading {
     color: #fff;
@@ -95,17 +105,21 @@ import { Icon } from 'astro-icon/components';
     text-wrap: balance;
   }
   .cta-card__desc {
-    color: rgba(255,255,255,0.78);
+    color: rgba(255, 255, 255, 0.78);
     font-size: 17px;
     line-height: 26px;
     max-width: 50ch;
     margin: 0 0 28px;
   }
-  .cta-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+  .cta-actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
 
   .cta-side {
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.12);
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: 14px;
     padding: 24px;
   }
@@ -113,23 +127,38 @@ import { Icon } from 'astro-icon/components';
     font-size: 11px;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: rgba(255,255,255,0.6);
+    color: rgba(255, 255, 255, 0.6);
     margin-bottom: 12px;
   }
   .cta-side__list {
-    list-style: none; padding: 0; margin: 0;
-    display: flex; flex-direction: column; gap: 12px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
   }
   .cta-side__list li {
-    display: flex; align-items: center; gap: 12px;
-    font-size: 14px; color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 14px;
+    color: #fff;
   }
-  .cta-side__list li :global(svg) { color: var(--color-accent); flex: 0 0 auto; }
+  .cta-side__list li :global(svg) {
+    color: var(--color-accent);
+    flex: 0 0 auto;
+  }
 
   @media (max-width: 880px) {
-    .cta-card { grid-template-columns: 1fr; padding: 40px; }
+    .cta-card {
+      grid-template-columns: 1fr;
+      padding: 40px;
+    }
   }
   @media (max-width: 720px) {
-    .cta-band { padding: 64px 0; }
+    .cta-band {
+      padding: 64px 0;
+    }
   }
 </style>

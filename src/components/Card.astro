@@ -1,17 +1,17 @@
 ---
-import { Icon } from 'astro-icon/components'
-import Button from './Button.astro'
-import { cn } from '@utils/cn'
+import { Icon } from 'astro-icon/components';
+import Button from './Button.astro';
+import { cn } from '@utils/cn';
 
 interface Props {
-  title: string
-  description: string
-  icon?: string
-  cta?: { text: string; href: string }
-  class?: string
+  title: string;
+  description: string;
+  icon?: string;
+  cta?: { text: string; href: string };
+  class?: string;
 }
 
-const { title, description, icon, cta, class: className } = Astro.props
+const { title, description, icon, cta, class: className } = Astro.props;
 ---
 
 <div
@@ -21,20 +21,29 @@ const { title, description, icon, cta, class: className } = Astro.props
     className,
   )}
 >
-  {icon && (
-    <div class="w-10 h-10 flex items-center justify-center rounded-md text-primary shrink-0" style="background: rgba(27,67,50,0.08)">
-      <Icon name={`lucide:${icon}`} class="w-5 h-5" />
-    </div>
-  )}
+  {
+    icon && (
+      <div
+        class="flex h-10 w-10 shrink-0 items-center justify-center rounded-md text-primary"
+        style="background: rgba(27,67,50,0.08)"
+      >
+        <Icon name={`lucide:${icon}`} class="h-5 w-5" />
+      </div>
+    )
+  }
 
   <div class="flex flex-col gap-1.5">
-    <h3 class="text-base font-semibold text-foreground">{title}</h3>
-    <p class="text-sm text-muted-foreground leading-relaxed">{description}</p>
+    <h3 class="text-foreground text-base font-semibold">{title}</h3>
+    <p class="text-muted-foreground text-sm leading-relaxed">{description}</p>
   </div>
 
-  {cta && (
-    <div class="mt-auto pt-2">
-      <Button href={cta.href} variant="outline" size="sm">{cta.text}</Button>
-    </div>
-  )}
+  {
+    cta && (
+      <div class="mt-auto pt-2">
+        <Button href={cta.href} variant="outline" size="sm">
+          {cta.text}
+        </Button>
+      </div>
+    )
+  }
 </div>

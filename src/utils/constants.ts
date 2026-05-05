@@ -1,15 +1,15 @@
 export interface Plan {
-  name: string
-  target: string
-  features: string[]
-  highlight: boolean
-  ctaText: string
-  ctaEvent: string
+  name: string;
+  target: string;
+  features: string[];
+  highlight: boolean;
+  ctaText: string;
+  ctaEvent: string;
 }
 
 export interface FaqItem {
-  q: string
-  a: string
+  q: string;
+  a: string;
 }
 
 export const PLANS: Plan[] = [
@@ -58,12 +58,12 @@ export const PLANS: Plan[] = [
     ctaText: 'Contactar ventas',
     ctaEvent: 'click_cta_plans_enterprise',
   },
-]
+];
 
 export interface Problem {
-  icon: string
-  title: string
-  desc: string
+  icon: string;
+  title: string;
+  desc: string;
 }
 
 export const PROBLEMS: Problem[] = [
@@ -87,12 +87,12 @@ export const PROBLEMS: Problem[] = [
     title: 'Personal apagando incendios',
     desc: 'Tu equipo gestiona crisis en lugar de enfocarse en producir y crecer.',
   },
-]
+];
 
 export interface Feature {
-  icon: string
-  title: string
-  description: string
+  icon: string;
+  title: string;
+  description: string;
 }
 
 export const FEATURES: Feature[] = [
@@ -114,7 +114,7 @@ export const FEATURES: Feature[] = [
     description:
       'Toma decisiones basadas en rentabilidad real. Por lote, por mes, por cultivo. Sin adivinar.',
   },
-]
+];
 
 export const FAQ: FaqItem[] = [
   {
@@ -137,4 +137,4 @@ export const FAQ: FaqItem[] = [
     q: '¿Qué pasa si quiero cancelar?',
     a: 'Sin penalidades ni letras pequeñas. Solo avísanos con 30 días de anticipación.',
   },
-]
+];

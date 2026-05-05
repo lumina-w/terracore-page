@@ -6,6 +6,7 @@ interface Props {
 }
 const { mono = false, size = 28, showCaption = true } = Astro.props;
 ---
+
 <div class:list={['brand', mono && 'brand--mono']}>
   <img
     src="/logo.ico"
@@ -33,7 +34,9 @@ const { mono = false, size = 28, showCaption = true } = Astro.props;
     letter-spacing: -0.01em;
     color: var(--color-text);
   }
-  .brand--mono { color: #fff; }
+  .brand--mono {
+    color: #fff;
+  }
 
   .brand__logo {
     display: block;
@@ -43,7 +46,10 @@ const { mono = false, size = 28, showCaption = true } = Astro.props;
     flex-shrink: 0;
   }
 
-  .brand__name { display: block; line-height: 1; }
+  .brand__name {
+    display: block;
+    line-height: 1;
+  }
 
   .brand__caption {
     display: block;

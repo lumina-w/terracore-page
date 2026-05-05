@@ -29,13 +29,14 @@ const qs = [
   },
 ];
 ---
+
 <section class="section-pad" id="faq">
   <div class="container">
     <div class="faq-wrap">
       <div>
         <Eyebrow num="06">Preguntas</Eyebrow>
         <h2 class="display lg" style="margin-top:16px; margin-bottom:16px">
-          Las dudas<br/>que siempre nos hacen.
+          Las dudas<br />que siempre nos hacen.
         </h2>
         <p class="lead">
           ¿No ves la tuya? Escríbenos a{' '}
@@ -45,19 +46,21 @@ const qs = [
       </div>
 
       <div class="faq-list">
-        {qs.map((it) => (
-          <div class="faq-item" data-faq>
-            <button class="faq-q" aria-expanded="false">
-              <span>{it.q}</span>
-              <span class="faq-plus" aria-hidden="true">
-                <Icon name="lucide:plus" width={14} height={14} />
-              </span>
-            </button>
-            <div class="faq-a" hidden>
-              {it.a}
+        {
+          qs.map((it) => (
+            <div class="faq-item" data-faq>
+              <button class="faq-q" aria-expanded="false">
+                <span>{it.q}</span>
+                <span class="faq-plus" aria-hidden="true">
+                  <Icon name="lucide:plus" width={14} height={14} />
+                </span>
+              </button>
+              <div class="faq-a" hidden>
+                {it.a}
+              </div>
             </div>
-          </div>
-        ))}
+          ))
+        }
       </div>
     </div>
   </div>
@@ -93,17 +96,30 @@ const qs = [
     grid-template-columns: 1fr 1.4fr;
     gap: 64px;
   }
-  @media (max-width: 880px) { .faq-wrap { grid-template-columns: 1fr; gap: 32px; } }
+  @media (max-width: 880px) {
+    .faq-wrap {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+  }
 
   .faq-link {
     color: var(--color-accent);
     font-weight: 600;
   }
-  .faq-link:hover { color: var(--color-accent-hover); }
+  .faq-link:hover {
+    color: var(--color-accent-hover);
+  }
 
-  .faq-list { display: flex; flex-direction: column; gap: 4px; }
+  .faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
 
-  .faq-item { border-bottom: 1px solid var(--color-border); }
+  .faq-item {
+    border-bottom: 1px solid var(--color-border);
+  }
 
   .faq-q {
     width: 100%;
@@ -121,14 +137,19 @@ const qs = [
     cursor: pointer;
     transition: color var(--dur-base) var(--ease-standard);
   }
-  .faq-q:hover { color: var(--color-primary); }
+  .faq-q:hover {
+    color: var(--color-primary);
+  }
 
   .faq-plus {
-    width: 28px; height: 28px;
+    width: 28px;
+    height: 28px;
     border-radius: 999px;
     background: var(--color-bg);
     border: 1px solid var(--color-border);
-    display: flex; align-items: center; justify-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     flex: 0 0 auto;
     transition: all var(--dur-base) var(--ease-standard);
   }
