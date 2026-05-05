@@ -39,6 +39,16 @@ import { Icon } from 'astro-icon/components';
     flex-wrap: wrap;
     font-size: 12px;
   }
+  @media (max-width: 1023px) {
+    .proof-strip__inner {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    .proof-strip__badges {
+      justify-content: center;
+    }
+  }
   .proof-strip strong {
     color: #fff;
     font-weight: 600;
