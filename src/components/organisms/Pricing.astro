@@ -157,15 +157,12 @@ const plans = [
 </section>
 
 <script>
-  const BREVO_KEY = import.meta.env.PUBLIC_BREVO_API_KEY ?? '';
-  const BREVO_LIST = Number(import.meta.env.PUBLIC_BREVO_LIST_ID ?? '0');
-
   document.querySelectorAll<HTMLFormElement>('.waitlist-form').forEach((form) => {
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
       const input = form.querySelector<HTMLInputElement>('input[name="email"]')!;
       const btn = form.querySelector<HTMLButtonElement>('button[type="submit"]')!;
-      const confirm = form.nextElementSibling as HTMLParagraphElement;
+      const confirmEl = form.nextElementSibling as HTMLElement;
       const email = input.value.trim();
       if (!email) return;
 
@@ -173,25 +170,26 @@ const plans = [
       btn.textContent = 'Enviando…';
 
       try {
-        const res = await fetch('https://api.brevo.com/v3/contacts', {
+        const res = await fetch('/api/v1/waitlist/', {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'api-key': BREVO_KEY,
-          },
-          body: JSON.stringify({ email, listIds: [BREVO_LIST], updateEnabled: true }),
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email }),
         });
 
-        if (res.ok || res.status === 204) {
+        if (res.ok) {
           form.hidden = true;
-          confirm.hidden = false;
+          confirmEl.hidden = false;
         } else {
           btn.disabled = false;
           btn.textContent = 'Notifícame';
+          confirmEl.textContent = 'Algo salió mal. Intenta de nuevo.';
+          confirmEl.hidden = false;
         }
       } catch {
         btn.disabled = false;
         btn.textContent = 'Notifícame';
+        confirmEl.textContent = 'Algo salió mal. Intenta de nuevo.';
+        confirmEl.hidden = false;
       }
     });
   });
