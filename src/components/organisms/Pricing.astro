@@ -343,6 +343,7 @@ const plans = [
         if (res.ok) {
           btn.textContent = '¡Listo!';
           input.value = '';
+          window.dispatchEvent(new CustomEvent('waitlist:success'));
           setTimeout(() => {
             btn.disabled = false;
             btn.textContent = 'Notifícame';

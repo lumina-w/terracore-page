@@ -495,6 +495,18 @@ const modules: Array<{
     overflow-x: auto;
     overflow-y: hidden;
     font-size: 11px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-primary) transparent;
+  }
+  .bento-preview::-webkit-scrollbar {
+    height: 4px;
+  }
+  .bento-preview::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .bento-preview::-webkit-scrollbar-thumb {
+    background: var(--color-primary);
+    border-radius: 2px;
   }
   .mini-table {
     width: 100%;
