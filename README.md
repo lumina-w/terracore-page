@@ -6,14 +6,14 @@ Landing page de **TerraCore** — plataforma colombiana de gestión agroindustri
 
 ## Stack
 
-| Tecnología | Versión | Uso |
-|---|---|---|
-| Astro | 4.16 | Framework SSG/hybrid |
-| Tailwind CSS | 3.4 | Utilidades de estilos |
-| astro-icon | 1.x | Íconos (Lucide + Simple Icons) |
-| @astrojs/node | 8.x | Adapter para SSR del API |
-| @astrojs/sitemap | 3.x | Genera `sitemap-index.xml` |
-| TypeScript | 5.6 | Tipado estático |
+| Tecnología       | Versión | Uso                            |
+| ---------------- | ------- | ------------------------------ |
+| Astro            | 4.16    | Framework SSG/hybrid           |
+| Tailwind CSS     | 3.4     | Utilidades de estilos          |
+| astro-icon       | 1.x     | Íconos (Lucide + Simple Icons) |
+| @astrojs/node    | 8.x     | Adapter para SSR del API       |
+| @astrojs/sitemap | 3.x     | Genera `sitemap-index.xml`     |
+| TypeScript       | 5.6     | Tipado estático                |
 
 Output: `hybrid` — páginas estáticas + endpoint `/api/waitlist` server-side.
 
@@ -134,4 +134,4 @@ El sitemap se genera automáticamente en `dist/sitemap-index.xml` durante `npm r
 
 - `BaseLayout.astro` está excluido de Prettier (`.prettierignore`) porque Prettier 3 rompe la sintaxis `is:inline`. Editar manualmente.
 - Existen `tailwind.config.mjs` y `tailwind.config.ts` — Astro usa el `.mjs`. No borrar el `.ts`.
-- `src/utils/constants.ts` es la fuente de verdad para datos de planes, FAQs y features. Los componentes consumen este archivo directamente, no hay CMS ni API.
+- `src/utils/constants.ts` existe pero actualmente los componentes tienen los datos inline. `constants.ts` puede ser la fuente de verdad si se consolidan los datos.

@@ -8,22 +8,17 @@ Prioridades: **P0** bloqueante para producción · **P1** importante · **P2** m
 
 ## Páginas pendientes
 
-| Página | Prioridad | Descripción |
-|---|---|---|
-| `/casos-de-uso` | P2 | Casos de uso por tipo de finca (ganadera, agrícola, mixta). Reutilizar `LegalLayout` o nuevo template. |
-| `/blog` | P2 | Blog de contenido agroindustrial para SEO long-tail. Requiere decisión de CMS o archivos MD. |
-| `404.astro` | P1 | Página de error 404 con marca y link al inicio. Astro la sirve automáticamente si existe en `src/pages/`. |
+| Página          | Prioridad | Descripción                                                                                               |
+| --------------- | --------- | --------------------------------------------------------------------------------------------------------- |
+| `/casos-de-uso` | P2        | Casos de uso por tipo de finca (ganadera, agrícola, mixta). Reutilizar `LegalLayout` o nuevo template.    |
+| `/blog`         | P2        | Blog de contenido agroindustrial para SEO long-tail. Requiere decisión de CMS o archivos MD.              |
+| `404.astro`     | P1        | Página de error 404 con marca y link al inicio. Astro la sirve automáticamente si existe en `src/pages/`. |
 
 ---
 
 ## Features técnicos pendientes
 
 ### P0 — Antes de producción
-
-- **Eliminar debug logs en `/api/waitlist`**
-  - Archivo: `src/pages/api/waitlist.ts`
-  - Líneas 8–9, 13, 22, 28–29, 31–32, 36, 43, 50, 60–61, 64–65, 69
-  - Los `console.log` fueron agregados para depuración. Deben eliminarse antes del deploy final.
 
 - **Verificar variables de entorno en servidor de producción**
   - `BREVO_API_KEY` y `BREVO_LIST_ID` deben estar disponibles en el runtime (no solo en build).
@@ -66,22 +61,22 @@ Prioridades: **P0** bloqueante para producción · **P1** importante · **P2** m
 
 ## Optimizaciones futuras
 
-| Área | Descripción | Impacto |
-|---|---|---|
-| Core Web Vitals | Medir LCP, CLS, INP en Lighthouse/PageSpeed. LCP objetivo: < 2.5s | Alto |
-| Self-hosted fonts | Mover Inter/Poppins a `/public/fonts/` para eliminar RTT a Google Fonts | Medio |
-| Imágenes responsive | `srcset` + `sizes` en imagen Hero para servir resoluciones apropiadas | Medio |
-| CSP headers | Content-Security-Policy en el servidor Node standalone | Medio |
-| Structured data adicional | JSON-LD `SoftwareApplication` o `Product` en la landing para rich results | Bajo |
-| OG image dinámica | Generar OG images por página con `@vercel/og` o similar si se expanden páginas | Bajo |
-| i18n | Versión en inglés si se expande a mercados fuera de Colombia | Bajo |
+| Área                      | Descripción                                                                    | Impacto |
+| ------------------------- | ------------------------------------------------------------------------------ | ------- |
+| Core Web Vitals           | Medir LCP, CLS, INP en Lighthouse/PageSpeed. LCP objetivo: < 2.5s              | Alto    |
+| Self-hosted fonts         | Mover Inter/Poppins a `/public/fonts/` para eliminar RTT a Google Fonts        | Medio   |
+| Imágenes responsive       | `srcset` + `sizes` en imagen Hero para servir resoluciones apropiadas          | Medio   |
+| CSP headers               | Content-Security-Policy en el servidor Node standalone                         | Medio   |
+| Structured data adicional | JSON-LD `SoftwareApplication` o `Product` en la landing para rich results      | Bajo    |
+| OG image dinámica         | Generar OG images por página con `@vercel/og` o similar si se expanden páginas | Bajo    |
+| i18n                      | Versión en inglés si se expande a mercados fuera de Colombia                   | Bajo    |
 
 ---
 
 ## Deuda técnica conocida
 
-| Archivo | Problema |
-|---|---|
-| `src/layouts/BaseLayout.astro` | Excluido de Prettier/ESLint auto-fix. Editar siempre manualmente. |
-| `tailwind.config.ts` | Duplicado de `tailwind.config.mjs`. Astro usa `.mjs`. No borrar `.ts` (puede usarse en otro contexto). |
-| `src/pages/api/waitlist.ts` | Debug logs activos. Ver P0 arriba. |
+| Archivo                        | Problema                                                                                               |
+| ------------------------------ | ------------------------------------------------------------------------------------------------------ |
+| `src/layouts/BaseLayout.astro` | Excluido de Prettier/ESLint auto-fix. Editar siempre manualmente.                                      |
+| `tailwind.config.ts`           | Duplicado de `tailwind.config.mjs`. Astro usa `.mjs`. No borrar `.ts` (puede usarse en otro contexto). |
+| `@astrojs/sitemap`             | Error `Cannot read properties of undefined (reading 'reduce')` en `npm run build`. Pre-existente, no bloquea el deploy de la landing (páginas estáticas se generan correctamente). Investigar en update de dependencias. |

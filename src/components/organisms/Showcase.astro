@@ -2,12 +2,24 @@
 import Eyebrow from '@atoms/Eyebrow.astro';
 
 const tabData = [
-  { id: 'dashboard', label: 'Dashboard', images: ['/screens/dashboard-1.webp', '/screens/dashboard-2.webp'] },
+  {
+    id: 'dashboard',
+    label: 'Dashboard',
+    images: ['/screens/dashboard-1.webp', '/screens/dashboard-2.webp'],
+  },
   { id: 'animales', label: 'Animales', images: ['/screens/animales.webp'] },
   { id: 'insumos', label: 'Insumos', images: ['/screens/insumos.webp'] },
   { id: 'herramientas', label: 'Herramientas', images: ['/screens/herramientas.webp'] },
   { id: 'produccion', label: 'Producción', images: ['/screens/produccion.webp'] },
-  { id: 'salud', label: 'Salud Animal', images: ['/screens/salud-animal-1.webp', '/screens/salud-animal-2.webp', '/screens/salud-animal-3.webp'] },
+  {
+    id: 'salud',
+    label: 'Salud Animal',
+    images: [
+      '/screens/salud-animal-1.webp',
+      '/screens/salud-animal-2.webp',
+      '/screens/salud-animal-3.webp',
+    ],
+  },
 ];
 ---
 
@@ -97,7 +109,11 @@ const tabData = [
     insumos: ['/screens/insumos.webp'],
     herramientas: ['/screens/herramientas.webp'],
     produccion: ['/screens/produccion.webp'],
-    salud: ['/screens/salud-animal-1.webp', '/screens/salud-animal-2.webp', '/screens/salud-animal-3.webp'],
+    salud: [
+      '/screens/salud-animal-1.webp',
+      '/screens/salud-animal-2.webp',
+      '/screens/salud-animal-3.webp',
+    ],
   };
 
   const INTERVAL = 3000;
@@ -196,7 +212,9 @@ const tabData = [
   });
 
   frame.addEventListener('mouseenter', stopAutoplay);
-  frame.addEventListener('mouseleave', () => { if (isSlider(activeTab)) startAutoplay(); });
+  frame.addEventListener('mouseleave', () => {
+    if (isSlider(activeTab)) startAutoplay();
+  });
 
   // Init
   renderDots('dashboard');

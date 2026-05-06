@@ -42,7 +42,8 @@ const items = [
       <div>
         <Eyebrow num="03">Por qué TerraCore</Eyebrow>
         <h2 class="display lg" style="margin-top:16px">
-          Software agropecuario<br />que <span style="color:var(--color-accent)">sí</span> entiende la finca.
+          Software agropecuario<br />que <span style="color:var(--color-accent)">sí</span> entiende la
+          finca.
         </h2>
       </div>
       <p class="lead">
@@ -69,39 +70,47 @@ const items = [
 
     <!-- Photo + stat split -->
     <div class="split">
-      <div class="photo-card">
-        <img src="/images/terracore.webp" alt="TerraCore en la finca" class="photo-img" loading="lazy" decoding="async" />
-        <div class="corner-stat">
-          <div class="corner-stat__val" <span style="color:var(--color-accent)">−42%</span></div>
-          <div class="corner-stat__label">
-            tiempo en tareas administrativas, según fincas piloto.
-          </div>
-        </div>
-      </div>
-
       <div>
-        <Eyebrow num="·">Resultado</Eyebrow>
-        <h3 class="display md" style="margin:16px 0">Menos planilla. <span style="color:var(--color-accent)">Más finca.</span></h3>
-        <p class="lead" style="margin-bottom:24px">
-          El tiempo que se va en cuadernos, recibos y llamadas puede volver al campo. TerraCore
-          centraliza todo en un solo lugar para que tú y tu equipo operen con información real,
-          no con memoria.
-        </p>
-        <ul class="check-list">
-          <li>
-            <Icon name="lucide:check" width={18} height={18} class="check-list__icon" />
-            Exporta a CSV cuando lo necesites, para tu contador, tu veterinario o tus registros internos.
-          </li>
-          <li>
-            <Icon name="lucide:check" width={18} height={18} class="check-list__icon" />
-            Importa tu inventario desde Excel sin perder ningún dato.
-          </li>
-          <li>
-            <Icon name="lucide:check" width={18} height={18} class="check-list__icon" />
-            Soporte humano en español, por WhatsApp en horario hábil.
-          </li>
-        </ul>
+      <div class="photo-card">
+        <img
+          src="/images/terracore.webp"
+          alt="TerraCore en la finca"
+          class="photo-img"
+          loading="lazy"
+          decoding="async"
+        />
+        <div class="corner-stat">
+          <div class="corner-stat__val">−42%</div>
+        </div>
+        <div class="corner-stat__label">tiempo en tareas administrativas, según fincas piloto.</div>
       </div>
+    </div>
+
+    <div>
+      <Eyebrow num="·">Resultado</Eyebrow>
+      <h3 class="display md" style="margin:16px 0">
+        Menos planilla. <span style="color:var(--color-accent)">Más finca.</span>
+      </h3>
+      <p class="lead" style="margin-bottom:24px">
+        El tiempo que se va en cuadernos, recibos y llamadas puede volver al campo. TerraCore
+        centraliza todo en un solo lugar para que tú y tu equipo operen con información real, no con
+        memoria.
+      </p>
+      <ul class="check-list">
+        <li>
+          <Icon name="lucide:check" width={18} height={18} class="check-list__icon" />
+          Exporta a CSV cuando lo necesites, para tu contador, tu veterinario o tus registros internos.
+        </li>
+        <li>
+          <Icon name="lucide:check" width={18} height={18} class="check-list__icon" />
+          Importa tu inventario desde Excel sin perder ningún dato.
+        </li>
+        <li>
+          <Icon name="lucide:check" width={18} height={18} class="check-list__icon" />
+          Soporte humano en español, por WhatsApp en horario hábil.
+        </li>
+      </ul>
+    </div>
     </div>
   </div>
 </section>
@@ -204,6 +213,7 @@ const items = [
     font-variant-numeric: tabular-nums;
     letter-spacing: -0.015em;
     line-height: 1;
+    color: var(--color-accent);
   }
   .corner-stat__label {
     font-size: 12px;

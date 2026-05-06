@@ -111,7 +111,10 @@ const plans = [
                       <span class="price-label">{p.priceMain}</span>
                     ) : (
                       <>
-                        <span class="price-amount">{p.priceMain}<sup>*</sup></span>
+                        <span class="price-amount">
+                          {p.priceMain}
+                          <sup>*</sup>
+                        </span>
                         <span class="price-suffix">{p.priceSub}</span>
                       </>
                     )}
@@ -139,12 +142,18 @@ const plans = [
                         />
                         <button
                           type="submit"
-                          class:list={['btn', p.featured ? 'btn-accent' : 'btn-ghost', 'waitlist-btn']}
+                          class:list={[
+                            'btn',
+                            p.featured ? 'btn-accent' : 'btn-ghost',
+                            'waitlist-btn',
+                          ]}
                         >
                           Notifícame
                         </button>
                       </form>
-                      <p class="waitlist-confirm" hidden>Te avisamos cuando esté disponible</p>
+                      <p class="waitlist-confirm" hidden>
+                        Te avisamos cuando esté disponible
+                      </p>
                     </div>
                   ) : (
                     <a
@@ -230,7 +239,9 @@ const plans = [
     setPos(currentIndex, true);
     isTransitioning = true;
     if (safetyTimeout !== undefined) clearTimeout(safetyTimeout);
-    safetyTimeout = window.setTimeout(() => { isTransitioning = false; }, 500);
+    safetyTimeout = window.setTimeout(() => {
+      isTransitioning = false;
+    }, 500);
   }
 
   function initSlider() {
@@ -253,7 +264,7 @@ const plans = [
 
   function destroySlider() {
     if (!sliderInited || !plansEl) return;
-    plansEl.querySelectorAll('[data-slider-clone]').forEach(c => c.remove());
+    plansEl.querySelectorAll('[data-slider-clone]').forEach((c) => c.remove());
     plansEl.style.transform = '';
     plansEl.style.transition = '';
     sliderInited = false;
@@ -268,7 +279,10 @@ const plans = [
   }
 
   function stopTimer() {
-    if (timer !== undefined) { clearInterval(timer); timer = undefined; }
+    if (timer !== undefined) {
+      clearInterval(timer);
+      timer = undefined;
+    }
   }
 
   plansEl?.addEventListener('transitionend', (e) => {
@@ -351,12 +365,16 @@ const plans = [
         } else {
           btn.disabled = false;
           btn.textContent = 'Intentar de nuevo';
-          setTimeout(() => { btn.textContent = 'Notifícame'; }, 2000);
+          setTimeout(() => {
+            btn.textContent = 'Notifícame';
+          }, 2000);
         }
       } catch {
         btn.disabled = false;
         btn.textContent = 'Intentar de nuevo';
-        setTimeout(() => { btn.textContent = 'Notifícame'; }, 2000);
+        setTimeout(() => {
+          btn.textContent = 'Notifícame';
+        }, 2000);
       }
     });
   });

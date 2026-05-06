@@ -26,7 +26,9 @@ const { title, description } = Astro.props;
   }
   .terms-hero::before {
     content: '';
-    position: absolute; inset: 0; z-index: -1;
+    position: absolute;
+    inset: 0;
+    z-index: -1;
     background:
       radial-gradient(800px 400px at 90% -20%, rgba(217, 119, 6, 0.32), transparent 60%),
       radial-gradient(700px 500px at 0% 120%, rgba(60, 117, 86, 0.45), transparent 60%),
@@ -34,16 +36,22 @@ const { title, description } = Astro.props;
   }
   .terms-hero::after {
     content: '';
-    position: absolute; inset: 0; z-index: -1;
+    position: absolute;
+    inset: 0;
+    z-index: -1;
     background-image:
-      linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+      linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
     background-size: 56px 56px;
     mask-image: radial-gradient(900px 500px at 20% 50%, #000 30%, transparent 80%);
     pointer-events: none;
   }
-  .terms-hero .eyebrow { color: rgba(255,255,255,0.6); }
-  .terms-hero .eyebrow .num { color: var(--color-accent); }
+  .terms-hero .eyebrow {
+    color: rgba(255, 255, 255, 0.6);
+  }
+  .terms-hero .eyebrow .num {
+    color: var(--color-accent);
+  }
   .terms-hero h1 {
     color: #fff;
     font-family: var(--font-display);
@@ -55,9 +63,11 @@ const { title, description } = Astro.props;
     max-width: 18ch;
     text-wrap: balance;
   }
-  .terms-hero h1 .em { color: var(--color-accent); }
+  .terms-hero h1 .em {
+    color: var(--color-accent);
+  }
   .terms-hero > .container > p {
-    color: rgba(255,255,255,0.78);
+    color: rgba(255, 255, 255, 0.78);
     font-size: 18px;
     line-height: 28px;
     max-width: 56ch;
@@ -69,13 +79,13 @@ const { title, description } = Astro.props;
     gap: 32px;
     margin-top: 40px;
     padding-top: 24px;
-    border-top: 1px solid rgba(255,255,255,0.14);
+    border-top: 1px solid rgba(255, 255, 255, 0.14);
   }
   .terms-meta .item .l {
     font-size: 11px;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: rgba(255,255,255,0.55);
+    color: rgba(255, 255, 255, 0.55);
     margin-bottom: 6px;
     font-weight: 600;
   }
@@ -123,8 +133,16 @@ const { title, description } = Astro.props;
     grid-template-columns: repeat(3, 1fr);
     gap: 16px;
   }
-  @media (max-width: 880px) { .tldr-grid { grid-template-columns: 1fr 1fr; } }
-  @media (max-width: 600px) { .tldr-grid { grid-template-columns: 1fr; } }
+  @media (max-width: 880px) {
+    .tldr-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  @media (max-width: 600px) {
+    .tldr-grid {
+      grid-template-columns: 1fr;
+    }
+  }
   .tldr-card {
     background: var(--color-surface);
     border: 1px solid var(--color-border);
@@ -140,14 +158,19 @@ const { title, description } = Astro.props;
     box-shadow: var(--shadow-sm);
   }
   .tldr-card .card-icon {
-    width: 36px; height: 36px;
+    width: 36px;
+    height: 36px;
     border-radius: 8px;
     background: var(--color-bg);
     border: 1px solid var(--color-border);
-    display: flex; align-items: center; justify-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     color: var(--color-primary);
   }
-  .tldr-card.warn .card-icon { color: var(--color-accent); }
+  .tldr-card.warn .card-icon {
+    color: var(--color-accent);
+  }
   .tldr-card h4 {
     font-family: var(--font-display);
     font-size: 16px;
@@ -176,7 +199,10 @@ const { title, description } = Astro.props;
     align-items: start;
   }
   @media (max-width: 960px) {
-    .terms-layout { grid-template-columns: 1fr; gap: 32px; }
+    .terms-layout {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
   }
 
   /* TOC */
@@ -186,7 +212,11 @@ const { title, description } = Astro.props;
     align-self: start;
     font-size: 13px;
   }
-  @media (max-width: 960px) { .toc { position: static; } }
+  @media (max-width: 960px) {
+    .toc {
+      position: static;
+    }
+  }
   .toc-label {
     font-size: 11px;
     letter-spacing: 0.12em;
@@ -199,8 +229,10 @@ const { title, description } = Astro.props;
   }
   .toc ol {
     list-style: none;
-    margin: 0; padding: 0;
-    display: flex; flex-direction: column;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
     counter-reset: toc;
   }
   .toc li {
@@ -226,10 +258,19 @@ const { title, description } = Astro.props;
     font-weight: 600;
     flex: 0 0 auto;
   }
-  .toc a:hover { color: var(--color-primary); }
-  .toc li.active { border-left-color: var(--color-accent); }
-  .toc li.active a { color: var(--color-text); font-weight: 600; }
-  .toc li.active a::before { color: var(--color-accent); }
+  .toc a:hover {
+    color: var(--color-primary);
+  }
+  .toc li.active {
+    border-left-color: var(--color-accent);
+  }
+  .toc li.active a {
+    color: var(--color-text);
+    font-weight: 600;
+  }
+  .toc li.active a::before {
+    color: var(--color-accent);
+  }
 
   /* Document */
   .doc {
@@ -285,12 +326,14 @@ const { title, description } = Astro.props;
     color: var(--color-text-secondary);
     margin-bottom: 18px;
   }
-  .doc-section ul, .doc-section ol.sub {
+  .doc-section ul,
+  .doc-section ol.sub {
     padding: 0;
     margin: 4px 0 16px 0;
     list-style: none;
   }
-  .doc-section ul li, .doc-section ol.sub li {
+  .doc-section ul li,
+  .doc-section ol.sub li {
     position: relative;
     padding-left: 22px;
     margin-bottom: 8px;
@@ -299,17 +342,24 @@ const { title, description } = Astro.props;
   .doc-section ul li::before {
     content: '';
     position: absolute;
-    left: 4px; top: 11px;
-    width: 6px; height: 6px;
+    left: 4px;
+    top: 11px;
+    width: 6px;
+    height: 6px;
     background: var(--color-accent);
     border-radius: 999px;
   }
-  .doc-section ol.sub { counter-reset: sub; }
-  .doc-section ol.sub li { counter-increment: sub; }
+  .doc-section ol.sub {
+    counter-reset: sub;
+  }
+  .doc-section ol.sub li {
+    counter-increment: sub;
+  }
   .doc-section ol.sub li::before {
-    content: counter(sub) ".";
+    content: counter(sub) '.';
     position: absolute;
-    left: 0; top: 0;
+    left: 0;
+    top: 0;
     font-family: var(--font-mono);
     font-size: 13px;
     color: var(--color-accent);
@@ -353,8 +403,13 @@ const { title, description } = Astro.props;
     color: var(--color-text-secondary);
     vertical-align: 1px;
   }
-  .doc-section a.tc-link { color: var(--color-text-link); font-weight: 500; }
-  .doc-section a.tc-link:hover { color: var(--color-text-link-hover); }
+  .doc-section a.tc-link {
+    color: var(--color-text-link);
+    font-weight: 500;
+  }
+  .doc-section a.tc-link:hover {
+    color: var(--color-text-link-hover);
+  }
 
   /* Callout */
   .doc-callout {
@@ -369,7 +424,10 @@ const { title, description } = Astro.props;
     gap: 12px;
     align-items: start;
   }
-  .doc-callout .callout-icon { color: var(--color-accent); margin-top: 2px; }
+  .doc-callout .callout-icon {
+    color: var(--color-accent);
+    margin-top: 2px;
+  }
   .doc-callout .callout-label {
     font-size: 11px;
     letter-spacing: 0.1em;
@@ -378,7 +436,12 @@ const { title, description } = Astro.props;
     color: var(--color-accent);
     margin-bottom: 4px;
   }
-  .doc-callout p { margin: 0 !important; font-size: 14px; line-height: 22px; color: var(--color-text-secondary); }
+  .doc-callout p {
+    margin: 0 !important;
+    font-size: 14px;
+    line-height: 22px;
+    color: var(--color-text-secondary);
+  }
 
   /* Definitions block */
   .def-block {
@@ -393,7 +456,9 @@ const { title, description } = Astro.props;
     padding: 14px 18px;
     border-bottom: 1px solid var(--color-border);
   }
-  .def-block dl > div:last-child { border-bottom: 0; }
+  .def-block dl > div:last-child {
+    border-bottom: 0;
+  }
 
   /* Doc footer */
   .doc-foot {
@@ -411,7 +476,7 @@ const { title, description } = Astro.props;
     font-size: 11px;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: rgba(255,255,255,0.55);
+    color: rgba(255, 255, 255, 0.55);
     font-weight: 600;
     margin-bottom: 4px;
   }
@@ -421,16 +486,29 @@ const { title, description } = Astro.props;
     color: #fff;
     font-weight: 600;
   }
-  .doc-foot .links { display: flex; gap: 12px; font-size: 13px; }
+  .doc-foot .links {
+    display: flex;
+    gap: 12px;
+    font-size: 13px;
+  }
   .doc-foot .links a {
-    color: rgba(255,255,255,0.85);
-    border: 1px solid rgba(255,255,255,0.18);
+    color: rgba(255, 255, 255, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.18);
     padding: 8px 14px;
     border-radius: 8px;
-    display: inline-flex; align-items: center; gap: 6px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
   }
-  .doc-foot .links a:hover { background: rgba(255,255,255,0.08); color: #fff; }
-  @media (max-width: 600px) { .doc-foot { grid-template-columns: 1fr; } }
+  .doc-foot .links a:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: #fff;
+  }
+  @media (max-width: 600px) {
+    .doc-foot {
+      grid-template-columns: 1fr;
+    }
+  }
 </style>
 
 <script>

@@ -1,7 +1,6 @@
 ---
 import Brand from '@molecules/Brand.astro';
 import { Icon } from 'astro-icon/components';
-const ctaUrl = import.meta.env.MAIN_CTA_URL ?? '/#demo';
 ---
 
 <footer class="site-footer">
@@ -30,8 +29,14 @@ const ctaUrl = import.meta.env.MAIN_CTA_URL ?? '/#demo';
       <div>
         <h5 class="foot-col-title">Compañía</h5>
         <ul class="foot-links">
-          <li><a href="https://luminaw.co" target="_blank" rel="noopener noreferrer">Sobre Lúmina W</a></li>
-          <li><a href="https://luminaw.co/#contact" target="_blank" rel="noopener noreferrer">Contacto</a></li>
+          <li>
+            <a href="https://luminaw.co" target="_blank" rel="noopener noreferrer"
+              >Sobre Lúmina W</a>
+          </li>
+          <li>
+            <a href="https://luminaw.co/#contact" target="_blank" rel="noopener noreferrer"
+              >Contacto</a>
+          </li>
         </ul>
       </div>
 
@@ -49,7 +54,9 @@ const ctaUrl = import.meta.env.MAIN_CTA_URL ?? '/#demo';
           </li>
           <li>
             <Icon name="simple-icons:whatsapp" width={18} height={18} />
-            <a href="https://wa.me/573108283088" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+            <a href="https://wa.me/573108283088" target="_blank" rel="noopener noreferrer"
+              >WhatsApp</a
+            >
           </li>
           <li>
             <Icon name="lucide:map-pin" width={20} height={20} />
@@ -101,40 +108,6 @@ const ctaUrl = import.meta.env.MAIN_CTA_URL ?? '/#demo';
     max-width: 32ch;
     margin: 16px 0 0;
     color: rgba(255, 255, 255, 0.65);
-  }
-
-  /* CTA strip */
-  .foot-cta {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 24px;
-    flex-wrap: wrap;
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    padding: 32px 0;
-    margin-bottom: 32px;
-  }
-  .foot-cta-text {
-    font-size: 18px;
-    font-weight: 600;
-    color: #fff;
-    margin: 0;
-  }
-  .foot-cta-btn {
-    background: var(--color-accent);
-    color: #fff;
-    border-radius: 8px;
-    padding: 12px 24px;
-    font-size: 14px;
-    font-weight: 700;
-    text-decoration: none;
-    transition: background var(--dur-base) var(--ease-standard);
-    white-space: nowrap;
-  }
-  .foot-cta-btn:hover {
-    background: var(--color-accent-hover);
-    color: #fff;
   }
 
   /* Column titles */

@@ -126,7 +126,12 @@ const modules: Array<{
             </div>
           </div>
           <div class="demo-mini__stat">
-            <Icon name="lucide:alert-triangle" width={48} height={48} class="kpi-icon kpi-icon--accent" />
+            <Icon
+              name="lucide:alert-triangle"
+              width={48}
+              height={48}
+              class="kpi-icon kpi-icon--accent"
+            />
             <div class="demo-mini__text">
               <div class="demo-mini__val demo-mini__val--accent">6</div>
               <div class="demo-mini__label">Alertas stock bajo</div>
@@ -169,15 +174,23 @@ const modules: Array<{
             <div class="bento-preview">
               <table class="mini-table">
                 <thead>
-                  <tr>{m.table.cols.map((col) => <th>{col}</th>)}</tr>
+                  <tr>
+                    {m.table.cols.map((col) => (
+                      <th>{col}</th>
+                    ))}
+                  </tr>
                 </thead>
                 <tbody>
                   {m.table.rows.map((row) => (
                     <tr>
                       {row.map((cell) =>
-                        typeof cell === 'string'
-                          ? <td>{cell}</td>
-                          : <td><span class={`badge badge--${cell.badge}`}>{cell.text}</span></td>
+                        typeof cell === 'string' ? (
+                          <td>{cell}</td>
+                        ) : (
+                          <td>
+                            <span class={`badge badge--${cell.badge}`}>{cell.text}</span>
+                          </td>
+                        ),
                       )}
                     </tr>
                   ))}
@@ -204,7 +217,10 @@ const modules: Array<{
           <table class="mini-table">
             <thead><tr><th>Animal</th><th>Vacuna</th><th>Fecha</th><th>Veterinario</th></tr></thead>
             <tbody>
-              <tr><td>La Canela</td><td>Triple Bovina</td><td>15 abr 2026</td><td>Dr. Ramírez</td></tr>
+              <tr
+                ><td>La Canela</td><td>Triple Bovina</td><td>15 abr 2026</td><td>Dr. Ramírez</td
+                ></tr
+              >
               <tr><td>Estrella</td><td>Aftosa</td><td>20 abr 2026</td><td>Dr. Ramírez</td></tr>
               <tr><td>El Rocío</td><td>Brucelosis</td><td>28 feb 2026</td><td>Dr. Ramírez</td></tr>
             </tbody>
@@ -220,9 +236,9 @@ const modules: Array<{
             Si registras una vacuna, también baja el stock del frasco.
           </h3>
           <p class="bento-integration__desc">
-            Los módulos no son aislados: cuando aplicas un tratamiento, TerraCore descuenta el insumo,
-            agenda el refuerzo y actualiza el estado de salud del animal. Una acción, todo el
-            sistema al día.
+            Los módulos no son aislados: cuando aplicas un tratamiento, TerraCore descuenta el
+            insumo, agenda el refuerzo y actualiza el estado de salud del animal. Una acción, todo
+            el sistema al día.
           </p>
         </div>
         <div class="bento-integration__flow">

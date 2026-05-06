@@ -12,22 +12,23 @@ Layout raíz. Incluye `<head>` completo, skip link, Header, Footer, page loader,
 
 **Props:**
 
-| Prop | Tipo | Default | Descripción |
-|---|---|---|---|
-| `title` | `string` | — | `<title>` + og:title + twitter:title |
-| `description` | `string` | `'TerraCore \| Control total...'` | meta description + OG/Twitter |
-| `ogImage` | `string` | `'/terracore.png'` | Ruta de la imagen OG |
-| `ogImageAlt` | `string` | `'TerraCore — plataforma...'` | Alt de la imagen OG |
-| `preloadImage` | `string` | — | URL para `<link rel="preload" as="image">` (usar en página con imagen LCP) |
+| Prop           | Tipo     | Default                           | Descripción                                                                |
+| -------------- | -------- | --------------------------------- | -------------------------------------------------------------------------- |
+| `title`        | `string` | —                                 | `<title>` + og:title + twitter:title                                       |
+| `description`  | `string` | `'TerraCore \| Control total...'` | meta description + OG/Twitter                                              |
+| `ogImage`      | `string` | `'/terracore.png'`                | Ruta de la imagen OG                                                       |
+| `ogImageAlt`   | `string` | `'TerraCore — plataforma...'`     | Alt de la imagen OG                                                        |
+| `preloadImage` | `string` | —                                 | URL para `<link rel="preload" as="image">` (usar en página con imagen LCP) |
 
 **Slots:**
 
-| Slot | Uso |
-|---|---|
-| default | Contenido de la página |
-| `head` | Inyección en `<head>` (JSON-LD, meta adicionales) |
+| Slot    | Uso                                               |
+| ------- | ------------------------------------------------- |
+| default | Contenido de la página                            |
+| `head`  | Inyección en `<head>` (JSON-LD, meta adicionales) |
 
 **Notas:**
+
 - Excluido de Prettier y ESLint auto-fix (ver `.prettierignore`).
 - GA4 se activa solo si `PUBLIC_GA_ID` está definido.
 - `window.trackEvent(name, params)` disponible globalmente.
@@ -40,10 +41,10 @@ Extiende `BaseLayout`. Agrega `<main id="main-content">` alrededor del slot. Inc
 
 **Props:**
 
-| Prop | Tipo | Default | Descripción |
-|---|---|---|---|
-| `title` | `string` | — | Pasa a `BaseLayout` |
-| `description` | `string` | — | Pasa a `BaseLayout` |
+| Prop          | Tipo     | Default | Descripción         |
+| ------------- | -------- | ------- | ------------------- |
+| `title`       | `string` | —       | Pasa a `BaseLayout` |
+| `description` | `string` | —       | Pasa a `BaseLayout` |
 
 ---
 
@@ -71,15 +72,16 @@ Etiqueta de sección pequeña con número opcional y punto decorativo.
 
 **Props:**
 
-| Prop | Tipo | Default | Descripción |
-|---|---|---|---|
-| `num` | `string` | — | Número de sección (ej. `"01"`) |
-| `onDark` | `boolean` | `false` | Variante para fondos oscuros |
-| `class` | `string` | — | Clases adicionales |
+| Prop     | Tipo      | Default | Descripción                    |
+| -------- | --------- | ------- | ------------------------------ |
+| `num`    | `string`  | —       | Número de sección (ej. `"01"`) |
+| `onDark` | `boolean` | `false` | Variante para fondos oscuros   |
+| `class`  | `string`  | —       | Clases adicionales             |
 
 **Slot:** texto de la etiqueta.
 
 **Uso:**
+
 ```astro
 <Eyebrow num="01">Módulos</Eyebrow>
 <Eyebrow onDark>Módulos</Eyebrow>
@@ -95,16 +97,19 @@ Logo + nombre de marca en fila. Usado en Header y Footer.
 
 **Props:**
 
-| Prop | Tipo | Default | Descripción |
-|---|---|---|---|
-| `mono` | `boolean` | `false` | Texto blanco para fondos oscuros |
-| `size` | `number` | `28` | Tamaño del logo en px |
-| `showCaption` | `boolean` | `true` | Muestra "Campo Inteligente" debajo del nombre |
+| Prop          | Tipo      | Default | Descripción                                   |
+| ------------- | --------- | ------- | --------------------------------------------- |
+| `mono`        | `boolean` | `false` | Texto blanco para fondos oscuros              |
+| `size`        | `number`  | `28`    | Tamaño del logo en px                         |
+| `showCaption` | `boolean` | `true`  | Muestra "Campo Inteligente" debajo del nombre |
 
 **Uso:**
+
 ```astro
-<Brand size={40} />                    <!-- Header: colores normales -->
-<Brand mono size={44} />               <!-- Footer: texto blanco -->
+<Brand size={40} />
+<!-- Header: colores normales -->
+<Brand mono size={44} />
+<!-- Footer: texto blanco -->
 <Brand mono size={28} showCaption={false} />
 ```
 
@@ -116,15 +121,16 @@ Chip flotante con ícono, título y subtítulo. Usado en Hero para mostrar métr
 
 **Props:**
 
-| Prop | Tipo | Default | Descripción |
-|---|---|---|---|
-| `icon` | `string` | — | Nombre del ícono Lucide (ej. `"lucide:check-circle"`) |
-| `title` | `string` | — | Texto principal del chip |
-| `sub` | `string` | — | Texto secundario |
-| `variant` | `'success' \| 'warning' \| 'info'` | `'success'` | Color del ícono |
-| `class` | `string` | — | Clases adicionales (posicionamiento) |
+| Prop      | Tipo                               | Default     | Descripción                                           |
+| --------- | ---------------------------------- | ----------- | ----------------------------------------------------- |
+| `icon`    | `string`                           | —           | Nombre del ícono Lucide (ej. `"lucide:check-circle"`) |
+| `title`   | `string`                           | —           | Texto principal del chip                              |
+| `sub`     | `string`                           | —           | Texto secundario                                      |
+| `variant` | `'success' \| 'warning' \| 'info'` | `'success'` | Color del ícono                                       |
+| `class`   | `string`                           | —           | Clases adicionales (posicionamiento)                  |
 
 **Uso:**
+
 ```astro
 <FloatChip
   icon="lucide:check-circle"
@@ -176,7 +182,7 @@ Banda horizontal de logos o métricas de prueba social.
 
 ### `Modules.astro`
 
-Grid de módulos del producto. Datos desde `FEATURES` en `constants.ts`.
+Grid bento de los 6 módulos del producto. Datos de módulos inline en el componente (no importa de `constants.ts`).
 
 ---
 
@@ -188,7 +194,7 @@ Visor interactivo de capturas de pantalla con tabs. Imágenes en `/public/screen
 
 ### `Benefits.astro`
 
-Sección de beneficios con lista de problemas y foto de finca. Datos desde `PROBLEMS` en `constants.ts`.
+Sección de beneficios con lista de items y foto de finca. Datos inline en el componente (no importa de `constants.ts`).
 
 ---
 
@@ -233,7 +239,7 @@ Modal global de lista de espera. Sin props. Se activa/desactiva por JS mediante 
 Todos los íconos usan `astro-icon` con el set `@iconify-json/lucide` y `@iconify-json/simple-icons`.
 
 ```astro
-import { Icon } from 'astro-icon/components';
+import {Icon} from 'astro-icon/components';
 
 <Icon name="lucide:check" width={16} height={16} />
 <Icon name="simple-icons:whatsapp" width={18} height={18} />
@@ -245,11 +251,11 @@ No hay otros sets de íconos instalados.
 
 ## Datos estáticos (`src/utils/constants.ts`)
 
-| Export | Tipo | Usado en |
-|---|---|---|
-| `PLANS` | `Plan[]` | Pricing |
-| `FAQ` | `FaqItem[]` | FAQSection |
-| `PROBLEMS` | `string[]` (aprox.) | Benefits |
-| `FEATURES` | array | Modules |
+| Export     | Tipo         | Usado en                          |
+| ---------- | ------------ | --------------------------------- |
+| `PLANS`    | `Plan[]`     | ⚠️ Declarado, Pricing no lo importa (datos inline) |
+| `FAQ`      | `FaqItem[]`  | ⚠️ Declarado, FAQSection no lo importa (datos inline) |
+| `PROBLEMS` | `string[]`   | ⚠️ Declarado, Benefits no lo importa (datos inline) |
+| `FEATURES` | array        | ⚠️ Declarado, Modules no lo importa (datos inline) |
 
-Para cambiar contenido de planes o FAQs: editar este archivo. No hay CMS.
+`constants.ts` existe pero ningún componente actual lo importa. Los datos están inline en cada componente. Oportunidad de consolidar si se quiere una fuente de verdad centralizada.
