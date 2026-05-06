@@ -7,32 +7,18 @@ import { Icon } from 'astro-icon/components';
     <div class="cta-card marker-corners" style="color:rgba(255,255,255,0.4)">
       <div class="cta-card__main">
         <h2 class="cta-card__heading">
-          Tu finca, ordenada.<br />En menos de una semana.
+          Tu finca, ordenada.<br /><span class="accent-line">En menos de una semana.</span>
         </h2>
         <p class="cta-card__desc">
           Agenda una demo de 30 minutos. Te mostramos TerraCore con datos de fincas reales y
           resolvemos tus dudas sin compromiso.
         </p>
         <div class="cta-actions">
-          <a href="#agenda" class="btn btn-accent" onclick="window.trackEvent?.('click_cta_main')">
+          <a href="#demo" class="btn btn-accent" onclick="window.trackEvent?.('click_cta_main')">
             Agenda demo gratis
             <Icon name="lucide:arrow-right" width={16} height={16} />
           </a>
-          <a href="#whatsapp" class="btn btn-ghost-dark">
-            <svg
-              width={16}
-              height={16}
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.6"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              aria-hidden="true"
-            >
-              <path d="M3 21l1.6-5A8 8 0 1 1 8 19.4z"></path>
-              <path d="M9 10c.3 1.5 1.2 2.8 2.5 3.7M14 14c-1 0-1-1-2-1"></path>
-            </svg>
+          <a href="https://wa.me/573108283088?text=Quiero%20solicitar%20una%20demo%20de%20TerraCore%20para%20mi%20finca" target="_blank" class="btn btn-ghost-dark">
             Hablar por WhatsApp
           </a>
         </div>
@@ -42,19 +28,19 @@ import { Icon } from 'astro-icon/components';
         <div class="cta-side__label">Lo que pasa después</div>
         <ul class="cta-side__list">
           <li>
-            <Icon name="lucide:check" width={16} height={16} />
+            <span class="check-wrap"><Icon name="lucide:check" width={14} height={14} /></span>
             Llamada de 30 minutos con tu equipo
           </li>
           <li>
-            <Icon name="lucide:check" width={16} height={16} />
+            <span class="check-wrap"><Icon name="lucide:check" width={14} height={14} /></span>
             Demo personalizada con tus datos
           </li>
           <li>
-            <Icon name="lucide:check" width={16} height={16} />
+            <span class="check-wrap"><Icon name="lucide:check" width={14} height={14} /></span>
             Plan de migración sin costo
           </li>
           <li>
-            <Icon name="lucide:check" width={16} height={16} />
+            <span class="check-wrap"><Icon name="lucide:check" width={14} height={14} /></span>
             Prueba de 14 días, sin tarjeta
           </li>
         </ul>
@@ -63,7 +49,27 @@ import { Icon } from 'astro-icon/components';
   </div>
 </section>
 
+<script>
+  const side = document.querySelector('.cta-side');
+  if (side) {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          side.classList.add('cta-side--visible');
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.25 },
+    );
+    observer.observe(side);
+  }
+</script>
+
 <style>
+  .accent-line {
+    color: var(--color-accent);
+  }
+
   .cta-band {
     background: var(--color-bg);
     padding: 96px 0;
@@ -117,18 +123,21 @@ import { Icon } from 'astro-icon/components';
     flex-wrap: wrap;
   }
 
+  /* Side card */
   .cta-side {
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    border-radius: 14px;
-    padding: 24px;
+    background: rgba(0, 0, 0, 0.22);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 16px;
+    padding: 28px;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
   }
   .cta-side__label {
-    font-size: 11px;
-    letter-spacing: 0.12em;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.6);
-    margin-bottom: 12px;
+    color: var(--color-accent);
+    margin-bottom: 18px;
   }
   .cta-side__list {
     list-style: none;
@@ -136,18 +145,76 @@ import { Icon } from 'astro-icon/components';
     margin: 0;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 14px;
   }
+
+  /* List item animation */
   .cta-side__list li {
     display: flex;
     align-items: center;
     gap: 12px;
     font-size: 14px;
+    font-weight: 500;
     color: #fff;
+    opacity: 0;
+    transform: translateY(10px);
+    transition:
+      opacity 0.4s ease,
+      transform 0.4s ease;
   }
-  .cta-side__list li :global(svg) {
-    color: var(--color-accent);
+  .cta-side--visible .cta-side__list li:nth-child(1) {
+    opacity: 1;
+    transform: none;
+    transition-delay: 0ms;
+  }
+  .cta-side--visible .cta-side__list li:nth-child(2) {
+    opacity: 1;
+    transform: none;
+    transition-delay: 150ms;
+  }
+  .cta-side--visible .cta-side__list li:nth-child(3) {
+    opacity: 1;
+    transform: none;
+    transition-delay: 300ms;
+  }
+  .cta-side--visible .cta-side__list li:nth-child(4) {
+    opacity: 1;
+    transform: none;
+    transition-delay: 450ms;
+  }
+
+  /* Check icon wrapper + animation */
+  .check-wrap {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: rgba(217, 119, 6, 0.18);
     flex: 0 0 auto;
+    transform: scale(0);
+    transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  .check-wrap :global(svg) {
+    color: var(--color-accent);
+  }
+
+  .cta-side--visible .cta-side__list li:nth-child(1) .check-wrap {
+    transform: scale(1);
+    transition-delay: 60ms;
+  }
+  .cta-side--visible .cta-side__list li:nth-child(2) .check-wrap {
+    transform: scale(1);
+    transition-delay: 210ms;
+  }
+  .cta-side--visible .cta-side__list li:nth-child(3) .check-wrap {
+    transform: scale(1);
+    transition-delay: 360ms;
+  }
+  .cta-side--visible .cta-side__list li:nth-child(4) .check-wrap {
+    transform: scale(1);
+    transition-delay: 510ms;
   }
 
   @media (max-width: 880px) {
