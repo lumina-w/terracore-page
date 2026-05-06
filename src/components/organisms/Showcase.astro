@@ -1,13 +1,13 @@
 ---
 import Eyebrow from '@atoms/Eyebrow.astro';
 
-const tabs = [
-  { id: 'dashboard', label: 'Dashboard', img: '/screens/dashboard-1.webp' },
-  { id: 'animales', label: 'Animales', img: '/screens/animales.webp' },
-  { id: 'insumos', label: 'Insumos', img: '/screens/insumos.webp' },
-  { id: 'herramientas', label: 'Herramientas', img: '/screens/herramientas.webp' },
-  { id: 'produccion', label: 'Producción', img: '/screens/produccion.webp' },
-  { id: 'salud', label: 'Salud Animal', img: '/screens/salud-animal-1.webp' },
+const tabData = [
+  { id: 'dashboard', label: 'Dashboard', images: ['/screens/dashboard-1.webp', '/screens/dashboard-2.webp'] },
+  { id: 'animales', label: 'Animales', images: ['/screens/animales.webp'] },
+  { id: 'insumos', label: 'Insumos', images: ['/screens/insumos.webp'] },
+  { id: 'herramientas', label: 'Herramientas', images: ['/screens/herramientas.webp'] },
+  { id: 'produccion', label: 'Producción', images: ['/screens/produccion.webp'] },
+  { id: 'salud', label: 'Salud Animal', images: ['/screens/salud-animal-1.webp', '/screens/salud-animal-2.webp', '/screens/salud-animal-3.webp'] },
 ];
 ---
 
@@ -30,13 +30,12 @@ const tabs = [
     <!-- Tabs -->
     <div class="showcase-tabs" role="tablist" aria-label="Capturas del producto">
       {
-        tabs.map((t, i) => (
+        tabData.map((t, i) => (
           <button
             class:list={['showcase-tab', i === 0 && 'active']}
             role="tab"
             aria-selected={i === 0 ? 'true' : 'false'}
             aria-controls={`panel-${t.id}`}
-            data-img={t.img}
             data-tab={t.id}
           >
             {t.label}
@@ -46,17 +45,20 @@ const tabs = [
     </div>
 
     <!-- Image frame -->
-    <div class="showcase-frame" role="tabpanel" id="panel-dashboard">
+    <div class="showcase-frame" id="showcase-frame" role="tabpanel" id="panel-dashboard">
       <img
         id="showcase-img"
-        src={tabs[0]!.img}
-        alt={`TerraCore — ${tabs[0]!.label}`}
+        src={tabData[0]!.images[0]}
+        alt={`TerraCore — ${tabData[0]!.label}`}
         width="1200"
         height="750"
         loading="lazy"
         decoding="async"
       />
     </div>
+
+    <!-- Dots -->
+    <div class="showcase-dots" id="showcase-dots" aria-hidden="true"></div>
 
     <!-- Callouts -->
     <div class="showcase-callouts">
@@ -89,23 +91,116 @@ const tabs = [
 </section>
 
 <script>
-  const tabs = document.querySelectorAll<HTMLButtonElement>('.showcase-tab');
-  const img = document.getElementById('showcase-img') as HTMLImageElement;
+  const TABS: Record<string, string[]> = {
+    dashboard: ['/screens/dashboard-1.webp', '/screens/dashboard-2.webp'],
+    animales: ['/screens/animales.webp'],
+    insumos: ['/screens/insumos.webp'],
+    herramientas: ['/screens/herramientas.webp'],
+    produccion: ['/screens/produccion.webp'],
+    salud: ['/screens/salud-animal-1.webp', '/screens/salud-animal-2.webp', '/screens/salud-animal-3.webp'],
+  };
 
-  tabs.forEach((tab) => {
-    tab.addEventListener('click', () => {
-      tabs.forEach((t) => {
-        t.classList.remove('active');
-        t.setAttribute('aria-selected', 'false');
-      });
-      tab.classList.add('active');
-      tab.setAttribute('aria-selected', 'true');
-      const src = tab.dataset.img!;
-      const label = tab.textContent!.trim();
+  const INTERVAL = 3000;
+  const FADE_MS = 120;
+
+  const tabBtns = document.querySelectorAll<HTMLButtonElement>('.showcase-tab');
+  const img = document.getElementById('showcase-img') as HTMLImageElement;
+  const frame = document.getElementById('showcase-frame')!;
+  const dotsEl = document.getElementById('showcase-dots')!;
+
+  let activeTab = 'dashboard';
+  let slideIdx = 0;
+  let timerId: ReturnType<typeof setInterval> | null = null;
+
+  function getLabel(tabId: string): string {
+    return [...tabBtns].find((b) => b.dataset.tab === tabId)?.textContent?.trim() ?? '';
+  }
+
+  function isSlider(tabId: string): boolean {
+    return (TABS[tabId]?.length ?? 0) > 1;
+  }
+
+  function fadeSwap(src: string, label: string) {
+    img.style.opacity = '0';
+    setTimeout(() => {
       img.src = src;
       img.alt = `TerraCore — ${label}`;
+      img.style.opacity = '';
+    }, FADE_MS);
+  }
+
+  function renderDots(tabId: string) {
+    dotsEl.innerHTML = '';
+    const images = TABS[tabId] ?? [];
+    if (images.length <= 1) return;
+    images.forEach((_, i) => {
+      const dot = document.createElement('button');
+      dot.className = 'showcase-dot' + (i === slideIdx ? ' active' : '');
+      dot.setAttribute('aria-label', `Imagen ${i + 1}`);
+      dot.addEventListener('click', () => goToSlide(i, true));
+      dotsEl.appendChild(dot);
+    });
+  }
+
+  function updateDots() {
+    dotsEl.querySelectorAll('.showcase-dot').forEach((dot, i) => {
+      dot.classList.toggle('active', i === slideIdx);
+    });
+  }
+
+  function stopAutoplay() {
+    if (timerId !== null) {
+      clearInterval(timerId);
+      timerId = null;
+    }
+  }
+
+  function startAutoplay() {
+    if (!isSlider(activeTab)) return;
+    stopAutoplay();
+    timerId = setInterval(() => goToSlide(slideIdx + 1), INTERVAL);
+  }
+
+  function goToSlide(index: number, resetTimer = false) {
+    const images = TABS[activeTab] ?? [];
+    slideIdx = ((index % images.length) + images.length) % images.length;
+    fadeSwap(images[slideIdx]!, getLabel(activeTab));
+    updateDots();
+    if (resetTimer) {
+      stopAutoplay();
+      startAutoplay();
+    }
+  }
+
+  function activateTab(tabId: string) {
+    stopAutoplay();
+    activeTab = tabId;
+    slideIdx = 0;
+    const images = TABS[tabId] ?? [];
+    fadeSwap(images[0]!, getLabel(tabId));
+    const slider = isSlider(tabId);
+    renderDots(tabId);
+    if (slider) startAutoplay();
+  }
+
+  tabBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      tabBtns.forEach((b) => {
+        b.classList.remove('active');
+        b.setAttribute('aria-selected', 'false');
+      });
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected', 'true');
+      activateTab(btn.dataset.tab!);
     });
   });
+
+  frame.addEventListener('mouseenter', stopAutoplay);
+  frame.addEventListener('mouseleave', () => { if (isSlider(activeTab)) startAutoplay(); });
+
+  // Init
+  renderDots('dashboard');
+  startAutoplay();
 </script>
 
 <style>
@@ -174,6 +269,35 @@ const tabs = [
   .showcase-frame img {
     width: 100%;
     display: block;
+    transition: opacity 0.12s ease;
+  }
+
+  /* Dots */
+  .showcase-dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 14px;
+    min-height: 12px;
+  }
+  :global(.showcase-dot) {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    border: none;
+    cursor: pointer;
+    transition:
+      background var(--dur-base) var(--ease-standard),
+      transform var(--dur-base) var(--ease-standard);
+    padding: 0;
+  }
+  :global(.showcase-dot.active) {
+    background: var(--color-accent);
+    transform: scale(1.25);
+  }
+  :global(.showcase-dot:hover) {
+    background: rgba(255, 255, 255, 0.6);
   }
 
   /* Callouts */
@@ -217,6 +341,10 @@ const tabs = [
     }
     .showcase {
       padding: 72px 0;
+    }
+    .showcase-tabs {
+      width: 100%;
+      justify-content: center;
     }
   }
 </style>
