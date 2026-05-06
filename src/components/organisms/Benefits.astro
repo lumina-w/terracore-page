@@ -42,7 +42,7 @@ const items = [
       <div>
         <Eyebrow num="03">Por qué TerraCore</Eyebrow>
         <h2 class="display lg" style="margin-top:16px">
-          Software agropecuario<br />que sí entiende la finca.
+          Software agropecuario<br />que <span style="color:var(--color-accent)">sí</span> entiende la finca.
         </h2>
       </div>
       <p class="lead">
@@ -56,7 +56,7 @@ const items = [
         items.map((it) => (
           <div class="benefit">
             <div class="benefit__icon">
-              <Icon name={it.icon} width={22} height={22} />
+              <Icon name={it.icon} width={26} height={26} />
             </div>
             <div>
               <h4 class="benefit__title">{it.h}</h4>
@@ -70,10 +70,9 @@ const items = [
     <!-- Photo + stat split -->
     <div class="split">
       <div class="photo-card">
-        <!-- Image slot placeholder -->
-        <div class="photo-placeholder" aria-hidden="true"></div>
+        <img src="/images/terracore.webp" alt="TerraCore en la finca" class="photo-img" />
         <div class="corner-stat">
-          <div class="corner-stat__val">−42%</div>
+          <div class="corner-stat__val" <span style="color:var(--color-accent)">−42%</span></div>
           <div class="corner-stat__label">
             tiempo en tareas administrativas, según fincas piloto.
           </div>
@@ -82,24 +81,24 @@ const items = [
 
       <div>
         <Eyebrow num="·">Resultado</Eyebrow>
-        <h3 class="display md" style="margin:16px 0">Menos planilla. Más finca.</h3>
+        <h3 class="display md" style="margin:16px 0">Menos planilla. <span style="color:var(--color-accent)">Más finca.</span></h3>
         <p class="lead" style="margin-bottom:24px">
-          El tiempo que antes se iba en cuadernos, recibos y llamadas, ahora vuelve al campo. Las
-          fincas que prueban TerraCore reportan menos errores en inventario y vacunaciones que
-          llegan a tiempo.
+          El tiempo que se va en cuadernos, recibos y llamadas puede volver al campo. TerraCore
+          centraliza todo en un solo lugar para que tú y tu equipo operen con información real,
+          no con memoria.
         </p>
         <ul class="check-list">
           <li>
             <Icon name="lucide:check" width={18} height={18} class="check-list__icon" />
-            Importación masiva de animales e insumos desde Excel.
+            Exporta a CSV en cualquier momento para tu contador o el ICA.
           </li>
           <li>
             <Icon name="lucide:check" width={18} height={18} class="check-list__icon" />
-            Exporta a CSV cuando lo pida tu contador o el ICA.
+            Importa tu inventario desde Excel sin perder ningún dato.
           </li>
           <li>
             <Icon name="lucide:check" width={18} height={18} class="check-list__icon" />
-            Soporte humano en español, no chatbots.
+            Soporte humano en español, por WhatsApp en horario hábil.
           </li>
         </ul>
       </div>
@@ -139,7 +138,7 @@ const items = [
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--color-primary);
+    color: var(--color-accent);
   }
   .benefit__title {
     font-family: var(--font-display);
@@ -180,10 +179,11 @@ const items = [
     aspect-ratio: 4 / 5;
     border: 1px solid var(--color-border);
   }
-  .photo-placeholder {
+  .photo-img {
     width: 100%;
     height: 100%;
-    background: linear-gradient(145deg, var(--color-primary) 0%, var(--color-primary-active) 100%);
+    object-fit: cover;
+    display: block;
   }
   .corner-stat {
     position: absolute;
