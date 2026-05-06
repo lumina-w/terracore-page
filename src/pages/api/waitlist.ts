@@ -36,8 +36,8 @@ export const POST: APIRoute = async ({ request }) => {
     });
   }
 
-  const apiKey = import.meta.env.BREVO_API_KEY ?? '';
-  const listIdStr = import.meta.env.BREVO_LIST_ID ?? '';
+  const apiKey = import.meta.env.BREVO_API_KEY ?? import.meta.env.PUBLIC_BREVO_API_KEY ?? '';
+  const listIdStr = import.meta.env.BREVO_LIST_ID ?? import.meta.env.PUBLIC_BREVO_LIST_ID ?? '';
 
   const jsonHeaders = { 'Content-Type': 'application/json' };
 
