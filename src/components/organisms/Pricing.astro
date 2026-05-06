@@ -20,6 +20,7 @@ const plans = [
     ],
     cta: 'Agendar demo',
     featured: false,
+    waitlist: false,
   },
   {
     name: 'Profesional',
@@ -41,6 +42,7 @@ const plans = [
     ],
     cta: 'Agendar demo',
     featured: true,
+    waitlist: true,
   },
   {
     name: 'Enterprise',
@@ -66,6 +68,7 @@ const plans = [
     ],
     cta: 'Agendar demo',
     featured: false,
+    waitlist: true,
   },
 ];
 ---
@@ -112,13 +115,35 @@ const plans = [
                 </li>
               ))}
             </ul>
-            <a
-              href="#demo"
-              class:list={['btn', p.featured ? 'btn-accent' : 'btn-ghost', 'plan-cta']}
-            >
-              {p.cta}
-              <Icon name="lucide:arrow-right" width={14} height={14} />
-            </a>
+            {p.waitlist ? (
+              <div class="waitlist-block">
+                <div class="coming-badge">Próximamente</div>
+                <form class="waitlist-form" data-plan={p.name}>
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="tu@email.com"
+                    required
+                    class="waitlist-input"
+                  />
+                  <button
+                    type="submit"
+                    class:list={['btn', p.featured ? 'btn-accent' : 'btn-ghost', 'waitlist-btn']}
+                  >
+                    Notifícame
+                  </button>
+                </form>
+                <p class="waitlist-confirm" hidden>Te avisamos cuando esté disponible</p>
+              </div>
+            ) : (
+              <a
+                href="#demo"
+                class:list={['btn', p.featured ? 'btn-accent' : 'btn-ghost', 'plan-cta']}
+              >
+                {p.cta}
+                <Icon name="lucide:arrow-right" width={14} height={14} />
+              </a>
+            )}
           </div>
         ))
       }
@@ -130,6 +155,47 @@ const plans = [
     </p>
   </div>
 </section>
+
+<script>
+  const BREVO_KEY = import.meta.env.PUBLIC_BREVO_API_KEY ?? '';
+  const BREVO_LIST = Number(import.meta.env.PUBLIC_BREVO_LIST_ID ?? '0');
+
+  document.querySelectorAll<HTMLFormElement>('.waitlist-form').forEach((form) => {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const input = form.querySelector<HTMLInputElement>('input[name="email"]')!;
+      const btn = form.querySelector<HTMLButtonElement>('button[type="submit"]')!;
+      const confirm = form.nextElementSibling as HTMLParagraphElement;
+      const email = input.value.trim();
+      if (!email) return;
+
+      btn.disabled = true;
+      btn.textContent = 'Enviando…';
+
+      try {
+        const res = await fetch('https://api.brevo.com/v3/contacts', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'api-key': BREVO_KEY,
+          },
+          body: JSON.stringify({ email, listIds: [BREVO_LIST], updateEnabled: true }),
+        });
+
+        if (res.ok || res.status === 204) {
+          form.hidden = true;
+          confirm.hidden = false;
+        } else {
+          btn.disabled = false;
+          btn.textContent = 'Notifícame';
+        }
+      } catch {
+        btn.disabled = false;
+        btn.textContent = 'Notifícame';
+      }
+    });
+  });
+</script>
 
 <style>
   .accent-text {
@@ -283,6 +349,72 @@ const plans = [
   .plan-cta {
     width: 100%;
     justify-content: center;
+  }
+
+  /* Waitlist block */
+  .waitlist-block {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .coming-badge {
+    display: inline-flex;
+    align-self: flex-start;
+    background: var(--color-accent);
+    color: #fff;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border-radius: 999px;
+  }
+
+  .waitlist-form {
+    display: flex;
+    gap: 8px;
+  }
+
+  .waitlist-input {
+    flex: 1;
+    min-width: 0;
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    color: var(--color-text);
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.15s;
+  }
+  .waitlist-input:focus {
+    border-color: var(--color-accent);
+  }
+  .plan--featured .waitlist-input {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+    color: #fff;
+  }
+  .plan--featured .waitlist-input::placeholder {
+    color: rgba(255, 255, 255, 0.45);
+  }
+  .plan--featured .waitlist-input:focus {
+    border-color: var(--color-accent);
+  }
+
+  .waitlist-btn {
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+
+  .waitlist-confirm {
+    font-size: 13px;
+    color: var(--color-success);
+    margin: 0;
+  }
+  .plan--featured .waitlist-confirm {
+    color: var(--color-accent);
   }
 
   .pricing-foot {
