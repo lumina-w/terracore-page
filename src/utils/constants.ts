@@ -127,7 +127,7 @@ export const FAQ: FaqItem[] = [
   },
   {
     q: '¿Cuánto cuesta?',
-    a: 'Desde $10M COP/mes dependiendo del tamaño de tu operación. Agenda una llamada y armamos un presupuesto exacto.',
+    a: 'Desde $6M COP/mes dependiendo del tamaño de tu operación. Agenda una llamada y armamos un presupuesto exacto.',
   },
   {
     q: '¿El soporte es en español?',
