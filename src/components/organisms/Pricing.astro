@@ -4,47 +4,70 @@ import { Icon } from 'astro-icon/components';
 
 const plans = [
   {
-    name: 'Esencial',
-    desc: 'Para fincas que arrancan a digitalizarse.',
-    price: '—',
-    suffix: 'A definir',
-    features: ['Hasta 100 animales', '3 módulos a elección', '2 usuarios', 'Soporte por correo'],
-    cta: 'Empezar',
+    name: 'Semilla',
+    desc: 'Fincas pequeñas que inician su digitalización.',
+    priceMain: 'Desde $10M',
+    priceSub: '/mes',
+    priceIsLabel: false,
+    features: [
+      '1 sede · hasta 5 usuarios',
+      'Módulos base incluidos',
+      'Dashboard básico',
+      'Trazabilidad básica',
+      'Modo offline',
+      '3 sesiones de capacitación remota',
+      'Soporte WhatsApp en horario hábil (≤8h)',
+    ],
+    cta: 'Agendar demo',
     featured: false,
   },
   {
-    name: 'Productor',
-    desc: 'La elección de la mayoría de fincas medianas.',
-    price: '—',
-    suffix: 'A definir',
+    name: 'Profesional',
+    desc: 'Operaciones medianas que necesitan visibilidad total.',
+    priceMain: 'Solicitar precio',
+    priceSub: '',
+    priceIsLabel: true,
     features: [
-      'Hasta 1.000 animales',
-      '6 módulos completos',
-      '8 usuarios + roles',
-      'Soporte prioritario',
-      'Integración con contabilidad',
-      'Modo offline',
+      'Hasta 3 sedes · hasta 15 usuarios',
+      'Todo de Semilla',
+      'Costos de producción por lote',
+      'Gestión de compras y proveedores',
+      'Dashboard avanzado',
+      'Migración de datos incluida',
+      'Onboarding extendido',
+      '2h consultoría/mes',
+      'Soporte WhatsApp + videollamada (≤4h)',
+      'Revisión mensual de uso',
     ],
-    cta: 'Solicita demo',
+    cta: 'Agendar demo',
     featured: true,
   },
   {
-    name: 'Empresa',
-    desc: 'Para grupos agroindustriales con varias fincas.',
-    price: '—',
-    suffix: 'A definir',
+    name: 'Enterprise',
+    desc: 'Grupos empresariales y cooperativas.',
+    priceMain: 'Solicitar precio',
+    priceSub: '',
+    priceIsLabel: true,
     features: [
-      'Animales ilimitados',
-      'Multifinca consolidado',
-      'Usuarios ilimitados',
-      'SLA 99.9 %',
-      'Onboarding dedicado',
-      'API y exportación a medida',
+      'Sedes ilimitadas · usuarios ilimitados',
+      'Todo de Profesional',
+      'Vista consolidada multifinca',
+      'Trazabilidad completa',
+      'Logística y despachos',
+      'Dashboard personalizado',
+      'Reportes a medida',
+      'API (bajo alcance definido)',
+      'Integraciones disponibles según alcance',
+      'Migración avanzada incluida',
+      'Acompañamiento 30 días',
+      '6h consultoría/mes',
+      'Soporte prioritario con SLA (≤2h)',
+      'Revisión quincenal',
     ],
-    cta: 'Hablar con ventas',
+    cta: 'Agendar demo',
     featured: false,
   },
-] as const;
+];
 ---
 
 <section class="section-pad pricing" id="precios">
@@ -57,8 +80,7 @@ const plans = [
         </h2>
       </div>
       <p class="lead">
-        Pago mensual o anual con descuento. Cancelas cuando quieras. Los precios definitivos se
-        confirman con tu equipo según cantidad de animales y módulos activos.
+        Pago mensual. Cancelas cuando quieras. El precio definitivo se confirma según tu operación.
       </p>
     </div>
 
@@ -67,13 +89,19 @@ const plans = [
         plans.map((p) => (
           <div class:list={['plan', p.featured && 'plan--featured']}>
             {p.featured && <div class="plan-tag">Más popular</div>}
-            <div>
+            <div class="plan-header">
               <div class="plan-name">{p.name}</div>
               <h3 class="plan__title">{p.desc}</h3>
             </div>
             <div class="price-row">
-              <span class="price-amount">{p.price}</span>
-              <span class="price-suffix">{p.suffix}</span>
+              {p.priceIsLabel ? (
+                <span class="price-label">{p.priceMain}</span>
+              ) : (
+                <>
+                  <span class="price-amount">{p.priceMain}</span>
+                  <span class="price-suffix">{p.priceSub}</span>
+                </>
+              )}
             </div>
             <hr class="plan-divider" />
             <ul class="plan-features">
@@ -97,8 +125,8 @@ const plans = [
     </div>
 
     <p class="pricing-foot">
-      Precios en pesos colombianos · IVA no incluido · Migración desde Excel sin costo en todos los
-      planes.
+      Precios en pesos colombianos · IVA incluido para personas naturales, no incluido para personas
+      jurídicas · Migración de datos incluida en planes Profesional y Enterprise
     </p>
   </div>
 </section>
@@ -129,7 +157,7 @@ const plans = [
     padding: 32px;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 28px;
     position: relative;
   }
   .plan--featured {
@@ -152,6 +180,12 @@ const plans = [
     border-radius: 999px;
   }
 
+  .plan-header {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
   .plan-name {
     font-size: 11px;
     letter-spacing: 0.12em;
@@ -162,11 +196,12 @@ const plans = [
 
   .plan__title {
     font-family: var(--font-display);
-    font-size: 28px;
+    font-size: 22px;
     font-weight: 700;
-    margin: 6px 0 0;
+    margin: 0;
     letter-spacing: -0.015em;
     color: var(--color-text);
+    line-height: 1.25;
   }
   .plan--featured .plan__title {
     color: #fff;
@@ -179,7 +214,7 @@ const plans = [
   }
   .price-amount {
     font-family: var(--font-display);
-    font-size: 44px;
+    font-size: 22px;
     font-weight: 700;
     font-variant-numeric: tabular-nums;
     letter-spacing: -0.02em;
@@ -195,6 +230,16 @@ const plans = [
   }
   .plan--featured .price-suffix {
     color: rgba(255, 255, 255, 0.6);
+  }
+  .price-label {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--color-text);
+    line-height: 1;
+  }
+  .plan--featured .price-label {
+    color: #fff;
   }
 
   .plan-divider {
@@ -212,7 +257,7 @@ const plans = [
     margin: 0;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 12px;
     flex: 1;
   }
   .plan-features li {
