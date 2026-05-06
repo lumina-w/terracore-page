@@ -5,19 +5,19 @@ import { Icon } from 'astro-icon/components';
 const qs = [
   {
     q: '¿Cuánto demora poner mi finca en TerraCore?',
-    a: 'Una tarde para el setup básico. Importas el inventario de animales e insumos desde Excel, defines usuarios, y arrancas. Si tu operación es grande, te acompañamos con una sesión de onboarding de 2 horas.',
+    a: 'En marcha en tu primera semana. Importas tu inventario desde Excel, defines usuarios y arrancas. Si tu operación es grande, te acompañamos con sesiones de onboarding hasta que estés cómodo.',
   },
   {
     q: '¿Funciona si en mi finca no hay buena señal?',
     a: 'Sí. La app móvil guarda todo lo que registres sin internet y sincroniza cuando vuelva la señal. El dashboard web requiere conexión, pero los registros del campo nunca se pierden.',
   },
   {
-    q: '¿Puedo migrar desde Excel o desde otro software?',
-    a: 'Claro. Tenemos plantillas para importar animales, insumos, herramientas e historiales sanitarios. Si vienes de otro software, escríbenos y armamos la migración sin costo en todos los planes.',
+    q: '¿Puedo migrar desde Excel?',
+    a: 'Sí. Tenemos plantillas de importación para animales, insumos, herramientas e historiales sanitarios. La migración está incluida en planes Profesional y Enterprise. En Semilla te damos las plantillas y lo haces tú mismo.',
   },
   {
     q: '¿Qué tipos de finca soporta?',
-    a: 'Bovino (carne y leche), porcino, equino, ovino, caprino y avícola. También cultivos asociados, ya que el módulo de Producción registra lotes de cultivo, leche y huevos.',
+    a: 'Si produces en ella, TerraCore lo registra. Bovino (carne y leche), porcino, equino, ovino, caprino, avícola y cultivos asociados como plátano, cacao y maíz. Si tu operación combina varios, mejor, todo queda en el mismo lugar.',
   },
   {
     q: '¿Qué pasa con mis datos si dejo de usar TerraCore?',
@@ -25,7 +25,7 @@ const qs = [
   },
   {
     q: '¿Tiene aplicación móvil?',
-    a: 'Sí, Android e iOS, optimizada para uso en campo: botones grandes, modo offline, captura rápida de pesos, vacunas y observaciones. El dashboard completo está en la web.',
+    a: 'TerraCore es una PWA (Progressive Web App) optimizada para mobile. La instalas desde el navegador en Android o iOS, sin pasar por el App Store. Funciona offline, con botones grandes y captura rápida pensada para usarla en el campo.',
   },
 ];
 ---
@@ -40,7 +40,7 @@ const qs = [
         </h2>
         <p class="lead">
           ¿No ves la tuya? Escríbenos a{' '}
-          <a href="mailto:hola@terracore.app" class="faq-link">hola@terracore.app</a>{' '}
+          <a href="mailto:hola@terracoreapp.co" class="faq-link">hola@terracoreapp.co</a>{' '}
           y te respondemos en menos de un día hábil.
         </p>
       </div>
@@ -55,8 +55,8 @@ const qs = [
                   <Icon name="lucide:plus" width={14} height={14} />
                 </span>
               </button>
-              <div class="faq-a" hidden>
-                {it.a}
+              <div class="faq-a">
+                <div class="faq-a-inner">{it.a}</div>
               </div>
             </div>
           ))
@@ -68,23 +68,25 @@ const qs = [
 
 <script>
   const items = document.querySelectorAll<HTMLElement>('[data-faq]');
+
+  function closeItem(el: HTMLElement) {
+    el.classList.remove('faq-item--open');
+    const b = el.querySelector<HTMLButtonElement>('.faq-q')!;
+    const a = el.querySelector<HTMLElement>('.faq-a')!;
+    b.setAttribute('aria-expanded', 'false');
+    a.style.height = '0';
+  }
+
   items.forEach((item) => {
     const btn = item.querySelector<HTMLButtonElement>('.faq-q')!;
     const answer = item.querySelector<HTMLElement>('.faq-a')!;
     btn.addEventListener('click', () => {
       const isOpen = btn.getAttribute('aria-expanded') === 'true';
-      // close all
-      items.forEach((el) => {
-        el.classList.remove('faq-item--open');
-        const b = el.querySelector<HTMLButtonElement>('.faq-q')!;
-        const a = el.querySelector<HTMLElement>('.faq-a')!;
-        b.setAttribute('aria-expanded', 'false');
-        a.hidden = true;
-      });
+      items.forEach(closeItem);
       if (!isOpen) {
         item.classList.add('faq-item--open');
         btn.setAttribute('aria-expanded', 'true');
-        answer.hidden = false;
+        answer.style.height = answer.scrollHeight + 'px';
       }
     });
   });
@@ -161,7 +163,12 @@ const qs = [
   }
 
   .faq-a {
-    padding: 0 0 24px;
+    overflow: hidden;
+    height: 0;
+    transition: height 240ms ease-out;
+  }
+  .faq-a-inner {
+    padding-bottom: 24px;
     font-size: 15px;
     line-height: 24px;
     color: var(--color-text-secondary);
