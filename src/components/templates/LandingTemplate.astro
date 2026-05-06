@@ -8,9 +8,10 @@ import Pricing from '@organisms/Pricing.astro';
 import SecuritySection from '@organisms/SecuritySection.astro';
 import FAQSection from '@organisms/FAQSection.astro';
 import CTAFooter from '@organisms/CTAFooter.astro';
+import WaitlistModal from '@organisms/WaitlistModal.astro';
 ---
 
-<main>
+<main id="main-content">
   <Hero />
   <ProofStrip />
   <Modules />
@@ -21,20 +22,9 @@ import CTAFooter from '@organisms/CTAFooter.astro';
   <FAQSection />
   <CTAFooter />
 </main>
+<WaitlistModal />
 
 <script>
-  /* Reveal-on-scroll: fade in on enter, fade out on exit */
-  const io = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((e) => {
-        if (e.isIntersecting) {
-          (e.target as HTMLElement).classList.add('in');
-        } else {
-          (e.target as HTMLElement).classList.remove('in');
-        }
-      });
-    },
-    { threshold: 0.1 },
-  );
-  document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+  import { initReveal } from '../../scripts/reveal';
+  initReveal();
 </script>

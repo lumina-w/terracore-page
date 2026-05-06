@@ -96,6 +96,25 @@
 
 /* ── Reset & Base ──────────────────────────────────────────── */
 @layer base {
+  /* Skip-to-content link — visible only on keyboard focus */
+  .skip-link {
+    position: absolute;
+    top: -48px;
+    left: 0;
+    z-index: 9999;
+    padding: 10px 20px;
+    background: var(--color-accent);
+    color: #fff;
+    font-weight: 600;
+    font-size: 14px;
+    text-decoration: none;
+    border-radius: 0 0 8px 0;
+    transition: top 150ms;
+  }
+  .skip-link:focus {
+    top: 0;
+  }
+
   *,
   *::before,
   *::after {

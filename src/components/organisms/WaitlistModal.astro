@@ -1,0 +1,167 @@
+---
+import { Icon } from 'astro-icon/components';
+---
+
+<div
+  class="wl-modal"
+  id="wl-modal"
+  aria-modal="true"
+  role="dialog"
+  aria-labelledby="wl-modal-title"
+  hidden
+>
+  <button class="wl-modal__close" id="wl-modal-close" aria-label="Cerrar">
+    <Icon name="lucide:x" width={20} height={20} />
+  </button>
+  <div class="wl-modal__backdrop" id="wl-modal-backdrop"></div>
+  <div class="wl-modal__box">
+    <div class="wl-modal__icon">
+      <Icon name="lucide:check" width={28} height={28} />
+    </div>
+    <h2 class="wl-modal__title" id="wl-modal-title">¡Listo! Te avisamos pronto.</h2>
+    <p class="wl-modal__body">
+      Cuando el plan esté disponible,<br />
+      serás de los primeros en saberlo.
+    </p>
+    <button class="btn btn-primary wl-modal__cta" id="wl-modal-cta">Volver al inicio</button>
+  </div>
+</div>
+
+<script>
+  const modal = document.getElementById('wl-modal') as HTMLElement;
+  const closeBtn = document.getElementById('wl-modal-close')!;
+  const backdrop = document.getElementById('wl-modal-backdrop')!;
+  const ctaBtn = document.getElementById('wl-modal-cta')!;
+
+  function openModal() {
+    modal.hidden = false;
+    document.body.style.overflow = 'hidden';
+    requestAnimationFrame(() => modal.classList.add('is-open'));
+  }
+
+  function closeModal() {
+    modal.classList.remove('is-open');
+    modal.addEventListener(
+      'transitionend',
+      () => {
+        modal.hidden = true;
+        document.body.style.overflow = '';
+      },
+      { once: true },
+    );
+  }
+
+  window.addEventListener('waitlist:success', openModal);
+  closeBtn.addEventListener('click', closeModal);
+  backdrop.addEventListener('click', closeModal);
+  ctaBtn.addEventListener('click', () => {
+    closeModal();
+    setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 100);
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !modal.hidden) closeModal();
+  });
+</script>
+
+<style>
+  .wl-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 220ms var(--ease-standard);
+  }
+  .wl-modal[hidden] {
+    display: none;
+  }
+  .wl-modal.is-open {
+    opacity: 1;
+  }
+
+  .wl-modal__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.72);
+    cursor: pointer;
+  }
+
+  .wl-modal__close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 1;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 180ms var(--ease-standard);
+  }
+  .wl-modal__close:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  .wl-modal__box {
+    position: relative;
+    z-index: 1;
+    background: var(--color-surface);
+    border-radius: 20px;
+    padding: 48px 40px;
+    max-width: 420px;
+    width: calc(100% - 40px);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    box-shadow: var(--shadow-xl);
+    transform: translateY(16px);
+    transition: transform 220ms var(--ease-standard);
+  }
+  .wl-modal.is-open .wl-modal__box {
+    transform: translateY(0);
+  }
+
+  .wl-modal__icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: rgba(217, 119, 6, 0.1);
+    border: 2px solid rgba(217, 119, 6, 0.22);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-accent);
+    margin-bottom: 4px;
+  }
+
+  .wl-modal__title {
+    font-family: var(--font-display);
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    color: var(--color-text);
+    margin: 0;
+  }
+
+  .wl-modal__body {
+    font-size: 15px;
+    line-height: 24px;
+    color: var(--color-text-secondary);
+    margin: 0;
+  }
+
+  .wl-modal__cta {
+    margin-top: 8px;
+    width: 100%;
+    justify-content: center;
+  }
+</style>

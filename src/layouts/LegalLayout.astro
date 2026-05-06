@@ -9,7 +9,9 @@ const { title, description } = Astro.props;
 ---
 
 <BaseLayout {title} {description}>
-  <slot />
+  <main id="main-content">
+    <slot />
+  </main>
 </BaseLayout>
 
 <style is:global>
@@ -432,6 +434,9 @@ const { title, description } = Astro.props;
 </style>
 
 <script>
+  import { initReveal } from '../scripts/reveal';
+  initReveal();
+
   const obs = new IntersectionObserver(
     (entries) => {
       entries.forEach((e) => {
@@ -442,7 +447,7 @@ const { title, description } = Astro.props;
         }
       });
     },
-    { rootMargin: '-30% 0px -60% 0px', threshold: 0 }
+    { rootMargin: '-30% 0px -60% 0px', threshold: 0 },
   );
   document.querySelectorAll('.doc-section').forEach((el) => obs.observe(el));
 </script>

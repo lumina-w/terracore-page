@@ -1,11 +1,47 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
 import LandingTemplate from '@templates/LandingTemplate.astro';
+
+const jsonLd = JSON.stringify([
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'TerraCore',
+    url: 'https://terracoreapp.co',
+    logo: 'https://terracoreapp.co/logo.ico',
+    description:
+      'TerraCore es la plataforma colombiana de gestión agroindustrial para fincas medianas. Inventario, producción y salud animal en una sola pantalla.',
+    address: {
+      '@type': 'PostalAddress',
+      addressRegion: 'Antioquia',
+      addressCountry: 'CO',
+    },
+    contactPoint: {
+      '@type': 'ContactPoint',
+      telephone: '+57-310-828-3088',
+      contactType: 'customer support',
+      email: 'hola@terracoreapp.co',
+      availableLanguage: 'Spanish',
+    },
+    sameAs: ['https://luminaw.co'],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'TerraCore',
+    url: 'https://terracoreapp.co',
+    description:
+      'Plataforma de gestión agroindustrial diseñada para el campo colombiano.',
+    inLanguage: 'es-CO',
+  },
+]);
 ---
 
 <BaseLayout
   title="TerraCore | Campo inteligente"
   description="TerraCore es la plataforma colombiana para gestionar inventario, producción y salud animal en una sola pantalla. Diseñada para fincas medianas."
+  preloadImage="/screens/dashboard-2.webp"
 >
+  <script slot="head" is:inline type="application/ld+json" set:html={jsonLd} />
   <LandingTemplate />
 </BaseLayout>

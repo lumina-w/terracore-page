@@ -339,7 +339,7 @@ const plans = [
 
         if (res.ok) {
           form.hidden = true;
-          confirmEl.hidden = false;
+          window.dispatchEvent(new CustomEvent('waitlist:success'));
         } else {
           btn.disabled = false;
           btn.textContent = 'Notifícame';
