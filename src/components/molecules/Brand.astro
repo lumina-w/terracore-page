@@ -42,8 +42,9 @@ const { mono = false, size = 28, showCaption = true } = Astro.props;
     display: block;
     width: var(--brand-size, 36px);
     height: var(--brand-size, 36px);
-    object-fit: contain;
+    object-fit: cover;
     flex-shrink: 0;
+    border-radius: 100%;
   }
 
   .brand__name {

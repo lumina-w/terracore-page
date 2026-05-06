@@ -1,374 +1,375 @@
 ---
-import BaseLayout from '@layouts/BaseLayout.astro';
+import LegalLayout from '@layouts/LegalLayout.astro';
+import { Icon } from 'astro-icon/components';
+
+const email = 'hola@terracoreapp.co';
+const whatsapp = 'https://wa.me/573108283088';
 ---
 
-<BaseLayout
+<LegalLayout
   title="Política de Privacidad — TerraCore"
-  description="Política de privacidad y tratamiento de datos personales de TerraCore conforme a la Ley 1581 de 2012. Lúmina W SAS, Colombia."
+  description="Política de privacidad y tratamiento de datos personales de TerraCore conforme a la Ley 1581 de 2012. Lúmina W S.A.S., Colombia."
 >
-  <main>
-    <div class="legal-hero">
-      <div class="container">
-        <p class="legal-eyebrow">Documento legal</p>
-        <h1 class="legal-title">Política de Privacidad</h1>
-        <p class="legal-meta">Última actualización: mayo de 2026 &nbsp;·&nbsp; Ley 1581 de 2012</p>
-      </div>
-    </div>
-
-    <div class="legal-body">
-      <div class="container">
-        <div class="legal-layout">
-          <nav class="legal-toc" aria-label="Tabla de contenidos">
-            <p class="toc-label">Contenido</p>
-            <ol class="toc-list">
-              <li><a href="#responsable">1. Responsable del tratamiento</a></li>
-              <li><a href="#datos-recolectados">2. Datos que recolectamos</a></li>
-              <li><a href="#finalidad">3. Finalidad del tratamiento</a></li>
-              <li><a href="#base-legal">4. Base legal</a></li>
-              <li><a href="#seguridad">5. Almacenamiento y seguridad</a></li>
-              <li><a href="#comparticion">6. Compartición de datos</a></li>
-              <li><a href="#transferencias">7. Transferencias internacionales</a></li>
-              <li><a href="#retencion">8. Retención de datos</a></li>
-              <li><a href="#derechos">9. Sus derechos</a></li>
-              <li><a href="#cookies">10. Cookies y analítica</a></li>
-              <li><a href="#cambios">11. Cambios en la política</a></li>
-              <li><a href="#habeas-data">12. Habeas Data</a></li>
-              <li><a href="#contacto">13. Contacto</a></li>
-            </ol>
-          </nav>
-
-          <article class="legal-content">
-            <p class="legal-intro">
-              En <strong>TerraCore</strong>, operado por <strong>Lúmina W SAS</strong>, nos tomamos en serio
-              la privacidad de nuestros usuarios. Esta política describe cómo recolectamos, usamos y
-              protegemos su información, en cumplimiento de la <strong>Ley 1581 de 2012</strong> y el
-              Decreto 1377 de 2013.
-            </p>
-
-            <section id="responsable">
-              <h2>1. Responsable del tratamiento</h2>
-              <div class="contact-block">
-                <p><strong>Lúmina W SAS</strong></p>
-                <p>Antioquia, Colombia</p>
-                <p>Correo: <a href="mailto:hola@terracoreapp.co">hola@terracoreapp.co</a></p>
-                <p>Teléfono / WhatsApp: <a href="https://wa.me/573108283088" target="_blank" rel="noopener">+57 310 828 3088</a></p>
-              </div>
-            </section>
-
-            <section id="datos-recolectados">
-              <h2>2. Datos que recolectamos</h2>
-              <p>Recolectamos únicamente la información necesaria para prestar el servicio:</p>
-              <ul>
-                <li><strong>Datos de cuenta:</strong> nombre, correo electrónico, número de teléfono, nombre de la finca.</li>
-                <li><strong>Datos operativos:</strong> registros de animales, producción, insumos, salud animal y finanzas que usted ingresa.</li>
-                <li><strong>Datos de uso:</strong> páginas visitadas, funciones utilizadas y métricas de rendimiento (anonimizadas).</li>
-                <li><strong>Datos técnicos:</strong> dirección IP, tipo de navegador, sistema operativo (para soporte técnico).</li>
-              </ul>
-            </section>
-
-            <section id="finalidad">
-              <h2>3. Finalidad del tratamiento</h2>
-              <p>Usamos sus datos para:</p>
-              <ul>
-                <li>Prestar y mejorar el servicio TerraCore.</li>
-                <li>Enviar notificaciones relacionadas con su cuenta o el servicio.</li>
-                <li>Brindar soporte técnico y atención al cliente.</li>
-                <li>Cumplir obligaciones legales y regulatorias.</li>
-              </ul>
-              <p>No usamos sus datos para publicidad de terceros ni los vendemos a ningún tercero.</p>
-            </section>
-
-            <section id="base-legal">
-              <h2>4. Base legal</h2>
-              <p>El tratamiento de datos se realiza con base en: (a) la ejecución del contrato de servicio, (b) el consentimiento informado del titular, y (c) el cumplimiento de obligaciones legales, de acuerdo con la Ley 1581 de 2012 y el Decreto 1377 de 2013.</p>
-            </section>
-
-            <section id="seguridad">
-              <h2>5. Almacenamiento y seguridad</h2>
-              <p>Los datos se almacenan en servidores Hostinger VPS ubicados en Europa, que cumplen con estándares de seguridad de la industria. Implementamos:</p>
-              <ul>
-                <li>Cifrado en tránsito (TLS) y en reposo.</li>
-                <li>Control de acceso por roles.</li>
-                <li>Auditorías periódicas de seguridad.</li>
-              </ul>
-            </section>
-
-            <section id="comparticion">
-              <h2>6. Compartición de datos</h2>
-              <p>Solo compartimos datos con terceros en los siguientes casos:</p>
-              <ul>
-                <li><strong>Proveedores de infraestructura:</strong> Hostinger (alojamiento), necesario para la operación del servicio, bajo contratos de procesamiento de datos.</li>
-                <li><strong>Obligación legal:</strong> cuando una autoridad competente lo requiera mediante orden judicial.</li>
-              </ul>
-            </section>
-
-            <section id="transferencias">
-              <h2>7. Transferencias internacionales</h2>
-              <p>Sus datos se almacenan en servidores ubicados en la Unión Europea, que ofrece un nivel adecuado de protección de datos reconocido internacionalmente. La transferencia se realiza conforme al artículo 24 de la Ley 1581 de 2012.</p>
-            </section>
-
-            <section id="retencion">
-              <h2>8. Retención de datos</h2>
-              <p>Conservamos sus datos mientras su cuenta esté activa. Al cancelar el servicio, los datos operativos se conservan por 30 días para permitir su exportación, tras lo cual son eliminados de forma segura.</p>
-            </section>
-
-            <section id="derechos">
-              <h2>9. Sus derechos</h2>
-              <p>Como titular de datos personales en Colombia, conforme al artículo 8 de la Ley 1581 de 2012, usted tiene derecho a:</p>
-              <ul>
-                <li>Conocer, actualizar y rectificar sus datos.</li>
-                <li>Solicitar prueba de la autorización otorgada.</li>
-                <li>Ser informado sobre el uso de sus datos.</li>
-                <li>Revocar la autorización y solicitar la supresión de datos (cuando no exista obligación legal de conservarlos).</li>
-                <li>Presentar quejas ante la Superintendencia de Industria y Comercio (SIC).</li>
-              </ul>
-              <p>Ejerza sus derechos escribiendo a <a href="mailto:hola@terracoreapp.co">hola@terracoreapp.co</a> o consulte nuestra <a href="/habeas-data">Política de Habeas Data</a>.</p>
-            </section>
-
-            <section id="cookies">
-              <h2>10. Cookies y analítica</h2>
-              <p>Usamos Google Analytics 4 (GA4) para comprender cómo se usa el sitio web. Los datos de GA4 son anonimizados y no se vinculan con su identidad personal. Puede optar por no participar usando extensiones de navegador compatibles con GA4.</p>
-            </section>
-
-            <section id="cambios">
-              <h2>11. Cambios en la política</h2>
-              <p>Notificaremos cambios materiales a esta política por correo electrónico con al menos 15 días de anticipación. La versión actualizada se publicará en esta misma página.</p>
-            </section>
-
-            <section id="habeas-data">
-              <h2>12. Habeas Data</h2>
-              <p>Para ejercer sus derechos de Habeas Data conforme a la Ley 1581 de 2012, consulte nuestra <a href="/habeas-data">Política de Habeas Data</a> donde encontrará el procedimiento detallado y los plazos de respuesta.</p>
-            </section>
-
-            <section id="contacto">
-              <h2>13. Contacto</h2>
-              <p>Para cualquier consulta sobre privacidad y tratamiento de datos:</p>
-              <div class="contact-block">
-                <p><strong>Lúmina W SAS</strong></p>
-                <p>Antioquia, Colombia</p>
-                <p><a href="mailto:hola@terracoreapp.co">hola@terracoreapp.co</a></p>
-                <p><a href="https://wa.me/573108283088" target="_blank" rel="noopener">WhatsApp: +57 310 828 3088</a></p>
-              </div>
-            </section>
-
-            <div class="legal-links">
-              <a href="/terminos">Términos y Condiciones →</a>
-              <a href="/habeas-data">Habeas Data →</a>
-            </div>
-          </article>
+  <!-- ── Hero ── -->
+  <section class="terms-hero">
+    <div class="container">
+      <span class="eyebrow"><span class="num">·</span><span class="dot"></span>Documento legal</span>
+      <h1>Política de <span class="em">Privacidad</span>.</h1>
+      <p>
+        Aquí te explicamos qué datos recopilamos, para qué los usamos y cómo los protegemos. Operamos
+        bajo la Ley 1581 de 2012 y el Decreto 1377 de 2013 — tus datos están en buenas manos.
+      </p>
+      <div class="terms-meta">
+        <div class="item">
+          <div class="l">Última actualización</div>
+          <div class="v">06 de mayo de 2026</div>
+        </div>
+        <div class="item">
+          <div class="l">Marco legal</div>
+          <div class="v">Ley 1581 de 2012</div>
+        </div>
+        <div class="item">
+          <div class="l">Responsable</div>
+          <div class="v">Lúmina W S.A.S.</div>
+        </div>
+        <div class="item">
+          <div class="l">Contacto</div>
+          <div class="v">hola@terracoreapp.co</div>
         </div>
       </div>
     </div>
-  </main>
-</BaseLayout>
+  </section>
 
-<style>
-  .legal-hero {
-    background: var(--color-primary-active);
-    padding: 72px 0 56px;
-    color: #fff;
-  }
+  <!-- ── TL;DR ── -->
+  <section class="tldr-band">
+    <div class="container">
+      <div class="tldr-head">
+        <h2>Lo esencial, antes de entrar en detalle.</h2>
+        <p class="hint">
+          Este resumen facilita la lectura. En caso de duda prevalece el texto completo de las secciones
+          que siguen más abajo.
+        </p>
+      </div>
+      <div class="tldr-grid">
+        <div class="tldr-card">
+          <div class="card-icon"><Icon name="lucide:minimize-2" width={18} height={18} /></div>
+          <h4>Solo lo necesario</h4>
+          <p>Recopilamos nombre, correo, teléfono y los datos operativos que tú mismo cargas. Nada que no necesitemos para prestarte el servicio.</p>
+        </div>
+        <div class="tldr-card">
+          <div class="card-icon"><Icon name="lucide:shield-check" width={18} height={18} /></div>
+          <h4>No vendemos tu información</h4>
+          <p>Tus datos no se ceden ni venden a terceros para fines comerciales. Solo los compartimos con proveedores de infraestructura bajo contratos estrictos.</p>
+        </div>
+        <div class="tldr-card">
+          <div class="card-icon"><Icon name="lucide:lock" width={18} height={18} /></div>
+          <h4>Almacenamiento seguro</h4>
+          <p>Cifrado TLS en tránsito y en reposo, control de acceso por roles y auditorías periódicas. Servidores en Europa con altos estándares de protección.</p>
+        </div>
+        <div class="tldr-card">
+          <div class="card-icon"><Icon name="lucide:leaf" width={18} height={18} /></div>
+          <h4>Ley 1581 de 2012</h4>
+          <p>Somos Responsable del tratamiento bajo la ley colombiana de Habeas Data. Tienes plenos derechos sobre tu información personal.</p>
+        </div>
+        <div class="tldr-card warn">
+          <div class="card-icon"><Icon name="lucide:bar-chart-2" width={18} height={18} /></div>
+          <h4>Analítica anonimizada</h4>
+          <p>Usamos Google Analytics 4 para mejorar el sitio. Los datos son anonimizados y no se vinculan con tu identidad. Puedes hacer opt-out.</p>
+        </div>
+        <div class="tldr-card">
+          <div class="card-icon"><Icon name="lucide:download" width={18} height={18} /></div>
+          <h4>Exporta o suprime</h4>
+          <p>Puedes descargar todos tus datos en cualquier momento. Al cerrar la cuenta los borramos en 90 días. Tú decides.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  .legal-eyebrow {
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.5);
-    margin-bottom: 14px;
-  }
+  <!-- ── Cuerpo ── -->
+  <section class="terms-body">
+    <div class="container">
+      <div class="terms-layout">
+        <!-- TOC -->
+        <nav class="toc" aria-label="Índice del documento">
+          <div class="toc-label">Contenido</div>
+          <ol>
+            <li><a href="#p1">Responsable del tratamiento</a></li>
+            <li><a href="#p2">Datos que recopilamos</a></li>
+            <li><a href="#p3">Finalidades del tratamiento</a></li>
+            <li><a href="#p4">Base legal</a></li>
+            <li><a href="#p5">Almacenamiento y seguridad</a></li>
+            <li><a href="#p6">Compartición de datos</a></li>
+            <li><a href="#p7">Transferencias internacionales</a></li>
+            <li><a href="#p8">Retención de datos</a></li>
+            <li><a href="#p9">Tus derechos</a></li>
+            <li><a href="#p10">Cookies y analítica</a></li>
+            <li><a href="#p11">Cambios en la política</a></li>
+            <li><a href="#p12">Contacto</a></li>
+          </ol>
+        </nav>
 
-  .legal-title {
-    font-family: var(--font-display);
-    font-size: clamp(32px, 5vw, 52px);
-    font-weight: 700;
-    letter-spacing: -0.025em;
-    line-height: 1;
-    margin-bottom: 14px;
-  }
+        <!-- Document -->
+        <article class="doc">
 
-  .legal-meta {
-    font-size: 14px;
-    color: rgba(255, 255, 255, 0.45);
-  }
+          <section id="p1" class="doc-section">
+            <span class="num">01 · Responsable</span>
+            <h2>Responsable del tratamiento</h2>
+            <p class="intro">
+              El Responsable del tratamiento de datos personales, en los términos del artículo 3 de la
+              Ley 1581 de 2012, es <strong>Lúmina W S.A.S.</strong>, operadora de la plataforma TerraCore.
+            </p>
+            <div class="def-block">
+              <dl>
+                <div>
+                  <dt>Razón social</dt>
+                  <dd>Lúmina W S.A.S.</dd>
+                </div>
+                <div>
+                  <dt>Domicilio</dt>
+                  <dd>Medellín, Antioquia, Colombia.</dd>
+                </div>
+                <div>
+                  <dt>Correo electrónico</dt>
+                  <dd><a class="tc-link" href={`mailto:${email}`}>{email}</a></dd>
+                </div>
+                <div>
+                  <dt>WhatsApp</dt>
+                  <dd><a class="tc-link" href={whatsapp} target="_blank" rel="noopener">+57 310 828 3088</a></dd>
+                </div>
+              </dl>
+            </div>
+          </section>
 
-  .legal-body {
-    padding: 64px 0 96px;
-    background: var(--color-bg);
-  }
+          <section id="p2" class="doc-section">
+            <span class="num">02 · Datos que recopilamos</span>
+            <h2>Datos que recopilamos</h2>
+            <p class="intro">
+              Recopilamos únicamente la información estrictamente necesaria para prestarte el servicio
+              y cumplir con nuestras obligaciones legales:
+            </p>
+            <h3>2.1. Datos de cuenta</h3>
+            <ul>
+              <li>Nombre completo o razón social.</li>
+              <li>Correo electrónico y número de teléfono de contacto.</li>
+              <li>Nombre de la finca u organización.</li>
+              <li>Información de facturación (en planes de pago).</li>
+            </ul>
+            <h3>2.2. Datos operativos</h3>
+            <p>
+              Registros de animales, producción, insumos, salud animal y finanzas que tú mismo cargas en
+              la plataforma. Estos datos son de tu propiedad; los procesamos únicamente para prestarte el
+              servicio.
+            </p>
+            <h3>2.3. Datos de uso y técnicos</h3>
+            <ul>
+              <li>Páginas visitadas y funciones utilizadas (anonimizados mediante GA4).</li>
+              <li>Dirección IP, tipo de navegador y sistema operativo (para soporte técnico).</li>
+            </ul>
+          </section>
 
-  .legal-layout {
-    display: grid;
-    grid-template-columns: 220px 1fr;
-    gap: 48px;
-    align-items: start;
-  }
+          <section id="p3" class="doc-section">
+            <span class="num">03 · Finalidades</span>
+            <h2>Finalidades del tratamiento</h2>
+            <p class="intro">
+              Tus datos se tratan exclusivamente para los siguientes fines:
+            </p>
+            <ol class="sub">
+              <li>Prestar, administrar y mejorar los servicios de TerraCore.</li>
+              <li>Gestionar la relación contractual y la facturación.</li>
+              <li>Enviar notificaciones relacionadas con el servicio (actualizaciones, alertas, soporte).</li>
+              <li>Brindar atención al cliente y soporte técnico.</li>
+              <li>Cumplir con obligaciones legales y regulatorias vigentes en Colombia.</li>
+            </ol>
+            <p>No utilizamos tus datos para publicidad de terceros ni los cedemos para fines comerciales ajenos al servicio.</p>
+          </section>
 
-  @media (max-width: 880px) {
-    .legal-layout {
-      grid-template-columns: 1fr;
-      gap: 28px;
-    }
-  }
+          <section id="p4" class="doc-section">
+            <span class="num">04 · Base legal</span>
+            <h2>Base legal</h2>
+            <p>
+              El tratamiento de datos se realiza con base en:
+            </p>
+            <ul>
+              <li><strong>Ejecución del contrato:</strong> los datos necesarios para prestar el servicio contratado.</li>
+              <li><strong>Consentimiento informado:</strong> otorgado al momento de registrarte y aceptar estos términos.</li>
+              <li><strong>Obligación legal:</strong> cumplimiento de normas tributarias, contables y regulatorias colombianas.</li>
+            </ul>
+            <p>
+              Todo conforme a la Ley 1581 de 2012 y el Decreto 1377 de 2013.
+            </p>
+          </section>
 
-  .legal-toc {
-    position: sticky;
-    top: 24px;
-    background: var(--color-surface);
-    border: 1px solid var(--color-border);
-    border-radius: 12px;
-    padding: 22px 20px;
-  }
+          <section id="p5" class="doc-section">
+            <span class="num">05 · Seguridad</span>
+            <h2>Almacenamiento y seguridad</h2>
+            <p>
+              Implementamos medidas técnicas y organizativas adecuadas para proteger tus datos contra
+              acceso no autorizado, pérdida, alteración o divulgación:
+            </p>
+            <ul>
+              <li>Cifrado en tránsito mediante TLS.</li>
+              <li>Control de acceso basado en roles.</li>
+              <li>Auditorías periódicas de seguridad.</li>
+              <li>Servidores Hostinger VPS ubicados en Europa.</li>
+            </ul>
+            <div class="doc-callout">
+              <div class="callout-icon"><Icon name="lucide:alert-triangle" width={18} height={18} /></div>
+              <div>
+                <div class="callout-label">Importante</div>
+                <p>Ningún sistema es 100% seguro. Si detectas alguna vulnerabilidad o uso no autorizado de tus datos, notifícanos de inmediato a <a class="tc-link" href={`mailto:${email}`}>{email}</a>.</p>
+              </div>
+            </div>
+          </section>
 
-  .toc-label {
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--color-text-muted);
-    margin-bottom: 12px;
-  }
+          <section id="p6" class="doc-section">
+            <span class="num">06 · Compartición</span>
+            <h2>Compartición de datos</h2>
+            <p class="intro">
+              Solo compartimos datos con terceros en los siguientes supuestos:
+            </p>
+            <div class="def-block">
+              <dl>
+                <div>
+                  <dt>Proveedores de infraestructura <span class="doc-tag">necesario</span></dt>
+                  <dd>Hostinger VPS (alojamiento), bajo contratos de procesamiento de datos que garantizan confidencialidad e iguales niveles de protección.</dd>
+                </div>
+                <div>
+                  <dt>Obligación legal <span class="doc-tag">requerido</span></dt>
+                  <dd>Cuando una autoridad competente lo requiera mediante orden judicial o acto administrativo debidamente ejecutoriado.</dd>
+                </div>
+              </dl>
+            </div>
+          </section>
 
-  .toc-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-  }
+          <section id="p7" class="doc-section">
+            <span class="num">07 · Transferencias internacionales</span>
+            <h2>Transferencias internacionales</h2>
+            <p>
+              Tus datos se almacenan en servidores ubicados en la Unión Europea, jurisdicción que la
+              Superintendencia de Industria y Comercio reconoce como territorio con nivel adecuado de
+              protección de datos.
+            </p>
+            <p>
+              Toda transmisión internacional se realiza conforme al artículo 24 de la Ley 1581 de 2012,
+              bajo contratos que obligan al receptor a las mismas garantías aplicables en Colombia.
+            </p>
+          </section>
 
-  .toc-list li a {
-    font-size: 13px;
-    color: var(--color-text-secondary);
-    text-decoration: none;
-    transition: color var(--dur-fast) var(--ease-standard);
-    display: block;
-    padding: 3px 0;
-    line-height: 1.4;
-  }
+          <section id="p8" class="doc-section">
+            <span class="num">08 · Retención</span>
+            <h2>Retención de datos</h2>
+            <p>
+              Conservamos tus datos mientras tu cuenta esté activa o sea necesario para cumplir
+              obligaciones legales, contractuales o contables.
+            </p>
+            <h3>8.1. Al cancelar la cuenta</h3>
+            <p>
+              Los datos operativos permanecen disponibles para descarga durante noventa (90) días a partir
+              del cierre de la cuenta. Transcurrido ese plazo, son eliminados de forma segura e irreversible
+              de los sistemas productivos.
+            </p>
+            <h3>8.2. Obligaciones legales</h3>
+            <p>
+              Algunos datos de facturación y transaccionales pueden conservarse por el plazo que exija
+              la normativa tributaria colombiana (generalmente 10 años), con acceso restringido.
+            </p>
+          </section>
 
-  .toc-list li a:hover {
-    color: var(--color-primary);
-  }
+          <section id="p9" class="doc-section">
+            <span class="num">09 · Tus derechos</span>
+            <h2>Tus derechos</h2>
+            <p class="intro">
+              Como titular de datos personales en Colombia, conforme al artículo 8 de la Ley 1581 de 2012,
+              tienes los siguientes derechos:
+            </p>
+            <ul>
+              <li><strong>Acceso:</strong> conocer qué datos personales tenemos sobre ti y cómo los usamos.</li>
+              <li><strong>Actualización y rectificación:</strong> corregir datos incompletos, inexactos o desactualizados.</li>
+              <li><strong>Supresión:</strong> solicitar la eliminación de tus datos cuando no exista obligación legal de conservarlos.</li>
+              <li><strong>Revocación del consentimiento:</strong> retirar la autorización para el tratamiento en cualquier momento.</li>
+              <li><strong>Prueba de autorización:</strong> solicitar copia de la autorización que otorgaste.</li>
+              <li><strong>Queja ante la SIC:</strong> presentar reclamación ante la Superintendencia de Industria y Comercio.</li>
+            </ul>
+            <p>
+              Para ejercer cualquiera de estos derechos, consulta nuestra <a class="tc-link" href="/habeas-data">Política de Habeas Data</a>
+              donde encontrarás el procedimiento y plazos de respuesta.
+            </p>
+          </section>
 
-  .legal-content {
-    background: var(--color-surface);
-    border: 1px solid var(--color-border);
-    border-radius: 14px;
-    padding: 48px 52px;
-  }
+          <section id="p10" class="doc-section">
+            <span class="num">10 · Cookies</span>
+            <h2>Cookies y analítica</h2>
+            <p>
+              Usamos <strong>Google Analytics 4 (GA4)</strong> para entender cómo se utiliza el sitio web
+              y mejorar la experiencia. Los datos de GA4 son anonimizados y no se vinculan con tu
+              identidad personal.
+            </p>
+            <h3>10.1. Opt-out</h3>
+            <p>
+              Puedes optar por no participar instalando la extensión oficial de exclusión de Google Analytics
+              para tu navegador, o configurando las preferencias de privacidad de tu browser.
+            </p>
+            <h3>10.2. Sin rastreo de terceros</h3>
+            <p>
+              No instalamos cookies de publicidad, retargeting ni seguimiento cruzado de sitios. Las únicas
+              cookies que usamos son las estrictamente funcionales para el funcionamiento del servicio.
+            </p>
+          </section>
 
-  @media (max-width: 600px) {
-    .legal-content {
-      padding: 28px 20px;
-    }
-  }
+          <section id="p11" class="doc-section">
+            <span class="num">11 · Cambios</span>
+            <h2>Cambios en la política</h2>
+            <p>
+              Podemos actualizar esta política en cualquier momento. Los cambios materiales serán
+              comunicados por correo electrónico con al menos <strong>15 días de anticipación</strong> a
+              su entrada en vigor.
+            </p>
+            <p>
+              La versión actualizada se publicará en esta misma página con la nueva fecha de vigencia. El
+              uso continuado del servicio tras la entrada en vigor implica aceptación de los cambios.
+            </p>
+          </section>
 
-  .legal-intro {
-    font-size: 16px;
-    line-height: 26px;
-    color: var(--color-text-secondary);
-    border-left: 3px solid var(--color-accent);
-    padding-left: 18px;
-    margin-bottom: 40px;
-  }
+          <section id="p12" class="doc-section">
+            <span class="num">12 · Contacto</span>
+            <h2>Contacto</h2>
+            <p class="intro">
+              Para cualquier consulta sobre privacidad, tratamiento de datos o ejercicio de derechos,
+              escríbenos. Respondemos en menos de un día hábil:
+            </p>
+            <dl>
+              <div>
+                <dt>Privacidad y tratamiento de datos</dt>
+                <dd><a class="tc-link" href={`mailto:${email}`}>{email}</a></dd>
+              </div>
+              <div>
+                <dt>WhatsApp</dt>
+                <dd><a class="tc-link" href={whatsapp} target="_blank" rel="noopener">+57 310 828 3088</a></dd>
+              </div>
+              <div>
+                <dt>Habeas Data — ejercicio de derechos</dt>
+                <dd>Consulta el procedimiento completo en <a class="tc-link" href="/habeas-data">terracoreapp.co/habeas-data</a></dd>
+              </div>
+              <div>
+                <dt>Domicilio del Responsable</dt>
+                <dd>Lúmina W S.A.S. · Medellín, Antioquia, Colombia.</dd>
+              </div>
+            </dl>
 
-  .legal-content section {
-    margin-bottom: 36px;
-    padding-bottom: 36px;
-    border-bottom: 1px solid var(--color-border);
-  }
+            <div class="doc-foot">
+              <div>
+                <div class="l">Documento vigente</div>
+                <div class="v">Publicado el 06 de mayo de 2026 · Ley 1581 de 2012</div>
+              </div>
+              <div class="links">
+                <a href="/terminos"><Icon name="lucide:file-text" width={14} height={14} /> Términos</a>
+                <a href="/habeas-data"><Icon name="lucide:shield-check" width={14} height={14} /> Habeas Data</a>
+              </div>
+            </div>
+          </section>
 
-  .legal-content section:last-of-type {
-    border-bottom: none;
-    margin-bottom: 32px;
-    padding-bottom: 0;
-  }
-
-  .legal-content h2 {
-    font-family: var(--font-display);
-    font-size: 18px;
-    font-weight: 700;
-    color: var(--color-text);
-    letter-spacing: -0.01em;
-    margin-bottom: 14px;
-    scroll-margin-top: 80px;
-  }
-
-  .legal-content p {
-    font-size: 15px;
-    line-height: 24px;
-    color: var(--color-text-secondary);
-    margin-bottom: 12px;
-  }
-
-  .legal-content p:last-child {
-    margin-bottom: 0;
-  }
-
-  .legal-content ul {
-    margin: 10px 0 12px 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 7px;
-  }
-
-  .legal-content li {
-    font-size: 15px;
-    line-height: 23px;
-    color: var(--color-text-secondary);
-  }
-
-  .legal-content a {
-    color: var(--color-text-link);
-    text-decoration: underline;
-    text-underline-offset: 2px;
-  }
-
-  .legal-content a:hover {
-    color: var(--color-text-link-hover);
-  }
-
-  .legal-content strong {
-    color: var(--color-text);
-    font-weight: 600;
-  }
-
-  .contact-block {
-    background: var(--color-surface-sunken);
-    border: 1px solid var(--color-border);
-    border-radius: 10px;
-    padding: 18px 22px;
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    margin-top: 10px;
-  }
-
-  .contact-block p {
-    margin: 0;
-    font-size: 14px;
-    line-height: 21px;
-  }
-
-  .legal-links {
-    display: flex;
-    gap: 24px;
-    flex-wrap: wrap;
-    padding-top: 28px;
-    border-top: 1px solid var(--color-border);
-  }
-
-  .legal-links a {
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--color-text-link);
-    text-decoration: none;
-    transition: color var(--dur-fast) var(--ease-standard);
-  }
-
-  .legal-links a:hover {
-    color: var(--color-text-link-hover);
-  }
-</style>
+        </article>
+      </div>
+    </div>
+  </section>
+</LegalLayout>

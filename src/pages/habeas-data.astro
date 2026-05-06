@@ -1,425 +1,363 @@
 ---
-import BaseLayout from '@layouts/BaseLayout.astro';
+import LegalLayout from '@layouts/LegalLayout.astro';
+import { Icon } from 'astro-icon/components';
+
+const email = 'hola@terracoreapp.co';
+const whatsapp = 'https://wa.me/573108283088';
 ---
 
-<BaseLayout
+<LegalLayout
   title="Habeas Data — TerraCore"
-  description="Política de Habeas Data de TerraCore. Derechos del titular de datos personales conforme a la Ley 1581 de 2012. Lúmina W SAS, Colombia."
+  description="Política de Habeas Data de TerraCore. Derechos del titular de datos personales conforme a la Ley 1581 de 2012. Cómo ejercerlos. Lúmina W S.A.S., Colombia."
 >
-  <main>
-    <div class="legal-hero">
-      <div class="container">
-        <p class="legal-eyebrow">Documento legal</p>
-        <h1 class="legal-title">Habeas Data</h1>
-        <p class="legal-meta">Última actualización: mayo de 2026 &nbsp;·&nbsp; Ley 1581 de 2012 · Decreto 1377 de 2013</p>
-      </div>
-    </div>
-
-    <div class="legal-body">
-      <div class="container">
-        <div class="legal-layout">
-          <nav class="legal-toc" aria-label="Tabla de contenidos">
-            <p class="toc-label">Contenido</p>
-            <ol class="toc-list">
-              <li><a href="#responsable">1. Responsable</a></li>
-              <li><a href="#datos-tratados">2. Datos tratados</a></li>
-              <li><a href="#finalidades">3. Finalidades</a></li>
-              <li><a href="#derechos">4. Derechos del titular</a></li>
-              <li><a href="#como-ejercer">5. Cómo ejercer sus derechos</a></li>
-              <li><a href="#autorizacion">6. Autorización</a></li>
-              <li><a href="#seguridad">7. Seguridad de los datos</a></li>
-              <li><a href="#transferencia">8. Transferencia y transmisión</a></li>
-              <li><a href="#vigencia">9. Vigencia de la política</a></li>
-              <li><a href="#autoridad">10. Autoridad de control</a></li>
-            </ol>
-          </nav>
-
-          <article class="legal-content">
-            <p class="legal-intro">
-              En cumplimiento de la <strong>Ley Estatutaria 1581 de 2012</strong> de Protección de Datos
-              Personales y el Decreto 1377 de 2013, <strong>Lúmina W SAS</strong>, responsable del
-              tratamiento de datos de la plataforma TerraCore, informa los derechos de los titulares y el
-              procedimiento para ejercerlos.
-            </p>
-
-            <section id="responsable">
-              <h2>1. Responsable del tratamiento</h2>
-              <div class="contact-block">
-                <p><strong>Lúmina W SAS</strong></p>
-                <p>Antioquia, Colombia</p>
-                <p>Correo electrónico: <a href="mailto:hola@terracoreapp.co">hola@terracoreapp.co</a></p>
-                <p>WhatsApp / Teléfono: <a href="https://wa.me/573108283088" target="_blank" rel="noopener">+57 310 828 3088</a></p>
-              </div>
-            </section>
-
-            <section id="datos-tratados">
-              <h2>2. Datos personales tratados</h2>
-              <p>Lúmina W trata las siguientes categorías de datos personales de sus usuarios:</p>
-              <ul>
-                <li>Nombre completo y razón social de la finca.</li>
-                <li>Correo electrónico y número de teléfono de contacto.</li>
-                <li>Información de facturación (en los planes de pago).</li>
-                <li>Registros operativos ingresados voluntariamente por el usuario (animales, producción, insumos, salud, finanzas).</li>
-                <li>Datos de uso del servicio (métricas anonimizadas).</li>
-              </ul>
-            </section>
-
-            <section id="finalidades">
-              <h2>3. Finalidades del tratamiento</h2>
-              <p>Los datos personales son tratados para:</p>
-              <ul>
-                <li>Prestar, administrar y mejorar los servicios de TerraCore.</li>
-                <li>Gestionar la relación contractual con el usuario.</li>
-                <li>Enviar comunicaciones relacionadas con el servicio (actualizaciones, alertas, soporte).</li>
-                <li>Cumplir con obligaciones legales y regulatorias vigentes en Colombia.</li>
-              </ul>
-            </section>
-
-            <section id="derechos">
-              <h2>4. Derechos del titular</h2>
-              <p>Conforme al artículo 8 de la Ley 1581 de 2012, usted como titular de los datos personales tiene los siguientes derechos:</p>
-              <ul>
-                <li><strong>Acceso:</strong> conocer los datos personales que se tienen sobre usted y cómo son utilizados.</li>
-                <li><strong>Actualización y rectificación:</strong> corregir datos incompletos, inexactos o desactualizados.</li>
-                <li><strong>Supresión:</strong> solicitar la eliminación de sus datos cuando no exista obligación legal de conservarlos ("derecho al olvido").</li>
-                <li><strong>Revocación del consentimiento:</strong> retirar la autorización otorgada para el tratamiento en cualquier momento.</li>
-                <li><strong>Prueba de autorización:</strong> solicitar copia de la autorización otorgada para el tratamiento de sus datos.</li>
-                <li><strong>Información sobre el uso:</strong> ser informado sobre las finalidades del tratamiento y los terceros con quienes se comparten sus datos.</li>
-                <li><strong>Queja ante la SIC:</strong> presentar quejas ante la Superintendencia de Industria y Comercio cuando considere que sus derechos han sido vulnerados.</li>
-              </ul>
-            </section>
-
-            <section id="como-ejercer">
-              <h2>5. Cómo ejercer sus derechos</h2>
-              <p>Para ejercer cualquiera de los derechos anteriores, envíe una solicitud a través de los siguientes canales:</p>
-              <div class="contact-block">
-                <p><strong>Correo electrónico:</strong> <a href="mailto:hola@terracoreapp.co">hola@terracoreapp.co</a></p>
-                <p><strong>WhatsApp / Teléfono:</strong> <a href="https://wa.me/573108283088" target="_blank" rel="noopener">+57 310 828 3088</a></p>
-              </div>
-              <p>La solicitud debe incluir:</p>
-              <ul>
-                <li>Nombre completo del titular.</li>
-                <li>Correo electrónico de la cuenta registrada en TerraCore.</li>
-                <li>Descripción clara del derecho que desea ejercer.</li>
-                <li>Documento de identidad (o poder notarial si actúa en nombre de un tercero).</li>
-              </ul>
-              <div class="plazos-block">
-                <div class="plazo-item">
-                  <span class="plazo-num">10</span>
-                  <div>
-                    <p class="plazo-label">días hábiles</p>
-                    <p class="plazo-desc">Plazo para atender consultas</p>
-                  </div>
-                </div>
-                <div class="plazo-item">
-                  <span class="plazo-num">15</span>
-                  <div>
-                    <p class="plazo-label">días hábiles</p>
-                    <p class="plazo-desc">Plazo para atender reclamaciones</p>
-                  </div>
-                </div>
-              </div>
-              <p>Plazos conforme al artículo 14 de la Ley 1581 de 2012.</p>
-            </section>
-
-            <section id="autorizacion">
-              <h2>6. Autorización del titular</h2>
-              <p>Al registrarse en TerraCore y aceptar los Términos y Condiciones, el usuario otorga su consentimiento libre, previo, expreso e informado para el tratamiento de sus datos personales conforme a esta política. La autorización puede ser revocada en cualquier momento siguiendo el procedimiento del numeral 5.</p>
-            </section>
-
-            <section id="seguridad">
-              <h2>7. Seguridad de los datos</h2>
-              <p>Lúmina W implementa medidas técnicas y organizativas apropiadas para proteger los datos personales contra acceso no autorizado, pérdida, alteración o divulgación, incluyendo:</p>
-              <ul>
-                <li>Cifrado TLS en tránsito.</li>
-                <li>Control de acceso por roles.</li>
-                <li>Auditorías periódicas de seguridad.</li>
-              </ul>
-              <p>Los datos se almacenan en servidores Hostinger VPS ubicados en Europa.</p>
-            </section>
-
-            <section id="transferencia">
-              <h2>8. Transferencia y transmisión de datos</h2>
-              <p>Los datos no son transferidos a terceros para fines comerciales. La transmisión a proveedores de infraestructura (Hostinger) se realiza bajo contratos de procesamiento de datos que garantizan niveles adecuados de protección, conforme al artículo 24 de la Ley 1581 de 2012.</p>
-            </section>
-
-            <section id="vigencia">
-              <h2>9. Vigencia de la política</h2>
-              <p>Esta política rige a partir de su publicación. Cualquier modificación será publicada en esta misma página y comunicada a los usuarios registrados por correo electrónico con al menos 15 días de anticipación.</p>
-            </section>
-
-            <section id="autoridad">
-              <h2>10. Autoridad de control</h2>
-              <p>Si considera que sus derechos no han sido atendidos satisfactoriamente por Lúmina W, puede presentar una queja ante la:</p>
-              <div class="contact-block">
-                <p><strong>Superintendencia de Industria y Comercio (SIC)</strong></p>
-                <p>Delegatura para la Protección de Datos Personales</p>
-                <p><a href="https://www.sic.gov.co" target="_blank" rel="noopener">www.sic.gov.co</a></p>
-              </div>
-            </section>
-
-            <div class="legal-links">
-              <a href="/terminos">Términos y Condiciones →</a>
-              <a href="/privacidad">Política de Privacidad →</a>
-            </div>
-          </article>
+  <!-- ── Hero ── -->
+  <section class="terms-hero">
+    <div class="container">
+      <span class="eyebrow"><span class="num">·</span><span class="dot"></span>Documento legal</span>
+      <h1>Política de <span class="em">Habeas Data</span>.</h1>
+      <p>
+        En cumplimiento de la Ley Estatutaria 1581 de 2012 te explicamos qué derechos tienes sobre tus
+        datos personales y cómo ejercerlos. Respondemos consultas en 10 días hábiles y reclamaciones en 15.
+      </p>
+      <div class="terms-meta">
+        <div class="item">
+          <div class="l">Última actualización</div>
+          <div class="v">06 de mayo de 2026</div>
+        </div>
+        <div class="item">
+          <div class="l">Marco legal</div>
+          <div class="v">Ley 1581 / Dto. 1377</div>
+        </div>
+        <div class="item">
+          <div class="l">Responsable</div>
+          <div class="v">Lúmina W S.A.S.</div>
+        </div>
+        <div class="item">
+          <div class="l">Consultas</div>
+          <div class="v">10 días hábiles</div>
         </div>
       </div>
     </div>
-  </main>
-</BaseLayout>
+  </section>
 
-<style>
-  .legal-hero {
-    background: var(--color-primary-active);
-    padding: 72px 0 56px;
-    color: #fff;
-  }
+  <!-- ── TL;DR ── -->
+  <section class="tldr-band">
+    <div class="container">
+      <div class="tldr-head">
+        <h2>Tus derechos, en resumen.</h2>
+        <p class="hint">
+          Este resumen facilita la lectura. En caso de duda prevalece el texto completo de las secciones
+          que siguen más abajo.
+        </p>
+      </div>
+      <div class="tldr-grid">
+        <div class="tldr-card">
+          <div class="card-icon"><Icon name="lucide:eye" width={18} height={18} /></div>
+          <h4>Derecho de acceso</h4>
+          <p>Conoce en cualquier momento qué datos personales tenemos sobre ti, cómo los usamos y a quién se los hemos compartido.</p>
+        </div>
+        <div class="tldr-card">
+          <div class="card-icon"><Icon name="lucide:edit-3" width={18} height={18} /></div>
+          <h4>Actualización y rectificación</h4>
+          <p>Corrige datos incompletos, inexactos o desactualizados. Tienes derecho a que tu información esté siempre correcta.</p>
+        </div>
+        <div class="tldr-card">
+          <div class="card-icon"><Icon name="lucide:trash-2" width={18} height={18} /></div>
+          <h4>Supresión</h4>
+          <p>Pide que eliminemos tus datos cuando no exista obligación legal de conservarlos ("derecho al olvido").</p>
+        </div>
+        <div class="tldr-card warn">
+          <div class="card-icon"><Icon name="lucide:x-circle" width={18} height={18} /></div>
+          <h4>Revocación del consentimiento</h4>
+          <p>Retira la autorización que otorgaste para el tratamiento de tus datos en cualquier momento, sin consecuencias contractuales.</p>
+        </div>
+        <div class="tldr-card">
+          <div class="card-icon"><Icon name="lucide:clock" width={18} height={18} /></div>
+          <h4>Respondemos rápido</h4>
+          <p>Consultas en 10 días hábiles. Reclamaciones en 15 días hábiles. Plazos conforme al artículo 14 de la Ley 1581 de 2012.</p>
+        </div>
+        <div class="tldr-card">
+          <div class="card-icon"><Icon name="lucide:building-2" width={18} height={18} /></div>
+          <h4>Puedes acudir a la SIC</h4>
+          <p>Si no obtienes respuesta satisfactoria, puedes presentar queja ante la Superintendencia de Industria y Comercio.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  .legal-eyebrow {
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.5);
-    margin-bottom: 14px;
-  }
+  <!-- ── Cuerpo ── -->
+  <section class="terms-body">
+    <div class="container">
+      <div class="terms-layout">
+        <!-- TOC -->
+        <nav class="toc" aria-label="Índice del documento">
+          <div class="toc-label">Contenido</div>
+          <ol>
+            <li><a href="#h1">Responsable del tratamiento</a></li>
+            <li><a href="#h2">Datos personales tratados</a></li>
+            <li><a href="#h3">Finalidades del tratamiento</a></li>
+            <li><a href="#h4">Derechos del titular</a></li>
+            <li><a href="#h5">Cómo ejercer tus derechos</a></li>
+            <li><a href="#h6">Plazos de respuesta</a></li>
+            <li><a href="#h7">Autorización del titular</a></li>
+            <li><a href="#h8">Seguridad de los datos</a></li>
+            <li><a href="#h9">Transferencia y transmisión</a></li>
+            <li><a href="#h10">Vigencia de la política</a></li>
+            <li><a href="#h11">Autoridad de control</a></li>
+          </ol>
+        </nav>
 
-  .legal-title {
-    font-family: var(--font-display);
-    font-size: clamp(32px, 5vw, 52px);
-    font-weight: 700;
-    letter-spacing: -0.025em;
-    line-height: 1;
-    margin-bottom: 14px;
-  }
+        <!-- Document -->
+        <article class="doc">
 
-  .legal-meta {
-    font-size: 14px;
-    color: rgba(255, 255, 255, 0.45);
-  }
+          <section id="h1" class="doc-section">
+            <span class="num">01 · Responsable</span>
+            <h2>Responsable del tratamiento</h2>
+            <p class="intro">
+              En cumplimiento de la Ley Estatutaria 1581 de 2012 y el Decreto 1377 de 2013, el Responsable
+              del tratamiento de datos personales de la plataforma TerraCore es:
+            </p>
+            <div class="def-block">
+              <dl>
+                <div>
+                  <dt>Razón social <span class="doc-tag">responsable</span></dt>
+                  <dd>Lúmina W S.A.S.</dd>
+                </div>
+                <div>
+                  <dt>Domicilio</dt>
+                  <dd>Medellín, Antioquia, Colombia.</dd>
+                </div>
+                <div>
+                  <dt>Correo electrónico</dt>
+                  <dd><a class="tc-link" href={`mailto:${email}`}>{email}</a></dd>
+                </div>
+                <div>
+                  <dt>WhatsApp / Teléfono</dt>
+                  <dd><a class="tc-link" href={whatsapp} target="_blank" rel="noopener">+57 310 828 3088</a></dd>
+                </div>
+              </dl>
+            </div>
+          </section>
 
-  .legal-body {
-    padding: 64px 0 96px;
-    background: var(--color-bg);
-  }
+          <section id="h2" class="doc-section">
+            <span class="num">02 · Datos tratados</span>
+            <h2>Datos personales tratados</h2>
+            <p class="intro">
+              Lúmina W trata las siguientes categorías de datos personales:
+            </p>
+            <ul>
+              <li>Nombre completo y razón social de la finca u organización.</li>
+              <li>Correo electrónico y número de teléfono de contacto.</li>
+              <li>Información de facturación en los planes de pago.</li>
+              <li>Registros operativos ingresados voluntariamente: animales, producción, insumos, salud animal y finanzas.</li>
+              <li>Datos de uso del servicio (métricas anonimizadas vía GA4).</li>
+              <li>Datos técnicos: dirección IP, navegador, sistema operativo (para soporte).</li>
+            </ul>
+          </section>
 
-  .legal-layout {
-    display: grid;
-    grid-template-columns: 220px 1fr;
-    gap: 48px;
-    align-items: start;
-  }
+          <section id="h3" class="doc-section">
+            <span class="num">03 · Finalidades</span>
+            <h2>Finalidades del tratamiento</h2>
+            <p>Los datos personales son tratados exclusivamente para:</p>
+            <ol class="sub">
+              <li>Prestar, administrar y mejorar los servicios de TerraCore.</li>
+              <li>Gestionar la relación contractual con el Cliente.</li>
+              <li>Enviar comunicaciones relacionadas con el servicio (actualizaciones, alertas de seguridad, soporte).</li>
+              <li>Cumplir con obligaciones legales, regulatorias y tributarias vigentes en Colombia.</li>
+            </ol>
+            <p>No se utilizan los datos para publicidad de terceros ni para entrenar modelos de inteligencia artificial ajenos al servicio.</p>
+          </section>
 
-  @media (max-width: 880px) {
-    .legal-layout {
-      grid-template-columns: 1fr;
-      gap: 28px;
-    }
-  }
+          <section id="h4" class="doc-section">
+            <span class="num">04 · Derechos del titular</span>
+            <h2>Derechos del titular</h2>
+            <p class="intro">
+              Conforme al artículo 8 de la Ley 1581 de 2012, como titular de datos personales tienes los
+              siguientes derechos:
+            </p>
+            <div class="def-block">
+              <dl>
+                <div>
+                  <dt>Acceso <span class="doc-tag">art. 8.a</span></dt>
+                  <dd>Conocer los datos personales que tenemos sobre ti, cómo los procesamos y a quiénes los hemos transmitido.</dd>
+                </div>
+                <div>
+                  <dt>Actualización y rectificación <span class="doc-tag">art. 8.b</span></dt>
+                  <dd>Corregir datos incompletos, inexactos o desactualizados en cualquier momento.</dd>
+                </div>
+                <div>
+                  <dt>Supresión <span class="doc-tag">art. 8.c</span></dt>
+                  <dd>Solicitar la eliminación de tus datos cuando no exista obligación legal de conservarlos. Aplica siempre que no interfiera con el servicio contratado.</dd>
+                </div>
+                <div>
+                  <dt>Revocación del consentimiento <span class="doc-tag">art. 8.d</span></dt>
+                  <dd>Retirar la autorización otorgada para el tratamiento de datos en cualquier momento. La revocación puede implicar la imposibilidad de continuar usando el servicio.</dd>
+                </div>
+                <div>
+                  <dt>Prueba de autorización <span class="doc-tag">art. 8.e</span></dt>
+                  <dd>Solicitar copia de la autorización que otorgaste para el tratamiento de tus datos.</dd>
+                </div>
+                <div>
+                  <dt>Información sobre el uso <span class="doc-tag">art. 8.f</span></dt>
+                  <dd>Ser informado sobre las finalidades del tratamiento y los terceros con quienes hemos compartido tus datos.</dd>
+                </div>
+                <div>
+                  <dt>Queja ante la SIC <span class="doc-tag">art. 8.g</span></dt>
+                  <dd>Presentar queja ante la Superintendencia de Industria y Comercio si consideras que tus derechos han sido vulnerados.</dd>
+                </div>
+              </dl>
+            </div>
+          </section>
 
-  .legal-toc {
-    position: sticky;
-    top: 24px;
-    background: var(--color-surface);
-    border: 1px solid var(--color-border);
-    border-radius: 12px;
-    padding: 22px 20px;
-  }
+          <section id="h5" class="doc-section">
+            <span class="num">05 · Cómo ejercer tus derechos</span>
+            <h2>Cómo ejercer tus derechos</h2>
+            <p class="intro">
+              Para ejercer cualquiera de los derechos anteriores, envíanos una solicitud a través de los
+              siguientes canales:
+            </p>
+            <div class="def-block">
+              <dl>
+                <div>
+                  <dt>Correo electrónico <span class="doc-tag">recomendado</span></dt>
+                  <dd><a class="tc-link" href={`mailto:${email}`}>{email}</a></dd>
+                </div>
+                <div>
+                  <dt>WhatsApp / Teléfono</dt>
+                  <dd><a class="tc-link" href={whatsapp} target="_blank" rel="noopener">+57 310 828 3088</a></dd>
+                </div>
+              </dl>
+            </div>
+            <h3>5.1. Información que debes incluir</h3>
+            <ul>
+              <li>Nombre completo del titular.</li>
+              <li>Correo electrónico de la cuenta registrada en TerraCore.</li>
+              <li>Descripción clara del derecho que deseas ejercer.</li>
+              <li>Copia del documento de identidad (o poder notarial si actúas en nombre de un tercero).</li>
+            </ul>
+            <div class="doc-callout">
+              <div class="callout-icon"><Icon name="lucide:alert-triangle" width={18} height={18} /></div>
+              <div>
+                <div class="callout-label">Importante</div>
+                <p>La solicitud debe provenir del correo electrónico registrado en tu cuenta o ir acompañada de prueba de identidad suficiente, para proteger la seguridad de tu información.</p>
+              </div>
+            </div>
+          </section>
 
-  .toc-label {
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--color-text-muted);
-    margin-bottom: 12px;
-  }
+          <section id="h6" class="doc-section">
+            <span class="num">06 · Plazos de respuesta</span>
+            <h2>Plazos de respuesta</h2>
+            <p class="intro">
+              Conforme al artículo 14 de la Ley 1581 de 2012, los plazos máximos de atención son:
+            </p>
+            <div class="def-block">
+              <dl>
+                <div>
+                  <dt>Consultas <span class="doc-tag">art. 14.1</span></dt>
+                  <dd>Máximo <strong>10 días hábiles</strong> contados desde la fecha de recibo de la solicitud. Si no es posible responder dentro de ese plazo, te informaremos los motivos y la fecha estimada de respuesta, que no podrá superar los 5 días hábiles adicionales.</dd>
+                </div>
+                <div>
+                  <dt>Reclamaciones <span class="doc-tag">art. 14.2</span></dt>
+                  <dd>Máximo <strong>15 días hábiles</strong> contados desde el día siguiente al recibo de la reclamación. Si no es posible atenderla dentro de ese término, te informaremos los motivos y la nueva fecha, que no podrá exceder los 8 días hábiles adicionales.</dd>
+                </div>
+              </dl>
+            </div>
+          </section>
 
-  .toc-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-  }
+          <section id="h7" class="doc-section">
+            <span class="num">07 · Autorización</span>
+            <h2>Autorización del titular</h2>
+            <p>
+              Al registrarte en TerraCore y aceptar los <a class="tc-link" href="/terminos">Términos y Condiciones</a>,
+              otorgas tu consentimiento libre, previo, expreso e informado para el tratamiento de tus datos
+              personales conforme a esta política.
+            </p>
+            <p>
+              Esta autorización puede ser revocada en cualquier momento siguiendo el procedimiento descrito
+              en la sección 5. La revocación podrá implicar la imposibilidad de continuar accediendo a
+              determinadas funcionalidades o al servicio en su conjunto.
+            </p>
+          </section>
 
-  .toc-list li a {
-    font-size: 13px;
-    color: var(--color-text-secondary);
-    text-decoration: none;
-    transition: color var(--dur-fast) var(--ease-standard);
-    display: block;
-    padding: 3px 0;
-    line-height: 1.4;
-  }
+          <section id="h8" class="doc-section">
+            <span class="num">08 · Seguridad</span>
+            <h2>Seguridad de los datos</h2>
+            <p>
+              Implementamos medidas técnicas y organizativas apropiadas para proteger los datos personales
+              contra acceso no autorizado, pérdida, alteración o divulgación indebida:
+            </p>
+            <ul>
+              <li>Cifrado TLS en tránsito.</li>
+              <li>Control de acceso basado en roles con principio de mínimo privilegio.</li>
+              <li>Auditorías periódicas de seguridad.</li>
+            </ul>
+            <p>
+              Los datos se almacenan en servidores <strong>Hostinger VPS</strong> ubicados en Europa, con
+              políticas de seguridad que cumplen los estándares GDPR y equivalentes.
+            </p>
+          </section>
 
-  .toc-list li a:hover {
-    color: var(--color-primary);
-  }
+          <section id="h9" class="doc-section">
+            <span class="num">09 · Transferencia</span>
+            <h2>Transferencia y transmisión de datos</h2>
+            <p>
+              Los datos personales no son transferidos a terceros para fines comerciales propios de Lúmina W.
+            </p>
+            <p>
+              La transmisión a proveedores de infraestructura (Hostinger) se realiza bajo contratos de
+              procesamiento de datos que imponen las mismas obligaciones de protección aplicables en
+              Colombia, conforme al artículo 24 de la Ley 1581 de 2012.
+            </p>
+          </section>
 
-  .legal-content {
-    background: var(--color-surface);
-    border: 1px solid var(--color-border);
-    border-radius: 14px;
-    padding: 48px 52px;
-  }
+          <section id="h10" class="doc-section">
+            <span class="num">10 · Vigencia</span>
+            <h2>Vigencia de la política</h2>
+            <p>
+              Esta política rige a partir de su publicación. Cualquier modificación será publicada en esta
+              misma página y comunicada a los usuarios registrados por correo electrónico con al menos
+              <strong>15 días de anticipación</strong> a su entrada en vigor.
+            </p>
+          </section>
 
-  @media (max-width: 600px) {
-    .legal-content {
-      padding: 28px 20px;
-    }
-  }
+          <section id="h11" class="doc-section">
+            <span class="num">11 · Autoridad de control</span>
+            <h2>Autoridad de control</h2>
+            <p class="intro">
+              Si consideras que tus derechos no han sido atendidos satisfactoriamente por Lúmina W,
+              puedes presentar una queja ante la autoridad competente:
+            </p>
+            <div class="def-block">
+              <dl>
+                <div>
+                  <dt>Superintendencia de Industria y Comercio <span class="doc-tag">SIC</span></dt>
+                  <dd>Delegatura para la Protección de Datos Personales. Cra. 13 # 27-00, Bogotá, Colombia.</dd>
+                </div>
+                <div>
+                  <dt>Sitio web</dt>
+                  <dd><a class="tc-link" href="https://www.sic.gov.co" target="_blank" rel="noopener">www.sic.gov.co</a></dd>
+                </div>
+              </dl>
+            </div>
+            <p>
+              Te recomendamos intentar primero resolver la solicitud directamente con nosotros a través de
+              los canales de la sección 5, antes de acudir a la SIC.
+            </p>
 
-  .legal-intro {
-    font-size: 16px;
-    line-height: 26px;
-    color: var(--color-text-secondary);
-    border-left: 3px solid var(--color-accent);
-    padding-left: 18px;
-    margin-bottom: 40px;
-  }
+            <div class="doc-foot">
+              <div>
+                <div class="l">Documento vigente</div>
+                <div class="v">Publicado el 06 de mayo de 2026 · Ley 1581 de 2012</div>
+              </div>
+              <div class="links">
+                <a href="/terminos"><Icon name="lucide:file-text" width={14} height={14} /> Términos</a>
+                <a href="/privacidad"><Icon name="lucide:lock" width={14} height={14} /> Privacidad</a>
+              </div>
+            </div>
+          </section>
 
-  .legal-content section {
-    margin-bottom: 36px;
-    padding-bottom: 36px;
-    border-bottom: 1px solid var(--color-border);
-  }
-
-  .legal-content section:last-of-type {
-    border-bottom: none;
-    margin-bottom: 32px;
-    padding-bottom: 0;
-  }
-
-  .legal-content h2 {
-    font-family: var(--font-display);
-    font-size: 18px;
-    font-weight: 700;
-    color: var(--color-text);
-    letter-spacing: -0.01em;
-    margin-bottom: 14px;
-    scroll-margin-top: 80px;
-  }
-
-  .legal-content p {
-    font-size: 15px;
-    line-height: 24px;
-    color: var(--color-text-secondary);
-    margin-bottom: 12px;
-  }
-
-  .legal-content p:last-child {
-    margin-bottom: 0;
-  }
-
-  .legal-content ul {
-    margin: 10px 0 12px 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 7px;
-  }
-
-  .legal-content li {
-    font-size: 15px;
-    line-height: 23px;
-    color: var(--color-text-secondary);
-  }
-
-  .legal-content a {
-    color: var(--color-text-link);
-    text-decoration: underline;
-    text-underline-offset: 2px;
-  }
-
-  .legal-content a:hover {
-    color: var(--color-text-link-hover);
-  }
-
-  .legal-content strong {
-    color: var(--color-text);
-    font-weight: 600;
-  }
-
-  .contact-block {
-    background: var(--color-surface-sunken);
-    border: 1px solid var(--color-border);
-    border-radius: 10px;
-    padding: 18px 22px;
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    margin-top: 10px;
-    margin-bottom: 12px;
-  }
-
-  .contact-block p {
-    margin: 0;
-    font-size: 14px;
-    line-height: 21px;
-  }
-
-  /* Response time callout */
-  .plazos-block {
-    display: flex;
-    gap: 20px;
-    margin: 18px 0;
-    flex-wrap: wrap;
-  }
-
-  .plazo-item {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    background: var(--color-surface-sunken);
-    border: 1px solid var(--color-border);
-    border-radius: 10px;
-    padding: 16px 20px;
-    flex: 1;
-    min-width: 160px;
-  }
-
-  .plazo-num {
-    font-family: var(--font-display);
-    font-size: 36px;
-    font-weight: 700;
-    color: var(--color-primary);
-    line-height: 1;
-    flex-shrink: 0;
-  }
-
-  .plazo-label {
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--color-text);
-    margin: 0 0 2px;
-  }
-
-  .plazo-desc {
-    font-size: 12px;
-    color: var(--color-text-muted);
-    margin: 0;
-    line-height: 1.4;
-  }
-
-  .legal-links {
-    display: flex;
-    gap: 24px;
-    flex-wrap: wrap;
-    padding-top: 28px;
-    border-top: 1px solid var(--color-border);
-  }
-
-  .legal-links a {
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--color-text-link);
-    text-decoration: none;
-    transition: color var(--dur-fast) var(--ease-standard);
-  }
-
-  .legal-links a:hover {
-    color: var(--color-text-link-hover);
-  }
-</style>
+        </article>
+      </div>
+    </div>
+  </section>
+</LegalLayout>
