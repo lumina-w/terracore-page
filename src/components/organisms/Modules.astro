@@ -81,10 +81,12 @@ const modules = [
       <div class="bento-tile bento-tile--featured">
         <span class="bento-tile__num">01 / 06</span>
         <div>
-          <div class="bento-tile__icon-sq">
-            <Icon name="lucide:layout-dashboard" width={22} height={22} />
+          <div class="bento-tile__header">
+            <div class="bento-tile__icon-sq">
+              <Icon name="lucide:layout-dashboard" width={22} height={22} />
+            </div>
+            <h3 class="bento-tile__name">Dashboard</h3>
           </div>
-          <h3 class="bento-tile__name">Dashboard</h3>
           <p class="bento-tile__desc">
             KPIs en tiempo real: animales activos, producción mensual, insumos, alertas y ingresos
             estimados. La foto completa de tu finca, en un vistazo.
@@ -92,34 +94,52 @@ const modules = [
         </div>
         <div class="demo-mini">
           <div class="demo-mini__stat">
-            <div class="demo-mini__label">Animales activos</div>
-            <div class="demo-mini__val">88</div>
-            <div class="demo-mini__sub">en finca</div>
+            <Icon name="lucide:paw-print" width={32} height={32} class="kpi-icon" />
+            <div class="demo-mini__text">
+              <div class="demo-mini__val">88</div>
+              <div class="demo-mini__label">Animales activos</div>
+              <div class="demo-mini__sub">en finca</div>
+            </div>
           </div>
           <div class="demo-mini__stat">
-            <div class="demo-mini__label">Producción mensual</div>
-            <div class="demo-mini__val">3.202</div>
-            <div class="demo-mini__sub">unidades este mes</div>
+            <Icon name="lucide:droplets" width={32} height={32} class="kpi-icon" />
+            <div class="demo-mini__text">
+              <div class="demo-mini__val">3.202</div>
+              <div class="demo-mini__label">Producción mensual</div>
+              <div class="demo-mini__sub">unidades este mes</div>
+            </div>
           </div>
           <div class="demo-mini__stat">
-            <div class="demo-mini__label">Insumos disponibles</div>
-            <div class="demo-mini__val">9.274</div>
-            <div class="demo-mini__sub">en stock total</div>
+            <Icon name="lucide:package" width={32} height={32} class="kpi-icon" />
+            <div class="demo-mini__text">
+              <div class="demo-mini__val">9.274</div>
+              <div class="demo-mini__label">Insumos disponibles</div>
+              <div class="demo-mini__sub">en stock total</div>
+            </div>
           </div>
           <div class="demo-mini__stat">
-            <div class="demo-mini__label">Alertas stock bajo</div>
-            <div class="demo-mini__val demo-mini__val--accent">6</div>
-            <div class="demo-mini__sub">requieren atención</div>
+            <Icon name="lucide:alert-triangle" width={32} height={32} class="kpi-icon kpi-icon--accent" />
+            <div class="demo-mini__text">
+              <div class="demo-mini__val demo-mini__val--accent">6</div>
+              <div class="demo-mini__label">Alertas stock bajo</div>
+              <div class="demo-mini__sub">requieren atención</div>
+            </div>
           </div>
           <div class="demo-mini__stat">
-            <div class="demo-mini__label">Nuevos este mes</div>
-            <div class="demo-mini__val">12</div>
-            <div class="demo-mini__sub">animales registrados</div>
+            <Icon name="lucide:plus-circle" width={32} height={32} class="kpi-icon" />
+            <div class="demo-mini__text">
+              <div class="demo-mini__val">12</div>
+              <div class="demo-mini__label">Nuevos este mes</div>
+              <div class="demo-mini__sub">animales registrados</div>
+            </div>
           </div>
           <div class="demo-mini__stat">
-            <div class="demo-mini__label">Ingresos estimados</div>
-            <div class="demo-mini__val">$3.431.200</div>
-            <div class="demo-mini__sub">este mes</div>
+            <Icon name="lucide:banknote" width={32} height={32} class="kpi-icon kpi-icon--accent" />
+            <div class="demo-mini__text">
+              <div class="demo-mini__val">$3.431.200</div>
+              <div class="demo-mini__label">Ingresos estimados</div>
+              <div class="demo-mini__sub">COP · este mes</div>
+            </div>
           </div>
         </div>
       </div>
@@ -130,10 +150,12 @@ const modules = [
           <div class="bento-tile">
             <span class="bento-tile__num">{m.num} / 06</span>
             <div>
-              <div class="bento-tile__icon-sq">
-                <Icon name={m.icon} width={22} height={22} />
+              <div class="bento-tile__header">
+                <div class="bento-tile__icon-sq">
+                  <Icon name={m.icon} width={22} height={22} />
+                </div>
+                <h3 class="bento-tile__name">{m.name}</h3>
               </div>
-              <h3 class="bento-tile__name">{m.name}</h3>
               <p class="bento-tile__desc">{m.desc}</p>
             </div>
             <div class="bento-preview">
@@ -226,6 +248,13 @@ const modules = [
     font-weight: 500;
   }
 
+  .bento-tile__header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
   .bento-tile__icon-sq {
     width: 44px;
     height: 44px;
@@ -235,7 +264,7 @@ const modules = [
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 24px;
+    flex-shrink: 0;
   }
 
   .bento-tile__name {
@@ -296,14 +325,35 @@ const modules = [
     background: rgba(255, 255, 255, 0.04);
     border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: 10px;
-    padding: 16px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px 16px;
+    justify-content: center;
   }
   .demo-mini__stat {
-    border-left: 2px solid var(--color-accent);
-    padding-left: 10px;
+    flex: 1 1 calc(33.33% - 32px);
+    min-width: 140px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+  }
+  .demo-mini__text {
+    display: flex;
+    flex-direction: column;
+  }
+  @media (max-width: 520px) {
+    .demo-mini__stat {
+      flex: 1 1 100%;
+    }
+  }
+  .kpi-icon {
+    flex-shrink: 0;
+    color: rgba(255, 255, 255, 0.7);
+  }
+  .kpi-icon--accent {
+    color: var(--color-accent);
   }
   .demo-mini__label {
     font-size: 10px;
