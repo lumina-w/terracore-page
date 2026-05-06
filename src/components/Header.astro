@@ -1,6 +1,8 @@
 ---
 import Brand from '@molecules/Brand.astro';
 import { Icon } from 'astro-icon/components';
+
+const ctaUrl = import.meta.env.MAIN_CTA_URL ?? 'https://calendly.com/wavival/30min';
 ---
 
 <header class="nav">
@@ -26,7 +28,9 @@ import { Icon } from 'astro-icon/components';
         <Icon name="lucide:log-in" width={16} height={16} />
       </a>
       <a
-        href="#demo"
+        href={ctaUrl}
+        target="_blank"
+        rel="noopener noreferrer"
         class="btn btn-primary nav-demo"
         onclick="window.trackEvent?.('click_cta_header')"
       >

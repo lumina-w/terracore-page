@@ -2,6 +2,8 @@
 import Eyebrow from '@atoms/Eyebrow.astro';
 import { Icon } from 'astro-icon/components';
 
+const ctaUrl = import.meta.env.MAIN_CTA_URL ?? 'https://calendly.com/wavival/30min';
+
 const plans = [
   {
     name: 'Semilla',
@@ -137,7 +139,9 @@ const plans = [
               </div>
             ) : (
               <a
-                href="#demo"
+                href={ctaUrl}
+                target="_blank"
+                rel="noopener noreferrer"
                 class:list={['btn', p.featured ? 'btn-accent' : 'btn-ghost', 'plan-cta']}
               >
                 {p.cta}
