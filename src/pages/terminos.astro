@@ -1,0 +1,101 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Términos y Condiciones | TerraCore" description="Términos y condiciones de uso de TerraCore, plataforma de gestión agroindustrial.">
+  <div class="legal-page">
+    <div class="container">
+      <h1 class="legal-title">Términos y Condiciones de Uso</h1>
+      <p class="legal-updated">Última actualización: mayo de 2026</p>
+
+      <div class="legal-body">
+        <h2>1. Aceptación de los términos</h2>
+        <p>Al acceder y utilizar TerraCore, usted acepta quedar vinculado por estos Términos y Condiciones. Si no está de acuerdo con alguna parte de estos términos, no podrá acceder al servicio.</p>
+
+        <h2>2. Descripción del servicio</h2>
+        <p>TerraCore es una plataforma de gestión agroindustrial desarrollada por Lúmina W SAS, diseñada para fincas medianas en Colombia. El servicio permite gestionar animales, insumos, producción, salud animal, herramientas y finanzas operativas.</p>
+
+        <h2>3. Uso aceptable</h2>
+        <p>Usted se compromete a utilizar TerraCore únicamente para fines lícitos relacionados con la gestión de su operación agroindustrial. Está prohibido:</p>
+        <ul>
+          <li>Compartir credenciales de acceso con terceros no autorizados.</li>
+          <li>Intentar acceder a datos de otros usuarios o clientes.</li>
+          <li>Realizar ingeniería inversa, descompilar o modificar el software.</li>
+          <li>Usar el servicio para actividades fraudulentas o ilegales.</li>
+        </ul>
+
+        <h2>4. Cuentas de usuario</h2>
+        <p>Usted es responsable de mantener la confidencialidad de sus credenciales de acceso y de todas las actividades que ocurran bajo su cuenta. Notifique inmediatamente a <a href="mailto:hola@terracoreapp.co">hola@terracoreapp.co</a> ante cualquier uso no autorizado.</p>
+
+        <h2>5. Propiedad intelectual</h2>
+        <p>TerraCore y todos sus contenidos, características y funcionalidades son propiedad exclusiva de Lúmina W SAS y están protegidos por las leyes de propiedad intelectual de Colombia. Usted recibe una licencia limitada, no exclusiva e intransferible para usar el servicio.</p>
+
+        <h2>6. Datos del cliente</h2>
+        <p>Los datos que usted ingresa en TerraCore (animales, registros, inventarios, finanzas) son de su propiedad. Lúmina W no venderá ni transferirá sus datos a terceros sin su consentimiento expreso. Consulte nuestra <a href="/privacidad">Política de Privacidad</a> para más detalles.</p>
+
+        <h2>7. Disponibilidad del servicio</h2>
+        <p>TerraCore se presta bajo un modelo SaaS alojado en servidores Hostinger VPS en Europa. Nos esforzamos por mantener una disponibilidad del 99,5%, pero no garantizamos un servicio ininterrumpido. Las interrupciones programadas para mantenimiento serán comunicadas con antelación.</p>
+
+        <h2>8. Planes y pagos</h2>
+        <p>Los precios y condiciones de cada plan están descritos en la página de precios. Los planes se facturan según el período seleccionado. El incumplimiento de pago puede resultar en la suspensión temporal del acceso.</p>
+
+        <h2>9. Limitación de responsabilidad</h2>
+        <p>Lúmina W no será responsable por daños indirectos, incidentales, especiales o consecuentes derivados del uso o la imposibilidad de uso del servicio. La responsabilidad máxima de Lúmina W en cualquier caso estará limitada al monto pagado por el usuario en los últimos tres (3) meses.</p>
+
+        <h2>10. Terminación</h2>
+        <p>Cualquiera de las partes puede terminar el servicio en cualquier momento. Tras la terminación, usted podrá solicitar la exportación de sus datos dentro de los 30 días siguientes. Pasado ese plazo, los datos podrán ser eliminados.</p>
+
+        <h2>11. Cambios en los términos</h2>
+        <p>Nos reservamos el derecho de modificar estos términos en cualquier momento. Los cambios materiales serán notificados por correo electrónico con al menos 15 días de anticipación.</p>
+
+        <h2>12. Ley aplicable</h2>
+        <p>Estos términos se rigen por las leyes de la República de Colombia. Cualquier disputa será resuelta ante los tribunales competentes del municipio de Medellín, Antioquia.</p>
+
+        <h2>13. Contacto</h2>
+        <p>Para preguntas sobre estos términos, contáctenos en <a href="mailto:hola@terracoreapp.co">hola@terracoreapp.co</a> o al <a href="tel:+573108283088">+57 310 828 3088</a>.</p>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .legal-page {
+    padding: 80px 0 120px;
+    min-height: 70vh;
+  }
+  .legal-title {
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 700;
+    color: var(--color-primary);
+    margin-bottom: 8px;
+  }
+  .legal-updated {
+    font-size: 14px;
+    color: var(--color-text-muted);
+    margin-bottom: 48px;
+  }
+  .legal-body {
+    max-width: 720px;
+    line-height: 1.75;
+    color: var(--color-text-secondary);
+  }
+  .legal-body h2 {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--color-primary);
+    margin: 40px 0 12px;
+  }
+  .legal-body p,
+  .legal-body li {
+    font-size: 15px;
+    margin-bottom: 12px;
+  }
+  .legal-body ul {
+    padding-left: 20px;
+    margin-bottom: 12px;
+  }
+  .legal-body a {
+    color: var(--color-accent);
+    text-decoration: underline;
+  }
+</style>

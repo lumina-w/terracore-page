@@ -9,7 +9,9 @@ const ctaUrl = import.meta.env.MAIN_CTA_URL ?? 'https://calendly.com/wavival/30m
     <div class="foot-grid">
       <!-- Brand col -->
       <div>
-        <Brand mono size={32} />
+        <div class="foot-logo-circle">
+          <Brand mono size={28} />
+        </div>
         <p class="foot-tagline">
           Plataforma de gestión agroindustrial diseñada para el campo colombiano. Hecha por Lúmina
           W.
@@ -41,17 +43,17 @@ const ctaUrl = import.meta.env.MAIN_CTA_URL ?? 'https://calendly.com/wavival/30m
         <h5 class="foot-col-title">Contacto</h5>
         <ul class="foot-links foot-links--contact">
           <li>
-            <Icon name="lucide:mail" width={14} height={14} />
+            <Icon name="lucide:mail" width={20} height={20} />
             <a href="mailto:hola@terracoreapp.co">hola@terracoreapp.co</a>
           </li>
           <li>
-            <Icon name="lucide:phone" width={14} height={14} />
+            <Icon name="lucide:phone" width={20} height={20} />
             <a href="tel:+573108283088">+57 310 828 3088</a>
           </li>
           <li>
             <svg
-              width={14}
-              height={14}
+              width={20}
+              height={20}
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
@@ -66,19 +68,25 @@ const ctaUrl = import.meta.env.MAIN_CTA_URL ?? 'https://calendly.com/wavival/30m
             <a href="https://wa.me/573108283088" target="_blank" rel="noopener">WhatsApp</a>
           </li>
           <li>
-            <Icon name="lucide:map-pin" width={14} height={14} />
+            <Icon name="lucide:map-pin" width={20} height={20} />
             Antioquia, Colombia
           </li>
         </ul>
       </div>
     </div>
 
+    <!-- CTA strip -->
+    <div class="foot-cta">
+      <p class="foot-cta-text">¿Listo para ordenar tu operación?</p>
+      <a href={ctaUrl} class="foot-cta-btn" target="_blank" rel="noopener">Agendar demo</a>
+    </div>
+
     <div class="foot-bottom">
       <span>© 2026 TerraCore · Lúmina W. Todos los derechos reservados.</span>
       <span class="foot-legal">
-        <a href="#">Términos</a>
-        <a href="#">Privacidad</a>
-        <a href="#">Habeas Data</a>
+        <a href="/terminos">Términos</a>
+        <a href="/privacidad">Privacidad</a>
+        <a href="/habeas-data">Habeas Data</a>
       </span>
     </div>
   </div>
@@ -107,6 +115,17 @@ const ctaUrl = import.meta.env.MAIN_CTA_URL ?? 'https://calendly.com/wavival/30m
     .foot-grid {
       grid-template-columns: 1fr;
     }
+  }
+
+  .foot-logo-circle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.12);
   }
 
   .foot-tagline {

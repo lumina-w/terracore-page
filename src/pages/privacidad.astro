@@ -1,0 +1,125 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Política de Privacidad | TerraCore" description="Política de privacidad y tratamiento de datos personales de TerraCore.">
+  <div class="legal-page">
+    <div class="container">
+      <h1 class="legal-title">Política de Privacidad</h1>
+      <p class="legal-updated">Última actualización: mayo de 2026</p>
+
+      <div class="legal-body">
+        <p>En TerraCore (operado por Lúmina W SAS) nos tomamos en serio la privacidad de nuestros usuarios. Esta política describe cómo recolectamos, usamos y protegemos su información.</p>
+
+        <h2>1. Responsable del tratamiento</h2>
+        <p><strong>Lúmina W SAS</strong><br />
+        Antioquia, Colombia<br />
+        Correo: <a href="mailto:hola@terracoreapp.co">hola@terracoreapp.co</a><br />
+        Teléfono: <a href="tel:+573108283088">+57 310 828 3088</a></p>
+
+        <h2>2. Datos que recolectamos</h2>
+        <p>Recolectamos únicamente la información necesaria para prestar el servicio:</p>
+        <ul>
+          <li><strong>Datos de cuenta:</strong> nombre, correo electrónico, número de teléfono, nombre de la finca.</li>
+          <li><strong>Datos operativos:</strong> registros de animales, producción, insumos, salud animal y finanzas que usted ingresa.</li>
+          <li><strong>Datos de uso:</strong> páginas visitadas, funciones utilizadas y métricas de rendimiento (anonimizadas).</li>
+          <li><strong>Datos técnicos:</strong> dirección IP, tipo de navegador, sistema operativo (para soporte técnico).</li>
+        </ul>
+
+        <h2>3. Finalidad del tratamiento</h2>
+        <p>Usamos sus datos para:</p>
+        <ul>
+          <li>Prestar y mejorar el servicio TerraCore.</li>
+          <li>Enviar notificaciones relacionadas con su cuenta o el servicio.</li>
+          <li>Brindar soporte técnico y atención al cliente.</li>
+          <li>Cumplir obligaciones legales y regulatorias.</li>
+        </ul>
+        <p>No usamos sus datos para publicidad de terceros ni los vendemos a ningún tercero.</p>
+
+        <h2>4. Base legal</h2>
+        <p>El tratamiento de datos se realiza con base en: (a) la ejecución del contrato de servicio, (b) el consentimiento informado del titular, y (c) el cumplimiento de obligaciones legales, de acuerdo con la Ley 1581 de 2012 y el Decreto 1377 de 2013.</p>
+
+        <h2>5. Almacenamiento y seguridad</h2>
+        <p>Los datos se almacenan en servidores Hostinger VPS ubicados en Europa, que cumplen con estándares de seguridad de la industria. Implementamos cifrado en tránsito (TLS) y en reposo, control de acceso por roles y auditorías periódicas de seguridad.</p>
+
+        <h2>6. Compartición de datos</h2>
+        <p>Solo compartimos datos con terceros en los siguientes casos:</p>
+        <ul>
+          <li><strong>Proveedores de infraestructura:</strong> Hostinger (alojamiento), necesarios para la operación del servicio.</li>
+          <li><strong>Obligación legal:</strong> cuando una autoridad competente lo requiera mediante orden judicial.</li>
+        </ul>
+
+        <h2>7. Transferencias internacionales</h2>
+        <p>Sus datos se almacenan en servidores ubicados en la Unión Europea, que ofrece un nivel adecuado de protección de datos reconocido internacionalmente.</p>
+
+        <h2>8. Retención de datos</h2>
+        <p>Conservamos sus datos mientras su cuenta esté activa. Al cancelar el servicio, los datos operativos se conservan por 30 días para permitir su exportación, tras lo cual son eliminados de forma segura.</p>
+
+        <h2>9. Sus derechos</h2>
+        <p>Como titular de datos personales en Colombia, usted tiene derecho a:</p>
+        <ul>
+          <li>Conocer, actualizar y rectificar sus datos.</li>
+          <li>Solicitar prueba de la autorización otorgada.</li>
+          <li>Ser informado sobre el uso de sus datos.</li>
+          <li>Revocar la autorización y solicitar la supresión de datos (cuando no exista obligación legal de conservarlos).</li>
+          <li>Presentar quejas ante la Superintendencia de Industria y Comercio (SIC).</li>
+        </ul>
+        <p>Ejerza sus derechos escribiendo a <a href="mailto:hola@terracoreapp.co">hola@terracoreapp.co</a>.</p>
+
+        <h2>10. Cookies y analítica</h2>
+        <p>Usamos Google Analytics 4 (GA4) para comprender cómo se usa el sitio web. Los datos de GA4 son anonimizados y no se vinculan con su identidad personal. Puede optar por no participar usando extensiones de navegador compatibles.</p>
+
+        <h2>11. Cambios en la política</h2>
+        <p>Notificaremos cambios materiales a esta política por correo electrónico con al menos 15 días de anticipación.</p>
+
+        <h2>12. Habeas Data</h2>
+        <p>Para ejercer sus derechos de Habeas Data, consulte nuestra <a href="/habeas-data">página dedicada</a>.</p>
+
+        <h2>13. Contacto</h2>
+        <p>Para cualquier consulta sobre privacidad: <a href="mailto:hola@terracoreapp.co">hola@terracoreapp.co</a> · <a href="tel:+573108283088">+57 310 828 3088</a></p>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .legal-page {
+    padding: 80px 0 120px;
+    min-height: 70vh;
+  }
+  .legal-title {
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 700;
+    color: var(--color-primary);
+    margin-bottom: 8px;
+  }
+  .legal-updated {
+    font-size: 14px;
+    color: var(--color-text-muted);
+    margin-bottom: 48px;
+  }
+  .legal-body {
+    max-width: 720px;
+    line-height: 1.75;
+    color: var(--color-text-secondary);
+  }
+  .legal-body h2 {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--color-primary);
+    margin: 40px 0 12px;
+  }
+  .legal-body p,
+  .legal-body li {
+    font-size: 15px;
+    margin-bottom: 12px;
+  }
+  .legal-body ul {
+    padding-left: 20px;
+    margin-bottom: 12px;
+  }
+  .legal-body a {
+    color: var(--color-accent);
+    text-decoration: underline;
+  }
+</style>

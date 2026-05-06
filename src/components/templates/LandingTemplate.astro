@@ -23,13 +23,14 @@ import CTAFooter from '@components/CTAFooter.astro';
 </main>
 
 <script>
-  /* Reveal-on-scroll: add .in when element enters viewport */
+  /* Reveal-on-scroll: fade in on enter, fade out on exit */
   const io = new IntersectionObserver(
     (entries) => {
       entries.forEach((e) => {
         if (e.isIntersecting) {
           (e.target as HTMLElement).classList.add('in');
-          io.unobserve(e.target);
+        } else {
+          (e.target as HTMLElement).classList.remove('in');
         }
       });
     },
