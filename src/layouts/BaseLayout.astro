@@ -7,12 +7,16 @@ interface Props {
   title: string;
   description?: string;
   ogImage?: string;
+  ogImageAlt?: string;
+  preloadImage?: string;
 }
 
 const {
   title,
   description = 'TerraCore | Control total de tu operación agroindustrial en Colombia.',
-  ogImage = '/og-image.png',
+  ogImage = '/terracore.png',
+  ogImageAlt = 'TerraCore — plataforma de gestión agroindustrial para el campo colombiano',
+  preloadImage,
 } = Astro.props;
 
 const siteBase = Astro.site ?? 'https://terracoreapp.co';
@@ -26,6 +30,13 @@ const gaId = import.meta.env.PUBLIC_GA_ID;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="index, follow" />
+    <link rel="icon" href="/logo.ico" />
+
+    <!-- Preload LCP image when provided by page -->
+    {preloadImage && (
+      <link rel="preload" as="image" href={preloadImage} fetchpriority="high" />
+    )}
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -42,6 +53,7 @@ const gaId = import.meta.env.PUBLIC_GA_ID;
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImageURL} />
+    <meta property="og:image:alt" content={ogImageAlt} />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="TerraCore" />
@@ -52,6 +64,10 @@ const gaId = import.meta.env.PUBLIC_GA_ID;
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImageURL} />
+    <meta name="twitter:image:alt" content={ogImageAlt} />
+
+    <!-- Additional head (JSON-LD, page-specific meta) -->
+    <slot name="head" />
 
     <title>{title}</title>
 
@@ -75,8 +91,67 @@ const gaId = import.meta.env.PUBLIC_GA_ID;
     )}
   </head>
   <body>
+    <a class="skip-link" href="#main-content">Saltar al contenido principal</a>
+    <div id="page-loader" class="page-loader" aria-hidden="true" hidden>
+      <div class="page-loader__spinner"></div>
+    </div>
     <Header />
     <slot />
     <Footer />
   </body>
 </html>
+
+<style is:global>
+  .page-loader {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: var(--color-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 180ms var(--ease-standard);
+    pointer-events: none;
+  }
+  .page-loader[hidden] { display: none; }
+  .page-loader.is-visible {
+    opacity: 1;
+    pointer-events: all;
+  }
+  .page-loader__spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid var(--color-border);
+    border-top-color: var(--color-accent);
+    border-radius: 50%;
+    animation: tc-spin 600ms linear infinite;
+  }
+  @keyframes tc-spin { to { transform: rotate(360deg); } }
+</style>
+
+<script>
+  const loader = document.getElementById('page-loader') as HTMLElement | null;
+  if (loader) {
+    document.addEventListener('click', (e) => {
+      const a = (e.target as Element).closest('a');
+      if (!a) return;
+      const href = a.getAttribute('href');
+      if (!href) return;
+      if (
+        href.startsWith('#') ||
+        href.startsWith('mailto:') ||
+        href.startsWith('tel:') ||
+        a.target === '_blank' ||
+        a.hasAttribute('download')
+      ) return;
+      try {
+        const url = new URL(href, location.href);
+        if (url.hostname !== location.hostname) return;
+        if (url.pathname === location.pathname) return;
+      } catch { return; }
+      loader.hidden = false;
+      requestAnimationFrame(() => loader.classList.add('is-visible'));
+    });
+  }
+</script>
