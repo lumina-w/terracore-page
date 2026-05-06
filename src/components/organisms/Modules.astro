@@ -8,30 +8,55 @@ const modules = [
     name: 'Animales',
     icon: 'lucide:leaf',
     desc: 'Registro y seguimiento del ganado: ID, raza, peso, salud, ubicación.',
+    rows: [
+      ['ANI-001', 'La Canela', 'Brahman', 'Sano'],
+      ['ANI-002', 'Estrella', 'Holstein', 'Tratamiento'],
+      ['ANI-003', 'El Rocío', 'Cebú', 'Sano'],
+    ],
   },
   {
     num: '03',
     name: 'Insumos',
     icon: 'lucide:box',
     desc: 'Alimentos, medicamentos y suministros con stock mínimo y proveedor.',
+    rows: [
+      ['Concentrado Lechero', 'Alimentación', '340 kg'],
+      ['Vacuna Triple Bovina', 'Sanidad', '18 dosis'],
+      ['Sal Mineralizada', 'Suplemento', '85 kg'],
+    ],
   },
   {
     num: '04',
     name: 'Herramientas',
     icon: 'lucide:wrench',
     desc: 'Equipos, maquinaria e implementos con estado y mantenimiento.',
+    rows: [
+      ['Aspersora 20 L', 'Operativa'],
+      ['Báscula ganadera', 'Operativa'],
+      ['Bomba de agua 2HP', 'En revisión'],
+    ],
   },
   {
     num: '05',
     name: 'Producción',
     icon: 'lucide:bar-chart-2',
     desc: 'Bitácora de lotes (cultivo, leche, huevos), insumos y horas.',
+    rows: [
+      ['PRD-041', 'Leche cruda', '380 L'],
+      ['PRD-042', 'Leche cruda', '362 L'],
+      ['PRD-043', 'Leche cruda', '395 L'],
+    ],
   },
   {
     num: '06',
     name: 'Salud Animal',
     icon: 'lucide:stethoscope',
     desc: 'Vacunas, alertas, historial sanitario y vista por animal.',
+    rows: [
+      ['La Canela', 'Triple Bovina', 'Al día'],
+      ['Estrella', 'Aftosa', 'Al día'],
+      ['El Rocío', 'Brucelosis', 'Al día'],
+    ],
   },
 ];
 ---
@@ -69,14 +94,32 @@ const modules = [
           <div class="demo-mini__stat">
             <div class="demo-mini__label">Animales activos</div>
             <div class="demo-mini__val">88</div>
+            <div class="demo-mini__sub">en finca</div>
           </div>
           <div class="demo-mini__stat">
-            <div class="demo-mini__label">Producción mes</div>
-            <div class="demo-mini__val">3 202</div>
+            <div class="demo-mini__label">Producción mensual</div>
+            <div class="demo-mini__val">3.202</div>
+            <div class="demo-mini__sub">unidades este mes</div>
           </div>
           <div class="demo-mini__stat">
-            <div class="demo-mini__label">Stock bajo</div>
+            <div class="demo-mini__label">Insumos disponibles</div>
+            <div class="demo-mini__val">9.274</div>
+            <div class="demo-mini__sub">en stock total</div>
+          </div>
+          <div class="demo-mini__stat">
+            <div class="demo-mini__label">Alertas stock bajo</div>
             <div class="demo-mini__val demo-mini__val--accent">6</div>
+            <div class="demo-mini__sub">requieren atención</div>
+          </div>
+          <div class="demo-mini__stat">
+            <div class="demo-mini__label">Nuevos este mes</div>
+            <div class="demo-mini__val">12</div>
+            <div class="demo-mini__sub">animales registrados</div>
+          </div>
+          <div class="demo-mini__stat">
+            <div class="demo-mini__label">Ingresos estimados</div>
+            <div class="demo-mini__val">$3.431.200</div>
+            <div class="demo-mini__sub">este mes</div>
           </div>
         </div>
       </div>
@@ -93,6 +136,15 @@ const modules = [
               <h3 class="bento-tile__name">{m.name}</h3>
               <p class="bento-tile__desc">{m.desc}</p>
             </div>
+            <div class="bento-preview">
+              {m.rows.map((row) => (
+                <div class="bento-preview__row">
+                  {row.map((cell) => (
+                    <span>{cell}</span>
+                  ))}
+                </div>
+              ))}
+            </div>
           </div>
         ))
       }
@@ -105,7 +157,7 @@ const modules = [
             Si registras una vacuna, también baja el stock del frasco.
           </h3>
           <p class="bento-integration__desc">
-            Los módulos no son silos: cuando aplicas un tratamiento, TerraCore descuenta el insumo,
+            Los módulos no son aislados: cuando aplicas un tratamiento, TerraCore descuenta el insumo,
             agenda el refuerzo y actualiza el estado de salud del animal. Una acción, todo el
             sistema al día.
           </p>
@@ -262,13 +314,21 @@ const modules = [
   }
   .demo-mini__val {
     font-family: var(--font-display);
-    font-size: 22px;
+    font-size: 18px;
     font-weight: 700;
     font-variant-numeric: tabular-nums;
     color: #fff;
+    line-height: 1.2;
   }
   .demo-mini__val--accent {
     color: var(--color-accent);
+  }
+  .demo-mini__sub {
+    font-size: 9px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.4);
+    margin-top: 2px;
   }
 
   /* Integration wide tile */
@@ -334,6 +394,37 @@ const modules = [
     padding-left: 14px;
     color: var(--color-text-secondary);
     font-size: 12px;
+  }
+
+  /* Mini preview table */
+  .bento-preview {
+    margin-top: 16px;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    overflow: hidden;
+    font-size: 11px;
+  }
+  .bento-preview__row {
+    display: flex;
+    gap: 8px;
+    padding: 5px 10px;
+    border-bottom: 1px solid var(--color-border);
+    color: var(--color-text-secondary);
+    align-items: center;
+  }
+  .bento-preview__row:last-child {
+    border-bottom: none;
+  }
+  .bento-preview__row span:first-child {
+    color: var(--color-text);
+    font-weight: 600;
+    flex-shrink: 0;
+    font-variant-numeric: tabular-nums;
+  }
+  .bento-preview__row span:last-child {
+    margin-left: auto;
+    flex-shrink: 0;
+    color: var(--color-text-muted);
   }
 
   /* Responsive */
