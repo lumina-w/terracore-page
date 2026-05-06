@@ -49,7 +49,7 @@ const tabData = [
       <img
         id="showcase-img"
         src={tabData[0]!.images[0]}
-        alt={`TerraCore — ${tabData[0]!.label}`}
+        alt={`TerraCore | ${tabData[0]!.label}`}
         width="1200"
         height="750"
         loading="lazy"
@@ -124,7 +124,7 @@ const tabData = [
     img.style.opacity = '0';
     setTimeout(() => {
       img.src = src;
-      img.alt = `TerraCore — ${label}`;
+      img.alt = `TerraCore | ${label}`;
       img.style.opacity = '';
     }, FADE_MS);
   }
