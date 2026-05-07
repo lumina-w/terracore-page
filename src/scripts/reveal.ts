@@ -3,13 +3,27 @@ export function initReveal(): void {
     (entries) => {
       entries.forEach((e) => {
         if (e.isIntersecting) {
-          (e.target as HTMLElement).classList.add('in');
-        } else {
-          (e.target as HTMLElement).classList.remove('in');
+          e.target.classList.add('in');
+          io.unobserve(e.target);
         }
       });
     },
-    { threshold: 0.1 },
+    { threshold: 0 }
   );
-  document.querySelectorAll<HTMLElement>('.reveal').forEach((el) => io.observe(el));
+
+  document.querySelectorAll<HTMLElement>('.reveal').forEach((el) => {
+    if (el.getBoundingClientRect().top < window.innerHeight) {
+      el.classList.add('in');
+    } else {
+      io.observe(el);
+    }
+  });
+
+  requestAnimationFrame(() => {
+    document.querySelectorAll<HTMLElement>('.reveal:not(.in)').forEach((el) => {
+      if (el.getBoundingClientRect().top < window.innerHeight) {
+        el.classList.add('in');
+      }
+    });
+  });
 }
