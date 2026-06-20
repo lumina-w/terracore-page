@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
 import LandingTemplate from '@templates/LandingTemplate.astro';
+import { FAQ } from '@utils/constants';
 
 const jsonLd = JSON.stringify([
   {
@@ -8,7 +9,7 @@ const jsonLd = JSON.stringify([
     '@type': 'Organization',
     name: 'TerraCore',
     url: 'https://terracoreapp.co',
-    logo: 'https://terracoreapp.co/logo.ico',
+    logo: 'https://terracoreapp.co/terracore.png',
     description:
       'TerraCore ayuda a productores y administradores de finca a reducir pérdidas, controlar costos y tomar decisiones con datos reales. Funciona sin internet. Diseñada para el campo colombiano.',
     address: {
@@ -34,12 +35,36 @@ const jsonLd = JSON.stringify([
       'TerraCore ayuda a productores y administradores de finca a reducir pérdidas, controlar costos y tomar decisiones con datos reales. Funciona sin internet. Diseñada para el campo colombiano.',
     inLanguage: 'es-CO',
   },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    name: 'TerraCore',
+    applicationCategory: 'BusinessApplication',
+    operatingSystem: 'Web, Android, iOS',
+    url: 'https://terracoreapp.co',
+    description:
+      'Plataforma de gestión agroindustrial para reducir pérdidas, controlar costos y decidir con datos reales. Funciona sin internet.',
+    inLanguage: 'es-CO',
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    inLanguage: 'es-CO',
+    mainEntity: FAQ.map((item) => ({
+      '@type': 'Question',
+      name: item.q,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: item.a,
+      },
+    })),
+  },
 ]);
 ---
 
 <BaseLayout
   title="TerraCore | Menos pérdidas. Más control. Finca rentable."
-  description="TerraCore ayuda a productores y administradores de finca a reducir pérdidas, controlar costos y tomar decisiones con datos reales. Funciona sin internet. Diseñada para el campo colombiano."
+  description="Reduce pérdidas, controla costos y decide con datos reales en tu finca. TerraCore funciona sin internet, diseñada para el campo colombiano."
   preloadImage="/screens/dashboard-2.webp"
 >
   <script slot="head" is:inline type="application/ld+json" set:html={jsonLd} />

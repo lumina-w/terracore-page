@@ -19,12 +19,12 @@ const ctaUrl = import.meta.env.MAIN_CTA_URL ?? '/#demo';
         </span>
 
         <span class="hero-offline-chip">
-          <Icon name="lucide:check" width={14} height={14} />
+          <Icon name="lucide:check" width={14} height={14} aria-hidden="true" />
           Funciona sin internet: sincroniza automáticamente
         </span>
 
         <h1 class="hero__heading">
-          Menos pérdidas. Más control. <em class="hero__em">Mejor rentabilidad</em>.
+          Menos pérdidas. Más control. <span class="hero__em">Mejor rentabilidad</span>.
         </h1>
 
         <p class="hero__lead">
@@ -37,22 +37,22 @@ const ctaUrl = import.meta.env.MAIN_CTA_URL ?? '/#demo';
         <div class="hero__ctas">
           <a href={ctaUrl} rel="noopener noreferrer" class="btn btn-accent">
             Evalúa tu operación gratis
-            <Icon name="lucide:arrow-right" width={16} height={16} />
+            <Icon name="lucide:arrow-right" width={16} height={16} aria-hidden="true" />
           </a>
-          <button class="btn btn-ghost-dark" id="video-open-btn" aria-label="Abrir demo en video">
-            <Icon name="lucide:play" width={14} height={14} />
+          <button class="btn btn-ghost-dark" id="video-open-btn">
             Ver demo en video
+            <Icon name="lucide:play" width={14} height={14} aria-hidden="true" />
           </button>
         </div>
 
         <div class="hero__meta">
           <div class="hero__stat">
-            <span class="hero__stat-v">
-              <span class="hero__stat-sup">−</span><span
-                class="hero__stat-num"
-                data-count-to="42">0</span
+            <span class="hero__stat-v" aria-hidden="true">
+              <span class="hero__stat-sup">−</span><span class="hero__stat-num" data-count-to="42"
+                >0</span
               ><span class="hero__stat-sup">%</span>
             </span>
+            <span class="sr-only">menos 42 por ciento de</span>
             <span class="hero__stat-l">tiempo administrativo</span>
           </div>
           <div class="hero__stat">
@@ -61,7 +61,7 @@ const ctaUrl = import.meta.env.MAIN_CTA_URL ?? '/#demo';
           </div>
           <div class="hero__stat hero__stat--offline">
             <span class="hero__stat-v hero__stat-v--text">
-              <Icon name="lucide:wifi-off" width={18} height={18} />
+              <Icon name="lucide:wifi-off" width={18} height={18} aria-hidden="true" />
               Sin internet
             </span>
             <span class="hero__stat-l">Funciona sin internet: sincroniza solo.</span>
@@ -74,7 +74,7 @@ const ctaUrl = import.meta.env.MAIN_CTA_URL ?? '/#demo';
         <div class="hero__frame">
           <img
             src="/screens/dashboard-2.webp"
-            alt="Dashboard de TerraCore"
+            alt="Panel de control de TerraCore con inventario, salud animal y finanzas de la finca"
             width="900"
             height="600"
             loading="eager"
@@ -109,9 +109,16 @@ const ctaUrl = import.meta.env.MAIN_CTA_URL ?? '/#demo';
 </section>
 
 <!-- Video lightbox -->
-<div class="video-overlay" id="video-overlay" aria-modal="true" role="dialog">
+<div
+  class="video-overlay"
+  id="video-overlay"
+  aria-modal="true"
+  role="dialog"
+  aria-label="Demo en video de TerraCore"
+  hidden
+>
   <button class="video-overlay__close" id="video-close-btn" aria-label="Cerrar video">
-    <Icon name="lucide:x" width={24} height={24} />
+    <Icon name="lucide:x" width={24} height={24} aria-hidden="true" />
   </button>
   <div class="video-overlay__backdrop" id="video-backdrop"></div>
   <div class="video-overlay__wrap">
@@ -129,8 +136,13 @@ const ctaUrl = import.meta.env.MAIN_CTA_URL ?? '/#demo';
 <script>
   // ── Counter animation ─────────────────────────────────────────
   const nums = document.querySelectorAll<HTMLElement>('[data-count-to]');
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   function animateCount(el: HTMLElement, target: number, duration = 1200) {
+    if (prefersReduced) {
+      el.textContent = String(target);
+      return;
+    }
     const start = performance.now();
     const easeOut = (t: number) => 1 - Math.pow(1 - t, 3);
     const tick = (now: number) => {
@@ -163,24 +175,58 @@ const ctaUrl = import.meta.env.MAIN_CTA_URL ?? '/#demo';
   const closeBtn = document.getElementById('video-close-btn');
   const backdrop = document.getElementById('video-backdrop');
 
+  let lastFocused: HTMLElement | null = null;
+
   function openVideo() {
-    overlay?.classList.add('is-open');
+    if (!overlay) return;
+    lastFocused = document.activeElement as HTMLElement | null;
+    overlay.hidden = false;
+    requestAnimationFrame(() => overlay.classList.add('is-open'));
     document.body.style.overflow = 'hidden';
+    closeBtn?.focus();
     video?.play().catch(() => {});
   }
 
   function closeVideo() {
-    overlay?.classList.remove('is-open');
+    if (!overlay) return;
+    overlay.classList.remove('is-open');
     document.body.style.overflow = '';
     video?.pause();
     if (video) video.currentTime = 0;
+    overlay.addEventListener(
+      'transitionend',
+      () => {
+        if (!overlay.classList.contains('is-open')) overlay.hidden = true;
+      },
+      { once: true },
+    );
+    lastFocused?.focus?.();
   }
 
   openBtn?.addEventListener('click', openVideo);
   closeBtn?.addEventListener('click', closeVideo);
   backdrop?.addEventListener('click', closeVideo);
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && overlay?.classList.contains('is-open')) closeVideo();
+    if (!overlay?.classList.contains('is-open')) return;
+    if (e.key === 'Escape') {
+      closeVideo();
+      return;
+    }
+    // Focus trap between the close button and the video controls
+    if (e.key === 'Tab') {
+      const focusable = [closeBtn, video].filter(Boolean) as HTMLElement[];
+      if (focusable.length === 0) return;
+      const first = focusable[0]!;
+      const last = focusable[focusable.length - 1]!;
+      const active = document.activeElement;
+      if (e.shiftKey && active === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && active === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    }
   });
 </script>
 
@@ -249,7 +295,7 @@ const ctaUrl = import.meta.env.MAIN_CTA_URL ?? '/#demo';
     display: inline-flex;
     padding: 3px 8px;
     border-radius: 999px;
-    background: var(--color-accent);
+    background: var(--color-accent-fill);
     color: #fff;
     font-weight: 600;
     font-size: 10px;
@@ -318,7 +364,7 @@ const ctaUrl = import.meta.env.MAIN_CTA_URL ?? '/#demo';
   .hero__tagline {
     font-size: 14px;
     line-height: 20px;
-    color: var(--color-accent);
+    color: var(--color-accent-on-dark);
     font-weight: 600;
     margin: -16px 0 28px;
   }
@@ -345,13 +391,13 @@ const ctaUrl = import.meta.env.MAIN_CTA_URL ?? '/#demo';
     font-family: var(--font-display);
     font-size: 28px;
     font-weight: 700;
-    color: var(--color-accent);
+    color: var(--color-accent-on-dark);
     font-variant-numeric: tabular-nums;
     line-height: 1;
     letter-spacing: -0.015em;
   }
   .hero__stat-num {
-    color: var(--color-accent);
+    color: var(--color-accent-on-dark);
   }
   .hero__stat-v--text {
     display: inline-flex;
@@ -362,13 +408,13 @@ const ctaUrl = import.meta.env.MAIN_CTA_URL ?? '/#demo';
   .hero__stat-l {
     display: block;
     font-size: 12px;
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(255, 255, 255, 0.75);
     margin-top: 6px;
     line-height: 14px;
   }
   .hero__stat-sup {
     font-size: 18px;
-    color: var(--color-accent);
+    color: var(--color-accent-on-dark);
   }
   .hero__stat-dim {
     font-size: 18px;
@@ -447,6 +493,9 @@ const ctaUrl = import.meta.env.MAIN_CTA_URL ?? '/#demo';
     transition:
       opacity 320ms var(--ease-standard),
       visibility 320ms var(--ease-standard);
+  }
+  .video-overlay[hidden] {
+    display: none;
   }
   .video-overlay.is-open {
     opacity: 1;

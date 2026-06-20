@@ -212,6 +212,14 @@ import ContactForm from '@components/ContactForm.astro';
   .form-card :global(.lead) {
     max-width: none;
   }
+  /* Wider form on tablet + desktop, capped so it never exceeds 70% of
+     the viewport (and an absolute ceiling for very large screens) */
+  @media (min-width: 768px) {
+    .form-card {
+      width: clamp(560px, 70vw, 760px);
+      max-width: none;
+    }
+  }
 
   .cta-foot {
     margin: 22px 0 0;

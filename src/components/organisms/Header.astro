@@ -8,7 +8,7 @@ const ctaUrl = import.meta.env.MAIN_CTA_URL ?? '/#demo';
 <header class="nav">
   <div class="nav-inner container">
     <!-- Logo -->
-    <a href="/#top" aria-label="TerraCore inicio">
+    <a href="/" aria-label="TerraCore inicio">
       <Brand size={40} />
     </a>
 
@@ -30,7 +30,8 @@ const ctaUrl = import.meta.env.MAIN_CTA_URL ?? '/#demo';
         class="btn nav-login"
       >
         Iniciar sesión
-        <Icon name="lucide:log-in" width={16} height={16} />
+        <Icon name="lucide:log-in" width={16} height={16} aria-hidden="true" />
+        <span class="sr-only">(abre en una pestaña nueva)</span>
       </a>
       <a
         href={ctaUrl}
@@ -39,7 +40,7 @@ const ctaUrl = import.meta.env.MAIN_CTA_URL ?? '/#demo';
         onclick="window.trackEvent?.('click_cta_header')"
       >
         Solicita demo
-        <Icon name="lucide:arrow-right" width={14} height={14} />
+        <Icon name="lucide:arrow-right" width={14} height={14} aria-hidden="true" />
       </a>
       <button
         class="nav-toggle"
@@ -47,15 +48,15 @@ const ctaUrl = import.meta.env.MAIN_CTA_URL ?? '/#demo';
         aria-expanded="false"
         aria-controls="mobile-drawer"
       >
-        <Icon name="lucide:menu" width={24} height={24} class="icon-menu" />
-        <Icon name="lucide:x" width={24} height={24} class="icon-close" />
+        <Icon name="lucide:menu" width={24} height={24} class="icon-menu" aria-hidden="true" />
+        <Icon name="lucide:x" width={24} height={24} class="icon-close" aria-hidden="true" />
       </button>
     </div>
   </div>
 </header>
 
 <!-- Mobile drawer (renders outside nav-inner but still inside header context) -->
-<div class="mobile-drawer" id="mobile-drawer" data-open="false" aria-hidden="true">
+<div class="mobile-drawer" id="mobile-drawer" data-open="false" aria-hidden="true" inert>
   <ul class="mobile-links">
     <li><a href="/#modulos">Cómo funciona</a></li>
     <li><a href="/#producto">Producto</a></li>
@@ -63,7 +64,7 @@ const ctaUrl = import.meta.env.MAIN_CTA_URL ?? '/#demo';
     <li><a href="/#precios">Precios</a></li>
     <li><a href="/#preguntas">Preguntas</a></li>
   </ul>
-  <div class="mobile-divider" role="separator"></div>
+  <div class="mobile-divider" aria-hidden="true"></div>
   <a
     href="https://app.terracoreapp.co/login"
     target="_blank"
@@ -71,7 +72,8 @@ const ctaUrl = import.meta.env.MAIN_CTA_URL ?? '/#demo';
     class="mobile-login"
   >
     Iniciar sesión
-    <Icon name="lucide:log-in" width={16} height={16} />
+    <Icon name="lucide:log-in" width={16} height={16} aria-hidden="true" />
+    <span class="sr-only">(abre en una pestaña nueva)</span>
   </a>
 </div>
 
@@ -84,7 +86,10 @@ const ctaUrl = import.meta.env.MAIN_CTA_URL ?? '/#demo';
   function setOpen(open: boolean) {
     drawer.dataset.open = String(open);
     drawer.setAttribute('aria-hidden', String(!open));
+    if (open) drawer.removeAttribute('inert');
+    else drawer.setAttribute('inert', '');
     toggle.setAttribute('aria-expanded', String(open));
+    toggle.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
     iconMenu.style.display = open ? 'none' : '';
     iconClose.style.display = open ? '' : 'none';
   }
@@ -106,6 +111,14 @@ const ctaUrl = import.meta.env.MAIN_CTA_URL ?? '/#demo';
     const target = e.target as Node;
     if (drawer.dataset.open === 'true' && !drawer.contains(target) && !toggle.contains(target)) {
       setOpen(false);
+    }
+  });
+
+  // close on Escape, return focus to the toggle
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && drawer.dataset.open === 'true') {
+      setOpen(false);
+      toggle.focus();
     }
   });
 </script>

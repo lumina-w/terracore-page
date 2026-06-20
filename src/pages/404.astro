@@ -8,6 +8,7 @@ const demoUrl = import.meta.env.MAIN_CTA_URL ?? '/#demo';
   title="404: Parcela no encontrada · TerraCore"
   description="La página que buscabas no aparece en nuestros registros. Puede que se haya movido o cambiado de nombre."
 >
+  <meta slot="head" name="robots" content="noindex, follow" />
   <div class="nf-shell">
     <div class="nf-bg"></div>
     <div class="nf-grid"></div>
@@ -20,7 +21,7 @@ const demoUrl = import.meta.env.MAIN_CTA_URL ?? '/#demo';
           <span>error.parcela_no_encontrada</span>
         </div>
 
-        <h1 class="nf-title">Esta <em class="em">parcela</em> no figura en el catastro.</h1>
+        <h1 class="nf-title">Esta <span class="em">parcela</span> no figura en el catastro.</h1>
 
         <p class="nf-lead">
           Revisamos el lote, contamos las hectáreas y abrimos cada porton, pero la página que
@@ -33,11 +34,7 @@ const demoUrl = import.meta.env.MAIN_CTA_URL ?? '/#demo';
           <button type="button" class="btn btn-ghost-dark" onclick="history.back()">
             Página anterior
           </button>
-          <a
-            href="mailto:contact@luminaw.co"
-            class="btn-link"
-            style="color:#fff;margin-left:6px;"
-          >
+          <a href="mailto:contact@luminaw.co" class="btn-link" style="color:#fff;margin-left:6px;">
             Reportar enlace roto
           </a>
         </div>
@@ -52,6 +49,7 @@ const demoUrl = import.meta.env.MAIN_CTA_URL ?? '/#demo';
                   <small>/</small>
                 </span>
                 <svg
+                  aria-hidden="true"
                   width="14"
                   height="14"
                   viewBox="0 0 24 24"
@@ -70,6 +68,7 @@ const demoUrl = import.meta.env.MAIN_CTA_URL ?? '/#demo';
                   <small>/#modulos</small>
                 </span>
                 <svg
+                  aria-hidden="true"
                   width="14"
                   height="14"
                   viewBox="0 0 24 24"
@@ -88,6 +87,7 @@ const demoUrl = import.meta.env.MAIN_CTA_URL ?? '/#demo';
                   <small>/#precios</small>
                 </span>
                 <svg
+                  aria-hidden="true"
                   width="14"
                   height="14"
                   viewBox="0 0 24 24"
@@ -106,6 +106,7 @@ const demoUrl = import.meta.env.MAIN_CTA_URL ?? '/#demo';
                   <small>/terminos</small>
                 </span>
                 <svg
+                  aria-hidden="true"
                   width="14"
                   height="14"
                   viewBox="0 0 24 24"
@@ -120,10 +121,11 @@ const demoUrl = import.meta.env.MAIN_CTA_URL ?? '/#demo';
             <li>
               <a href={demoUrl} target="_blank" rel="noopener noreferrer">
                 <span class="t">
-                  Solicitar una demo
+                  Solicitar una demo<span class="sr-only"> (abre en una pestaña nueva)</span>
                   <small>/demo</small>
                 </span>
                 <svg
+                  aria-hidden="true"
                   width="14"
                   height="14"
                   viewBox="0 0 24 24"
@@ -142,6 +144,7 @@ const demoUrl = import.meta.env.MAIN_CTA_URL ?? '/#demo';
                   <small>contact@luminaw.co</small>
                 </span>
                 <svg
+                  aria-hidden="true"
                   width="14"
                   height="14"
                   viewBox="0 0 24 24"
@@ -157,8 +160,8 @@ const demoUrl = import.meta.env.MAIN_CTA_URL ?? '/#demo';
         </div>
       </section>
 
-      <!-- Right visual -->
-      <aside class="nf-visual">
+      <!-- Right visual (decorative) -->
+      <aside class="nf-visual" aria-hidden="true">
         <div class="nf-chip">
           <div class="icon-tile">
             <svg
@@ -200,33 +203,40 @@ const demoUrl = import.meta.env.MAIN_CTA_URL ?? '/#demo';
                 <div class="row">
                   <span class="ts">06:42:11</span><span class="msg"
                     ><span class="dim">›</span> sync.start <span class="k">terracore-edge</span>
-                    <span class="dim">→</span> region:co-bog</span>
+                    <span class="dim">→</span> region:co-bog</span
+                  >
                 </div>
                 <div class="row ok">
                   <span class="ts">06:42:11</span><span class="msg"
-                    >✓ conexión establecida · 38 sensores en línea</span>
+                    >✓ conexión establecida · 38 sensores en línea</span
+                  >
                 </div>
                 <div class="row">
                   <span class="ts">06:42:12</span><span class="msg"
                     ><span class="dim">›</span> resolve.path <span class="k"
                       >/parcela/47-norte/lote-perdido</span
-                    ></span>
+                    ></span
+                  >
                 </div>
                 <div class="row warn">
                   <span class="ts">06:42:13</span><span class="msg"
-                    >⚠ ruta no indexada · buscando alias…</span>
+                    >⚠ ruta no indexada · buscando alias…</span
+                  >
                 </div>
                 <div class="row err">
                   <span class="ts">06:42:14</span><span class="msg"
-                    >✗ recurso no encontrado <span class="dim">(code: ENOLOTE)</span></span>
+                    >✗ recurso no encontrado <span class="dim">(code: ENOLOTE)</span></span
+                  >
                 </div>
                 <div class="row">
                   <span class="ts">06:42:14</span><span class="msg">
-                    sugerencia: regresar al inicio o usar el menú</span>
+                    sugerencia: regresar al inicio o usar el menú</span
+                  >
                 </div>
                 <div class="row">
                   <span class="ts">06:42:15</span><span class="msg"
-                    ><span class="dim">›</span> awaiting_input<span class="caret"></span></span>
+                    ><span class="dim">›</span> awaiting_input<span class="caret"></span></span
+                  >
                 </div>
               </div>
             </div>

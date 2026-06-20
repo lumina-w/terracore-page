@@ -9,17 +9,16 @@ import { Icon } from 'astro-icon/components';
       <!-- Brand col -->
       <div>
         <Brand mono size={44} />
-        <p class="foot-tagline">
-          Menos pérdidas. Más control. Más finca.
-        </p>
+        <p class="foot-tagline">Menos pérdidas. Más control. Más finca.</p>
       </div>
 
       <!-- Producto -->
       <div>
-        <h5 class="foot-col-title">Producto</h5>
+        <p class="foot-col-title">Producto</p>
         <ul class="foot-links">
-          <li><a href="/#modulos">Módulos</a></li>
-          <li><a href="/#producto">Capturas</a></li>
+          <li><a href="/#modulos">Cómo funciona</a></li>
+          <li><a href="/#producto">Producto</a></li>
+          <li><a href="/#beneficios">Por qué TerraCore</a></li>
           <li><a href="/#precios">Precios</a></li>
           <li><a href="/#preguntas">Preguntas</a></li>
         </ul>
@@ -27,39 +26,44 @@ import { Icon } from 'astro-icon/components';
 
       <!-- Compañía -->
       <div>
-        <h5 class="foot-col-title">Compañía</h5>
+        <p class="foot-col-title">Compañía</p>
         <ul class="foot-links">
           <li>
             <a href="https://luminaw.co" target="_blank" rel="noopener noreferrer"
-              >Sobre Lúmina W</a>
+              >Sobre Lúmina W<span class="sr-only"> (abre en una pestaña nueva)</span></a
+            >
           </li>
           <li>
             <a href="https://luminaw.co/#contact" target="_blank" rel="noopener noreferrer"
-              >Contacto</a>
+              >Contacto<span class="sr-only"> (abre en una pestaña nueva)</span></a
+            >
           </li>
         </ul>
       </div>
 
       <!-- Contacto -->
       <div>
-        <h5 class="foot-col-title">Contacto</h5>
+        <p class="foot-col-title">Contacto</p>
         <ul class="foot-links foot-links--contact">
           <li>
-            <Icon name="lucide:mail" width={20} height={20} />
+            <Icon name="lucide:mail" width={20} height={20} aria-hidden="true" />
+            <span class="sr-only">Correo: </span>
             <a href="mailto:contact@luminaw.co">contact@luminaw.co</a>
           </li>
           <li>
-            <Icon name="lucide:phone" width={20} height={20} />
-            +57 310 828 3088
+            <Icon name="lucide:phone" width={20} height={20} aria-hidden="true" />
+            <span class="sr-only">Teléfono: </span>
+            <a href="tel:+573108283088">+57 310 828 3088</a>
           </li>
           <li>
-            <Icon name="simple-icons:whatsapp" width={18} height={18} />
+            <Icon name="simple-icons:whatsapp" width={18} height={18} aria-hidden="true" />
             <a href="https://wa.me/573108283088" target="_blank" rel="noopener noreferrer"
-              >WhatsApp</a
+              >WhatsApp<span class="sr-only"> (abre en una pestaña nueva)</span></a
             >
           </li>
           <li>
-            <Icon name="lucide:map-pin" width={20} height={20} />
+            <Icon name="lucide:map-pin" width={20} height={20} aria-hidden="true" />
+            <span class="sr-only">Ubicación: </span>
             Antioquia, Colombia
           </li>
         </ul>
@@ -115,7 +119,7 @@ import { Icon } from 'astro-icon/components';
     font-size: 11px;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: var(--color-accent);
+    color: var(--color-accent-on-dark);
     margin: 0 0 16px;
     font-weight: 600;
   }

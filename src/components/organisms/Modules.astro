@@ -87,7 +87,6 @@ const modules: Array<{
     <div class="bento">
       <!-- Featured: Dashboard -->
       <div class="bento-tile bento-tile--featured">
-        <span class="bento-tile__num">01 / 06</span>
         <div>
           <div class="bento-tile__header">
             <div class="bento-tile__icon-sq">
@@ -162,7 +161,6 @@ const modules: Array<{
       {
         modules.map((m) => (
           <div class:list={['bento-tile', m.num === '05' && 'bento-tile--span4']}>
-            <span class="bento-tile__num">{m.num} / 06</span>
             <div>
               <div class="bento-tile__header">
                 <div class="bento-tile__icon-sq">
@@ -204,7 +202,6 @@ const modules: Array<{
 
       <!-- Salud Animal — sub-tabs -->
       <div class="bento-tile bento-tile--wide bento-tile--salud">
-        <span class="bento-tile__num">06 / 06</span>
         <div>
           <div class="bento-tile__header">
             <div class="bento-tile__icon-sq">
@@ -213,8 +210,8 @@ const modules: Array<{
             <h3 class="bento-tile__name">Reduce riesgos y pérdidas sanitarias</h3>
           </div>
           <p class="bento-tile__desc">
-            Vacunas vencidas, alertas próximas y estado sanitario de cada animal. Prevenir una muerte
-            o un brote vale más que cualquier tratamiento de emergencia.
+            Vacunas vencidas, alertas próximas y estado sanitario de cada animal. Prevenir una
+            muerte o un brote vale más que cualquier tratamiento de emergencia.
           </p>
         </div>
         <div class="bento-preview">
@@ -297,6 +294,12 @@ const modules: Array<{
 <style>
   .accent-text {
     color: var(--color-accent);
+  }
+
+  #modulos .section-head {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    align-items: start;
   }
 
   /* ── Bento grid ────────────────────────────────────────────── */
@@ -402,7 +405,7 @@ const modules: Array<{
     line-height: 26px;
   }
   .bento-tile--featured .bento-tile__num {
-    color: rgba(255, 255, 255, 0.4);
+    color: rgba(255, 255, 255, 0.6);
   }
 
   /* Wide tile */
@@ -484,7 +487,7 @@ const modules: Array<{
     font-size: 9px;
     letter-spacing: 0.06em;
     text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.4);
+    color: rgba(255, 255, 255, 0.62);
     margin-top: 2px;
   }
 

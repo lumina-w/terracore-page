@@ -8,7 +8,7 @@ export function initReveal(): void {
         }
       });
     },
-    { threshold: 0 }
+    { threshold: 0 },
   );
 
   document.querySelectorAll<HTMLElement>('.reveal').forEach((el) => {

@@ -63,7 +63,7 @@ export const POST: APIRoute = async ({ request }) => {
         headers: jsonHeaders,
       });
     }
-    
+
     return new Response(JSON.stringify({ error: 'Failed to add contact' }), {
       status: 502,
       headers: jsonHeaders,

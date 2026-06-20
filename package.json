@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "@astrojs/netlify": "^5.5.4",
-    "@astrojs/sitemap": "^3.7.2",
+    "@astrojs/sitemap": "~3.1.6",
     "@astrojs/tailwind": "^5.1.0",
     "@iconify-json/lucide": "^1.2.105",
     "@iconify-json/simple-icons": "^1.2.81",

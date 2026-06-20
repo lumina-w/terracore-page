@@ -59,8 +59,8 @@ const tabData = [
         </h2>
       </div>
       <p class="lead showcase__lead">
-        Pensado para usarse con guantes, con mala luz y con afán. Desde el celular en el corral hasta
-        el computador del administrador: la misma información, siempre disponible.
+        Pensado para usarse con guantes, con mala luz y con afán. Desde el celular en el corral
+        hasta el computador del administrador: la misma información, siempre disponible.
       </p>
     </div>
 
@@ -71,8 +71,10 @@ const tabData = [
           <button
             class:list={['showcase-tab', i === 0 && 'active']}
             role="tab"
+            id={`tab-${t.id}`}
             aria-selected={i === 0 ? 'true' : 'false'}
-            aria-controls={`panel-${t.id}`}
+            aria-controls="showcase-panel"
+            tabindex={i === 0 ? '0' : '-1'}
             data-tab={t.id}
           >
             {t.label}
@@ -82,7 +84,13 @@ const tabData = [
     </div>
 
     <!-- Image frame -->
-    <div class="showcase-frame" id="showcase-frame" role="tabpanel" id="panel-dashboard">
+    <div
+      class="showcase-frame"
+      id="showcase-panel"
+      role="tabpanel"
+      tabindex="0"
+      aria-labelledby="tab-dashboard"
+    >
       <img
         id="showcase-img"
         class="showcase-img is-active"
@@ -103,21 +111,29 @@ const tabData = [
       />
     </div>
 
-    <!-- Dots -->
-    <div class="showcase-dots" id="showcase-dots" aria-hidden="true"></div>
+    <!-- Dots + autoplay control -->
+    <div class="showcase-controls">
+      <button
+        class="showcase-pause"
+        id="showcase-pause"
+        type="button"
+        aria-pressed="false"
+        aria-label="Pausar rotación automática de capturas"></button>
+      <div class="showcase-dots" id="showcase-dots"></div>
+    </div>
 
     <!-- Callouts -->
     <div class="showcase-callouts">
       <div class="showcase-callout">
         <div class="showcase-callout__num">01</div>
-        <h4 class="showcase-callout__title">Todo donde lo necesitas</h4>
+        <h3 class="showcase-callout__title">Todo donde lo necesitas</h3>
         <p class="showcase-callout__desc">
           La información que usas todos los días a un toque. Sin menús confusos, sin pasos de más.
         </p>
       </div>
       <div class="showcase-callout">
         <div class="showcase-callout__num">02</div>
-        <h4 class="showcase-callout__title">Legible en cualquier condición</h4>
+        <h3 class="showcase-callout__title">Legible en cualquier condición</h3>
         <p class="showcase-callout__desc">
           Texto grande, colores con significado, respuesta rápida. Funciona igual bajo el sol que en
           la oficina.
@@ -125,7 +141,7 @@ const tabData = [
       </div>
       <div class="showcase-callout">
         <div class="showcase-callout__num">03</div>
-        <h4 class="showcase-callout__title">Solo te avisamos cuando importa</h4>
+        <h3 class="showcase-callout__title">Solo te avisamos cuando importa</h3>
         <p class="showcase-callout__desc">
           Vacunas vencidas, stock bajo, animales en tratamiento. Cada alerta es una pérdida que se
           puede evitar.
@@ -164,14 +180,17 @@ const tabData = [
 
   const INTERVAL = 3000;
 
-  const tabBtns = document.querySelectorAll<HTMLButtonElement>('.showcase-tab');
-  const frame = document.getElementById('showcase-frame')!;
+  const tabBtns = [...document.querySelectorAll<HTMLButtonElement>('.showcase-tab')];
+  const frame = document.getElementById('showcase-panel')!;
   const layers = [...frame.querySelectorAll<HTMLImageElement>('.showcase-img')];
   const dotsEl = document.getElementById('showcase-dots')!;
+  const pauseBtn = document.getElementById('showcase-pause') as HTMLButtonElement | null;
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   let activeTab = 'dashboard';
   let slideIdx = 0;
   let timerId: ReturnType<typeof setInterval> | null = null;
+  let paused = prefersReduced;
 
   function getLabel(tabId: string): string {
     return [...tabBtns].find((b) => b.dataset.tab === tabId)?.textContent?.trim() ?? '';
@@ -210,8 +229,9 @@ const tabData = [
     if (images.length <= 1) return;
     images.forEach((_, i) => {
       const dot = document.createElement('button');
+      dot.type = 'button';
       dot.className = 'showcase-dot' + (i === slideIdx ? ' active' : '');
-      dot.setAttribute('aria-label', `Imagen ${i + 1}`);
+      dot.setAttribute('aria-label', `Ver captura ${i + 1} de ${images.length}`);
       dot.addEventListener('click', () => goToSlide(i, true));
       dotsEl.appendChild(dot);
     });
@@ -231,9 +251,23 @@ const tabData = [
   }
 
   function startAutoplay() {
-    if (!isSlider(activeTab)) return;
+    if (paused || !isSlider(activeTab)) return;
     stopAutoplay();
     timerId = setInterval(() => goToSlide(slideIdx + 1), INTERVAL);
+  }
+
+  function setPaused(p: boolean) {
+    paused = p;
+    if (pauseBtn) {
+      pauseBtn.setAttribute('aria-pressed', String(p));
+      pauseBtn.setAttribute(
+        'aria-label',
+        p ? 'Reanudar rotación automática de capturas' : 'Pausar rotación automática de capturas',
+      );
+      pauseBtn.classList.toggle('is-paused', p);
+    }
+    if (p) stopAutoplay();
+    else startAutoplay();
   }
 
   function goToSlide(index: number, resetTimer = false) {
@@ -253,29 +287,56 @@ const tabData = [
     slideIdx = 0;
     const images = TABS[tabId] ?? [];
     fadeSwap(images[0]!, getLabel(tabId));
-    const slider = isSlider(tabId);
+    frame.setAttribute('aria-labelledby', `tab-${tabId}`);
     renderDots(tabId);
-    if (slider) startAutoplay();
+    startAutoplay();
   }
 
-  tabBtns.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      tabBtns.forEach((b) => {
-        b.classList.remove('active');
-        b.setAttribute('aria-selected', 'false');
-      });
-      btn.classList.add('active');
-      btn.setAttribute('aria-selected', 'true');
-      activateTab(btn.dataset.tab!);
+  function selectTab(btn: HTMLButtonElement) {
+    tabBtns.forEach((b) => {
+      b.classList.remove('active');
+      b.setAttribute('aria-selected', 'false');
+      b.tabIndex = -1;
+    });
+    btn.classList.add('active');
+    btn.setAttribute('aria-selected', 'true');
+    btn.tabIndex = 0;
+    activateTab(btn.dataset.tab!);
+  }
+
+  tabBtns.forEach((btn, i) => {
+    btn.addEventListener('click', () => selectTab(btn));
+    btn.addEventListener('keydown', (e) => {
+      let target: HTMLButtonElement | undefined;
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown')
+        target = tabBtns[(i + 1) % tabBtns.length];
+      else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp')
+        target = tabBtns[(i - 1 + tabBtns.length) % tabBtns.length];
+      else if (e.key === 'Home') target = tabBtns[0];
+      else if (e.key === 'End') target = tabBtns[tabBtns.length - 1];
+      else return;
+      e.preventDefault();
+      if (target) {
+        selectTab(target);
+        target.focus();
+      }
     });
   });
 
+  pauseBtn?.addEventListener('click', () => setPaused(!paused));
+
+  // Pause on hover/focus, resume when leaving (unless user explicitly paused)
   frame.addEventListener('mouseenter', stopAutoplay);
   frame.addEventListener('mouseleave', () => {
-    if (isSlider(activeTab)) startAutoplay();
+    if (!paused) startAutoplay();
+  });
+  frame.addEventListener('focusin', stopAutoplay);
+  frame.addEventListener('focusout', () => {
+    if (!paused) startAutoplay();
   });
 
   // Init
+  if (prefersReduced) setPaused(true);
   renderDots('dashboard');
   startAutoplay();
 </script>
@@ -287,6 +348,11 @@ const tabData = [
     padding: 120px 0;
     position: relative;
     overflow: hidden;
+  }
+  .showcase .section-head {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    align-items: start;
   }
   .showcase__bg {
     position: absolute;
@@ -363,12 +429,56 @@ const tabData = [
     }
   }
 
+  /* Controls (pause + dots) */
+  .showcase-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    margin-top: 14px;
+    min-height: 24px;
+  }
+  .showcase-pause {
+    width: 24px;
+    height: 24px;
+    flex: 0 0 auto;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: #fff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background var(--dur-base) var(--ease-standard);
+  }
+  .showcase-pause:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+  /* Pause glyph (two bars) */
+  .showcase-pause::before {
+    content: '';
+    width: 8px;
+    height: 9px;
+    border-left: 2px solid currentColor;
+    border-right: 2px solid currentColor;
+  }
+  /* Play glyph (triangle) when paused */
+  .showcase-pause.is-paused::before {
+    width: 0;
+    height: 0;
+    border: 0;
+    border-left: 8px solid currentColor;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    margin-left: 2px;
+  }
+
   /* Dots */
   .showcase-dots {
     display: flex;
     justify-content: center;
     gap: 8px;
-    margin-top: 14px;
     min-height: 12px;
   }
   :global(.showcase-dot) {

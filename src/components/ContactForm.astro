@@ -13,150 +13,175 @@ const {
 
 <div class="lead" data-lead>
   <form class="lead-form" data-lead-form novalidate>
-    <div class="field field--text">
-      <label for="lead-nombre">Nombre completo <span class="req">*</span></label>
-      <input
-        id="lead-nombre"
-        name="nombre"
-        type="text"
-        required
-        autocomplete="name"
-        autocapitalize="words"
-        spellcheck="false"
-        enterkeyhint="next"
-        placeholder="Ej: Juan Pérez"
-      />
-    </div>
+    <div class="form-cols">
+      <div class="form-col">
+        <fieldset class="field group--personal group">
+          <legend
+            ><span class="legend-text">Información personal <span class="req">*</span></span
+            ></legend
+          >
+          <div class="field field--text">
+            <label for="lead-nombre">Nombre completo <span class="req">*</span></label>
+            <input
+              id="lead-nombre"
+              name="nombre"
+              type="text"
+              required
+              autocomplete="name"
+              autocapitalize="words"
+              spellcheck="false"
+              enterkeyhint="next"
+              placeholder="Ej: Juan Pérez"
+            />
+          </div>
 
-    <div class="field field--text">
-      <label for="lead-whatsapp">WhatsApp <span class="req">*</span></label>
-      <input
-        id="lead-whatsapp"
-        name="whatsapp"
-        type="tel"
-        required
-        autocomplete="tel"
-        inputmode="tel"
-        enterkeyhint="next"
-        placeholder="Ej: 300 000 0000"
-      />
-    </div>
+          <div class="field field--text">
+            <label for="lead-whatsapp">WhatsApp <span class="req">*</span></label>
+            <input
+              id="lead-whatsapp"
+              name="whatsapp"
+              type="tel"
+              required
+              autocomplete="tel"
+              inputmode="tel"
+              enterkeyhint="next"
+              placeholder="Ej: 300 000 0000"
+            />
+          </div>
+        </fieldset>
 
-    <fieldset class="field group group--tipo">
-      <legend><span class="legend-text">Tipo de operación <span class="req">*</span></span></legend>
-      <div class="options">
-        <label class="opt">
-          <input type="radio" name="tipo_operacion" value="Ganadería bovina (carne)" required />
-          <span class="opt-mark" aria-hidden="true"></span>
-          <span class="opt-label">Ganadería bovina (carne)</span>
-        </label>
-        <label class="opt">
-          <input type="radio" name="tipo_operacion" value="Ganadería bovina (leche)" required />
-          <span class="opt-mark" aria-hidden="true"></span>
-          <span class="opt-label">Ganadería bovina (leche)</span>
-        </label>
-        <label class="opt">
-          <input type="radio" name="tipo_operacion" value="Porcicultura" required />
-          <span class="opt-mark" aria-hidden="true"></span>
-          <span class="opt-label">Porcicultura</span>
-        </label>
-        <label class="opt">
-          <input type="radio" name="tipo_operacion" value="Avicultura" required />
-          <span class="opt-mark" aria-hidden="true"></span>
-          <span class="opt-label">Avicultura</span>
-        </label>
-        <label class="opt">
-          <input type="radio" name="tipo_operacion" value="Cultivos" required />
-          <span class="opt-mark" aria-hidden="true"></span>
-          <span class="opt-label">Cultivos</span>
-        </label>
-        <label class="opt">
-          <input type="radio" name="tipo_operacion" value="Mixta" required />
-          <span class="opt-mark" aria-hidden="true"></span>
-          <span class="opt-label">Mixta</span>
-        </label>
-        <label class="opt">
-          <input type="radio" name="tipo_operacion" value="Otro" required />
-          <span class="opt-mark" aria-hidden="true"></span>
-          <span class="opt-label">Otro</span>
-        </label>
+        <fieldset class="field group--tipo group">
+          <legend
+            ><span class="legend-text">Tipo de operación <span class="req">*</span></span></legend
+          >
+          <div class="options">
+            <label class="opt">
+              <input type="radio" name="tipo_operacion" value="Ganadería bovina (carne)" required />
+              <span class="opt-mark" aria-hidden="true"></span>
+              <span class="opt-label">Ganadería bovina (carne)</span>
+            </label>
+            <label class="opt">
+              <input type="radio" name="tipo_operacion" value="Ganadería bovina (leche)" required />
+              <span class="opt-mark" aria-hidden="true"></span>
+              <span class="opt-label">Ganadería bovina (leche)</span>
+            </label>
+            <label class="opt">
+              <input type="radio" name="tipo_operacion" value="Porcicultura" required />
+              <span class="opt-mark" aria-hidden="true"></span>
+              <span class="opt-label">Porcicultura</span>
+            </label>
+            <label class="opt">
+              <input type="radio" name="tipo_operacion" value="Avicultura" required />
+              <span class="opt-mark" aria-hidden="true"></span>
+              <span class="opt-label">Avicultura</span>
+            </label>
+            <label class="opt">
+              <input type="radio" name="tipo_operacion" value="Cultivos" required />
+              <span class="opt-mark" aria-hidden="true"></span>
+              <span class="opt-label">Cultivos</span>
+            </label>
+            <label class="opt">
+              <input type="radio" name="tipo_operacion" value="Mixta" required />
+              <span class="opt-mark" aria-hidden="true"></span>
+              <span class="opt-label">Mixta</span>
+            </label>
+            <label class="opt">
+              <input type="radio" name="tipo_operacion" value="Otro" required />
+              <span class="opt-mark" aria-hidden="true"></span>
+              <span class="opt-label">Otro</span>
+            </label>
+          </div>
+        </fieldset>
       </div>
-    </fieldset>
 
-    <div class="field field--text">
-      <label for="lead-tamano">Tamaño de la operación <span class="req">*</span></label>
-      <input
-        id="lead-tamano"
-        name="tamano_operacion"
-        type="text"
-        required
-        autocomplete="off"
-        enterkeyhint="next"
-        placeholder="Ej: 80 cabezas / 15 hectáreas"
-      />
-    </div>
+      <div class="form-col">
+        <fieldset class="field group--etapa group">
+          <legend
+            ><span class="legend-text">¿En qué etapa estás? <span class="req">*</span></span
+            ></legend
+          >
+          <div class="options options--stack">
+            <label class="opt">
+              <input type="radio" name="etapa" value="Explorando, sin urgencia" required />
+              <span class="opt-mark" aria-hidden="true"></span>
+              <span class="opt-label">Explorando, sin urgencia</span>
+            </label>
+            <label class="opt">
+              <input type="radio" name="etapa" value="Evaluando opciones activamente" required />
+              <span class="opt-mark" aria-hidden="true"></span>
+              <span class="opt-label">Evaluando opciones activamente</span>
+            </label>
+            <label class="opt">
+              <input type="radio" name="etapa" value="Listo para empezar pronto" required />
+              <span class="opt-mark" aria-hidden="true"></span>
+              <span class="opt-label">Listo para empezar pronto</span>
+            </label>
+          </div>
+        </fieldset>
 
-    <fieldset class="field group group--etapa">
-      <legend><span class="legend-text">¿En qué etapa estás? <span class="req">*</span></span></legend>
-      <div class="options options--stack">
-        <label class="opt">
-          <input type="radio" name="etapa" value="Explorando, sin urgencia" required />
-          <span class="opt-mark" aria-hidden="true"></span>
-          <span class="opt-label">Explorando, sin urgencia</span>
-        </label>
-        <label class="opt">
-          <input type="radio" name="etapa" value="Evaluando opciones activamente" required />
-          <span class="opt-mark" aria-hidden="true"></span>
-          <span class="opt-label">Evaluando opciones activamente</span>
-        </label>
-        <label class="opt">
-          <input type="radio" name="etapa" value="Listo para empezar pronto" required />
-          <span class="opt-mark" aria-hidden="true"></span>
-          <span class="opt-label">Listo para empezar pronto</span>
-        </label>
-      </div>
-    </fieldset>
+        <fieldset class="field group--fuente group">
+          <legend
+            ><span class="legend-text">¿Cómo nos encontraste? <span class="req">*</span></span
+            ></legend
+          >
+          <div class="options">
+            <label class="opt">
+              <input
+                type="radio"
+                name="como_nos_encontro"
+                value="Instagram / redes sociales"
+                required
+              />
+              <span class="opt-mark" aria-hidden="true"></span>
+              <span class="opt-label">Instagram / redes sociales</span>
+            </label>
+            <label class="opt">
+              <input
+                type="radio"
+                name="como_nos_encontro"
+                value="Recomendación de un conocido"
+                required
+              />
+              <span class="opt-mark" aria-hidden="true"></span>
+              <span class="opt-label">Recomendación de un conocido</span>
+            </label>
+            <label class="opt">
+              <input type="radio" name="como_nos_encontro" value="Google" required />
+              <span class="opt-mark" aria-hidden="true"></span>
+              <span class="opt-label">Google</span>
+            </label>
+            <label class="opt">
+              <input
+                type="radio"
+                name="como_nos_encontro"
+                value="Evento o feria agropecuario"
+                required
+              />
+              <span class="opt-mark" aria-hidden="true"></span>
+              <span class="opt-label">Evento o feria agropecuario</span>
+            </label>
+            <label class="opt">
+              <input type="radio" name="como_nos_encontro" value="Otro" required />
+              <span class="opt-mark" aria-hidden="true"></span>
+              <span class="opt-label">Otro</span>
+            </label>
+          </div>
+        </fieldset>
 
-    <fieldset class="field group group--fuente">
-      <legend><span class="legend-text">¿Cómo nos encontraste? <span class="req">*</span></span></legend>
-      <div class="options">
-        <label class="opt">
+        <div class="field field--text">
+          <label for="lead-tamano">Tamaño de la operación <span class="req">*</span></label>
           <input
-            type="radio"
-            name="como_nos_encontro"
-            value="Instagram / redes sociales"
+            id="lead-tamano"
+            name="tamano_operacion"
+            type="text"
             required
+            autocomplete="off"
+            enterkeyhint="next"
+            placeholder="Ej: 80 cabezas / 15 hectáreas"
           />
-          <span class="opt-mark" aria-hidden="true"></span>
-          <span class="opt-label">Instagram / redes sociales</span>
-        </label>
-        <label class="opt">
-          <input
-            type="radio"
-            name="como_nos_encontro"
-            value="Recomendación de un conocido"
-            required
-          />
-          <span class="opt-mark" aria-hidden="true"></span>
-          <span class="opt-label">Recomendación de un conocido</span>
-        </label>
-        <label class="opt">
-          <input type="radio" name="como_nos_encontro" value="Google" required />
-          <span class="opt-mark" aria-hidden="true"></span>
-          <span class="opt-label">Google</span>
-        </label>
-        <label class="opt">
-          <input type="radio" name="como_nos_encontro" value="Evento o feria agropecuario" required />
-          <span class="opt-mark" aria-hidden="true"></span>
-          <span class="opt-label">Evento o feria agropecuario</span>
-        </label>
-        <label class="opt">
-          <input type="radio" name="como_nos_encontro" value="Otro" required />
-          <span class="opt-mark" aria-hidden="true"></span>
-          <span class="opt-label">Otro</span>
-        </label>
+        </div>
       </div>
-    </fieldset>
+    </div>
 
     <div class="field field--text field--msg">
       <label for="lead-mensaje">Cuéntanos sobre tu operación <span class="req">*</span></label>
@@ -312,30 +337,38 @@ const {
     gap: 22px;
   }
 
-  /* ── 2-column layout (tablet + desktop) ──────────────────────
-     Short text inputs pair up on a row. Radio groups span the full
-     width, but their options flow across two columns so the whole
-     form reads as one cohesive 2-col design. Textarea, button, error,
-     divider and the WhatsApp action span full width. */
+  /* Each column is a vertical stack of full fields */
+  .form-cols {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+  }
+  .form-col {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    min-width: 0;
+  }
+
+  /* Wider padded panel from tablet up (still single column) */
   @media (min-width: 768px) {
     .lead {
       max-width: 820px;
       padding: 40px;
     }
-    .lead-form {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      column-gap: 28px;
-      row-gap: 26px;
+  }
+
+  /* ── 2-column layout (desktop only) ──────────────────────────
+     Two side-by-side columns, each a vertical stack of whole fields.
+     Tablet and mobile stay single column. */
+  @media (min-width: 1024px) {
+    .form-cols {
+      flex-direction: row;
       align-items: start;
+      gap: 32px;
     }
-    .lead-form > .group,
-    .lead-form > .field--msg,
-    .lead-form > .lead-submit,
-    .lead-form > .lead-error,
-    .lead-form > .lead-divider,
-    .lead-form > .btn-ghost-dark {
-      grid-column: 1 / -1;
+    .form-col {
+      flex: 1 1 0;
     }
   }
 
@@ -414,9 +447,8 @@ const {
   /* Distinct, larger, divider-style legend with an accent marker */
   .group > legend {
     width: 100%;
-    padding: 0 0 12px;
-    margin: 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    padding: 0;
+    margin: 0 0 8px;
   }
   .group > legend .legend-text {
     display: inline-flex;
@@ -438,21 +470,12 @@ const {
     flex: 0 0 auto;
   }
 
-  /* Option grid: two columns so long groups stay balanced and the
-     whole form keeps its 2-col rhythm. */
+  /* Each group lives in one of the two form columns, so options stack
+     as single full-width rows. */
   .options {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
+    flex-direction: column;
     gap: 10px;
-  }
-  /* The 3-option "etapa" group reads cleaner as full-width rows */
-  .options--stack {
-    grid-template-columns: 1fr;
-  }
-  @media (max-width: 519px) {
-    .options {
-      grid-template-columns: 1fr;
-    }
   }
 
   /* Selectable tile — a real radio input, styled as a checklist row */

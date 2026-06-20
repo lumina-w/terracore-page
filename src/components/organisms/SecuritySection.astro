@@ -53,7 +53,7 @@ const items = [
             <div class="security-item__icon">
               <Icon name={it.icon} width={20} height={20} />
             </div>
-            <h4 class="security-item__title">{it.h}</h4>
+            <h3 class="security-item__title">{it.h}</h3>
             <p class="security-item__desc">{it.p}</p>
           </div>
         ))
@@ -83,9 +83,9 @@ const items = [
 
   .security-head {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 48px;
-    align-items: end;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    align-items: start;
     margin-bottom: 56px;
   }
   .security-heading {
@@ -122,6 +122,10 @@ const items = [
   @media (max-width: 880px) {
     .security-grid {
       grid-template-columns: repeat(2, 1fr);
+    }
+    /* Lone last card fills the row instead of leaving a gap */
+    .security-item:last-child {
+      grid-column: 1 / -1;
     }
   }
   @media (max-width: 540px) {

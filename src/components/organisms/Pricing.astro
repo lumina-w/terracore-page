@@ -87,26 +87,27 @@ const plans = [
 
     <p class="pricing-anchor">
       Una compra de urgencia evitada, una pérdida de inventario detectada a tiempo o un brote
-      sanitario prevenido puede costar más que un año del plan Semilla. TerraCore no es un gasto:
-      es una decisión de rentabilidad.
+      sanitario prevenido puede costar más que un año del plan Semilla. TerraCore no es un gasto: es
+      una decisión de rentabilidad.
     </p>
 
     <div class="plans-slider">
       <div class="slider-body">
-        <button class="slider-arrow slider-arrow--prev" aria-label="Plan anterior">
-          <Icon name="lucide:chevron-left" width={20} height={20} />
+        <button class="slider-arrow slider-arrow--prev" type="button" aria-label="Plan anterior">
+          <Icon name="lucide:chevron-left" width={20} height={20} aria-hidden="true" />
         </button>
         <div class="plans-track">
           <div class="plans">
             {
               plans.map((p) => (
                 <div class:list={['plan', p.featured && 'plan--featured']}>
+                  {p.featured && <div class="plan-recommended">Recomendado</div>}
                   <div class="plan-header">
                     <div class="plan-name">{p.name}</div>
                     <h3 class="plan__title">{p.desc}</h3>
                   </div>
                   <div class="plan-offline-badge">
-                    <Icon name="lucide:wifi-off" width={13} height={13} />
+                    <Icon name="lucide:wifi-off" width={13} height={13} aria-hidden="true" />
                     Offline-first incluido
                   </div>
                   <div class="price-row">
@@ -128,7 +129,7 @@ const plans = [
                   <ul class="plan-features">
                     {p.features.map((f) => (
                       <li>
-                        <Icon name="lucide:check" width={16} height={16} />
+                        <Icon name="lucide:check" width={16} height={16} aria-hidden="true" />
                         {f}
                       </li>
                     ))}
@@ -143,6 +144,7 @@ const plans = [
                           placeholder="tu@email.com"
                           required
                           class="waitlist-input"
+                          aria-label="Correo electrónico para la lista de espera"
                         />
                         <button
                           type="submit"
@@ -164,10 +166,11 @@ const plans = [
                       href={p.ctaHref}
                       target="_blank"
                       rel="noopener noreferrer"
+                      aria-label={`${p.cta}, plan ${p.name} (abre en una pestaña nueva)`}
                       class:list={['btn', p.featured ? 'btn-accent' : 'btn-ghost', 'plan-cta']}
                     >
                       {p.cta}
-                      <Icon name="lucide:arrow-right" width={14} height={14} />
+                      <Icon name="lucide:arrow-right" width={14} height={14} aria-hidden="true" />
                     </a>
                   )}
                 </div>
@@ -175,10 +178,21 @@ const plans = [
             }
           </div>
         </div>
-        <button class="slider-arrow slider-arrow--next" aria-label="Plan siguiente">
-          <Icon name="lucide:chevron-right" width={20} height={20} />
+        <button class="slider-arrow slider-arrow--next" type="button" aria-label="Plan siguiente">
+          <Icon name="lucide:chevron-right" width={20} height={20} aria-hidden="true" />
         </button>
       </div>
+      <button
+        class="slider-pause"
+        id="slider-pause"
+        type="button"
+        aria-pressed="false"
+        aria-label="Pausar rotación automática de planes"
+        hidden
+      >
+        <span class="slider-pause__glyph" aria-hidden="true"></span>
+        <span class="slider-pause__label">Pausar</span>
+      </button>
     </div>
 
     <p class="pricing-foot">
@@ -204,11 +218,16 @@ const plans = [
   const plansTrack = document.querySelector<HTMLElement>('.plans-track');
   const prevBtn = document.querySelector<HTMLButtonElement>('.slider-arrow--prev');
   const nextBtn = document.querySelector<HTMLButtonElement>('.slider-arrow--next');
+  const pauseBtn = document.getElementById('slider-pause') as HTMLButtonElement | null;
+  const sliderBody = document.querySelector<HTMLElement>('.slider-body');
   const origCards = Array.from(plansEl?.querySelectorAll<HTMLElement>(':scope > .plan') ?? []);
+
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   let currentIndex = 1;
   let sliderInited = false;
   let isTransitioning = false;
+  let paused = prefersReduced;
   let timer: number | undefined;
   let resizeTimer: number | undefined;
   let safetyTimeout: number | undefined;
@@ -254,11 +273,13 @@ const plans = [
     const cloneLast = origCards[TOTAL - 1].cloneNode(true) as HTMLElement;
     cloneLast.dataset.sliderClone = 'true';
     cloneLast.setAttribute('aria-hidden', 'true');
+    cloneLast.setAttribute('inert', '');
     plansEl.insertBefore(cloneLast, origCards[0]);
 
     const cloneFirst = origCards[0].cloneNode(true) as HTMLElement;
     cloneFirst.dataset.sliderClone = 'true';
     cloneFirst.setAttribute('aria-hidden', 'true');
+    cloneFirst.setAttribute('inert', '');
     plansEl.appendChild(cloneFirst);
 
     sliderInited = true;
@@ -276,6 +297,7 @@ const plans = [
   }
 
   function startTimer() {
+    if (paused) return;
     if (timer !== undefined) clearInterval(timer);
     timer = window.setInterval(() => {
       if (isSliderActive()) goToIndex(currentIndex + 1);
@@ -287,6 +309,22 @@ const plans = [
       clearInterval(timer);
       timer = undefined;
     }
+  }
+
+  function setPaused(p: boolean) {
+    paused = p;
+    if (pauseBtn) {
+      pauseBtn.setAttribute('aria-pressed', String(p));
+      pauseBtn.setAttribute(
+        'aria-label',
+        p ? 'Reanudar rotación automática de planes' : 'Pausar rotación automática de planes',
+      );
+      pauseBtn.classList.toggle('is-paused', p);
+      const label = pauseBtn.querySelector('.slider-pause__label');
+      if (label) label.textContent = p ? 'Reanudar' : 'Pausar';
+    }
+    if (p) stopTimer();
+    else if (isSliderActive()) startTimer();
   }
 
   plansEl?.addEventListener('transitionend', (e) => {
@@ -325,18 +363,31 @@ const plans = [
   function onBreakpointChange() {
     if (isSliderActive()) {
       initSlider();
+      if (pauseBtn) pauseBtn.hidden = false;
       startTimer();
     } else {
       stopTimer();
       destroySlider();
+      if (pauseBtn) pauseBtn.hidden = true;
     }
   }
 
   mqDesktop.addEventListener('change', onBreakpointChange);
   mqMobile.addEventListener('change', onBreakpointChange);
 
+  pauseBtn?.addEventListener('click', () => setPaused(!paused));
+
+  // Pause autoplay while interacting with the slider via keyboard
+  sliderBody?.addEventListener('focusin', stopTimer);
+  sliderBody?.addEventListener('focusout', () => {
+    if (!paused && isSliderActive()) startTimer();
+  });
+
+  if (prefersReduced) setPaused(true);
+
   if (isSliderActive()) {
     initSlider();
+    if (pauseBtn) pauseBtn.hidden = false;
     startTimer();
   }
 
@@ -393,9 +444,21 @@ const plans = [
     background: var(--color-surface-sunken);
   }
 
+  /* Wider container just for pricing */
+  .pricing :global(.container) {
+    max-width: 1440px;
+  }
+
+  /* Single-column intro (override global two-column section-head) */
+  .pricing .section-head {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    align-items: start;
+  }
+
   .pricing-anchor {
     max-width: 760px;
-    margin: 32px 0 8px;
+    margin: 40px 0 48px;
     font-size: 16px;
     line-height: 1.6;
     color: var(--color-text-secondary);
@@ -453,6 +516,46 @@ const plans = [
   .slider-arrow:hover {
     background: var(--color-surface-raised, var(--color-surface));
     border-color: var(--color-border-strong);
+  }
+
+  /* Autoplay pause toggle */
+  .slider-pause {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 16px;
+    padding: 7px 14px;
+    border-radius: 999px;
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    color: var(--color-text-secondary);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition:
+      background 200ms,
+      border-color 200ms;
+  }
+  .slider-pause[hidden] {
+    display: none;
+  }
+  .slider-pause:hover {
+    border-color: var(--color-border-strong);
+    color: var(--color-text);
+  }
+  .slider-pause__glyph {
+    width: 8px;
+    height: 10px;
+    border-left: 2px solid currentColor;
+    border-right: 2px solid currentColor;
+  }
+  .slider-pause.is-paused .slider-pause__glyph {
+    width: 0;
+    height: 0;
+    border: 0;
+    border-left: 9px solid currentColor;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
   }
 
   /* ── Plan card (base — must come before media queries so overrides work) ── */
@@ -554,6 +657,30 @@ const plans = [
     text-transform: uppercase;
     padding: 5px 10px;
     border-radius: 999px;
+  }
+
+  /* "Recomendado" badge overlapping the top-right corner of the featured card */
+  .plan-recommended {
+    position: absolute;
+    top: -12px;
+    right: -10px;
+    z-index: 3;
+    background: var(--color-accent);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 999px;
+    box-shadow: 0 6px 16px -4px rgba(0, 0, 0, 0.4);
+  }
+  /* Slider view clips overflow, tuck the badge inside the card corner */
+  @media (min-width: 640px) and (max-width: 1199px) {
+    .plan-recommended {
+      top: 12px;
+      right: 12px;
+    }
   }
 
   .plan-header {
