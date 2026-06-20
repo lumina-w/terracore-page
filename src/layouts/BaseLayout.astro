@@ -9,14 +9,16 @@ interface Props {
   ogImage?: string;
   ogImageAlt?: string;
   preloadImage?: string;
+  noindex?: boolean;
 }
 
 const {
   title,
   description = 'Reduce pérdidas, controla costos y decide con datos reales en tu finca. TerraCore funciona sin internet, diseñada para el campo colombiano.',
-  ogImage = '/terracore.png',
+  ogImage = '/terracore.jpg',
   ogImageAlt = 'TerraCore: plataforma de gestión agroindustrial para el campo colombiano',
   preloadImage,
+  noindex = false,
 } = Astro.props;
 
 const siteBase = Astro.site ?? 'https://terracoreapp.co';
@@ -30,7 +32,7 @@ const gaId = import.meta.env.PUBLIC_GA_ID;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="robots" content="index, follow" />
+    <meta name="robots" content={noindex ? 'noindex, follow' : 'index, follow'} />
     <meta name="theme-color" content="#1b4332" />
     <link rel="icon" href="/logo.ico" />
 
@@ -62,9 +64,9 @@ const gaId = import.meta.env.PUBLIC_GA_ID;
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImageURL} />
-    <meta property="og:image:type" content="image/png" />
-    <meta property="og:image:width" content="1730" />
-    <meta property="og:image:height" content="909" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content={ogImageAlt} />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:type" content="website" />
