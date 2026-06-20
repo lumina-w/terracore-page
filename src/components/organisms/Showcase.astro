@@ -7,10 +7,32 @@ const tabData = [
     label: 'Dashboard',
     images: ['/screens/dashboard-1.webp', '/screens/dashboard-2.webp'],
   },
-  { id: 'animales', label: 'Animales', images: ['/screens/animales.webp'] },
-  { id: 'insumos', label: 'Insumos', images: ['/screens/insumos.webp'] },
-  { id: 'herramientas', label: 'Herramientas', images: ['/screens/herramientas.webp'] },
-  { id: 'produccion', label: 'Producción', images: ['/screens/produccion.webp'] },
+  {
+    id: 'animales',
+    label: 'Animales',
+    images: ['/screens/animales-1.webp', '/screens/animales-2.webp', '/screens/animales-3.webp'],
+  },
+  {
+    id: 'insumos',
+    label: 'Insumos',
+    images: [
+      '/screens/insumos-1.webp',
+      '/screens/insumos-2.webp',
+      '/screens/insumos-3.webp',
+      '/screens/insumos-4.webp',
+      '/screens/insumos-5.webp',
+    ],
+  },
+  {
+    id: 'produccion',
+    label: 'Producción',
+    images: [
+      '/screens/produccion-1.webp',
+      '/screens/produccion-2.webp',
+      '/screens/produccion-3.webp',
+      '/screens/produccion-4.webp',
+    ],
+  },
   {
     id: 'salud',
     label: 'Salud Animal',
@@ -18,6 +40,9 @@ const tabData = [
       '/screens/salud-animal-1.webp',
       '/screens/salud-animal-2.webp',
       '/screens/salud-animal-3.webp',
+      '/screens/salud-animal-4.webp',
+      '/screens/salud-animal-5.webp',
+      '/screens/salud-animal-6.webp',
     ],
   },
 ];
@@ -30,12 +55,12 @@ const tabData = [
       <div>
         <Eyebrow num="02" onDark>El producto</Eyebrow>
         <h2 class="display lg showcase__heading">
-          Diseñado para el <span class="accent">campo</span>,<br />no para una oficina.
+          Tan fácil de usar como un cuaderno.<br /><span class="accent">Mucho más poderoso.</span>
         </h2>
       </div>
       <p class="lead showcase__lead">
-        Tipografía grande, contraste alto, lecturas de un golpe de vista. La interfaz funciona desde
-        el celular en la manga del corral hasta el escritorio del administrador.
+        Pensado para usarse con guantes, con mala luz y con afán. Desde el celular en el corral hasta
+        el computador del administrador: la misma información, siempre disponible.
       </p>
     </div>
 
@@ -60,11 +85,20 @@ const tabData = [
     <div class="showcase-frame" id="showcase-frame" role="tabpanel" id="panel-dashboard">
       <img
         id="showcase-img"
+        class="showcase-img is-active"
         src={tabData[0]!.images[0]}
         alt={`TerraCore | ${tabData[0]!.label}`}
         width="1200"
         height="750"
         loading="lazy"
+        decoding="async"
+      />
+      <img
+        class="showcase-img"
+        width="1200"
+        height="750"
+        alt=""
+        aria-hidden="true"
         decoding="async"
       />
     </div>
@@ -76,26 +110,25 @@ const tabData = [
     <div class="showcase-callouts">
       <div class="showcase-callout">
         <div class="showcase-callout__num">01</div>
-        <h4 class="showcase-callout__title">Sidebar con contexto siempre claro</h4>
+        <h4 class="showcase-callout__title">Todo donde lo necesitas</h4>
         <p class="showcase-callout__desc">
-          Inventario, operaciones y general agrupados como los piensas: por flujo de trabajo, no por
-          menú alfabético.
+          La información que usas todos los días a un toque. Sin menús confusos, sin pasos de más.
         </p>
       </div>
       <div class="showcase-callout">
         <div class="showcase-callout__num">02</div>
-        <h4 class="showcase-callout__title">Tablas que se leen en la finca</h4>
+        <h4 class="showcase-callout__title">Legible en cualquier condición</h4>
         <p class="showcase-callout__desc">
-          Filas altas, números tabulares, estados con color. Encuentras el animal POR-006 antes de
-          que el toro se voltee.
+          Texto grande, colores con significado, respuesta rápida. Funciona igual bajo el sol que en
+          la oficina.
         </p>
       </div>
       <div class="showcase-callout">
         <div class="showcase-callout__num">03</div>
-        <h4 class="showcase-callout__title">Alertas que importan, no notificaciones</h4>
+        <h4 class="showcase-callout__title">Solo te avisamos cuando importa</h4>
         <p class="showcase-callout__desc">
-          Vacunas vencidas, stock bajo, animales en tratamiento. Cuando TerraCore te avisa, es
-          porque hay que actuar.
+          Vacunas vencidas, stock bajo, animales en tratamiento. Cada alerta es una pérdida que se
+          puede evitar.
         </p>
       </div>
     </div>
@@ -105,23 +138,35 @@ const tabData = [
 <script>
   const TABS: Record<string, string[]> = {
     dashboard: ['/screens/dashboard-1.webp', '/screens/dashboard-2.webp'],
-    animales: ['/screens/animales.webp'],
-    insumos: ['/screens/insumos.webp'],
-    herramientas: ['/screens/herramientas.webp'],
-    produccion: ['/screens/produccion.webp'],
+    animales: ['/screens/animales-1.webp', '/screens/animales-2.webp', '/screens/animales-3.webp'],
+    insumos: [
+      '/screens/insumos-1.webp',
+      '/screens/insumos-2.webp',
+      '/screens/insumos-3.webp',
+      '/screens/insumos-4.webp',
+      '/screens/insumos-5.webp',
+    ],
+    produccion: [
+      '/screens/produccion-1.webp',
+      '/screens/produccion-2.webp',
+      '/screens/produccion-3.webp',
+      '/screens/produccion-4.webp',
+    ],
     salud: [
       '/screens/salud-animal-1.webp',
       '/screens/salud-animal-2.webp',
       '/screens/salud-animal-3.webp',
+      '/screens/salud-animal-4.webp',
+      '/screens/salud-animal-5.webp',
+      '/screens/salud-animal-6.webp',
     ],
   };
 
   const INTERVAL = 3000;
-  const FADE_MS = 120;
 
   const tabBtns = document.querySelectorAll<HTMLButtonElement>('.showcase-tab');
-  const img = document.getElementById('showcase-img') as HTMLImageElement;
   const frame = document.getElementById('showcase-frame')!;
+  const layers = [...frame.querySelectorAll<HTMLImageElement>('.showcase-img')];
   const dotsEl = document.getElementById('showcase-dots')!;
 
   let activeTab = 'dashboard';
@@ -136,13 +181,27 @@ const tabData = [
     return (TABS[tabId]?.length ?? 0) > 1;
   }
 
-  function fadeSwap(src: string, label: string) {
-    img.style.opacity = '0';
-    setTimeout(() => {
-      img.src = src;
-      img.alt = `TerraCore | ${label}`;
-      img.style.opacity = '';
-    }, FADE_MS);
+  let swapToken = 0;
+
+  async function fadeSwap(src: string, label: string) {
+    const cur = layers.find((l) => l.classList.contains('is-active')) ?? layers[0]!;
+    const next = layers.find((l) => l !== cur)!;
+    if (cur.currentSrc.endsWith(src) || cur.src.endsWith(src)) return;
+
+    const token = ++swapToken;
+    next.src = src;
+    next.alt = `TerraCore | ${label}`;
+    try {
+      await next.decode();
+    } catch {
+      /* decode can reject if src changes mid-flight; crossfade anyway */
+    }
+    if (token !== swapToken) return; // a newer swap superseded this one
+
+    next.classList.add('is-active');
+    cur.classList.remove('is-active');
+    cur.setAttribute('aria-hidden', 'true');
+    next.removeAttribute('aria-hidden');
   }
 
   function renderDots(tabId: string) {
@@ -281,20 +340,27 @@ const tabData = [
   /* Frame */
   .showcase-frame {
     position: relative;
-    border-radius: 14px;
-    overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.5);
-    background: var(--color-bg);
+    background: transparent;
     aspect-ratio: 1200 / 750;
   }
   .showcase-frame img {
+    position: absolute;
+    inset: 0;
     width: 100%;
     height: 100%;
     display: block;
-    object-fit: cover;
-    object-position: top;
-    transition: opacity 0.12s ease;
+    object-fit: contain;
+    object-position: center;
+    opacity: 0;
+    transition: opacity 0.45s ease;
+  }
+  .showcase-frame img.is-active {
+    opacity: 1;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .showcase-frame img {
+      transition: none;
+    }
   }
 
   /* Dots */

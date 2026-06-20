@@ -1,0 +1,81 @@
+---
+import Eyebrow from '@atoms/Eyebrow.astro';
+
+// ── PLACEHOLDER ───────────────────────────────────────────────
+// Métricas reales de pilotos. Oculto hasta tener datos verificables.
+// NO inventar cifras. Para activar: quitar `hidden` del <section>
+// y rellenar `value`/`sub` con datos medidos y verificables.
+const METRICS = [
+  { value: '—', label: 'Horas ahorradas', sub: 'por semana' },
+  { value: '—', label: 'Reducción de pérdidas', sub: '% vs. línea base' },
+  { value: '—', label: 'Incremento de productividad', sub: '% medido' },
+];
+---
+
+<section class="section-pad metrics-band" id="metricas" hidden>
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <Eyebrow num="·">Resultados medidos</Eyebrow>
+        <h2 class="display lg" style="margin-top:16px">El impacto, en números reales.</h2>
+      </div>
+      <p class="lead">Placeholder. Se publica solo con datos verificables de pilotos.</p>
+    </div>
+
+    <div class="metrics-grid">
+      {
+        METRICS.map((m) => (
+          <div class="metric">
+            <div class="metric__value">{m.value}</div>
+            <div class="metric__label">{m.label}</div>
+            <div class="metric__sub">{m.sub}</div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Oculto hasta tener métricas verificables de pilotos. */
+  .metrics-band {
+    display: none;
+  }
+
+  .metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .metric {
+    border: 1px dashed var(--color-border-strong);
+    border-radius: 14px;
+    padding: 28px;
+    text-align: center;
+    background: var(--color-surface);
+  }
+  .metric__value {
+    font-family: var(--font-display);
+    font-size: 44px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--color-accent);
+    line-height: 1;
+  }
+  .metric__label {
+    margin-top: 10px;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--color-text);
+  }
+  .metric__sub {
+    margin-top: 4px;
+    font-size: 12px;
+    color: var(--color-text-secondary);
+  }
+  @media (max-width: 768px) {
+    .metrics-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

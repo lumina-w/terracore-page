@@ -25,7 +25,7 @@ Static SSG landing page. No server runtime, no React. Single route: `src/pages/i
 `index.astro` → `BaseLayout.astro` (head, GA4, fonts) → `LandingTemplate.astro` (assembles all sections) → organisms/molecules/atoms
 
 **Section order** (LandingTemplate):
-Hero → ProofStrip → Modules → Showcase → Benefits → Pricing → SecuritySection → FAQSection → CTAFooter
+Hero → ProofStrip → Modules → Impacto → Showcase → Benefits → SecuritySection → Pricing → FAQSection → CTAFooter
 
 **Atomic design layers** — import aliases enforce the hierarchy:
 
@@ -67,8 +67,8 @@ GA4 wired in BaseLayout via `is:inline` scripts (excluded from Prettier — see 
 **Public assets:**
 
 - `/logo.ico` — brand logo
-- `/screens/` — dashboard screenshot PNGs (dashboard-1.png, dashboard-2.png, animales.png, herramientas.png, insumos.png, produccion.png, salud-1.png)
-- `/video/demo.mp4` — product demo video (referenced in Hero lightbox)
+- `/screens/` — dashboard screenshot WebPs (dashboard-1/2, animales-1..3, insumos-1..5, produccion-1..4, salud-animal-1..6)
+- `/videos/demo.mp4` — product demo video, H.264/AAC, faststart (referenced in Hero lightbox)
 
 ## Key Constraints
 
@@ -76,3 +76,4 @@ GA4 wired in BaseLayout via `is:inline` scripts (excluded from Prettier — see 
 - `BaseLayout.astro` is also excluded from ESLint auto-fix for the same reason.
 - No React, no client-side framework. All interactivity must be vanilla JS in `<script>` blocks.
 - `tailwind.config.mjs` and `tailwind.config.ts` both exist — `astro.config.mjs` uses the `.mjs` version via `@astrojs/tailwind`.
+- NEVER use the em-dash character (`—`) in user-facing UI copy (headings, leads, labels, button text, FAQ, plan descriptions, any rendered string). Use a comma, colon, period, or parentheses instead. This rule applies only to UI copy — em-dashes are fine in code comments and docs like this file.

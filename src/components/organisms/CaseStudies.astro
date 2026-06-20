@@ -1,0 +1,103 @@
+---
+import Eyebrow from '@atoms/Eyebrow.astro';
+
+// ── PLACEHOLDER ───────────────────────────────────────────────
+// Sección oculta hasta documentar el primer piloto real.
+// NO inventar datos. Para activar: quitar `hidden` del <section>
+// y reemplazar los placeholders de cada etapa con el caso real.
+// Estructura por caso: Problema → Implementación → Resultado → Aprendizajes.
+const STAGES = [
+  { key: 'problema', label: 'Problema' },
+  { key: 'implementacion', label: 'Implementación' },
+  { key: 'resultado', label: 'Resultado' },
+  { key: 'aprendizajes', label: 'Aprendizajes' },
+];
+---
+
+<section class="section-pad case-studies" id="casos" hidden>
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <Eyebrow num="·">Casos de estudio</Eyebrow>
+        <h2 class="display lg" style="margin-top:16px">
+          Cómo se ve TerraCore en una operación real.
+        </h2>
+      </div>
+      <p class="lead">Placeholder. Se publica cuando exista un piloto documentado.</p>
+    </div>
+
+    <article class="case">
+      <header class="case__head">
+        <span class="case__tag">Caso · placeholder</span>
+        <h3 class="case__name">Nombre de la operación</h3>
+      </header>
+      <div class="case__stages">
+        {
+          STAGES.map((s) => (
+            <div class="case__stage" data-stage={s.key}>
+              <div class="case__stage-label">{s.label}</div>
+              <p class="case__stage-body">Pendiente de datos reales del piloto.</p>
+            </div>
+          ))
+        }
+      </div>
+    </article>
+  </div>
+</section>
+
+<style>
+  /* Oculto hasta tener el primer caso real documentado. */
+  .case-studies {
+    display: none;
+  }
+
+  .case {
+    border: 1px solid var(--color-border);
+    border-radius: 14px;
+    padding: 32px;
+    background: var(--color-surface);
+  }
+  .case__head {
+    margin-bottom: 24px;
+  }
+  .case__tag {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    font-weight: 700;
+  }
+  .case__name {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 700;
+    margin: 8px 0 0;
+    color: var(--color-text);
+  }
+  .case__stages {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+  .case__stage {
+    border: 1px dashed var(--color-border-strong);
+    border-radius: 10px;
+    padding: 16px;
+  }
+  .case__stage-label {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--color-text);
+    margin-bottom: 8px;
+  }
+  .case__stage-body {
+    font-size: 13px;
+    line-height: 20px;
+    color: var(--color-text-secondary);
+  }
+  @media (max-width: 768px) {
+    .case__stages {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

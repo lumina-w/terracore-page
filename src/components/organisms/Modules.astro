@@ -12,9 +12,9 @@ const modules: Array<{
 }> = [
   {
     num: '02',
-    name: 'Animales',
-    icon: 'lucide:leaf',
-    desc: 'Registro y seguimiento del ganado: ID, raza, peso, salud, ubicación.',
+    name: 'Seguimiento individual de cada animal',
+    icon: 'lucide:paw-print',
+    desc: 'Sabe exactamente en qué estado está cada animal: peso, salud, ubicación e historial. Sin depender de la memoria del mayordomo ni de cuadernos que se pierden.',
     table: {
       cols: ['ID', 'Nombre', 'Raza', 'Peso', 'Ubicación'],
       rows: [
@@ -26,9 +26,9 @@ const modules: Array<{
   },
   {
     num: '03',
-    name: 'Insumos',
-    icon: 'lucide:box',
-    desc: 'Alimentos, medicamentos y suministros con stock mínimo y proveedor.',
+    name: 'Evita faltantes y compras de urgencia',
+    icon: 'lucide:package',
+    desc: 'TerraCore te avisa antes de que se acabe el concentrado o venza la vacuna. Menos corridas de último momento, menos plata perdida en compras urgentes, menos animales sin atención.',
     table: {
       cols: ['Nombre', 'Categoría', 'Cantidad', 'Mínimo', 'Proveedor'],
       rows: [
@@ -40,9 +40,9 @@ const modules: Array<{
   },
   {
     num: '04',
-    name: 'Herramientas',
+    name: 'Menos tiempo muerto por falla de equipos',
     icon: 'lucide:wrench',
-    desc: 'Equipos, maquinaria e implementos con estado y mantenimiento.',
+    desc: 'Registra el estado de cada equipo y programa el mantenimiento antes de que falle. Una aspersora dañada en época de fumigación cuesta más que cualquier plan.',
     table: {
       cols: ['Nombre', 'Condición', 'Notas'],
       rows: [
@@ -54,9 +54,9 @@ const modules: Array<{
   },
   {
     num: '05',
-    name: 'Producción',
+    name: 'Entiende qué lote genera ganancias',
     icon: 'lucide:bar-chart-2',
-    desc: 'Bitácora de lotes (cultivo, leche, huevos), insumos y horas.',
+    desc: 'Registra cada lote con sus insumos y horas invertidas. Con el tiempo, TerraCore te muestra qué produce más, qué cuesta más y dónde está el margen real de tu operación.',
     table: {
       cols: ['Lote', 'Producto', 'Cantidad', 'Insumos'],
       rows: [
@@ -75,12 +75,12 @@ const modules: Array<{
       <div>
         <Eyebrow num="01">Producto</Eyebrow>
         <h2 class="display lg" style="margin-top:16px">
-          Seis módulos que <span class="accent-text">conversan entre sí</span>.
+          Todo lo que necesitas para <span class="accent-text">operar mejor y perder menos</span>.
         </h2>
       </div>
       <p class="lead">
-        Una sola plataforma para tu finca: del registro del último ternero al kilo de concentrado
-        que se acaba mañana. Todo conectado, todo en tu mano.
+        Cada parte de tu operación conectada. Cuando algo cambia en un lado, todo el sistema se
+        actualiza solo, sin doble trabajo, sin errores, sin sorpresas.
       </p>
     </div>
 
@@ -93,11 +93,12 @@ const modules: Array<{
             <div class="bento-tile__icon-sq">
               <Icon name="lucide:layout-dashboard" width={22} height={22} />
             </div>
-            <h3 class="bento-tile__name">Dashboard</h3>
+            <h3 class="bento-tile__name">Visibilidad completa de la operación</h3>
           </div>
           <p class="bento-tile__desc">
-            KPIs en tiempo real: animales activos, producción mensual, insumos, alertas y ingresos
-            estimados. La foto completa de tu finca, en un vistazo.
+            Sabe qué está pasando en tu finca antes de salir de la casa. Animales activos, alertas
+            urgentes, producción del mes y costos, todo en una sola pantalla para tomar decisiones
+            con información real, no con memoria.
           </p>
         </div>
         <div class="demo-mini">
@@ -160,7 +161,7 @@ const modules: Array<{
       <!-- Standard module tiles -->
       {
         modules.map((m) => (
-          <div class="bento-tile">
+          <div class:list={['bento-tile', m.num === '05' && 'bento-tile--span4']}>
             <span class="bento-tile__num">{m.num} / 06</span>
             <div>
               <div class="bento-tile__header">
@@ -202,16 +203,19 @@ const modules: Array<{
       }
 
       <!-- Salud Animal — sub-tabs -->
-      <div class="bento-tile">
+      <div class="bento-tile bento-tile--wide bento-tile--salud">
         <span class="bento-tile__num">06 / 06</span>
         <div>
           <div class="bento-tile__header">
             <div class="bento-tile__icon-sq">
               <Icon name="lucide:stethoscope" width={22} height={22} />
             </div>
-            <h3 class="bento-tile__name">Salud Animal</h3>
+            <h3 class="bento-tile__name">Reduce riesgos y pérdidas sanitarias</h3>
           </div>
-          <p class="bento-tile__desc">Vacunas, alertas, historial sanitario y vista por animal.</p>
+          <p class="bento-tile__desc">
+            Vacunas vencidas, alertas próximas y estado sanitario de cada animal. Prevenir una muerte
+            o un brote vale más que cualquier tratamiento de emergencia.
+          </p>
         </div>
         <div class="bento-preview">
           <table class="mini-table">
@@ -232,28 +236,57 @@ const modules: Array<{
       <div class="bento-tile bento-tile--wide bento-integration">
         <div class="bento-integration__copy">
           <Eyebrow num="07">Integrado</Eyebrow>
-          <h3 class="bento-integration__title">
-            Si registras una vacuna, también baja el stock del frasco.
-          </h3>
+          <h3 class="bento-integration__title">Una acción. Todo el sistema al día.</h3>
           <p class="bento-integration__desc">
             Los módulos no son aislados: cuando aplicas un tratamiento, TerraCore descuenta el
             insumo, agenda el refuerzo y actualiza el estado de salud del animal. Una acción, todo
-            el sistema al día.
+            el sistema al día. Así eliminas el doble trabajo, los errores de transcripción y la
+            información que vive en la cabeza de una sola persona.
           </p>
         </div>
         <div class="bento-integration__flow">
-          <div class="flow-row flow-row--success">
-            <Icon name="lucide:check" width={14} height={14} />
-            Vacuna aplicada · Triple Bovina
+          <div class="flow-card">
+            <div class="flow-row flow-row--success">
+              <Icon name="lucide:check" width={14} height={14} />
+              Vacuna aplicada · Triple Bovina
+            </div>
+            <div class="flow-arrow">↓</div>
+            <div class="flow-row flow-row--dashed">
+              <span>Insumo descontado</span>
+              <span class="flow-row__val">−1 dosis</span>
+            </div>
+            <div class="flow-row flow-row--dashed">
+              <span>Próximo refuerzo</span>
+              <span class="flow-row__val">14 may</span>
+            </div>
           </div>
-          <div class="flow-arrow">↓</div>
-          <div class="flow-row flow-row--dashed">
-            <span>Insumo descontado</span>
-            <span class="flow-row__val">−1 dosis</span>
+
+          <div class="flow-card">
+            <div class="flow-row flow-row--success">
+              <Icon name="lucide:package" width={14} height={14} />
+              Insumo en stock mínimo
+            </div>
+            <div class="flow-arrow">↓</div>
+            <div class="flow-row flow-row--dashed">
+              <span>Alerta automática al administrador</span>
+            </div>
+            <div class="flow-row flow-row--dashed">
+              <span>Pedido programado sin urgencia</span>
+            </div>
           </div>
-          <div class="flow-row flow-row--dashed">
-            <span>Próximo refuerzo</span>
-            <span class="flow-row__val">14 may</span>
+
+          <div class="flow-card">
+            <div class="flow-row flow-row--success">
+              <Icon name="lucide:sprout" width={14} height={14} />
+              Producción registrada
+            </div>
+            <div class="flow-arrow">↓</div>
+            <div class="flow-row flow-row--dashed">
+              <span>Costo por lote calculado</span>
+            </div>
+            <div class="flow-row flow-row--dashed">
+              <span>Rentabilidad visible en el dashboard</span>
+            </div>
           </div>
         </div>
       </div>
@@ -327,6 +360,7 @@ const modules: Array<{
   .bento-tile__name {
     font-family: var(--font-display);
     font-size: 24px;
+    line-height: 1.3;
     letter-spacing: -0.015em;
     font-weight: 700;
     margin: 0 0 8px;
@@ -374,6 +408,22 @@ const modules: Array<{
   /* Wide tile */
   .bento-tile--wide {
     grid-column: span 6;
+  }
+
+  /* Span-4 tile (varied rhythm) */
+  .bento-tile--span4 {
+    grid-column: span 4;
+  }
+
+  /* Salud: full-width, copy + table side by side */
+  .bento-tile--salud {
+    display: grid;
+    grid-template-columns: 1fr 1.25fr;
+    gap: 32px;
+    align-items: center;
+  }
+  .bento-tile--salud .bento-preview {
+    margin-top: 0;
   }
 
   /* Demo mini widget */
@@ -466,6 +516,11 @@ const modules: Array<{
   }
 
   .bento-integration__flow {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .flow-card {
     background: #fff;
     border: 1px solid var(--color-border);
     border-radius: 10px;
@@ -643,9 +698,13 @@ const modules: Array<{
     }
     .bento-tile,
     .bento-tile--featured,
-    .bento-tile--wide {
+    .bento-tile--wide,
+    .bento-tile--span4 {
       grid-column: span 2;
       grid-row: auto;
+    }
+    .bento-tile--salud {
+      display: flex;
     }
     .bento-tile--featured .bento-tile__name {
       font-size: 28px;

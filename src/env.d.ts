@@ -6,6 +6,8 @@ interface ImportMetaEnv {
   readonly PUBLIC_SITE_URL: string;
   readonly MAIN_CTA_URL: string;
   readonly CONTACT_WHATSAPP: string;
+  readonly PUBLIC_SUPABASE_URL: string;
+  readonly PUBLIC_SUPABASE_ANON_KEY: string;
 }
 
 interface ImportMeta {

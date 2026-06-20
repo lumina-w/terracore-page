@@ -5,11 +5,12 @@ import { Icon } from 'astro-icon/components';
 const plans = [
   {
     name: 'Semilla',
-    desc: 'Para fincas que inician su digitalización.',
+    desc: 'Para fincas que quieren dejar de operar a ciegas.',
     priceMain: '$2.5M',
     priceSub: '/mes',
     priceIsLabel: false,
     priceNote: 'Acceso completo por 30 días',
+    valueNote: 'Menos de lo que cuesta una compra de urgencia evitable al mes.',
     features: [
       '1 sede · 5 usuarios',
       'Gestión de Animales (CRUD completo + estado de salud)',
@@ -25,7 +26,7 @@ const plans = [
   },
   {
     name: 'Profesional',
-    desc: 'Para operaciones que necesitan visibilidad total.',
+    desc: 'Para operaciones que necesitan saber exactamente qué genera y qué cuesta cada área.',
     priceMain: '$5M',
     priceSub: '/mes',
     priceIsLabel: false,
@@ -41,7 +42,9 @@ const plans = [
       'WhatsApp + videollamada ≤4h + revisión mensual',
     ],
     featured: true,
-    waitlist: true,
+    cta: 'Quiero saber más',
+    ctaHref:
+      'https://wa.me/573108283088?text=Hola%2C%20quiero%20saber%20m%C3%A1s%20sobre%20el%20plan%20Profesional%20de%20TerraCore',
   },
   {
     name: 'Enterprise',
@@ -60,8 +63,9 @@ const plans = [
       'Reportes gerenciales',
       'Prioritario SLA ≤2h + 99.9%',
     ],
-    cta: 'Contactar ventas',
-    ctaHref: 'mailto:contact@luminaw.co?subject=Información%20sobre%20Plan%20Enterprise%20de%20TerraCore',
+    cta: 'Quiero saber más',
+    ctaHref:
+      'https://wa.me/573108283088?text=Hola%2C%20quiero%20saber%20m%C3%A1s%20sobre%20el%20plan%20Enterprise%20de%20TerraCore',
     featured: false,
   },
 ];
@@ -81,6 +85,12 @@ const plans = [
       </p>
     </div>
 
+    <p class="pricing-anchor">
+      Una compra de urgencia evitada, una pérdida de inventario detectada a tiempo o un brote
+      sanitario prevenido puede costar más que un año del plan Semilla. TerraCore no es un gasto:
+      es una decisión de rentabilidad.
+    </p>
+
     <div class="plans-slider">
       <div class="slider-body">
         <button class="slider-arrow slider-arrow--prev" aria-label="Plan anterior">
@@ -94,6 +104,10 @@ const plans = [
                   <div class="plan-header">
                     <div class="plan-name">{p.name}</div>
                     <h3 class="plan__title">{p.desc}</h3>
+                  </div>
+                  <div class="plan-offline-badge">
+                    <Icon name="lucide:wifi-off" width={13} height={13} />
+                    Offline-first incluido
                   </div>
                   <div class="price-row">
                     {p.priceIsLabel ? (
@@ -109,6 +123,7 @@ const plans = [
                     )}
                   </div>
                   {p.priceNote && <p class="price-note">{p.priceNote}</p>}
+                  {p.valueNote && <p class="price-value-note">{p.valueNote}</p>}
                   <hr class="plan-divider" />
                   <ul class="plan-features">
                     {p.features.map((f) => (
@@ -147,6 +162,7 @@ const plans = [
                   ) : (
                     <a
                       href={p.ctaHref}
+                      target="_blank"
                       rel="noopener noreferrer"
                       class:list={['btn', p.featured ? 'btn-accent' : 'btn-ghost', 'plan-cta']}
                     >
@@ -377,6 +393,16 @@ const plans = [
     background: var(--color-surface-sunken);
   }
 
+  .pricing-anchor {
+    max-width: 760px;
+    margin: 32px 0 8px;
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--color-text-secondary);
+    border-left: 3px solid var(--color-accent);
+    padding-left: 18px;
+  }
+
   /* ── Slider shell ── */
 
   .plans-slider {
@@ -554,6 +580,28 @@ const plans = [
     line-height: 1.25;
   }
 
+  .plan-offline-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    align-self: flex-start;
+    margin-top: 12px;
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    color: var(--color-success-fg);
+    background: var(--color-success-bg);
+    border: 1px solid var(--color-success-fg);
+  }
+
+  .plan--featured .plan-offline-badge {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.35);
+  }
+
   .plan--featured .plan__title {
     color: #fff;
   }
@@ -591,6 +639,18 @@ const plans = [
 
   .plan--featured .price-note {
     color: rgba(255, 255, 255, 0.55);
+  }
+
+  .price-value-note {
+    font-size: 12px;
+    line-height: 1.4;
+    color: var(--color-accent);
+    font-weight: 600;
+    margin: 8px 0 0;
+  }
+
+  .plan--featured .price-value-note {
+    color: var(--color-accent);
   }
 
   .plan--featured .price-suffix {

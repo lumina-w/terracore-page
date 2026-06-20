@@ -10,7 +10,7 @@ const jsonLd = JSON.stringify([
     url: 'https://terracoreapp.co',
     logo: 'https://terracoreapp.co/logo.ico',
     description:
-      'TerraCore es la plataforma colombiana de gestión agroindustrial para fincas medianas. Inventario, producción y salud animal en una sola pantalla.',
+      'TerraCore ayuda a productores y administradores de finca a reducir pérdidas, controlar costos y tomar decisiones con datos reales. Funciona sin internet. Diseñada para el campo colombiano.',
     address: {
       '@type': 'PostalAddress',
       addressRegion: 'Antioquia',
@@ -30,15 +30,16 @@ const jsonLd = JSON.stringify([
     '@type': 'WebSite',
     name: 'TerraCore',
     url: 'https://terracoreapp.co',
-    description: 'Plataforma de gestión agroindustrial diseñada para el campo colombiano.',
+    description:
+      'TerraCore ayuda a productores y administradores de finca a reducir pérdidas, controlar costos y tomar decisiones con datos reales. Funciona sin internet. Diseñada para el campo colombiano.',
     inLanguage: 'es-CO',
   },
 ]);
 ---
 
 <BaseLayout
-  title="TerraCore | Campo inteligente"
-  description="TerraCore es la plataforma colombiana para gestionar inventario, producción y salud animal en una sola pantalla. Diseñada para fincas medianas."
+  title="TerraCore | Menos pérdidas. Más control. Finca rentable."
+  description="TerraCore ayuda a productores y administradores de finca a reducir pérdidas, controlar costos y tomar decisiones con datos reales. Funciona sin internet. Diseñada para el campo colombiano."
   preloadImage="/screens/dashboard-2.webp"
 >
   <script slot="head" is:inline type="application/ld+json" set:html={jsonLd} />

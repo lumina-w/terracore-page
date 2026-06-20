@@ -1,0 +1,402 @@
+---
+import { Icon } from 'astro-icon/components';
+
+interface Props {
+  /** WhatsApp fallback link (wa.me/...) shown below the form */
+  whatsappUrl?: string;
+}
+
+const {
+  whatsappUrl = 'https://wa.me/573108283088?text=Quiero%20solicitar%20una%20demo%20de%20TerraCore%20para%20mi%20finca',
+} = Astro.props;
+---
+
+<div class="lead" data-lead>
+  <form class="lead-form" data-lead-form novalidate>
+    <div class="field">
+      <label for="lead-nombre">Nombre completo <span class="req">*</span></label>
+      <input
+        id="lead-nombre"
+        name="nombre"
+        type="text"
+        required
+        autocomplete="name"
+        autocapitalize="words"
+        spellcheck="false"
+        enterkeyhint="next"
+        placeholder="Ej: Juan Pérez"
+      />
+    </div>
+
+    <div class="field">
+      <label for="lead-whatsapp">WhatsApp <span class="req">*</span></label>
+      <input
+        id="lead-whatsapp"
+        name="whatsapp"
+        type="tel"
+        required
+        autocomplete="tel"
+        inputmode="tel"
+        enterkeyhint="next"
+        placeholder="Ej: 300 000 0000"
+      />
+    </div>
+
+    <div class="field">
+      <label for="lead-tipo">Tipo de operación <span class="req">*</span></label>
+      <select id="lead-tipo" name="tipo_operacion" required>
+        <option value="" disabled selected>Selecciona una opción</option>
+        <option value="Ganadería bovina (carne)">Ganadería bovina (carne)</option>
+        <option value="Ganadería bovina (leche)">Ganadería bovina (leche)</option>
+        <option value="Porcicultura">Porcicultura</option>
+        <option value="Avicultura">Avicultura</option>
+        <option value="Cultivos">Cultivos</option>
+        <option value="Mixta">Mixta</option>
+        <option value="Otro">Otro</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label for="lead-tamano">Tamaño de la operación <span class="req">*</span></label>
+      <input
+        id="lead-tamano"
+        name="tamano_operacion"
+        type="text"
+        required
+        autocomplete="off"
+        enterkeyhint="next"
+        placeholder="Ej: 80 cabezas / 15 hectáreas"
+      />
+    </div>
+
+    <fieldset class="field radios">
+      <legend>¿En qué etapa estás? <span class="req">*</span></legend>
+      <label class="radio">
+        <input type="radio" name="etapa" value="Explorando, sin urgencia" required />
+        <span>Explorando, sin urgencia</span>
+      </label>
+      <label class="radio">
+        <input type="radio" name="etapa" value="Evaluando opciones activamente" required />
+        <span>Evaluando opciones activamente</span>
+      </label>
+      <label class="radio">
+        <input type="radio" name="etapa" value="Listo para empezar pronto" required />
+        <span>Listo para empezar pronto</span>
+      </label>
+    </fieldset>
+
+    <div class="field">
+      <label for="lead-fuente">¿Cómo nos encontraste? <span class="req">*</span></label>
+      <select id="lead-fuente" name="como_nos_encontro" required>
+        <option value="" disabled selected>Selecciona una opción</option>
+        <option value="Instagram / redes sociales">Instagram / redes sociales</option>
+        <option value="Recomendación de un conocido">Recomendación de un conocido</option>
+        <option value="Google">Google</option>
+        <option value="Evento o feria agropecuario">Evento o feria agropecuario</option>
+        <option value="Otro">Otro</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label for="lead-mensaje">Cuéntanos sobre tu operación <span class="req">*</span></label>
+      <textarea
+        id="lead-mensaje"
+        name="mensaje"
+        rows="3"
+        required
+        maxlength="500"
+        enterkeyhint="send"
+        placeholder="Ej: Quiero ordenar el inventario y dejar de perder vacunas por vencimiento."
+      ></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-accent lead-submit" data-lead-submit>
+      <span data-submit-label>Quiero mi diagnóstico gratis</span>
+      <Icon name="lucide:arrow-right" width={16} height={16} />
+    </button>
+
+    <p class="lead-error" data-lead-error hidden>
+      Algo salió mal. Intenta de nuevo o escríbenos directo por WhatsApp.
+    </p>
+
+    <p class="lead-alt">¿Prefieres escribir directo?</p>
+    <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" class="btn btn-ghost-dark">
+      <Icon name="simple-icons:whatsapp" width={18} height={18} />
+      Hablar por WhatsApp
+    </a>
+  </form>
+
+  <div class="lead-success" data-lead-success hidden>
+    <div class="lead-success__check">
+      <Icon name="lucide:check" width={28} height={28} />
+    </div>
+    <h3>¡Listo, <span data-success-name>!</span></h3>
+    <p>
+      Te contactamos por WhatsApp pronto.<br />
+      Mientras tanto, si tienes una pregunta urgente:
+    </p>
+    <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" class="btn btn-accent">
+      <Icon name="simple-icons:whatsapp" width={18} height={18} />
+      Hablar por WhatsApp
+    </a>
+  </div>
+</div>
+
+<script>
+  const SUPABASE_URL = import.meta.env.PUBLIC_SUPABASE_URL;
+  const SUPABASE_ANON_KEY = import.meta.env.PUBLIC_SUPABASE_ANON_KEY;
+
+  const root = document.querySelector<HTMLElement>('[data-lead]');
+  const form = root?.querySelector<HTMLFormElement>('[data-lead-form]');
+  const submitBtn = form?.querySelector<HTMLButtonElement>('[data-lead-submit]');
+  const submitLabel = form?.querySelector<HTMLElement>('[data-submit-label]');
+  const errorEl = form?.querySelector<HTMLElement>('[data-lead-error]');
+  const successEl = root?.querySelector<HTMLElement>('[data-lead-success]');
+  const successName = successEl?.querySelector<HTMLElement>('[data-success-name]');
+
+  if (form && submitBtn && submitLabel && errorEl && successEl) {
+    const defaultLabel = submitLabel.textContent ?? 'Quiero mi diagnóstico gratis';
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (!form.reportValidity()) return;
+
+      errorEl.hidden = true;
+      submitBtn.disabled = true;
+      submitLabel.textContent = 'Enviando…';
+
+      const data = new FormData(form);
+      const nombre = String(data.get('nombre') ?? '').trim();
+      const payload = {
+        nombre,
+        whatsapp: String(data.get('whatsapp') ?? '').trim(),
+        tipo_operacion: String(data.get('tipo_operacion') ?? ''),
+        tamano_operacion: String(data.get('tamano_operacion') ?? '').trim() || null,
+        etapa: data.get('etapa') ? String(data.get('etapa')) : null,
+        como_nos_encontro: data.get('como_nos_encontro')
+          ? String(data.get('como_nos_encontro'))
+          : null,
+        mensaje: String(data.get('mensaje') ?? '').trim() || null,
+        fuente: 'landing-terracore',
+      };
+
+      try {
+        if (!SUPABASE_URL || !SUPABASE_ANON_KEY) throw new Error('Supabase env missing');
+
+        const res = await fetch(`${SUPABASE_URL}/rest/v1/terracore_leads`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            apikey: SUPABASE_ANON_KEY,
+            Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+            Prefer: 'return=minimal',
+          },
+          body: JSON.stringify(payload),
+        });
+
+        if (!res.ok) throw new Error(`Supabase ${res.status}`);
+
+        window.trackEvent?.('submit_lead', { tipo_operacion: payload.tipo_operacion });
+
+        if (successName) successName.textContent = `${nombre}!`;
+        form.hidden = true;
+        successEl.hidden = false;
+        successEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      } catch {
+        errorEl.hidden = false;
+        submitBtn.disabled = false;
+        submitLabel.textContent = defaultLabel;
+      }
+    });
+  }
+</script>
+
+<style>
+  .lead {
+    max-width: 520px;
+  }
+  .lead-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    border: 0;
+    padding: 0;
+    margin: 0;
+  }
+  .field label,
+  .field legend {
+    font-size: 13px;
+    font-weight: 600;
+    color: #fff;
+    padding: 0;
+  }
+  .req {
+    color: #ff8a6b;
+    font-weight: 700;
+  }
+
+  .field input[type='text'],
+  .field input[type='tel'],
+  .field textarea,
+  .field select {
+    width: 100%;
+    font-family: var(--font-sans);
+    font-size: 15px;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 10px;
+    padding: 12px 14px;
+    transition:
+      border-color 0.18s ease,
+      box-shadow 0.18s ease,
+      background 0.18s ease;
+  }
+  .field textarea {
+    resize: vertical;
+    min-height: 84px;
+    line-height: 1.5;
+  }
+  .field input::placeholder,
+  .field textarea::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+  }
+  .field input:focus,
+  .field textarea:focus,
+  .field select:focus {
+    outline: none;
+    background: rgba(255, 255, 255, 0.12);
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.28);
+  }
+
+  /* ── Styled dropdown (custom chevron + UI-colored menu) ── */
+  .field select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    cursor: pointer;
+    padding-right: 42px;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="%23d97706" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+  }
+  .field select:focus {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="%23d97706" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>');
+  }
+  /* Native option menu styled to the UI palette (where the browser allows it) */
+  .field select option {
+    background: var(--color-surface);
+    color: var(--color-text);
+    font-weight: 500;
+  }
+  .field select option:checked {
+    background: var(--color-accent);
+    color: #fff;
+  }
+  .field select option[disabled] {
+    color: var(--color-text-muted);
+  }
+  /* Placeholder state: dim until a real option is picked */
+  .field select:invalid {
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  /* Radio group — plain rows, no input box/border */
+  .radios {
+    gap: 12px;
+    margin-top: 2px;
+  }
+  .radio {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.85);
+    cursor: pointer;
+  }
+  .radio input {
+    accent-color: var(--color-accent);
+    width: 18px;
+    height: 18px;
+    flex: 0 0 auto;
+    cursor: pointer;
+  }
+  .radio:has(input:checked) {
+    color: #fff;
+  }
+
+  .lead-submit {
+    margin-top: 4px;
+    justify-content: center;
+    width: 100%;
+  }
+  .lead-submit:disabled {
+    opacity: 0.7;
+    cursor: progress;
+  }
+
+  .lead-error {
+    margin: 0;
+    font-size: 13px;
+    font-weight: 500;
+    color: #ffd9b3;
+    background: rgba(217, 119, 6, 0.16);
+    border: 1px solid rgba(217, 119, 6, 0.4);
+    border-radius: 10px;
+    padding: 10px 12px;
+  }
+
+  .lead-alt {
+    margin: 8px 0 0;
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.6);
+    text-align: center;
+  }
+  .lead-form > .btn-ghost-dark {
+    width: 100%;
+    justify-content: center;
+  }
+  .lead-form > .btn-ghost-dark :global(svg) {
+    color: #25d366;
+  }
+
+  /* Success state */
+  .lead-success {
+    text-align: center;
+    padding: 12px 0;
+  }
+  .lead-success__check {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: rgba(217, 119, 6, 0.18);
+    border: 1px solid rgba(217, 119, 6, 0.45);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 18px;
+  }
+  .lead-success__check :global(svg) {
+    color: var(--color-accent);
+  }
+  .lead-success h3 {
+    font-family: var(--font-display);
+    font-size: 26px;
+    font-weight: 700;
+    color: #fff;
+    margin: 0 0 10px;
+  }
+  .lead-success p {
+    font-size: 15px;
+    line-height: 24px;
+    color: rgba(255, 255, 255, 0.78);
+    margin: 0 0 22px;
+  }
+</style>

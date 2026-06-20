@@ -14,9 +14,9 @@ const ctaUrl = import.meta.env.MAIN_CTA_URL ?? '/#demo';
 
     <!-- Desktop links -->
     <nav class="nav-links" aria-label="Navegación principal">
-      <a href="/#modulos">Módulos</a>
+      <a href="/#modulos">Cómo funciona</a>
       <a href="/#producto">Producto</a>
-      <a href="/#beneficios">Beneficios</a>
+      <a href="/#beneficios">Por qué TerraCore</a>
       <a href="/#precios">Precios</a>
       <a href="/#preguntas">Preguntas</a>
     </nav>
@@ -57,9 +57,9 @@ const ctaUrl = import.meta.env.MAIN_CTA_URL ?? '/#demo';
 <!-- Mobile drawer (renders outside nav-inner but still inside header context) -->
 <div class="mobile-drawer" id="mobile-drawer" data-open="false" aria-hidden="true">
   <ul class="mobile-links">
-    <li><a href="/#modulos">Módulos</a></li>
+    <li><a href="/#modulos">Cómo funciona</a></li>
     <li><a href="/#producto">Producto</a></li>
-    <li><a href="/#beneficios">Beneficios</a></li>
+    <li><a href="/#beneficios">Por qué TerraCore</a></li>
     <li><a href="/#precios">Precios</a></li>
     <li><a href="/#preguntas">Preguntas</a></li>
   </ul>
@@ -184,7 +184,7 @@ const ctaUrl = import.meta.env.MAIN_CTA_URL ?? '/#demo';
     background: var(--color-surface-sunken);
   }
 
-  /* ── Mobile breakpoint ─────────────────────────────────────── */
+  /* ── Tablet: collapse links to drawer, keep brand + demo ───── */
   @media (max-width: 1000px) {
     .nav-links {
       display: none;
@@ -194,6 +194,16 @@ const ctaUrl = import.meta.env.MAIN_CTA_URL ?? '/#demo';
     } /* hidden in bar; appears in drawer */
     .nav-toggle {
       display: flex;
+    }
+    .nav-cta {
+      gap: 10px;
+    }
+  }
+
+  /* ── Mobile: tighten bar, logo-only, smaller demo ──────────── */
+  @media (max-width: 640px) {
+    .nav-inner {
+      height: 60px;
     }
     .nav-demo {
       padding: 8px 14px !important;
@@ -227,6 +237,11 @@ const ctaUrl = import.meta.env.MAIN_CTA_URL ?? '/#demo';
     transform: translateY(0);
     opacity: 1;
     pointer-events: auto;
+  }
+  @media (max-width: 640px) {
+    .mobile-drawer {
+      top: 60px; /* matches reduced nav height */
+    }
   }
 
   /* Hide on desktop */

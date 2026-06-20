@@ -23,6 +23,11 @@ const items = [
     h: 'Sin minería de datos',
     p: 'Tu información no se usa para publicidad ni para entrenar modelos de IA. Punto.',
   },
+  {
+    icon: 'lucide:server',
+    h: 'Operación continua garantizada',
+    p: 'Infraestructura con alta disponibilidad y backups automáticos. Si algo falla, tus datos están seguros y la operación no se detiene.',
+  },
 ];
 ---
 
@@ -36,8 +41,8 @@ const items = [
         </h2>
       </div>
       <p class="security-lead">
-        Trabajamos bajo la Ley 1581 de 2012 (Habeas Data). Nada de minería de datos para terceros,
-        nada de modelos de IA entrenados con tu información.
+        Tus datos no se comparten, no se venden y no se usan para entrenar IA. Si decides irte, te
+        entregamos todo en 48 horas. Así de simple.
       </p>
     </div>
 
@@ -106,8 +111,13 @@ const items = [
 
   .security-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     gap: 32px;
+  }
+  @media (max-width: 1024px) {
+    .security-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
   }
   @media (max-width: 880px) {
     .security-grid {

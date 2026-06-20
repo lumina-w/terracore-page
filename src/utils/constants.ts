@@ -118,16 +118,28 @@ export const FEATURES: Feature[] = [
 
 export const FAQ: FaqItem[] = [
   {
+    q: '¿Funciona si en mi finca no hay buena señal?',
+    a: 'Sí. Sabemos que en zonas como Urabá la conectividad falla. TerraCore funciona sin internet: registras en el corral y se sincroniza automáticamente cuando vuelve la señal.',
+  },
+  {
     q: '¿Es complicado de implementar?',
     a: 'No. La mayoría de empresas están operando en menos de 30 minutos. Te acompañamos en cada paso.',
   },
   {
-    q: '¿Funciona sin conexión a internet?',
-    a: 'Sí. Sabemos que en zonas como Urabá la conectividad falla. TerraCore sincroniza automáticamente cuando vuelve la señal.',
-  },
-  {
     q: '¿Cuánto cuesta?',
     a: 'Desde $6M COP/mes dependiendo del tamaño de tu operación. Agenda una llamada y armamos un presupuesto exacto.',
+  },
+  {
+    q: '¿Cómo adoptan TerraCore los operarios de campo?',
+    a: 'La app está pensada para usarse con guantes y en condiciones de campo: botones grandes, flujo rápido, sin jerga técnica. Los operarios aprenden a registrar en minutos. Si tienes equipo con poca experiencia tecnológica, te acompañamos en el proceso de adopción.',
+  },
+  {
+    q: '¿TerraCore usa mis datos para entrenar modelos de IA?',
+    a: 'No. Tu información no se usa para publicidad, no se comparte con terceros y no entrena ningún modelo de inteligencia artificial. Trabajamos bajo la Ley 1581 de 2012. Tus datos son tuyos, y punto.',
+  },
+  {
+    q: '¿Funciona para fincas mixtas (ganadería + cultivos)?',
+    a: 'Sí. Puedes tener animales, lotes de cultivo, insumos compartidos y herramientas en la misma cuenta. TerraCore registra todo en un solo lugar, independiente del tipo de producción.',
   },
   {
     q: '¿El soporte es en español?',

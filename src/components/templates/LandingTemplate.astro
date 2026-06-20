@@ -2,6 +2,7 @@
 import Hero from '@organisms/Hero.astro';
 import ProofStrip from '@organisms/ProofStrip.astro';
 import Modules from '@organisms/Modules.astro';
+import Impacto from '@organisms/Impacto.astro';
 import Showcase from '@organisms/Showcase.astro';
 import Benefits from '@organisms/Benefits.astro';
 import Pricing from '@organisms/Pricing.astro';
@@ -9,16 +10,24 @@ import SecuritySection from '@organisms/SecuritySection.astro';
 import FAQSection from '@organisms/FAQSection.astro';
 import CTAFooter from '@organisms/CTAFooter.astro';
 import WaitlistModal from '@organisms/WaitlistModal.astro';
+// Validación futura — ocultas (display:none) hasta tener datos reales (tareas 14.1–14.3).
+import MetricsBand from '@organisms/MetricsBand.astro';
+import CaseStudies from '@organisms/CaseStudies.astro';
+import Testimonials from '@organisms/Testimonials.astro';
 ---
 
 <main id="main-content">
   <Hero />
   <ProofStrip />
   <Modules />
+  <Impacto />
   <Showcase />
   <Benefits />
-  <Pricing />
   <SecuritySection />
+  <Pricing />
+  <MetricsBand />
+  <CaseStudies />
+  <Testimonials />
   <FAQSection />
   <CTAFooter />
 </main>

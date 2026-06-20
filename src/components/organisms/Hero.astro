@@ -15,50 +15,56 @@ const ctaUrl = import.meta.env.MAIN_CTA_URL ?? '/#demo';
       <div class="hero__content">
         <span class="hero-badge">
           <span class="hero-badge__pill">Nuevo</span>
-          Salud Animal con alertas en tiempo real
+          Detecta problemas sanitarios antes de que cuesten
+        </span>
+
+        <span class="hero-offline-chip">
+          <Icon name="lucide:check" width={14} height={14} />
+          Funciona sin internet: sincroniza automáticamente
         </span>
 
         <h1 class="hero__heading">
-          Tu finca en <em class="hero__em">un vistazo</em>.
+          Menos pérdidas. Más control. <em class="hero__em">Mejor rentabilidad</em>.
         </h1>
 
         <p class="hero__lead">
-          Sin Excel. Sin cuadernos. Sin WhatsApp. Para fincas que merecen más que una hoja de
-          cálculo.
+          Sin cuadernos. Sin WhatsApp. Sin Excel. Controla costos, evita pérdidas y toma decisiones
+          con datos reales, incluso sin internet.
         </p>
+
+        <p class="hero__tagline">Diseñado con productores de Urabá para el campo colombiano.</p>
 
         <div class="hero__ctas">
           <a href={ctaUrl} rel="noopener noreferrer" class="btn btn-accent">
-            Solicita una demo
+            Evalúa tu operación gratis
             <Icon name="lucide:arrow-right" width={16} height={16} />
           </a>
-          <!---<button class="btn btn-ghost-dark" id="video-open-btn" aria-label="Abrir demo en video">
+          <button class="btn btn-ghost-dark" id="video-open-btn" aria-label="Abrir demo en video">
             <Icon name="lucide:play" width={14} height={14} />
             Ver demo en video
-          </button> -->
+          </button>
         </div>
 
         <div class="hero__meta">
           <div class="hero__stat">
             <span class="hero__stat-v">
-              <span class="hero__stat-num" data-count-to="6">0</span>
+              <span class="hero__stat-sup">−</span><span
+                class="hero__stat-num"
+                data-count-to="42">0</span
+              ><span class="hero__stat-sup">%</span>
             </span>
-            <span class="hero__stat-l">módulos integrados</span>
+            <span class="hero__stat-l">tiempo administrativo</span>
           </div>
           <div class="hero__stat">
-            <span class="hero__stat-v">
-              <span class="hero__stat-num" data-count-to="100">0</span><span class="hero__stat-sup"
-                >%</span
-              >
-            </span>
-            <span class="hero__stat-l">tu información, privada</span>
+            <span class="hero__stat-v hero__stat-v--text">Menos compras</span>
+            <span class="hero__stat-l">de urgencia evitables</span>
           </div>
-          <div class="hero__stat">
-            <span class="hero__stat-v">
-              <span class="hero__stat-num" data-count-to="24">0</span>/<span class="hero__stat-dim"
-              ></span>7
+          <div class="hero__stat hero__stat--offline">
+            <span class="hero__stat-v hero__stat-v--text">
+              <Icon name="lucide:wifi-off" width={18} height={18} />
+              Sin internet
             </span>
-            <span class="hero__stat-l">siempre accesible</span>
+            <span class="hero__stat-l">Funciona sin internet: sincroniza solo.</span>
           </div>
         </div>
       </div>
@@ -103,7 +109,7 @@ const ctaUrl = import.meta.env.MAIN_CTA_URL ?? '/#demo';
 </section>
 
 <!-- Video lightbox -->
-<div class="video-overlay" id="video-overlay" aria-modal="true" role="dialog" hidden>
+<div class="video-overlay" id="video-overlay" aria-modal="true" role="dialog">
   <button class="video-overlay__close" id="video-close-btn" aria-label="Cerrar video">
     <Icon name="lucide:x" width={24} height={24} />
   </button>
@@ -111,10 +117,12 @@ const ctaUrl = import.meta.env.MAIN_CTA_URL ?? '/#demo';
   <div class="video-overlay__wrap">
     <video
       id="demo-video"
-      src="/video/demo.mp4"
+      src="/videos/demo.mp4"
       controls
       preload="none"
+      playsinline
       class="video-overlay__player"></video>
+    <p class="video-overlay__caption">TerraCore en uso real: finca ganadera, Antioquia.</p>
   </div>
 </div>
 
@@ -156,13 +164,13 @@ const ctaUrl = import.meta.env.MAIN_CTA_URL ?? '/#demo';
   const backdrop = document.getElementById('video-backdrop');
 
   function openVideo() {
-    if (overlay) overlay.hidden = false;
+    overlay?.classList.add('is-open');
     document.body.style.overflow = 'hidden';
-    video?.focus();
+    video?.play().catch(() => {});
   }
 
   function closeVideo() {
-    if (overlay) overlay.hidden = true;
+    overlay?.classList.remove('is-open');
     document.body.style.overflow = '';
     video?.pause();
     if (video) video.currentTime = 0;
@@ -172,7 +180,7 @@ const ctaUrl = import.meta.env.MAIN_CTA_URL ?? '/#demo';
   closeBtn?.addEventListener('click', closeVideo);
   backdrop?.addEventListener('click', closeVideo);
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && overlay && !overlay.hidden) closeVideo();
+    if (e.key === 'Escape' && overlay?.classList.contains('is-open')) closeVideo();
   });
 </script>
 
@@ -249,6 +257,27 @@ const ctaUrl = import.meta.env.MAIN_CTA_URL ?? '/#demo';
     text-transform: uppercase;
   }
 
+  .hero-badge {
+    margin-bottom: 12px;
+  }
+  .hero-offline-chip {
+    display: flex;
+    width: fit-content;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    margin-bottom: 24px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #fff;
+    background: rgba(34, 197, 94, 0.16);
+    border: 1px solid rgba(34, 197, 94, 0.5);
+  }
+  .hero-offline-chip :global(svg) {
+    color: #4ade80;
+  }
+
   /* ── Heading ───────────────────────────────────────────────── */
   .hero__heading {
     color: #fff;
@@ -286,6 +315,14 @@ const ctaUrl = import.meta.env.MAIN_CTA_URL ?? '/#demo';
     margin: 0 0 36px;
   }
 
+  .hero__tagline {
+    font-size: 14px;
+    line-height: 20px;
+    color: var(--color-accent);
+    font-weight: 600;
+    margin: -16px 0 28px;
+  }
+
   .hero__ctas {
     display: flex;
     gap: 12px;
@@ -316,6 +353,12 @@ const ctaUrl = import.meta.env.MAIN_CTA_URL ?? '/#demo';
   .hero__stat-num {
     color: var(--color-accent);
   }
+  .hero__stat-v--text {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 18px;
+  }
   .hero__stat-l {
     display: block;
     font-size: 12px;
@@ -340,26 +383,13 @@ const ctaUrl = import.meta.env.MAIN_CTA_URL ?? '/#demo';
 
   .hero__frame {
     position: relative;
-    border-radius: 14px;
-    overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow:
-      0 40px 80px rgba(0, 0, 0, 0.45),
-      0 16px 32px rgba(0, 0, 0, 0.35);
+    background: transparent;
     transform: rotateY(-6deg) rotateX(2deg);
-    background: #fff;
   }
   .hero__frame img {
     display: block;
     width: 100%;
     height: auto;
-  }
-  .hero__frame::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0) 50%, rgba(217, 119, 6, 0.06));
-    pointer-events: none;
   }
 
   /* ── Float chip positions ──────────────────────────────────── */
@@ -412,9 +442,15 @@ const ctaUrl = import.meta.env.MAIN_CTA_URL ?? '/#demo';
     display: flex;
     align-items: center;
     justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition:
+      opacity 320ms var(--ease-standard),
+      visibility 320ms var(--ease-standard);
   }
-  .video-overlay[hidden] {
-    display: none;
+  .video-overlay.is-open {
+    opacity: 1;
+    visibility: visible;
   }
 
   .video-overlay__backdrop {
@@ -449,16 +485,28 @@ const ctaUrl = import.meta.env.MAIN_CTA_URL ?? '/#demo';
     position: relative;
     z-index: 1;
     width: min(90vw, 960px);
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 32px 80px rgba(0, 0, 0, 0.6);
+    transform: scale(0.94) translateY(12px);
+    transition: transform 320ms var(--ease-standard);
+  }
+  .video-overlay.is-open .video-overlay__wrap {
+    transform: none;
   }
 
   .video-overlay__player {
     display: block;
     width: 100%;
     height: auto;
-    background: #000;
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
     aspect-ratio: 16 / 9;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 32px 80px rgba(0, 0, 0, 0.6);
+  }
+
+  .video-overlay__caption {
+    margin: 14px 0 0;
+    text-align: center;
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.7);
   }
 </style>

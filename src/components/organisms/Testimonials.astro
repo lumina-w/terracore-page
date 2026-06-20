@@ -1,0 +1,97 @@
+---
+import Eyebrow from '@atoms/Eyebrow.astro';
+
+// ── PLACEHOLDER ───────────────────────────────────────────────
+// Sección oculta hasta tener testimonios reales y autorizados.
+// NO INVENTAR TESTIMONIOS. Para activar: quitar `hidden` del
+// <section> y poblar TESTIMONIALS con quotes verificadas.
+const TESTIMONIALS: { quote: string; name: string; role: string }[] = [];
+const SLOTS = TESTIMONIALS.length || 3;
+---
+
+<section class="section-pad testimonials" id="testimonios" hidden>
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <Eyebrow num="·">Testimonios</Eyebrow>
+        <h2 class="display lg" style="margin-top:16px">Lo que dicen los productores.</h2>
+      </div>
+      <p class="lead">Placeholder. Se publica solo con testimonios reales y autorizados.</p>
+    </div>
+
+    <div class="testimonial-grid">
+      {
+        TESTIMONIALS.length > 0
+          ? TESTIMONIALS.map((t) => (
+              <figure class="testimonial">
+                <blockquote class="testimonial__quote">{t.quote}</blockquote>
+                <figcaption class="testimonial__by">
+                  <span class="testimonial__name">{t.name}</span>
+                  <span class="testimonial__role">{t.role}</span>
+                </figcaption>
+              </figure>
+            ))
+          : Array.from({ length: SLOTS }).map(() => (
+              <figure class="testimonial testimonial--empty" aria-hidden="true">
+                <blockquote class="testimonial__quote">Testimonio pendiente.</blockquote>
+                <figcaption class="testimonial__by">
+                  <span class="testimonial__name">Nombre</span>
+                  <span class="testimonial__role">Operación · ubicación</span>
+                </figcaption>
+              </figure>
+            ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Oculto hasta tener testimonios reales. NO inventar. */
+  .testimonials {
+    display: none;
+  }
+
+  .testimonial-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .testimonial {
+    border: 1px solid var(--color-border);
+    border-radius: 14px;
+    padding: 24px;
+    background: var(--color-surface);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .testimonial--empty {
+    border-style: dashed;
+    border-color: var(--color-border-strong);
+  }
+  .testimonial__quote {
+    margin: 0;
+    font-size: 15px;
+    line-height: 24px;
+    color: var(--color-text);
+  }
+  .testimonial__by {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .testimonial__name {
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--color-text);
+  }
+  .testimonial__role {
+    font-size: 12px;
+    color: var(--color-text-secondary);
+  }
+  @media (max-width: 768px) {
+    .testimonial-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
