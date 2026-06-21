@@ -9,7 +9,7 @@ const jsonLd = JSON.stringify([
     '@type': 'Organization',
     name: 'TerraCore',
     url: 'https://terracoreapp.co',
-    logo: 'https://terracoreapp.co/terracore.jpg',
+    logo: 'https://terracoreapp.co/logo.ico',
     description:
       'TerraCore ayuda a productores y administradores de finca a reducir pérdidas, controlar costos y tomar decisiones con datos reales. Funciona sin internet. Diseñada para el campo colombiano.',
     address: {
@@ -45,6 +45,21 @@ const jsonLd = JSON.stringify([
     description:
       'Plataforma de gestión agroindustrial para reducir pérdidas, controlar costos y decidir con datos reales. Funciona sin internet.',
     inLanguage: 'es-CO',
+    screenshot: 'https://terracoreapp.co/screens/dashboard-2.webp',
+    provider: {
+      '@type': 'Organization',
+      name: 'TerraCore',
+      url: 'https://terracoreapp.co',
+    },
+    offers: {
+      '@type': 'AggregateOffer',
+      lowPrice: '2500000',
+      highPrice: '10000000',
+      priceCurrency: 'COP',
+      offerCount: 3,
+      description: 'Tres planes mensuales desde $2.5M COP/mes según el tamaño de la operación.',
+      url: 'https://terracoreapp.co/#precios',
+    },
   },
   {
     '@context': 'https://schema.org',

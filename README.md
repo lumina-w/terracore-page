@@ -6,14 +6,14 @@ Landing page de **TerraCore** — plataforma colombiana de gestión agroindustri
 
 ## Stack
 
-| Tecnología       | Versión | Uso                            |
-| ---------------- | ------- | ------------------------------ |
-| Astro            | 6.4     | Framework SSG + SSR adapter    |
-| Tailwind CSS     | 3.4     | Utilidades de estilos (PostCSS)|
-| astro-icon       | 1.x     | Íconos (Lucide + Simple Icons) |
-| @astrojs/netlify | 7.x     | Adapter para SSR del API       |
-| @astrojs/sitemap | 3.x     | Genera `sitemap-index.xml`     |
-| TypeScript       | 5.6     | Tipado estático                |
+| Tecnología       | Versión | Uso                             |
+| ---------------- | ------- | ------------------------------- |
+| Astro            | 6.4     | Framework SSG + SSR adapter     |
+| Tailwind CSS     | 3.4     | Utilidades de estilos (PostCSS) |
+| astro-icon       | 1.x     | Íconos (Lucide + Simple Icons)  |
+| @astrojs/netlify | 7.x     | Adapter para SSR del API        |
+| @astrojs/sitemap | 3.x     | Genera `sitemap-index.xml`      |
+| TypeScript       | 5.6     | Tipado estático                 |
 
 Output: `static` con adapter, páginas estáticas + endpoint `/api/waitlist` server-side (`prerender = false`).
 

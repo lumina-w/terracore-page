@@ -28,11 +28,16 @@ const gaId = import.meta.env.PUBLIC_GA_ID;
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang="es-CO">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="robots" content={noindex ? 'noindex, follow' : 'index, follow'} />
+    <meta
+      name="robots"
+      content={noindex
+        ? 'noindex, follow'
+        : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'}
+    />
     <meta name="theme-color" content="#1b4332" />
     <link rel="icon" href="/logo.ico" />
 

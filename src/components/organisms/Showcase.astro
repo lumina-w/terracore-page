@@ -338,7 +338,17 @@ const tabData = [
   // Init
   if (prefersReduced) setPaused(true);
   renderDots('dashboard');
-  startAutoplay();
+
+  // Only autoplay (and lazy-fetch slide images) while the showcase is in view.
+  // Saves bandwidth on a long page where this section sits well below the fold.
+  const viewObserver = new IntersectionObserver(
+    ([entry]) => {
+      if (entry.isIntersecting) startAutoplay();
+      else stopAutoplay();
+    },
+    { threshold: 0.25 },
+  );
+  viewObserver.observe(frame);
 </script>
 
 <style>

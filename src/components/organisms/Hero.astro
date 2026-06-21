@@ -5,7 +5,7 @@ import { Icon } from 'astro-icon/components';
 const ctaUrl = import.meta.env.MAIN_CTA_URL ?? '/#demo';
 ---
 
-<section class="hero reveal" id="top">
+<section class="hero" id="top">
   <div class="hero__grid" aria-hidden="true"></div>
   <div class="hero__bg" aria-hidden="true"></div>
 
@@ -36,7 +36,7 @@ const ctaUrl = import.meta.env.MAIN_CTA_URL ?? '/#demo';
 
         <div class="hero__ctas">
           <a href={ctaUrl} rel="noopener noreferrer" class="btn btn-accent">
-            Evalúa tu operación gratis
+            Descubre cuánto pierdes al mes
             <Icon name="lucide:arrow-right" width={16} height={16} aria-hidden="true" />
           </a>
           <button class="btn btn-ghost-dark" id="video-open-btn">
@@ -44,6 +44,10 @@ const ctaUrl = import.meta.env.MAIN_CTA_URL ?? '/#demo';
             <Icon name="lucide:play" width={14} height={14} aria-hidden="true" />
           </button>
         </div>
+
+        <p class="hero__trial-note">
+          14 días gratis · Sin tarjeta de crédito · En marcha en tu primera semana
+        </p>
 
         <div class="hero__meta">
           <div class="hero__stat">
@@ -375,6 +379,12 @@ const ctaUrl = import.meta.env.MAIN_CTA_URL ?? '/#demo';
     gap: 12px;
     flex-wrap: wrap;
     align-items: center;
+  }
+  .hero__trial-note {
+    font-size: 13px;
+    line-height: 18px;
+    color: rgba(255, 255, 255, 0.7);
+    margin: 14px 0 0;
   }
 
   /* ── Stats row ─────────────────────────────────────────────── */

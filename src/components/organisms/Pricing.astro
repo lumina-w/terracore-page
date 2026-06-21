@@ -9,9 +9,11 @@ const plans = [
     priceMain: '$2.5M',
     priceSub: '/mes',
     priceIsLabel: false,
-    priceNote: 'Acceso completo por 30 días',
+    priceNote: 'Acceso completo por 14 días',
     valueNote: 'Menos de lo que cuesta una compra de urgencia evitable al mes.',
     features: [
+      'Deja de operar de memoria y con cuadernos',
+      'Alertas antes de perder un animal o un insumo',
       '1 sede · 5 usuarios',
       'Gestión de Animales (CRUD completo + estado de salud)',
       'Salud Animal (vacunas + alertas próximas 30 días)',
@@ -32,6 +34,8 @@ const plans = [
     priceIsLabel: false,
     priceNote: null,
     features: [
+      'Sabe exactamente qué área de tu finca es rentable',
+      'Cero compras de urgencia con alertas anticipadas',
       '3 sedes · 15 usuarios',
       'Todo lo de Semilla +',
       'Gestión de Herramientas (mantenimiento)',
@@ -54,6 +58,8 @@ const plans = [
     priceIsLabel: false,
     priceNote: '* Precio según operación · contáctanos',
     features: [
+      'Visibilidad consolidada de toda tu operación multifinca',
+      'Trazabilidad para certificaciones y acceso a mejores mercados',
       'Sedes y usuarios ilimitados',
       'Todo lo de Profesional +',
       'Vista consolidada multifinca',
@@ -86,9 +92,8 @@ const plans = [
     </div>
 
     <p class="pricing-anchor">
-      Una compra de urgencia evitada, una pérdida de inventario detectada a tiempo o un brote
-      sanitario prevenido puede costar más que un año del plan Semilla. TerraCore no es un gasto: es
-      una decisión de rentabilidad.
+      Una compra de urgencia evitada al mes paga el plan.
+      <span class="accent-text">Todo lo demás es ganancia.</span>
     </p>
 
     <div class="plans-slider">
@@ -457,13 +462,15 @@ const plans = [
   }
 
   .pricing-anchor {
-    max-width: 760px;
-    margin: 40px 0 48px;
-    font-size: 16px;
-    line-height: 1.6;
-    color: var(--color-text-secondary);
-    border-left: 3px solid var(--color-accent);
-    padding-left: 18px;
+    max-width: 900px;
+    margin: 40px auto 48px;
+    font-family: var(--font-display);
+    font-size: clamp(24px, 4vw, 36px);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+    color: var(--color-text);
+    text-align: center;
   }
 
   /* ── Slider shell ── */

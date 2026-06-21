@@ -1,0 +1,46 @@
+# TerraCore
+
+> Plataforma de gestión agroindustrial para el campo colombiano. Ayuda a productores y administradores de finca a reducir pérdidas, controlar costos y tomar decisiones con datos reales. Funciona sin internet y se sincroniza cuando vuelve la señal.
+
+TerraCore es un software web y móvil (Android, iOS) desarrollado por Lumina W para fincas y operaciones agroindustriales en Colombia. Centraliza inventario, personal, lotes, salud animal y finanzas en un solo lugar, con alertas en tiempo real y reportes de rentabilidad por lote, cultivo y mes. Diseñada para usarse en condiciones de campo (botones grandes, flujo rápido, sin jerga técnica) y para zonas con conectividad intermitente como Urabá.
+
+Bajo la Ley 1581 de 2012: los datos del cliente no se venden, no se comparten con terceros ni se usan para entrenar modelos de inteligencia artificial.
+
+## Problemas que resuelve
+
+- Datos dispersos en Excel, WhatsApp y cuadernos, sin una sola fuente de verdad
+- Falta de visibilidad en tiempo real sobre salud animal e inventario
+- Decisiones a ciegas por no tener datos de rentabilidad por lote, cultivo o mes
+- Personal apagando incendios en lugar de producir y crecer
+
+## Funcionalidades clave
+
+- Dashboard centralizado: inventario, personal, lotes y finanzas en una pantalla
+- Alertas en tiempo real antes de que los problemas escalen
+- Control de operación con rentabilidad real por lote, mes y cultivo
+- Módulos: inventario, pecuario, salud animal, insumos, producción
+- Funciona sin internet, con sincronización automática al recuperar señal
+- Soporta fincas mixtas (ganadería + cultivos) en una sola cuenta
+
+## Planes
+
+- Semilla: fincas pequeñas que inician su digitalización (1 sede, hasta 5 usuarios, dashboard básico, inventario, salud animal, producción, soporte por email)
+- Profesional: operaciones medianas (hasta 15 usuarios, alertas en tiempo real, módulo pecuario completo, reportes ilimitados + BI, soporte prioritario, API)
+- Enterprise: grupos empresariales y cooperativas (usuarios ilimitados, multi-sede, SLA 99.9 %, implementación asistida, capacitación on-site)
+
+Precios desde $2.5M COP/mes según el tamaño de la operación. Pago mensual, cancelas cuando quieras (aviso de 30 días). Puesta en marcha típica en tu primera semana.
+
+## Páginas
+
+- [Inicio](https://terracoreapp.co/): producto, módulos, planes y preguntas frecuentes
+- [Términos y condiciones](https://terracoreapp.co/terminos/)
+- [Política de privacidad](https://terracoreapp.co/privacidad/)
+- [Habeas Data](https://terracoreapp.co/habeas-data/): tratamiento de datos personales bajo la Ley 1581 de 2012
+
+## Contacto
+
+- Empresa: Lumina W (https://luminaw.co)
+- Email: contact@luminaw.co
+- WhatsApp: +57 310 828 3088
+- Región: Antioquia, Colombia
+- Idioma de soporte: español

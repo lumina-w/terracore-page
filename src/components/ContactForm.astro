@@ -93,107 +93,6 @@ const {
           </div>
         </fieldset>
       </div>
-
-      <div class="form-col">
-        <fieldset class="field group--etapa group">
-          <legend
-            ><span class="legend-text">¿En qué etapa estás? <span class="req">*</span></span
-            ></legend
-          >
-          <div class="options options--stack">
-            <label class="opt">
-              <input type="radio" name="etapa" value="Explorando, sin urgencia" required />
-              <span class="opt-mark" aria-hidden="true"></span>
-              <span class="opt-label">Explorando, sin urgencia</span>
-            </label>
-            <label class="opt">
-              <input type="radio" name="etapa" value="Evaluando opciones activamente" required />
-              <span class="opt-mark" aria-hidden="true"></span>
-              <span class="opt-label">Evaluando opciones activamente</span>
-            </label>
-            <label class="opt">
-              <input type="radio" name="etapa" value="Listo para empezar pronto" required />
-              <span class="opt-mark" aria-hidden="true"></span>
-              <span class="opt-label">Listo para empezar pronto</span>
-            </label>
-          </div>
-        </fieldset>
-
-        <fieldset class="field group--fuente group">
-          <legend
-            ><span class="legend-text">¿Cómo nos encontraste? <span class="req">*</span></span
-            ></legend
-          >
-          <div class="options">
-            <label class="opt">
-              <input
-                type="radio"
-                name="como_nos_encontro"
-                value="Instagram / redes sociales"
-                required
-              />
-              <span class="opt-mark" aria-hidden="true"></span>
-              <span class="opt-label">Instagram / redes sociales</span>
-            </label>
-            <label class="opt">
-              <input
-                type="radio"
-                name="como_nos_encontro"
-                value="Recomendación de un conocido"
-                required
-              />
-              <span class="opt-mark" aria-hidden="true"></span>
-              <span class="opt-label">Recomendación de un conocido</span>
-            </label>
-            <label class="opt">
-              <input type="radio" name="como_nos_encontro" value="Google" required />
-              <span class="opt-mark" aria-hidden="true"></span>
-              <span class="opt-label">Google</span>
-            </label>
-            <label class="opt">
-              <input
-                type="radio"
-                name="como_nos_encontro"
-                value="Evento o feria agropecuario"
-                required
-              />
-              <span class="opt-mark" aria-hidden="true"></span>
-              <span class="opt-label">Evento o feria agropecuario</span>
-            </label>
-            <label class="opt">
-              <input type="radio" name="como_nos_encontro" value="Otro" required />
-              <span class="opt-mark" aria-hidden="true"></span>
-              <span class="opt-label">Otro</span>
-            </label>
-          </div>
-        </fieldset>
-
-        <div class="field field--text">
-          <label for="lead-tamano">Tamaño de la operación <span class="req">*</span></label>
-          <input
-            id="lead-tamano"
-            name="tamano_operacion"
-            type="text"
-            required
-            autocomplete="off"
-            enterkeyhint="next"
-            placeholder="Ej: 80 cabezas / 15 hectáreas"
-          />
-        </div>
-      </div>
-    </div>
-
-    <div class="field field--text field--msg">
-      <label for="lead-mensaje">Cuéntanos sobre tu operación <span class="req">*</span></label>
-      <textarea
-        id="lead-mensaje"
-        name="mensaje"
-        rows="3"
-        required
-        maxlength="500"
-        enterkeyhint="send"
-        placeholder="Ej: Quiero ordenar el inventario y dejar de perder vacunas por vencimiento."
-      ></textarea>
     </div>
 
     <button type="submit" class="btn btn-accent lead-submit" data-lead-submit disabled>
@@ -271,12 +170,6 @@ const {
         nombre,
         whatsapp: String(data.get('whatsapp') ?? '').trim(),
         tipo_operacion: String(data.get('tipo_operacion') ?? ''),
-        tamano_operacion: String(data.get('tamano_operacion') ?? '').trim() || null,
-        etapa: data.get('etapa') ? String(data.get('etapa')) : null,
-        como_nos_encontro: data.get('como_nos_encontro')
-          ? String(data.get('como_nos_encontro'))
-          : null,
-        mensaje: String(data.get('mensaje') ?? '').trim() || null,
         fuente: 'landing-terracore',
       };
 
