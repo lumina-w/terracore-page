@@ -23,7 +23,9 @@ export default defineConfig({
     },
   ],
   webServer: {
-    command: 'pnpm run build && pnpm run preview',
+    // `astro preview` is unavailable with the @astrojs/netlify adapter, so serve
+    // the static `dist/` output with a tiny Node server instead (see scripts/preview-static.mjs).
+    command: 'pnpm run build && pnpm run preview:static',
     url: 'http://localhost:4321/',
     reuseExistingServer: !process.env.CI,
     timeout: 120_000,
