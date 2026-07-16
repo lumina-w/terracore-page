@@ -1,18 +1,7 @@
 ---
 import Eyebrow from '@atoms/Eyebrow.astro';
 import { Icon } from 'astro-icon/components';
-
-const rows: Array<{ before: string; after: string }> = [
-  { before: 'Excel, cuadernos y WhatsApp', after: 'Todo en un solo lugar' },
-  {
-    before: 'Información en la cabeza de una persona',
-    after: 'Datos accesibles por todo el equipo',
-  },
-  { before: 'Compras de urgencia', after: 'Alertas antes de que se acabe el stock' },
-  { before: 'Vacunas vencidas', after: 'Recordatorios automáticos' },
-  { before: '"Creo que…" para decidir', after: 'Números reales para decidir' },
-  { before: 'Pérdidas sin saber por qué', after: 'Trazabilidad completa por lote y animal' },
-];
+import { IMPACT_ROWS as rows } from '@utils/constants';
 ---
 
 <section class="section-pad impacto reveal" id="impacto">

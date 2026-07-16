@@ -1,124 +1,183 @@
-export interface Plan {
-  name: string;
-  target: string;
-  features: string[];
-  highlight: boolean;
-  ctaText: string;
-  ctaEvent: string;
-}
+// Single source of truth for the landing's section data.
+// Each array below is consumed by exactly one section component:
+//   PLANS       -> Pricing.astro       (pricing cards)
+//   IMPACT_ROWS -> Impacto.astro       (before / after table)
+//   BENEFITS    -> Benefits.astro      (why-TerraCore grid)
+//   FAQ         -> FAQSection.astro (copy) + index.astro (FAQPage JSON-LD)
 
-export interface FaqItem {
-  q: string;
-  a: string;
+export interface Plan {
+  /** Plan name shown as the card eyebrow (e.g. "Semilla"). */
+  name: string;
+  /** One-line positioning sentence under the name. */
+  desc: string;
+  /** Price headline (e.g. "COP $2.500.000" or a label like "A consultar"). */
+  priceMain: string;
+  /** Price suffix rendered next to the headline (e.g. "/mes"). */
+  priceSub: string;
+  /** When true, priceMain renders as a plain label instead of an amount. */
+  priceIsLabel: boolean;
+  /** Small print under the price, or null when there is none. */
+  priceNote: string | null;
+  /** Optional value-framing line (only used by the entry plan today). */
+  valueNote?: string;
+  /** Bullet list of what the plan includes. */
+  features: string[];
+  /** CTA button label. */
+  cta: string;
+  /** CTA destination (external link). */
+  ctaHref: string;
+  /** Highlights the card as "Recomendado". Exactly one plan should set this. */
+  featured: boolean;
 }
 
 export const PLANS: Plan[] = [
   {
     name: 'Semilla',
-    target: 'Para fincas que quieren dejar de operar a ciegas.',
+    desc: 'Para fincas que quieren dejar de operar a ciegas.',
+    priceMain: 'COP $2.500.000',
+    priceSub: '/mes',
+    priceIsLabel: false,
+    priceNote: 'Acceso completo por 14 días',
+    valueNote: 'Menos de lo que cuesta una compra de urgencia evitable al mes.',
     features: [
-      '1 sede · 5 usuarios',
-      'Gestión de Animales (CRUD + estado de salud)',
+      'Deja de operar de memoria y con cuadernos',
+      'Alertas antes de perder un animal o un insumo',
+      '1 sede · 5 usuarios máximo',
+      'Roles Admin y Operario únicamente',
+      'Animales (CRUD completo + estado de salud)',
       'Salud Animal (vacunas + alertas próximas 30 días)',
       'Producción (lotes + eventos)',
-      'Inventario (insumos + alertas de stock)',
+      'Insumos (inventario + alertas de stock)',
       'Dashboard (4 KPI principales)',
+      'Implementación en 24 horas',
     ],
-    highlight: false,
-    ctaText: 'Comenzar trial gratis',
-    ctaEvent: 'click_cta_plans_semilla',
+    cta: 'Comenzar trial gratis',
+    ctaHref: 'https://app.terracoreapp.co/login',
+    featured: false,
   },
   {
     name: 'Profesional',
-    target: 'Para operaciones que necesitan saber qué genera y qué cuesta cada área.',
+    desc: 'Para operaciones que necesitan saber exactamente qué genera y qué cuesta cada área.',
+    priceMain: 'COP $5.000.000',
+    priceSub: '/mes',
+    priceIsLabel: false,
+    priceNote: null,
     features: [
-      'Todo lo de Semilla',
-      '3 sedes · 15 usuarios',
-      'Gestión de Herramientas (mantenimiento)',
-      'Costos automáticos por lote (rentabilidad)',
-      'Proveedores y Compras',
+      'Sabe exactamente qué área de tu finca es rentable',
+      'Todo lo de Semilla +',
+      'Múltiples sedes con permisos por sede',
+      'Múltiples usuarios con roles configurables',
+      'Herramientas (mantenimiento)',
+      'Finanzas básica: costo y margen por lote',
+      'Ranking de rentabilidad por lote',
+      'Proveedores y compras',
+      'Alertas cuando el costo supera el ingreso',
+      'Módulos de Usuarios y Suscripción',
       'Dashboard avanzado (comparativos, tendencias)',
-      'Importación CSV en bulk',
-      'Soporte WhatsApp + videollamada ≤4 h',
+      'Implementación en 3 a 5 días',
     ],
-    highlight: true,
-    ctaText: 'Quiero saber más',
-    ctaEvent: 'click_cta_plans_pro',
+    cta: 'Quiero saber más',
+    ctaHref:
+      'https://wa.me/573108283088?text=Hola%2C%20quiero%20saber%20m%C3%A1s%20sobre%20el%20plan%20Profesional%20de%20TerraCore',
+    featured: true,
   },
   {
     name: 'Enterprise',
-    target: 'Para grupos empresariales y cooperativas.',
+    desc: 'Para grupos empresariales y cooperativas.',
+    priceMain: 'COP $10.000.000',
+    priceSub: '/mes',
+    priceIsLabel: false,
+    priceNote: '* Precio base · plan personalizado según tu operación',
     features: [
-      'Todo lo de Profesional',
-      'Sedes y usuarios ilimitados',
-      'Vista consolidada multifinca',
-      'Trazabilidad GlobalG.A.P.',
-      'Logística y despachos',
-      'API para integraciones',
-      'Reportes gerenciales',
-      'SLA prioritario ≤2 h + 99.9 %',
+      'Visibilidad consolidada de toda tu operación multifinca',
+      'Todo lo de Profesional +',
+      'Todos los módulos (incluida Finanzas avanzada)',
+      'Finanzas Enterprise: P&L avanzado y registro de pérdidas',
+      'Reportes a medida y API',
+      'Base para integración DIAN/NIIF',
+      'Usuarios y sedes ilimitados',
+      'Soporte prioritario: respuesta en máximo 24 h',
+      'Implementación dedicada: onboarding con el equipo',
+      'Revisiones trimestrales de optimización y roadmap',
+      'Plazo de implementación personalizado',
     ],
-    highlight: false,
-    ctaText: 'Quiero saber más',
-    ctaEvent: 'click_cta_plans_enterprise',
+    cta: 'Contáctanos',
+    ctaHref:
+      'https://wa.me/573108283088?text=Hola%2C%20quiero%20conocer%20el%20plan%20Enterprise%20de%20TerraCore%20para%20mi%20operaci%C3%B3n',
+    featured: false,
   },
 ];
 
-export interface Problem {
+export interface ImpactRow {
+  /** How it works today (the "before" column). */
+  before: string;
+  /** How it works with TerraCore (the "after" column). */
+  after: string;
+}
+
+export const IMPACT_ROWS: ImpactRow[] = [
+  { before: 'Excel, cuadernos y WhatsApp', after: 'Todo en un solo lugar' },
+  {
+    before: 'Información en la cabeza de una persona',
+    after: 'Datos accesibles por todo el equipo',
+  },
+  { before: 'Compras de urgencia', after: 'Alertas antes de que se acabe el stock' },
+  { before: 'Vacunas vencidas', after: 'Recordatorios automáticos' },
+  { before: '"Creo que…" para decidir', after: 'Números reales para decidir' },
+  { before: 'Pérdidas sin saber por qué', after: 'Trazabilidad completa por lote y animal' },
+];
+
+export interface Benefit {
+  /** Iconify icon name (e.g. "lucide:wifi"). */
   icon: string;
+  /** Benefit heading. */
   title: string;
+  /** Supporting sentence. */
   desc: string;
 }
 
-export const PROBLEMS: Problem[] = [
+export const BENEFITS: Benefit[] = [
   {
-    icon: 'file-spreadsheet',
-    title: 'Datos dispersos',
-    desc: 'Información en Excel, WhatsApp y cuadernos. Sin una sola fuente de verdad.',
+    icon: 'lucide:wifi',
+    title: 'Funciona offline en la finca',
+    desc: 'Registra en el corral aunque no haya señal. Se sincroniza solo cuando vuelve la red.',
   },
   {
-    icon: 'eye-off',
-    title: 'Sin visibilidad en tiempo real',
-    desc: 'No sabes el estado de salud animal ni de inventario hasta que ya es tarde.',
+    icon: 'lucide:clock',
+    title: 'En marcha en tu primera semana',
+    desc: 'Sin consultores, sin meses de implementación. En tu primera semana ya tienes datos reales.',
   },
   {
-    icon: 'trending-down',
-    title: 'Decisiones a ciegas',
-    desc: 'Sin datos de rentabilidad por lote, cultivo o mes, no puedes optimizar.',
+    icon: 'lucide:users',
+    title: 'Pensado para varios roles',
+    desc: 'El dueño ve la rentabilidad. El administrador gestiona. El operario registra. Todos sobre la misma información.',
   },
   {
-    icon: 'alert-triangle',
-    title: 'Personal apagando incendios',
-    desc: 'Tu equipo gestiona crisis en lugar de enfocarse en producir y crecer.',
+    icon: 'lucide:bar-chart-2',
+    title: 'Decisiones con datos reales',
+    desc: 'Producción por mes, costo por lote, consumo de concentrado por animal. Lo que antes era suposición, ahora es un número.',
+  },
+  {
+    icon: 'lucide:alert-circle',
+    title: 'Nada se te pasa',
+    desc: 'Vacunas que vencen, stock bajo, animales en tratamiento. La alerta llega antes de que sea un problema.',
+  },
+  {
+    icon: 'lucide:leaf',
+    title: 'En español, para el campo',
+    desc: 'Sin jerga técnica. Sin términos en inglés. Hablamos de lotes, dosis, kilos y unidades, como en tu finca.',
+  },
+  {
+    icon: 'lucide:handshake',
+    title: 'Construido con productores colombianos',
+    desc: 'TerraCore nació de entrevistas y trabajo directo con productores de Urabá. No es un ERP genérico adaptado al campo: es una herramienta diseñada desde las necesidades reales de la finca.',
   },
 ];
 
-export interface Feature {
-  icon: string;
-  title: string;
-  description: string;
+export interface FaqItem {
+  q: string;
+  a: string;
 }
-
-export const FEATURES: Feature[] = [
-  {
-    icon: 'layout-dashboard',
-    title: 'Dashboard centralizado',
-    description:
-      'Toda tu operación en una pantalla: inventario, personal, lotes y finanzas. Sin abrir diez hojas de cálculo.',
-  },
-  {
-    icon: 'bell-ring',
-    title: 'Alertas en tiempo real',
-    description:
-      'Recibe notificaciones antes de que los problemas escalen. Actúa sobre datos, no sobre rumores.',
-  },
-  {
-    icon: 'shield-check',
-    title: 'Control total de operación',
-    description:
-      'Toma decisiones basadas en rentabilidad real. Por lote, por mes, por cultivo. Sin adivinar.',
-  },
-];
 
 export const FAQ: FaqItem[] = [
   {
