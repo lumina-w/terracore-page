@@ -33,7 +33,7 @@ export interface Plan {
 export const PLANS: Plan[] = [
   {
     name: 'Semilla',
-    desc: 'Para fincas que quieren dejar de operar a ciegas.',
+    desc: 'Para validar TerraCore en tu finca y dejar de operar a ciegas.',
     priceMain: 'COP $2.500.000',
     priceSub: '/mes',
     priceIsLabel: false,
@@ -57,7 +57,7 @@ export const PLANS: Plan[] = [
   },
   {
     name: 'Profesional',
-    desc: 'Para operaciones que necesitan saber exactamente qué genera y qué cuesta cada área.',
+    desc: 'Para operaciones mixtas complejas que necesitan saber qué genera y qué cuesta cada área.',
     priceMain: 'COP $5.000.000',
     priceSub: '/mes',
     priceIsLabel: false,
@@ -83,7 +83,7 @@ export const PLANS: Plan[] = [
   },
   {
     name: 'Enterprise',
-    desc: 'Para grupos empresariales y cooperativas.',
+    desc: 'Para empresas con múltiples sedes, grupos empresariales y cooperativas.',
     priceMain: 'COP $10.000.000',
     priceSub: '/mes',
     priceIsLabel: false,
@@ -170,7 +170,7 @@ export const BENEFITS: Benefit[] = [
   {
     icon: 'lucide:handshake',
     title: 'Construido con productores colombianos',
-    desc: 'TerraCore nació de entrevistas y trabajo directo con productores de Urabá. No es un ERP genérico adaptado al campo: es una herramienta diseñada desde las necesidades reales de la finca.',
+    desc: 'TerraCore nació de entrevistas y trabajo directo con productores de Urabá, nuestro foco actual. Desde ahí crecemos hacia Antioquia (café y ganado) y Cundinamarca (papa y hortalizas): una herramienta diseñada desde las necesidades reales de la finca.',
   },
 ];
 
