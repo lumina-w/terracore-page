@@ -1,80 +1,7 @@
 ---
 import Eyebrow from '@atoms/Eyebrow.astro';
 import { Icon } from 'astro-icon/components';
-
-const plans = [
-  {
-    name: 'Semilla',
-    desc: 'Para fincas que quieren dejar de operar a ciegas.',
-    priceMain: '$2.5M',
-    priceSub: '/mes',
-    priceIsLabel: false,
-    priceNote: 'Acceso completo por 14 días',
-    valueNote: 'Menos de lo que cuesta una compra de urgencia evitable al mes.',
-    features: [
-      'Deja de operar de memoria y con cuadernos',
-      'Alertas antes de perder un animal o un insumo',
-      '1 sede · 5 usuarios',
-      'Gestión de Animales (CRUD completo + estado de salud)',
-      'Salud Animal (vacunas + alertas próximas 30 días)',
-      'Producción (lotes + eventos)',
-      'Inventario (insumos + alertas stock)',
-      'Dashboard (4 KPI principales)',
-      'Autenticación (Admin + Operario)',
-    ],
-    cta: 'Comenzar trial gratis',
-    ctaHref: 'https://app.terracoreapp.co/login',
-    featured: false,
-  },
-  {
-    name: 'Profesional',
-    desc: 'Para operaciones que necesitan saber exactamente qué genera y qué cuesta cada área.',
-    priceMain: '$5M',
-    priceSub: '/mes',
-    priceIsLabel: false,
-    priceNote: null,
-    features: [
-      'Sabe exactamente qué área de tu finca es rentable',
-      'Cero compras de urgencia con alertas anticipadas',
-      '3 sedes · 15 usuarios',
-      'Todo lo de Semilla +',
-      'Gestión de Herramientas (mantenimiento)',
-      'Costos automáticos por lote (rentabilidad)',
-      'Proveedores y Compras',
-      'Dashboard avanzado (comparativos, tendencias)',
-      'Importación CSV en bulk',
-      'WhatsApp + videollamada ≤4h + revisión mensual',
-    ],
-    featured: true,
-    cta: 'Quiero saber más',
-    ctaHref:
-      'https://wa.me/573108283088?text=Hola%2C%20quiero%20saber%20m%C3%A1s%20sobre%20el%20plan%20Profesional%20de%20TerraCore',
-  },
-  {
-    name: 'Enterprise',
-    desc: 'Para grupos empresariales y cooperativas.',
-    priceMain: 'Desde $10M',
-    priceSub: '/mes',
-    priceIsLabel: false,
-    priceNote: '* Precio según operación · contáctanos',
-    features: [
-      'Visibilidad consolidada de toda tu operación multifinca',
-      'Trazabilidad para certificaciones y acceso a mejores mercados',
-      'Sedes y usuarios ilimitados',
-      'Todo lo de Profesional +',
-      'Vista consolidada multifinca',
-      'Trazabilidad GlobalG.A.P.',
-      'Logística y despachos',
-      'API para integraciones',
-      'Reportes gerenciales',
-      'Prioritario SLA ≤2h + 99.9%',
-    ],
-    cta: 'Quiero saber más',
-    ctaHref:
-      'https://wa.me/573108283088?text=Hola%2C%20quiero%20saber%20m%C3%A1s%20sobre%20el%20plan%20Enterprise%20de%20TerraCore',
-    featured: false,
-  },
-];
+import { PLANS as plans } from '@utils/constants';
 ---
 
 <section class="section-pad pricing reveal" id="precios">
@@ -87,7 +14,8 @@ const plans = [
         </h2>
       </div>
       <p class="lead">
-        Pago mensual. Cancelas cuando quieras. El precio definitivo se confirma según tu operación.
+        Pago mensual. Cancela cuando quieras con 30 días de aviso. El precio definitivo se confirma
+        según tu operación.
       </p>
     </div>
 

@@ -57,7 +57,7 @@ All JS is vanilla, written in Astro `<script>` blocks (no framework). Key patter
 - Mobile nav toggle in Header.astro uses `drawer.dataset.open` + aria attributes
 
 **Static data:**
-`src/utils/constants.ts` exports typed interfaces and arrays: `PLANS`, `PROBLEMS`, `FEATURES`, `FAQ`. Only `FAQ` is currently consumed (by `index.astro` to build the FAQPage JSON-LD); the section components still hold their copy inline. No CMS.
+`src/utils/constants.ts` is the source of truth for section data: it exports typed interfaces and arrays consumed by the sections that render them. `PLANS` → `Pricing.astro` (pricing cards), `IMPACT_ROWS` → `Impacto.astro` (before/after table), `BENEFITS` → `Benefits.astro` (why-TerraCore grid), and `FAQ` → `index.astro` (FAQPage JSON-LD). Note `FAQSection.astro` still holds its own visible FAQ copy inline, so `FAQ` in constants must stay in sync with it. No CMS.
 
 **Lead capture:**
 The `#demo` lead form (`ContactForm.astro`) submits directly to Supabase via the public anon key; no server endpoint involved. (A separate Brevo-backed waitlist endpoint + form used to live at `api/waitlist.ts` / `Pricing.astro`'s `.waitlist-form`, but no pricing plan ever enabled it, so it was removed as dead code.)
@@ -95,7 +95,7 @@ GA4 wired in BaseLayout via `is:inline` scripts (excluded from Prettier — see 
 
 `@astrojs/netlify` adapter; `netlify.toml` sets `command = "pnpm run build"`, `publish = "dist"`, `NODE_VERSION = 22`. `pnpm run build` emits static pages to `dist/`; the adapter still bundles its own internal SSR function under `.netlify/` (router fallback/middleware) even though the app has no `prerender = false` routes of its own, see Architecture above. `@astrojs/sitemap` generates `dist/sitemap-index.xml` during build. Set env vars in the Netlify panel. Package manager is pnpm (`pnpm-lock.yaml`, `packageManager` field in `package.json`); native build scripts (esbuild, sharp, @parcel/watcher) are allowlisted in `pnpm-workspace.yaml`.
 
-`pnpm run preview` serves `dist/` via `scripts/serve-dist.mjs`, a tiny zero-dependency static server, **not** `astro preview`: the `@astrojs/netlify` adapter refuses to run `astro preview`, so the built-in command errors out and the Playwright E2E `webServer` (`pnpm run build && pnpm run preview`) could never start. The static server mirrors `trailingSlash: 'always'` routing (`/terminos/` → `dist/terminos/index.html`) and returns `dist/404.html` with a real 404 status for unknown routes, which the `legal-pages` E2E spec asserts.
+The Playwright E2E `webServer` runs `pnpm run build && pnpm run preview:e2e`, **not** `pnpm run preview`: the `@astrojs/netlify` adapter refuses to run `astro preview` (the built-in command errors out under the adapter), so `preview:e2e` serves the static `dist/` with the `serve` package (`serve dist -l 4321`) instead, which the E2E `webServer` can start reliably.
 
 ## Key Constraints
 
@@ -104,3 +104,12 @@ GA4 wired in BaseLayout via `is:inline` scripts (excluded from Prettier — see 
 - No React, no client-side framework. All interactivity must be vanilla JS in `<script>` blocks.
 - `tailwind.config.mjs` and `tailwind.config.ts` both exist — `postcss.config.mjs` loads the `.mjs` version (PostCSS resolves `tailwind.config.mjs` by convention).
 - NEVER use the em-dash character (`—`) in user-facing UI copy (headings, leads, labels, button text, FAQ, plan descriptions, any rendered string). Use a comma, colon, period, or parentheses instead. This rule applies only to UI copy — em-dashes are fine in code comments and docs like this file.
+
+## Git conventions
+
+Commit messages follow [Conventional Commits](https://www.conventionalcommits.org/): `type(scope): description`, where the description is lowercase and in the imperative mood. The `scope` is optional but encouraged. There is no tooling that enforces this (no commitlint, husky, or commit hooks) — it is a convention, so keep to it manually.
+
+- Allowed `type` values seen in the history: `feat`, `fix`, `refactor`, `chore`, `docs`, `ci`, `seo`, `a11y`, `perf`, `test`, `style`, `build`.
+- Common scopes: the area touched (`pricing`, `data`, `env`, `deps`), lowercase kebab-case.
+- Examples: `feat(pricing): actualizar precios y planes`, `chore: migrate to pnpm`, `ci: fix prettier README error`.
+- Branch names follow `type/kebab-description` (e.g. `chore/pnpm-migration`, `chore/astro-v6-upgrade`).

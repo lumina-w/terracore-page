@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "preview": "node scripts/serve-dist.mjs",
+    "preview": "astro preview",
+    "preview:e2e": "serve dist -l 4321 --no-clipboard --no-port-switching",
     "astro": "astro",
     "typecheck": "astro check",
     "format": "prettier --write .",
@@ -42,6 +43,7 @@
     "prettier": "^3.8.3",
     "prettier-plugin-astro": "^0.14.1",
     "prettier-plugin-tailwindcss": "^0.8.0",
+    "serve": "^14.2.6",
     "typescript": "^5.6.0",
     "vitest": "^4.1.10"
   }
