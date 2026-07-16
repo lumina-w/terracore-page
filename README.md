@@ -16,7 +16,6 @@ Landing page de **TerraCore** — plataforma colombiana de gestión agroindustri
 | TypeScript       | 5.6     | Tipado estático                               |
 | pnpm             | 11.x    | Gestor de paquetes                            |
 | Vitest           | 4.x     | Tests unitarios                               |
-| Playwright       | 1.x     | Tests E2E                                     |
 
 Output: `static`, todas las páginas son estáticas. "Estático" describe cómo se genera el HTML (pre-renderado en build, sin servidor armándolo por request), no si la página tiene forms o interactividad: el form `#demo` (`ContactForm.astro`) sigue funcionando normal porque hace `fetch()` desde el navegador directo a la API REST de Supabase con la key pública anónima, nunca necesitó ruta de servidor. El adapter de Netlify sigue configurado por si hace falta SSR a futuro, pero hoy no hay ninguna ruta `prerender = false` en la app (la única que había, `/api/waitlist`, necesitaba servidor porque usaba una API key secreta de Brevo que no se puede exponer en el cliente).
 
@@ -66,11 +65,9 @@ pnpm run format:check  # Prettier (solo verifica, para CI)
 pnpm run test           # Tests unitarios (Vitest)
 pnpm run test:watch     # Vitest en modo watch
 pnpm run test:coverage  # Vitest con reporte de cobertura
-pnpm run test:e2e       # Tests E2E (Playwright; hace build + preview automáticamente)
-pnpm run test:e2e:ui    # Playwright en modo UI
 ```
 
-`typecheck`, tests unitarios y E2E son los gates de corrección antes de hacer merge (los tres corren en CI, ver `.github/workflows/ci.yml`).
+`typecheck` y los tests unitarios son los gates de corrección antes de hacer merge (ambos corren en CI, ver `.github/workflows/ci.yml`).
 
 ---
 
@@ -104,11 +101,6 @@ src/
     ├── analytics.test.ts
     ├── cn.ts               # Helper para concatenar clases
     └── cn.test.ts
-e2e/                         # Tests E2E (Playwright)
-├── landing.spec.ts
-├── faq.spec.ts
-├── mobile-nav.spec.ts
-└── legal-pages.spec.ts
 public/
 ├── logo.ico
 ├── terracore.jpg           # OG image por defecto (1200×630)
@@ -137,8 +129,7 @@ public/
 
 - **Unit (Vitest)**: colocados como `*.test.ts` junto al archivo que prueban. Si algún día hay que testear algo bajo `src/pages/`, no lo coloques como `*.test.ts` hermano: Astro trata cualquier archivo suelto en `src/pages/` como una ruta y lo compilaría como página. Usa una carpeta `__tests__/` (empieza con `_`, que Astro ignora al enrutar).
 - Los tests que tocan `window`/`document` necesitan el pragma `// @vitest-environment jsdom` al inicio del archivo (el entorno por defecto es `node`).
-- **E2E (Playwright)**: en `e2e/*.spec.ts`. `playwright.config.ts` levanta el sitio solo (`pnpm run build && pnpm run preview`), no hace falta un servidor corriendo a mano. Antes de correrlos una vez: `pnpm exec playwright install chromium`.
-- CI corre ambas suites en `.github/workflows/ci.yml`: unitarios dentro del job `quality`, E2E en su propio job `e2e`.
+- CI corre los tests unitarios en `.github/workflows/ci.yml`, dentro del job `quality`.
 
 ---
 

@@ -16,11 +16,9 @@ pnpm run format:check # Prettier check (CI)
 pnpm run test          # Vitest unit tests (run once)
 pnpm run test:watch    # Vitest in watch mode
 pnpm run test:coverage # Vitest with coverage report
-pnpm run test:e2e      # Playwright E2E (builds + previews the site first)
-pnpm run test:e2e:ui   # Playwright E2E in UI mode
 ```
 
-Typecheck, unit tests and E2E are all correctness gates; CI runs all three (see `.github/workflows/ci.yml`).
+Typecheck and unit tests are correctness gates; CI runs both (see `.github/workflows/ci.yml`).
 
 ## Architecture
 
@@ -88,8 +86,7 @@ GA4 wired in BaseLayout via `is:inline` scripts (excluded from Prettier — see 
 - Unit tests (Vitest, `vitest.config.ts` uses Astro's `getViteConfig` so `@utils/*` aliases and `import.meta.env` resolve the same way they do in the app): colocated as `*.test.ts` next to the source file, e.g. `src/utils/cn.test.ts`.
 - If a test ever needs to cover a file under `src/pages/` (there are currently none there worth unit testing), don't colocate it as a sibling `*.test.ts`: Astro treats every file under `src/pages/` as a route, so a sibling test file gets built as a page and breaks the build. Put it in a `__tests__/` subfolder instead, Astro ignores paths starting with `_`.
 - DOM-dependent tests (anything touching `window`/`document`, e.g. `src/scripts/reveal.test.ts`, `src/utils/analytics.test.ts`) need a `// @vitest-environment jsdom` pragma at the top of the file; the default environment is `node`.
-- E2E tests (Playwright, `playwright.config.ts`) live in `e2e/*.spec.ts`. The config's `webServer` runs `pnpm run build && pnpm run preview` automatically, no need to start a server manually. Desktop-viewport specs run on the `chromium` project; `e2e/mobile-nav.spec.ts` is scoped to the `mobile-chromium` project (`testMatch`/`testIgnore` in the config) since the hamburger menu only exists below the `1000px` breakpoint.
-- Both suites run in CI (`.github/workflows/ci.yml`): unit tests in the `quality` job, E2E in its own `e2e` job (needs `playwright install --with-deps chromium`).
+- Unit tests run in CI (`.github/workflows/ci.yml`) in the `quality` job.
 
 ## Build & Deploy
 
