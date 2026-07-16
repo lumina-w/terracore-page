@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { FAQ, FEATURES, PLANS, PROBLEMS } from './constants';
+import { BENEFITS, FAQ, IMPACT_ROWS, PLANS } from './constants';
 
 describe('PLANS', () => {
   it('has at least one plan', () => {
@@ -9,9 +9,11 @@ describe('PLANS', () => {
   it('every plan has non-empty required fields', () => {
     for (const plan of PLANS) {
       expect(plan.name).toBeTruthy();
-      expect(plan.target).toBeTruthy();
-      expect(plan.ctaText).toBeTruthy();
-      expect(plan.ctaEvent).toBeTruthy();
+      expect(plan.desc).toBeTruthy();
+      expect(plan.priceMain).toBeTruthy();
+      expect(plan.priceSub).toBeTruthy();
+      expect(plan.cta).toBeTruthy();
+      expect(plan.ctaHref).toBeTruthy();
       expect(plan.features.length).toBeGreaterThan(0);
     }
   });
@@ -21,34 +23,37 @@ describe('PLANS', () => {
     expect(new Set(names).size).toBe(names.length);
   });
 
-  it('has unique ctaEvent identifiers (used for analytics)', () => {
-    const events = PLANS.map((p) => p.ctaEvent);
-    expect(new Set(events).size).toBe(events.length);
+  it('prices are quoted in COP (no USD)', () => {
+    for (const plan of PLANS) {
+      if (!plan.priceIsLabel) {
+        expect(plan.priceMain).toContain('COP');
+      }
+      expect(plan.priceMain).not.toMatch(/USD|US\$/);
+    }
   });
 
-  it('has exactly one highlighted plan', () => {
-    expect(PLANS.filter((p) => p.highlight).length).toBe(1);
+  it('has exactly one featured plan', () => {
+    expect(PLANS.filter((p) => p.featured).length).toBe(1);
   });
 });
 
-describe('PROBLEMS', () => {
-  it('every entry has an icon, title and description', () => {
-    expect(PROBLEMS.length).toBeGreaterThan(0);
-    for (const problem of PROBLEMS) {
-      expect(problem.icon).toBeTruthy();
-      expect(problem.title).toBeTruthy();
-      expect(problem.desc).toBeTruthy();
+describe('IMPACT_ROWS', () => {
+  it('every row has a before and an after', () => {
+    expect(IMPACT_ROWS.length).toBeGreaterThan(0);
+    for (const row of IMPACT_ROWS) {
+      expect(row.before).toBeTruthy();
+      expect(row.after).toBeTruthy();
     }
   });
 });
 
-describe('FEATURES', () => {
+describe('BENEFITS', () => {
   it('every entry has an icon, title and description', () => {
-    expect(FEATURES.length).toBeGreaterThan(0);
-    for (const feature of FEATURES) {
-      expect(feature.icon).toBeTruthy();
-      expect(feature.title).toBeTruthy();
-      expect(feature.description).toBeTruthy();
+    expect(BENEFITS.length).toBeGreaterThan(0);
+    for (const benefit of BENEFITS) {
+      expect(benefit.icon).toBeTruthy();
+      expect(benefit.title).toBeTruthy();
+      expect(benefit.desc).toBeTruthy();
     }
   });
 });
