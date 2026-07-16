@@ -38,15 +38,18 @@ import { IMPACT_ROWS as rows } from '@utils/constants';
     <div class="impacto-stat">
       <div class="impacto-stat__val">−42%</div>
       <div class="impacto-stat__body">
-        <div class="impacto-stat__label">
-          menos tiempo en tareas administrativas · fincas piloto
-        </div>
+        <div class="impacto-stat__label">reducción de pérdidas · fincas piloto en Urabá</div>
         <p class="impacto-stat__context">
-          En las fincas piloto, los administradores redujeron el tiempo en tareas administrativas
-          casi a la mitad. Ese tiempo volvió al campo.
+          Clientes piloto en Urabá reportan reducciones de pérdidas de hasta el 42% en los primeros
+          6 meses, por compras de emergencia, desperdicio y brotes sanitarios evitados.
         </p>
       </div>
     </div>
+
+    <p class="impacto-stat__footnote">
+      * Basado en datos iniciales de operaciones piloto. Resultados varían según tamaño de la
+      operación y adopción del equipo.
+    </p>
   </div>
 </section>
 
@@ -140,6 +143,12 @@ import { IMPACT_ROWS as rows } from '@utils/constants';
     font-size: 15px;
     line-height: 1.5;
     color: rgba(255, 255, 255, 0.78);
+  }
+  .impacto-stat__footnote {
+    margin: 14px 0 0;
+    font-size: 12.5px;
+    line-height: 1.5;
+    color: var(--color-text-muted);
   }
 
   @media (max-width: 640px) {

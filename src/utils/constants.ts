@@ -212,4 +212,8 @@ export const FAQ: FaqItem[] = [
     q: '¿Qué pasa si quiero cancelar?',
     a: 'Sin penalidades ni letras pequeñas. Solo avísanos con 30 días de anticipación.',
   },
+  {
+    q: '¿De dónde viene la cifra del 42%?',
+    a: 'El 42% proviene de datos iniciales de operaciones piloto en la región de Urabá durante 2026. Este impacto varía según tamaño de la operación, complejidad de la cadena de suministro y nivel de adopción del equipo. Compartimos estos números de forma transparente para dar contexto real del producto.',
+  },
 ];
