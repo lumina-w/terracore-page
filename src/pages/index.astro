@@ -45,6 +45,7 @@ const jsonLd = JSON.stringify([
     description:
       'Plataforma de gestión agroindustrial para reducir pérdidas, controlar costos y decidir con datos reales. Funciona sin internet.',
     inLanguage: 'es-CO',
+    image: 'https://terracoreapp.co/terracore.jpg',
     screenshot: 'https://terracoreapp.co/screens/dashboard-2.webp',
     provider: {
       '@type': 'Organization',
@@ -78,8 +79,8 @@ const jsonLd = JSON.stringify([
 ---
 
 <BaseLayout
-  title="TerraCore | Menos pérdidas. Más control. Finca rentable."
-  description="Reduce pérdidas, controla costos y decide con datos reales en tu finca. TerraCore funciona sin internet, diseñada para el campo colombiano."
+  title="TerraCore: Gestión agroindustrial para fincas medianas en Colombia"
+  description="Centraliza la gestión de tu finca, funciona sin internet y convierte las pérdidas evitadas en retorno real. Diseñada para fincas medianas en Colombia."
   preloadImage="/screens/dashboard-2.webp"
 >
   <script slot="head" is:inline type="application/ld+json" set:html={jsonLd} />

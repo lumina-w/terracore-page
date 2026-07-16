@@ -95,6 +95,8 @@ GA4 wired in BaseLayout via `is:inline` scripts (excluded from Prettier — see 
 
 `@astrojs/netlify` adapter; `netlify.toml` sets `command = "pnpm run build"`, `publish = "dist"`, `NODE_VERSION = 22`. `pnpm run build` emits static pages to `dist/`; the adapter still bundles its own internal SSR function under `.netlify/` (router fallback/middleware) even though the app has no `prerender = false` routes of its own, see Architecture above. `@astrojs/sitemap` generates `dist/sitemap-index.xml` during build. Set env vars in the Netlify panel. Package manager is pnpm (`pnpm-lock.yaml`, `packageManager` field in `package.json`); native build scripts (esbuild, sharp, @parcel/watcher) are allowlisted in `pnpm-workspace.yaml`.
 
+`pnpm run preview` serves `dist/` via `scripts/serve-dist.mjs`, a tiny zero-dependency static server, **not** `astro preview`: the `@astrojs/netlify` adapter refuses to run `astro preview`, so the built-in command errors out and the Playwright E2E `webServer` (`pnpm run build && pnpm run preview`) could never start. The static server mirrors `trailingSlash: 'always'` routing (`/terminos/` → `dist/terminos/index.html`) and returns `dist/404.html` with a real 404 status for unknown routes, which the `legal-pages` E2E spec asserts.
+
 ## Key Constraints
 
 - `src/layouts/BaseLayout.astro` is excluded from Prettier (`.prettierignore`) because Prettier 3 mangles `is:inline` script syntax. Edit it manually.
