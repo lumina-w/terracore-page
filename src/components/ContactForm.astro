@@ -13,6 +13,10 @@ const {
 
 <div class="lead" data-lead>
   <form class="lead-form" data-lead-form novalidate>
+    <p class="lead-intro">
+      Cuéntanos sobre tu operación, te ayudaremos a encontrar el plan perfecto.
+    </p>
+
     <div class="form-cols">
       <div class="form-col">
         <fieldset class="field group--personal group">
@@ -36,6 +40,21 @@ const {
           </div>
 
           <div class="field field--text">
+            <label for="lead-email">Email <span class="req">*</span></label>
+            <input
+              id="lead-email"
+              name="email"
+              type="email"
+              required
+              autocomplete="email"
+              inputmode="email"
+              spellcheck="false"
+              enterkeyhint="next"
+              placeholder="Ej: juan@tufinca.co"
+            />
+          </div>
+
+          <div class="field field--text">
             <label for="lead-whatsapp">WhatsApp <span class="req">*</span></label>
             <input
               id="lead-whatsapp"
@@ -50,45 +69,93 @@ const {
           </div>
         </fieldset>
 
-        <fieldset class="field group--tipo group">
+        <fieldset class="field group--empresa group">
           <legend
-            ><span class="legend-text">Tipo de operación <span class="req">*</span></span></legend
+            ><span class="legend-text">Sobre tu operación <span class="req">*</span></span></legend
+          >
+          <div class="field field--text">
+            <label for="lead-empresa">Empresa o finca <span class="req">*</span></label>
+            <input
+              id="lead-empresa"
+              name="empresa"
+              type="text"
+              required
+              autocomplete="organization"
+              autocapitalize="words"
+              enterkeyhint="next"
+              placeholder="Ej: Hacienda La Esperanza"
+            />
+          </div>
+
+          <div class="field field--text">
+            <label for="lead-region">Región <span class="req">*</span></label>
+            <input
+              id="lead-region"
+              name="region"
+              type="text"
+              required
+              autocomplete="address-level1"
+              autocapitalize="words"
+              enterkeyhint="next"
+              placeholder="Ej: Antioquia"
+            />
+          </div>
+        </fieldset>
+      </div>
+
+      <div class="form-col">
+        <fieldset class="field group--tamano group">
+          <legend
+            ><span class="legend-text">Tamaño de operación <span class="req">*</span></span></legend
           >
           <div class="options">
             <label class="opt">
-              <input type="radio" name="tipo_operacion" value="Ganadería bovina (carne)" required />
+              <input
+                type="radio"
+                name="tamano_operacion"
+                value="Pequeña (1 sede, hasta 5 personas)"
+                required
+              />
               <span class="opt-mark" aria-hidden="true"></span>
-              <span class="opt-label">Ganadería bovina (carne)</span>
+              <span class="opt-label">Pequeña (1 sede, hasta 5 personas)</span>
             </label>
             <label class="opt">
-              <input type="radio" name="tipo_operacion" value="Ganadería bovina (leche)" required />
+              <input
+                type="radio"
+                name="tamano_operacion"
+                value="Mediana (2 a 3 sedes, hasta 15 personas)"
+                required
+              />
               <span class="opt-mark" aria-hidden="true"></span>
-              <span class="opt-label">Ganadería bovina (leche)</span>
+              <span class="opt-label">Mediana (2 a 3 sedes, hasta 15 personas)</span>
             </label>
             <label class="opt">
-              <input type="radio" name="tipo_operacion" value="Porcicultura" required />
+              <input
+                type="radio"
+                name="tamano_operacion"
+                value="Grande (varias sedes o grupo empresarial)"
+                required
+              />
               <span class="opt-mark" aria-hidden="true"></span>
-              <span class="opt-label">Porcicultura</span>
+              <span class="opt-label">Grande (varias sedes o grupo empresarial)</span>
+            </label>
+          </div>
+        </fieldset>
+
+        <fieldset class="field group--consulta group">
+          <legend
+            ><span class="legend-text">Tipo de consulta <span class="req">*</span></span></legend
+          >
+          <div class="options">
+            <label class="opt">
+              <input type="radio" name="tipo_consulta" value="Ventas" required checked />
+              <span class="opt-mark" aria-hidden="true"></span>
+              <span class="opt-label">Ventas (quiero conocer planes y precios)</span>
             </label>
             <label class="opt">
-              <input type="radio" name="tipo_operacion" value="Avicultura" required />
+              <input type="radio" name="tipo_consulta" value="Soporte técnico" required />
               <span class="opt-mark" aria-hidden="true"></span>
-              <span class="opt-label">Avicultura</span>
-            </label>
-            <label class="opt">
-              <input type="radio" name="tipo_operacion" value="Cultivos" required />
-              <span class="opt-mark" aria-hidden="true"></span>
-              <span class="opt-label">Cultivos</span>
-            </label>
-            <label class="opt">
-              <input type="radio" name="tipo_operacion" value="Mixta" required />
-              <span class="opt-mark" aria-hidden="true"></span>
-              <span class="opt-label">Mixta</span>
-            </label>
-            <label class="opt">
-              <input type="radio" name="tipo_operacion" value="Otro" required />
-              <span class="opt-mark" aria-hidden="true"></span>
-              <span class="opt-label">Otro</span>
+              <span class="opt-label">Soporte técnico (ya soy cliente)</span>
             </label>
           </div>
         </fieldset>
@@ -120,7 +187,7 @@ const {
     </div>
     <h3 tabindex="-1" data-success-heading>¡Listo, <span data-success-name>!</span></h3>
     <p>
-      Te contactamos por WhatsApp pronto.<br />
+      Te contactamos por WhatsApp o correo pronto.<br />
       Mientras tanto, si tienes una pregunta urgente:
     </p>
     <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" class="btn btn-accent">
@@ -168,8 +235,12 @@ const {
       const nombre = String(data.get('nombre') ?? '').trim();
       const payload = {
         nombre,
+        email: String(data.get('email') ?? '').trim(),
         whatsapp: String(data.get('whatsapp') ?? '').trim(),
-        tipo_operacion: String(data.get('tipo_operacion') ?? ''),
+        empresa: String(data.get('empresa') ?? '').trim(),
+        region: String(data.get('region') ?? '').trim(),
+        tamano_operacion: String(data.get('tamano_operacion') ?? ''),
+        tipo_consulta: String(data.get('tipo_consulta') ?? ''),
         fuente: 'landing-terracore',
       };
 
@@ -189,7 +260,10 @@ const {
 
         if (!res.ok) throw new Error(`Supabase ${res.status}`);
 
-        window.trackEvent?.('submit_lead', { tipo_operacion: payload.tipo_operacion });
+        window.trackEvent?.('submit_lead', {
+          tipo_consulta: payload.tipo_consulta,
+          tamano_operacion: payload.tamano_operacion,
+        });
 
         if (successName) successName.textContent = `${nombre}!`;
         form.removeAttribute('aria-busy');
@@ -228,6 +302,14 @@ const {
     display: flex;
     flex-direction: column;
     gap: 22px;
+  }
+
+  /* Short intro line above the fields */
+  .lead-intro {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.78);
   }
 
   /* Each column is a vertical stack of full fields */
@@ -296,6 +378,7 @@ const {
   /* ── Text inputs / textarea ─────────────────────────────────── */
   .field input[type='text'],
   .field input[type='tel'],
+  .field input[type='email'],
   .field textarea {
     width: 100%;
     font-family: var(--font-sans);
