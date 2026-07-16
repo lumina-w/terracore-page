@@ -215,6 +215,36 @@ const whatsapp = 'https://wa.me/573108283088';
               sin previo aviso, siempre que dichas modificaciones no degraden materialmente las
               funciones esenciales del plan contratado.
             </p>
+            <h3>2.3. Plazos de implementación</h3>
+            <p>El tiempo estimado de puesta en marcha depende del plan contratado:</p>
+            <div class="impl-table-wrap">
+              <table class="impl-table">
+                <thead>
+                  <tr>
+                    <th scope="col">Plan</th>
+                    <th scope="col">Plazo</th>
+                    <th scope="col">Alcance</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">Semilla</th>
+                    <td>24 horas</td>
+                    <td>Setup básico e invitación de usuarios.</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Profesional</th>
+                    <td>3 a 5 días</td>
+                    <td>Onboarding de módulos avanzados y validación.</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Enterprise</th>
+                    <td>Personalizado</td>
+                    <td>A definir en la consultoría inicial.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </section>
 
           <section id="s3" class="doc-section">
@@ -294,9 +324,16 @@ const whatsapp = 'https://wa.me/573108283088';
             </p>
             <h3>5.1. Cancelación por el Cliente</h3>
             <p>
-              El Cliente puede cancelar su Suscripción en cualquier momento desde la propia
-              plataforma o escribiendo a <a class="tc-link" href={`mailto:${email}`}>{email}</a>. La
-              cancelación surte efectos al final del periodo facturado vigente.
+              Puedes cancelar tu suscripción en cualquier momento. La cancelación toma efecto
+              después de 30 días de aviso, permitiendo una transición ordenada de tus datos. Puedes
+              solicitarla desde la propia plataforma o escribiendo a <a
+                class="tc-link"
+                href={`mailto:${email}`}>{email}</a
+              >.
+            </p>
+            <p>
+              Esta política de cancelación aplica por igual a todos los planes: Semilla, Profesional
+              y Enterprise.
             </p>
             <h3>5.2. Reembolsos</h3>
             <p>
@@ -456,6 +493,12 @@ const whatsapp = 'https://wa.me/573108283088';
               notificadas con 48 horas de anticipación, las fallas atribuibles al Cliente o a su
               conectividad, ni los eventos de fuerza mayor o caso fortuito.
             </p>
+            <h3>10.2. Soporte Prioritario Enterprise</h3>
+            <p>
+              Los clientes Enterprise reciben respuesta a issues críticos en un máximo de 24 horas.
+              El plan incluye además revisiones operacionales trimestrales y soporte dedicado en la
+              implementación.
+            </p>
           </section>
 
           <section id="s11" class="doc-section">
@@ -579,3 +622,48 @@ const whatsapp = 'https://wa.me/573108283088';
     </div>
   </section>
 </LegalLayout>
+
+<style>
+  .impl-table-wrap {
+    margin: 8px 0 16px;
+    overflow-x: auto;
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+  }
+  .impl-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    line-height: 21px;
+    background: var(--color-surface);
+  }
+  .impl-table th,
+  .impl-table td {
+    text-align: left;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--color-border);
+    vertical-align: top;
+  }
+  .impl-table thead th {
+    font-family: var(--font-display);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--color-text-secondary);
+    background: var(--color-surface-sunken);
+  }
+  .impl-table tbody th[scope='row'] {
+    font-family: var(--font-display);
+    font-weight: 700;
+    color: var(--color-text);
+    white-space: nowrap;
+  }
+  .impl-table tbody td {
+    color: var(--color-text-secondary);
+  }
+  .impl-table tbody tr:last-child th,
+  .impl-table tbody tr:last-child td {
+    border-bottom: 0;
+  }
+</style>
