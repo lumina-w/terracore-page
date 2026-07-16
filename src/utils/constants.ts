@@ -56,7 +56,7 @@ export const PLANS: Plan[] = [
       'Logística y despachos',
       'API para integraciones',
       'Reportes gerenciales',
-      'SLA prioritario ≤2 h + 99.9 %',
+      'Soporte prioritario 24h · Implementación dedicada · Revisiones trimestrales',
     ],
     highlight: false,
     ctaText: 'Quiero saber más',

@@ -46,6 +46,7 @@ const jsonLd = JSON.stringify([
       'Plataforma de gestión agroindustrial para reducir pérdidas, controlar costos y decidir con datos reales. Funciona sin internet.',
     inLanguage: 'es-CO',
     screenshot: 'https://terracoreapp.co/screens/dashboard-2.webp',
+    cancellationNoticeRequired: 'P30D',
     provider: {
       '@type': 'Organization',
       name: 'TerraCore',
@@ -59,6 +60,31 @@ const jsonLd = JSON.stringify([
       offerCount: 3,
       description: 'Tres planes mensuales desde $2.5M COP/mes según el tamaño de la operación.',
       url: 'https://terracoreapp.co/#precios',
+      offers: [
+        {
+          '@type': 'Offer',
+          name: 'Semilla',
+          price: '2500000',
+          priceCurrency: 'COP',
+          implementationTime: 'PT24H',
+          url: 'https://terracoreapp.co/#precios',
+        },
+        {
+          '@type': 'Offer',
+          name: 'Profesional',
+          price: '5000000',
+          priceCurrency: 'COP',
+          implementationTime: 'P5D',
+          url: 'https://terracoreapp.co/#precios',
+        },
+        {
+          '@type': 'Offer',
+          name: 'Enterprise',
+          price: '10000000',
+          priceCurrency: 'COP',
+          url: 'https://terracoreapp.co/#precios',
+        },
+      ],
     },
   },
   {
