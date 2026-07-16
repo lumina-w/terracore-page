@@ -26,7 +26,7 @@ Bajo la Ley 1581 de 2012: los datos del cliente no se venden, no se comparten co
 
 - Semilla: fincas pequeñas que inician su digitalización (1 sede, 5 usuarios, gestión de animales, salud animal, producción, inventario, dashboard con 4 KPI, 14 días de prueba gratis)
 - Profesional: operaciones medianas (3 sedes, 15 usuarios, gestión de herramientas, costos automáticos por lote, proveedores y compras, dashboard avanzado, importación CSV en bulk, soporte WhatsApp y videollamada en menos de 4 h)
-- Enterprise: grupos empresariales y cooperativas (sedes y usuarios ilimitados, vista consolidada multifinca, trazabilidad GlobalG.A.P., logística y despachos, API para integraciones, reportes gerenciales, SLA prioritario en menos de 2 h y 99.9 %)
+- Enterprise: grupos empresariales y cooperativas (sedes y usuarios ilimitados, vista consolidada multifinca, trazabilidad GlobalG.A.P., logística y despachos, API para integraciones, reportes gerenciales, soporte prioritario 24 h, implementación dedicada y revisiones trimestrales)
 
 Precios desde $2.5M COP/mes según el tamaño de la operación. Pago mensual, cancelas cuando quieras (aviso de 30 días). Puesta en marcha típica en tu primera semana.
 
