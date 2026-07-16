@@ -43,9 +43,10 @@ const jsonLd = JSON.stringify([
     operatingSystem: 'Web, Android, iOS',
     url: 'https://terracoreapp.co',
     description:
-      'Plataforma de gestión agroindustrial para reducir pérdidas, controlar costos y decidir con datos reales. Funciona sin internet.',
+      'Plataforma de gestión agroindustrial para reducir pérdidas, controlar costos y decidir con datos reales. Funciona sin internet. En operaciones piloto en Urabá durante 2026, las fincas reportan reducciones de pérdidas de hasta el 42% en los primeros 6 meses; resultados iniciales que varían según el tamaño de la operación, la complejidad de la cadena de suministro y el nivel de adopción del equipo.',
     inLanguage: 'es-CO',
     screenshot: 'https://terracoreapp.co/screens/dashboard-2.webp',
+    cancellationNoticeRequired: 'P30D',
     provider: {
       '@type': 'Organization',
       name: 'TerraCore',
@@ -57,8 +58,55 @@ const jsonLd = JSON.stringify([
       highPrice: '10000000',
       priceCurrency: 'COP',
       offerCount: 3,
-      description: 'Tres planes mensuales desde $2.5M COP/mes según el tamaño de la operación.',
+      description:
+        'Tres planes mensuales desde COP $2.500.000/mes según el tamaño de la operación.',
       url: 'https://terracoreapp.co/#precios',
+      offers: [
+        {
+          '@type': 'Offer',
+          name: 'Plan Semilla',
+          priceCurrency: 'COP',
+          price: '2500000',
+          category: 'subscription',
+          implementationTime: 'PT24H',
+          url: 'https://terracoreapp.co/#precios',
+          priceSpecification: {
+            '@type': 'UnitPriceSpecification',
+            priceCurrency: 'COP',
+            price: '2500000',
+            billingDuration: 'P1M',
+          },
+        },
+        {
+          '@type': 'Offer',
+          name: 'Plan Profesional',
+          priceCurrency: 'COP',
+          price: '5000000',
+          category: 'subscription',
+          implementationTime: 'P5D',
+          url: 'https://terracoreapp.co/#precios',
+          priceSpecification: {
+            '@type': 'UnitPriceSpecification',
+            priceCurrency: 'COP',
+            price: '5000000',
+            billingDuration: 'P1M',
+          },
+        },
+        {
+          '@type': 'Offer',
+          name: 'Plan Enterprise',
+          priceCurrency: 'COP',
+          price: '10000000',
+          category: 'subscription',
+          url: 'https://terracoreapp.co/#precios',
+          priceSpecification: {
+            '@type': 'UnitPriceSpecification',
+            priceCurrency: 'COP',
+            price: '10000000',
+            billingDuration: 'P1M',
+          },
+        },
+      ],
     },
   },
   {

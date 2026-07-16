@@ -1,44 +1,7 @@
 ---
 import Eyebrow from '@atoms/Eyebrow.astro';
 import { Icon } from 'astro-icon/components';
-
-const items = [
-  {
-    icon: 'lucide:wifi',
-    h: 'Funciona offline en la finca',
-    p: 'Registra en el corral aunque no haya señal. Se sincroniza solo cuando vuelve la red.',
-  },
-  {
-    icon: 'lucide:clock',
-    h: 'En marcha en tu primera semana',
-    p: 'Sin consultores, sin meses de implementación. En tu primera semana ya tienes datos reales.',
-  },
-  {
-    icon: 'lucide:users',
-    h: 'Pensado para varios roles',
-    p: 'El dueño ve la rentabilidad. El administrador gestiona. El operario registra. Todos sobre la misma información.',
-  },
-  {
-    icon: 'lucide:bar-chart-2',
-    h: 'Decisiones con datos reales',
-    p: 'Producción por mes, costo por lote, consumo de concentrado por animal. Lo que antes era suposición, ahora es un número.',
-  },
-  {
-    icon: 'lucide:alert-circle',
-    h: 'Nada se te pasa',
-    p: 'Vacunas que vencen, stock bajo, animales en tratamiento. La alerta llega antes de que sea un problema.',
-  },
-  {
-    icon: 'lucide:leaf',
-    h: 'En español, para el campo',
-    p: 'Sin jerga técnica. Sin términos en inglés. Hablamos de lotes, dosis, kilos y unidades, como en tu finca.',
-  },
-  {
-    icon: 'lucide:handshake',
-    h: 'Construido con productores colombianos',
-    p: 'TerraCore nació de entrevistas y trabajo directo con productores de Urabá. No es un ERP genérico adaptado al campo: es una herramienta diseñada desde las necesidades reales de la finca.',
-  },
-];
+import { BENEFITS as items } from '@utils/constants';
 ---
 
 <section class="section-pad benefits reveal" id="beneficios">
@@ -53,8 +16,8 @@ const items = [
         </h2>
       </div>
       <p class="lead">
-        Lo que probaste antes era un ERP disfrazado, o un Excel con login. TerraCore se construyó
-        desde el campo, con productores de Urabá, no desde una oficina.
+        La realidad de la mayoría de fincas medianas sigue siendo Excel, cuadernos y WhatsApp.
+        TerraCore se construyó desde el campo, con productores de Urabá, no desde una oficina.
       </p>
     </div>
 
@@ -66,8 +29,8 @@ const items = [
               <Icon name={it.icon} width={26} height={26} />
             </div>
             <div>
-              <h3 class="benefit__title">{it.h}</h3>
-              <p class="benefit__desc">{it.p}</p>
+              <h3 class="benefit__title">{it.title}</h3>
+              <p class="benefit__desc">{it.desc}</p>
             </div>
           </div>
         ))
