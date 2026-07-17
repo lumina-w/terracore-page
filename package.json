@@ -2,7 +2,12 @@
   "name": "lp-terracore-app",
   "type": "module",
   "version": "0.0.1",
+  "private": true,
+  "license": "UNLICENSED",
   "packageManager": "pnpm@11.10.0",
+  "engines": {
+    "node": ">=22 <23"
+  },
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
