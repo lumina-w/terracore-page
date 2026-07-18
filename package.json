@@ -36,19 +36,19 @@
   "devDependencies": {
     "@astrojs/check": "^0.9.9",
     "@playwright/test": "^1.61.1",
-    "@types/node": "^22.20.1",
+    "@types/node": "^26.1.1",
     "@typescript-eslint/eslint-plugin": "^8.64.0",
     "@typescript-eslint/parser": "^8.64.0",
     "@vitest/coverage-v8": "^4.1.10",
-    "autoprefixer": "^10.5.3",
+    "autoprefixer": "^10.5.4",
     "eslint": "^10.7.0",
-    "eslint-plugin-astro": "^1.7.0",
+    "eslint-plugin-astro": "^3.0.1",
     "jsdom": "^29.1.1",
     "prettier": "^3.9.5",
     "prettier-plugin-astro": "^0.14.1",
     "prettier-plugin-tailwindcss": "^0.8.1",
     "serve": "^14.2.6",
-    "typescript": "^5.9.3",
+    "typescript": "^7.0.2",
     "vitest": "^4.1.10"
   }
 }
