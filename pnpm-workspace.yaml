@@ -1,3 +1,11 @@
+# Reject dependency versions published less than 24h ago, matching the
+# supply-chain policy Netlify enforces on the build image (pnpm's
+# ERR_PNPM_MINIMUM_RELEASE_AGE_VIOLATION). Keeping it here means local
+# `pnpm install` resolves to the same policy-passing versions the deploy
+# accepts, so a freshly published package never lands in the lockfile and
+# breaks the build. Value is in minutes (1440 = 24h).
+minimumReleaseAge: 1440
+
 allowBuilds:
   '@parcel/watcher': true
   esbuild: true
