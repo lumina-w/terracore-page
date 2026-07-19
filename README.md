@@ -1,4 +1,4 @@
-# LP-TerraCore-App
+# terracore-page
 
 Landing page de **TerraCore** — plataforma colombiana de gestión agroindustrial para fincas medianas. Construida con Astro 7, Tailwind v3, sin framework de UI.
 
