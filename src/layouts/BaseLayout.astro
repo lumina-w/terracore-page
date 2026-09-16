@@ -1,11 +1,13 @@
 ---
 import '../styles/globals.css';
 import { inject } from '@vercel/analytics';
+import { injectSpeedInsights } from '@vercel/speed-insights';
 import Header from '@organisms/Header.astro';
 import Footer from '@organisms/Footer.astro';
 import WhatsAppFloat from '@organisms/WhatsAppFloat.astro';
 
 inject();
+injectSpeedInsights();
 
 interface Props {
   title: string;
