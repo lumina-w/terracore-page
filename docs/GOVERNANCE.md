@@ -16,7 +16,9 @@ Documento canónico de gobernanza para los repositorios de la organización
 ## 1. Modelo de protección de ramas (branch protection)
 
 GitHub tiene dos sistemas: **Classic branch protection** (legado) y **Rulesets**
-(actual). Usamos **Rulesets**. No mezclar ambos sobre la misma rama.
+(actual). El modelo objetivo es **Rulesets**; hoy los repos usan **classic
+branch protection** como paso intermedio mientras se migra. No mezclar ambos
+sobre la misma rama.
 
 > **Requisito de plan.** Los **rulesets de organización** y el enforcement en
 > **repos privados** requieren **GitHub Team** (o superior). En el plan Free un
@@ -24,12 +26,14 @@ GitHub tiene dos sistemas: **Classic branch protection** (legado) y **Rulesets**
 > enforcement. Como los productos son privados, Team es prerequisito para que
 > esta gobernanza sea real, no decorativa.
 
-Arquitectura en dos capas que se apilan sobre la rama por defecto:
+Arquitectura en dos capas que se apilan sobre cada rama protegida del repo:
+siempre `main`, y también `dev` en los repos que la usan como rama de
+integración antes de `main`.
 
 ### Capa A — Ruleset de organización "baseline" (una vez, todos los repos)
 
-Target: `All repositories` · `Default branch`. Reglas universales,
-independientes del CI de cada producto:
+Target: `All repositories` · `Default branch`, y `dev` donde exista. Reglas
+universales, independientes del CI de cada producto:
 
 | Regla                                                  | Por qué es baseline (org)                          |
 | ------------------------------------------------------ | -------------------------------------------------- |
@@ -53,9 +57,9 @@ CI caído). Vacío = ni los owners pueden saltarse la regla.
 
 ### Capa B — Ruleset por repo (checks específicos del CI de cada producto)
 
-Target: la rama por defecto de ese repo. Regla: **Require status checks to
-pass** + **Require branches to be up to date before merging**, listando los
-**nombres de job** propios de ese repo.
+Target: la rama por defecto de ese repo, y `dev` donde exista. Regla:
+**Require status checks to pass** + **Require branches to be up to date
+before merging**, listando los **nombres de job** propios de ese repo.
 
 > **Por qué los status checks NO van en el ruleset de org:** un check requerido
 > se identifica por el nombre del job, y difiere por producto. Un check que un
