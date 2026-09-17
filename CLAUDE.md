@@ -110,6 +110,68 @@ The Playwright E2E `webServer` runs `pnpm run build && pnpm run preview:e2e`, **
 - No React, no client-side framework. All interactivity must be vanilla JS in `<script>` blocks.
 - NEVER use the em-dash character (`—`) in user-facing UI copy (headings, leads, labels, button text, FAQ, plan descriptions, any rendered string). Use a comma, colon, period, or parentheses instead. This rule applies only to UI copy — em-dashes are fine in code comments and docs like this file.
 
+## Folder structure
+
+```
+src/
+├── components/    # atoms/, molecules/, organisms/, templates/ (see Atomic design layers above)
+├── layouts/       # BaseLayout.astro, LegalLayout.astro
+├── pages/         # index.astro, terminos.astro, privacidad.astro, habeas-data.astro, 404.astro
+├── scripts/       # standalone vanilla-JS modules imported by components (e.g. reveal.ts)
+├── styles/        # globals.css (design tokens + Tailwind directives)
+├── utils/         # constants.ts (typed static data, single source of truth per section)
+└── assets/        # images/, screens/ (source images, optimized into public/ at build time)
+e2e/               # Playwright specs
+docs/              # GOVERNANCE.md (org-wide standard), CONTRIBUTING.md
+public/            # static files served as-is (fonts, videos, robots.txt, llms.txt)
+```
+
+## Database
+
+None. Static Astro site with no server code and no adapter; all page content is
+typed data in `src/utils/constants.ts`. The `#demo` form posts to Netlify Forms,
+not a database (see Lead capture above). A Supabase backend existed previously
+but is no longer active; `SECURITY.md` still describes the old Supabase-based
+form and has not been updated to reflect the Netlify Forms migration.
+
+## Security
+
+- Secret scanning (trufflehog, `--only-verified`) and `pnpm audit --audit-level=high`
+  run in the `security` job of `.github/workflows/ci.yml` on every push/PR to
+  `main`/`dev`.
+- Only env vars prefixed `PUBLIC_*` reach the client bundle; everything else stays
+  server/build-side. `.env` is gitignored; only `.env.example` (no real values) is
+  committed.
+- No user data is stored anywhere in this repo's control: the lead form goes
+  straight to Netlify's own dashboard, no server endpoint or third-party DB in
+  the critical path.
+- Report vulnerabilities per `SECURITY.md` (GitHub Private Vulnerability
+  Reporting), not as a public issue.
+- Org-wide security/CI hardening standard lives in `docs/GOVERNANCE.md`.
+
+## Working here
+
+**Allowed without confirmation:** `pnpm run dev|build|preview|typecheck|lint|format:check|test|test:coverage`,
+read-only git commands (`status`, `log`, `diff`, `branch -a`), `gh pr view|checks`.
+
+**Never do:**
+
+- Push or merge directly to `dev` or `main` (both are protected integration
+  branches, see `docs/GOVERNANCE.md`); always go through a PR.
+- Commit real secrets or a filled-in `.env`; only `PUBLIC_*` vars may ever reach
+  client code.
+- Add a client-facing form or script that posts to anything other than Netlify
+  Forms without checking whether it needs the removed `@astrojs/netlify` adapter
+  back (see Architecture above).
+- Use the em-dash in UI copy (see Key Constraints).
+- Run destructive git commands (`reset --hard`, `push --force`) without explicit
+  confirmation.
+
+**Done criteria:** `pnpm run format:check`, `pnpm run lint`, `pnpm run typecheck`,
+`pnpm run test` and `pnpm run build` all pass locally; run `pnpm run test:e2e` too
+if the change touches markup, navigation or the lead form. This matches what CI's
+`quality`, `build` and `e2e` jobs check on the PR.
+
 ## Governance
 
 Org-wide repository governance (branch protection / rulesets model, CI/CD hardening standard, commit conventions, licensing, security) lives in `docs/GOVERNANCE.md`. It is written as the Lumina W organization standard (not terracore-specific); the canonical copy is intended for the `lumina-w/.github` repo so every product inherits it. Apply it when setting up CI, workflows, or repo governance here.
