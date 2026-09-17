@@ -1,10 +1,9 @@
 name: CI
 
 on:
-  push:
-    branches: [main, dev]
   pull_request:
     branches: [main, dev]
+    types: [opened, synchronize, reopened]
 
 # Least-privilege: el token solo necesita leer el código para lint/build/test.
 permissions:
